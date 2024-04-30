@@ -43,7 +43,7 @@ func _on_texture_button_pressed() -> void:
 	gear_label.text = "Gear Coins: " + str(gear_coins)
 
 func _on_button_pressed() -> void:
-	shop.popup()
+	shop.show()
 
 func _on_straight_button_pressed():
 	if gear_coins >= straight_cost:
