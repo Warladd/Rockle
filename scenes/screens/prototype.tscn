@@ -1,12 +1,123 @@
 [gd_scene load_steps=3 format=3 uid="uid://dtw6obm6lmpng"]
 
-[ext_resource type="Script" path="res://scenes/screens/main.gd" id="1_p6lbv"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_p6lbv"]
 [ext_resource type="Texture2D" uid="uid://lyhtdgctuen8" path="res://icon.svg" id="2_alf8w"]
 
-[node name="Prototype" type="Node2D" node_paths=PackedStringArray("gear_label", "shop")]
+[node name="Prototype" type="Node2D" node_paths=PackedStringArray("gear_label", "shop", "shop_button", "straight_label", "kick_label", "uppercut_label", "hold_label")]
 script = ExtResource("1_p6lbv")
 gear_label = NodePath("Label")
-shop = NodePath("Popup")
+shop = NodePath("Shop")
+shop_button = NodePath("ShopButton")
+straight_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer/Label2")
+kick_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2/Label2")
+uppercut_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/Label2")
+hold_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4/Label2")
+
+[node name="Shop" type="PopupMenu" parent="."]
+initial_position = 1
+size = Vector2i(500, 500)
+visible = true
+
+[node name="TabContainer" type="TabContainer" parent="Shop"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Modifiers" type="TabBar" parent="Shop/TabContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/TabContainer/Modifiers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "   Straight"
+
+[node name="StraightButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Buy"
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "5 Coins"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "   Kick"
+
+[node name="KickButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Buy"
+alignment = 2
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "100 Coins"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "   Uppercut"
+
+[node name="UppercutButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Buy"
+alignment = 2
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "1000 Coins"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "   Hold"
+
+[node name="HoldButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Buy"
+alignment = 2
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "25000 Coins"
+
+[node name="ExitShopButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Exit"
 
 [node name="Label" type="Label" parent="."]
 offset_left = -570.0
@@ -33,87 +144,17 @@ texture_hover = ExtResource("2_alf8w")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Popup" type="Popup" parent="."]
-initial_position = 1
-size = Vector2i(193, 136)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Popup"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Popup/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Straight"
-
-[node name="Button" type="Button" parent="Popup/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Buy"
-alignment = 2
-
-[node name="Label2" type="Label" parent="Popup/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "1 Coin"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Popup/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Popup/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Kick"
-
-[node name="Button" type="Button" parent="Popup/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Buy"
-alignment = 2
-
-[node name="Label2" type="Label" parent="Popup/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "100 Coins"
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="Popup/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Popup/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-text = "Uppercut"
-
-[node name="Button" type="Button" parent="Popup/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-text = "Buy"
-alignment = 2
-
-[node name="Label2" type="Label" parent="Popup/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-text = "500 Coins"
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="Popup/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Popup/VBoxContainer/HBoxContainer4"]
-layout_mode = 2
-text = "Hold"
-
-[node name="Button" type="Button" parent="Popup/VBoxContainer/HBoxContainer4"]
-layout_mode = 2
-text = "Buy"
-alignment = 2
-
-[node name="Label2" type="Label" parent="Popup/VBoxContainer/HBoxContainer4"]
-layout_mode = 2
-text = "2500 Coins"
-
-[node name="Button" type="Button" parent="."]
+[node name="ShopButton" type="Button" parent="."]
 offset_left = 402.0
 offset_top = -323.0
 offset_right = 575.0
 offset_bottom = -292.0
 text = "Shop"
 
+[connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer/StraightButton" to="." method="_on_straight_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2/KickButton" to="." method="_on_kick_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/UppercutButton" to="." method="_on_uppercut_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4/HoldButton" to="." method="_on_hold_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/ExitShopButton" to="." method="_on_exit_shop_button_pressed"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ShopButton" to="." method="_on_button_pressed"]
