@@ -1,14 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://dtw6obm6lmpng"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_p6lbv"]
-[ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="2_ag7yq"]
-[ext_resource type="LabelSettings" uid="uid://xd8rgjv5gtlp" path="res://resources/standard_label_settings.tres" id="2_eh6vp"]
-[ext_resource type="Texture2D" uid="uid://blq6w0xknc3ma" path="res://assets/structures/normal/disk.png" id="4_4vul1"]
-[ext_resource type="Texture2D" uid="uid://dboukh73baip7" path="res://assets/structures/click/disk_click.png" id="5_14ibi"]
-[ext_resource type="Texture2D" uid="uid://c3ciqui60acws" path="res://assets/structures/hover/disk_bigger.png" id="5_hf221"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_rdaht"]
+[ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="2_bwg6y"]
+[ext_resource type="LabelSettings" uid="uid://xd8rgjv5gtlp" path="res://resources/standard_label_settings.tres" id="3_6lbk3"]
+[ext_resource type="Texture2D" uid="uid://cecbvd8n2ff67" path="res://assets/structures/click/wall_click.png" id="4_vdik3"]
+[ext_resource type="Texture2D" uid="uid://dboukh73baip7" path="res://assets/structures/click/disk_click.png" id="5_ymnav"]
+[ext_resource type="Texture2D" uid="uid://c3ciqui60acws" path="res://assets/structures/hover/disk_bigger.png" id="6_b8alq"]
 
-[node name="Prototype" type="Node2D" node_paths=PackedStringArray("gear_label", "shop_label_1", "shop_label_2", "shop", "shop_button", "straight_label", "kick_label", "uppercut_label", "hold_label", "click_button", "disk_button", "pillar_button", "boulder_button", "wall_button")]
-script = ExtResource("1_p6lbv")
+[node name="Game" type="Node2D" node_paths=PackedStringArray("gear_label", "shop_label_1", "shop_label_2", "shop", "shop_button", "straight_label", "kick_label", "uppercut_label", "hold_label", "click_button", "disk_button", "pillar_button", "pillar_label", "boulder_button", "boulder_label", "wall_button", "wall_label", "particle_timer")]
+script = ExtResource("1_rdaht")
 gear_label = NodePath("Label")
 shop_label_1 = NodePath("Shop/TabContainer/Modifiers/Label")
 shop_label_2 = NodePath("Shop/TabContainer/Structures/Label2")
@@ -21,8 +21,12 @@ hold_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4/
 click_button = NodePath("TextureButton")
 disk_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/diskartonlineButton")
 pillar_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/PillartButton")
+pillar_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label2")
 boulder_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/BoulderButton")
+boulder_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/Label2")
 wall_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/WallButton")
+wall_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/Label2")
+particle_timer = NodePath("ParticleTimer")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -56,12 +60,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("2_ag7yq")
+theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 35
 
 [node name="Modifiers" type="TabBar" parent="Shop/TabContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ag7yq")
+theme_override_fonts/font = ExtResource("2_bwg6y")
 
 [node name="Label" type="Label" parent="Shop/TabContainer/Modifiers"]
 layout_mode = 2
@@ -70,7 +74,7 @@ offset_top = -50.0
 offset_right = 1069.0
 offset_bottom = -2.0
 text = "Gear Coins: 0"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Shop/TabContainer/Modifiers"]
 layout_mode = 1
@@ -88,12 +92,12 @@ size_flags_vertical = 0
 layout_mode = 2
 size_flags_horizontal = 3
 text = " Straight"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 
 [node name="StraightButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_fonts/font = ExtResource("2_ag7yq")
+theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 35
 text = "Buy"
 
@@ -101,7 +105,7 @@ text = "Buy"
 layout_mode = 2
 size_flags_horizontal = 8
 text = "5 Coins"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -113,12 +117,12 @@ size_flags_vertical = 0
 layout_mode = 2
 size_flags_horizontal = 3
 text = " Kick"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 
 [node name="KickButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 10
-theme_override_fonts/font = ExtResource("2_ag7yq")
+theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
@@ -126,7 +130,7 @@ alignment = 2
 [node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "100 Coins"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
 layout_mode = 2
@@ -136,12 +140,12 @@ size_flags_vertical = 0
 layout_mode = 2
 size_flags_horizontal = 8
 text = " Uppercut"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 
 [node name="UppercutButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 10
-theme_override_fonts/font = ExtResource("2_ag7yq")
+theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
@@ -149,7 +153,7 @@ alignment = 2
 [node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 text = "1000 Coins"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
 layout_mode = 2
@@ -158,12 +162,12 @@ size_flags_vertical = 0
 [node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 text = " Hold"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 
 [node name="HoldButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 10
-theme_override_fonts/font = ExtResource("2_ag7yq")
+theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
@@ -171,19 +175,19 @@ alignment = 2
 [node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 text = "25000 Coins"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 
 [node name="ExitShopButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
-theme_override_fonts/font = ExtResource("2_ag7yq")
+theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 50
 text = "Exit"
 
 [node name="Structures" type="TabBar" parent="Shop/TabContainer"]
 visible = false
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ag7yq")
+theme_override_fonts/font = ExtResource("2_bwg6y")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Structures"]
 layout_mode = 2
@@ -192,7 +196,7 @@ offset_top = -51.0
 offset_right = 1069.0
 offset_bottom = -3.0
 text = "Gear Coins: 0"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Shop/TabContainer/Structures"]
 layout_mode = 1
@@ -211,12 +215,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.180005, 0.180005, 0.180005, 1)
 text = " Disk"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 
 [node name="diskartonlineButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_fonts/font = ExtResource("2_ag7yq")
+theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 35
 text = "Use"
 
@@ -225,7 +229,7 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 text = "150 Coins"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -237,12 +241,12 @@ size_flags_vertical = 0
 layout_mode = 2
 size_flags_horizontal = 3
 text = " Pillar"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 
 [node name="PillartButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_fonts/font = ExtResource("2_ag7yq")
+theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 35
 text = "Buy"
 
@@ -250,7 +254,7 @@ text = "Buy"
 layout_mode = 2
 size_flags_horizontal = 8
 text = "150 Coins"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -262,12 +266,12 @@ size_flags_vertical = 0
 layout_mode = 2
 size_flags_horizontal = 3
 text = " Boulder"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 
 [node name="BoulderButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 10
-theme_override_fonts/font = ExtResource("2_ag7yq")
+theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
@@ -275,7 +279,7 @@ alignment = 2
 [node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "2000 Coins"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Shop/TabContainer/Structures/VBoxContainer"]
 layout_mode = 2
@@ -285,12 +289,12 @@ size_flags_vertical = 0
 layout_mode = 2
 size_flags_horizontal = 8
 text = " Wall"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 
 [node name="WallButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 10
-theme_override_fonts/font = ExtResource("2_ag7yq")
+theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
@@ -298,12 +302,12 @@ alignment = 2
 [node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 text = "30000 Coins"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 
 [node name="ExitShopButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
-theme_override_fonts/font = ExtResource("2_ag7yq")
+theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 50
 text = "Exit"
 
@@ -313,7 +317,7 @@ offset_top = 8.0
 offset_right = 206.0
 offset_bottom = 56.0
 text = "Gear Coins: 0"
-label_settings = ExtResource("2_eh6vp")
+label_settings = ExtResource("3_6lbk3")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 anchors_preset = 8
@@ -328,9 +332,9 @@ offset_bottom = 273.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2.5, 2.5)
-texture_normal = ExtResource("4_4vul1")
-texture_pressed = ExtResource("5_14ibi")
-texture_hover = ExtResource("5_hf221")
+texture_normal = ExtResource("4_vdik3")
+texture_pressed = ExtResource("5_ymnav")
+texture_hover = ExtResource("6_b8alq")
 stretch_mode = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -341,7 +345,7 @@ offset_left = 968.0
 offset_top = 2.0
 offset_right = 1120.0
 offset_bottom = 71.0
-theme_override_fonts/font = ExtResource("2_ag7yq")
+theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 50
 text = "Shop"
 flat = true
@@ -349,6 +353,10 @@ flat = true
 [node name="StructureTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="ParticleTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
 
 [node name="SaveTimer" type="Timer" parent="."]
 wait_time = 60.0
@@ -369,4 +377,5 @@ autostart = true
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="ShopButton" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="StructureTimer" to="." method="_on_structure_timer_timeout"]
+[connection signal="timeout" from="ParticleTimer" to="." method="_on_particle_timer_timeout"]
 [connection signal="timeout" from="SaveTimer" to="." method="_on_save_timer_timeout"]

@@ -18,6 +18,9 @@ var constant_gears : int = 0
 @export var boulder_label : Label
 @export var wall_button : Button
 @export var wall_label : Label
+@export var particle_timer : Timer
+
+var particle_sprite = preload("res://scenes/particle.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -97,6 +100,17 @@ func _input(event) -> void:
 func _on_texture_button_pressed() -> void:
 	SaveSystem.save_game.gear_coins += SaveSystem.save_game.gear_amount
 	gear_label.text = "Gear Coins: " + str(SaveSystem.save_game.gear_coins)
+	var particle = randi_range(1, 4)
+	particle_sprite.texture = load("res://assets/sparks/spark%d.png" % particle)
+	particle_sprite.position = Vector2(randi_range(431, 700), randi_range(156, 405))
+	particle_sprite.show()
+	particle_timer.start()
+	# var ghost: Sprite2D = ghost_scene.instantiate()
+	# get_parent().add_child(ghost)
+	# ghost.global_position = sprite.global_position
+	# ghost.flip_h = sprite.flip_h
+	# ghost.texture = ghost_jump_texture
+	# ghost.modulate = Color(0.067, 0.4, 0.671)
 
 func _on_button_pressed() -> void:
 	shop.show()
@@ -207,13 +221,14 @@ func _on_diskartonline_button_pressed() -> void:
 	constant_gears = 0
 	SaveSystem.save_game.structure = "disk"
 
-
 func _on_structure_timer_timeout():
 	SaveSystem.save_game.gear_coins += constant_gears
 	gear_label.text = "Gear Coins: " + str(SaveSystem.save_game.gear_coins)
 	shop_label_1.text = "Gear Coins: " + str(SaveSystem.save_game.gear_coins)
 	shop_label_2.text = "Gear Coins: " + str(SaveSystem.save_game.gear_coins)
 
-
 func _on_save_timer_timeout():
 	SaveSystem.saving()
+
+func _on_particle_timer_timeout():
+	particle_sprite.hide()
