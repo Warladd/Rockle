@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clqy8725xjmkm"
-path="res://.godot/imported/wall.png-213e4f812a45cb8452892923f58b468c.ctex"
+uid="uid://d2kx37s0iib00"
+path="res://.godot/imported/boulder_bigger.png-c1b50898eed24ca283d73b4a41d9b6d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/structures/wall.png"
-dest_files=["res://.godot/imported/wall.png-213e4f812a45cb8452892923f58b468c.ctex"]
+source_file="res://assets/structures/hover/boulder_bigger.png"
+dest_files=["res://.godot/imported/boulder_bigger.png-c1b50898eed24ca283d73b4a41d9b6d8.ctex"]
 
 [params]
 

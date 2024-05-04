@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blbproi103gip"
-path="res://.godot/imported/pillar.png-17b53362eabd3109bf1d19f8f0c86223.ctex"
+uid="uid://cb70m3s54l6ke"
+path="res://.godot/imported/boulder_click.png-bc8ff916c9cb98995fabb2d62021c0c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/structures/pillar.png"
-dest_files=["res://.godot/imported/pillar.png-17b53362eabd3109bf1d19f8f0c86223.ctex"]
+source_file="res://assets/structures/click/boulder_click.png"
+dest_files=["res://.godot/imported/boulder_click.png-bc8ff916c9cb98995fabb2d62021c0c3.ctex"]
 
 [params]
 

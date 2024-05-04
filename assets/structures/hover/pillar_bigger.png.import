@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q41ai1miwirf"
-path="res://.godot/imported/wall_bigger.png-dc71e9f015edf82cc4a92df8a213d68c.ctex"
+uid="uid://d1ehx3nbxog0a"
+path="res://.godot/imported/pillar_bigger.png-1dd4e294fcb2e4ca2773f97cb5b5ad93.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/structures/wall_bigger.png"
-dest_files=["res://.godot/imported/wall_bigger.png-dc71e9f015edf82cc4a92df8a213d68c.ctex"]
+source_file="res://assets/structures/hover/pillar_bigger.png"
+dest_files=["res://.godot/imported/pillar_bigger.png-1dd4e294fcb2e4ca2773f97cb5b5ad93.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3ciqui60acws"
-path="res://.godot/imported/disk_bigger.png-129797bcd2d4351fd4b885b66a417156.ctex"
+uid="uid://blq6w0xknc3ma"
+path="res://.godot/imported/disk.png-ea3a1a79278792bee14474fa49649d16.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/structures/disk_bigger.png"
-dest_files=["res://.godot/imported/disk_bigger.png-129797bcd2d4351fd4b885b66a417156.ctex"]
+source_file="res://assets/structures/normal/disk.png"
+dest_files=["res://.godot/imported/disk.png-ea3a1a79278792bee14474fa49649d16.ctex"]
 
 [params]
 
