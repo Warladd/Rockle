@@ -3,12 +3,13 @@ extends Node2D
 var gear_amount : int = 1
 @export_group("Nodes")
 @export var gear_label : Label
-@export var shop : Popup
+@export var shop : CanvasLayer
 @export var shop_button : Button
 @export var straight_label : Label
 @export var kick_label : Label
 @export var uppercut_label : Label
 @export var hold_label : Label
+@export var click_button : TextureButton
 
 # Modifiers
 var straight : int = 0
@@ -16,14 +17,22 @@ var kick : int = 0
 var upper : int = 0
 var hold : int = 0
 
+# Structure
+var structure = "disk"
+
 # Cost
 var straight_cost : int = 5
 var kick_cost : int = 100
 var upper_cost : int = 1000
 var hold_cost : int = 25000
 
+var pillar_cost : int = 150
+var boulder_cost : int = 2000
+var wall_cost : int = 30000
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	shop.hide()
 	gear_amount = 1
 	if straight > 0:
 		gear_amount += straight
@@ -87,3 +96,9 @@ func _on_hold_button_pressed():
 
 func _on_exit_shop_button_pressed():
 	shop.visible = false
+
+func _on_pillart_button_pressed():
+	if gear_coins >= pillar_cost:
+		gear_coins -= pillar_cost
+		click_button.texture_normal = "res://assets/structures/pillar.png"
+		click_button.texture_hover = "res://assets/structures/pillar_bigger.png"
