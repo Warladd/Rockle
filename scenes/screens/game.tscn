@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtw6obm6lmpng"]
+[gd_scene load_steps=17 format=3 uid="uid://dtw6obm6lmpng"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rdaht"]
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="2_bwg6y"]
@@ -9,9 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://b63q7wt1gx3qd" path="res://assets/structures/boulder.png" id="5_uf7ya"]
 [ext_resource type="Texture2D" uid="uid://d2xj5s3l6led1" path="res://assets/structures/cube.png" id="6_mkmhn"]
 [ext_resource type="Texture2D" uid="uid://cf8a6htdc168p" path="res://assets/character/Rumbler_straight.png" id="6_ymcde"]
-[ext_resource type="Texture2D" uid="uid://dl0ihjvb3tdag" path="res://assets/structures/wall_new.png" id="7_bokbw"]
+[ext_resource type="Texture2D" uid="uid://dl0ihjvb3tdag" path="res://assets/structures/wall.png" id="7_bokbw"]
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="8_aofh8"]
-[ext_resource type="LabelSettings" path="res://resources/charge_label_settings.tres" id="10_5384l"]
+[ext_resource type="LabelSettings" uid="uid://ca2wabawemdxc" path="res://resources/charge_label_settings.tres" id="10_5384l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tq13i"]
 font = ExtResource("2_bwg6y")
@@ -56,34 +56,50 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("disk_timer", "disk_label", "disk_name_label", "disk_sprite", "pillar_timer", "pillar_label", "pillar_name_label", "pillar_sprite", "ball_timer", "ball_label", "ball_name_label", "ball_sprite", "cube_timer", "cube_label", "cube_name_label", "cube_sprite", "wall_timer", "wall_label", "wall_name_label", "wall_sprite", "gear_label", "shop_label_1", "shop_label_2", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dx7l"]
+bg_color = Color(0.575317, 0.54622, 0.536891, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1dof"]
+bg_color = Color(0.787727, 0.641632, 0.543549, 1)
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("disk_timer", "disk_label", "disk_name_label", "disk_sprite", "disk_container", "disk_bar", "pillar_timer", "pillar_label", "pillar_name_label", "pillar_sprite", "pillar_container", "pillar_bar", "ball_timer", "ball_label", "ball_name_label", "ball_sprite", "ball_container", "ball_bar", "cube_timer", "cube_label", "cube_name_label", "cube_sprite", "cube_container", "cube_bar", "wall_timer", "wall_label", "wall_name_label", "wall_sprite", "wall_container", "wall_bar", "gear_label", "shop_label_1", "shop_label_2", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu")]
 script = ExtResource("1_rdaht")
 disk_timer = NodePath("Structure Timers/DiskTimer")
 disk_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label2")
 disk_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label")
-disk_sprite = NodePath("Disk")
+disk_sprite = NodePath("Sprites/Disk")
+disk_container = NodePath("StructureBarContainer/DiskContainer")
+disk_bar = NodePath("StructureBarContainer/DiskContainer/ProgressBar")
 pillar_timer = NodePath("Structure Timers/PillarTimer")
 pillar_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/Label2")
 pillar_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/Label")
-pillar_sprite = NodePath("Pillar")
+pillar_sprite = NodePath("Sprites/Pillar")
+pillar_container = NodePath("StructureBarContainer/PillarContainer")
+pillar_bar = NodePath("StructureBarContainer/PillarContainer/ProgressBar")
 ball_timer = NodePath("Structure Timers/BallTimer")
 ball_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/Label2")
 ball_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/Label")
-ball_sprite = NodePath("Boulder")
+ball_sprite = NodePath("Sprites/Boulder")
+ball_container = NodePath("StructureBarContainer/BallContainer")
+ball_bar = NodePath("StructureBarContainer/BallContainer/ProgressBar")
 cube_timer = NodePath("Structure Timers/CubeTimer")
 cube_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/Label2")
 cube_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/Label")
-cube_sprite = NodePath("Cube")
+cube_sprite = NodePath("Sprites/Cube")
+cube_container = NodePath("StructureBarContainer/CubeContainer")
+cube_bar = NodePath("StructureBarContainer/CubeContainer/ProgressBar")
 wall_timer = NodePath("Structure Timers/WallTimer")
 wall_label = NodePath("Shop/Modifiers/VBoxContainer/HBoxContainer3/Label2")
 wall_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/Label")
-wall_sprite = NodePath("Wall")
+wall_sprite = NodePath("Sprites/Wall")
+wall_container = NodePath("StructureBarContainer/WallContainer")
+wall_bar = NodePath("StructureBarContainer/WallContainer/ProgressBar")
 gear_label = NodePath("GearCoinLabel")
 shop_label_1 = NodePath("Shop/TabContainer/Structures/Label")
 shop_label_2 = NodePath("Shop/Modifiers/Label2")
 shop = NodePath("Shop")
 shop_button = NodePath("ShopButton")
-player_sprite = NodePath("Player")
+player_sprite = NodePath("Sprites/Player")
 saving_label = NodePath("SavingLabel")
 save_timer = NodePath("SaveTimer")
 pause_menu = NodePath("PauseMenu")
@@ -113,27 +129,29 @@ scale = Vector2(0.25, 0.25)
 text = "Gear Coins: 0"
 label_settings = SubResource("LabelSettings_tq13i")
 
-[node name="Disk" type="Sprite2D" parent="."]
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Disk" type="Sprite2D" parent="Sprites"]
 position = Vector2(430, 414)
 texture = ExtResource("4_n3fo8")
 
-[node name="Pillar" type="Sprite2D" parent="."]
+[node name="Pillar" type="Sprite2D" parent="Sprites"]
 position = Vector2(428, 455)
 texture = ExtResource("5_or4b6")
 
-[node name="Boulder" type="Sprite2D" parent="."]
+[node name="Boulder" type="Sprite2D" parent="Sprites"]
 position = Vector2(434, 414)
 texture = ExtResource("5_uf7ya")
 
-[node name="Cube" type="Sprite2D" parent="."]
+[node name="Cube" type="Sprite2D" parent="Sprites"]
 position = Vector2(444, 431)
 texture = ExtResource("6_mkmhn")
 
-[node name="Wall" type="Sprite2D" parent="."]
+[node name="Wall" type="Sprite2D" parent="Sprites"]
 position = Vector2(428, 443)
 texture = ExtResource("7_bokbw")
 
-[node name="Player" type="AnimatedSprite2D" parent="."]
+[node name="Player" type="AnimatedSprite2D" parent="Sprites"]
 position = Vector2(337, 322)
 sprite_frames = SubResource("SpriteFrames_opojv")
 
@@ -145,84 +163,107 @@ offset_bottom = 630.0
 color = Color(0.862368, 0.74564, 0.543697, 1)
 
 [node name="StructureBarContainer" type="VBoxContainer" parent="."]
-visible = false
-offset_top = 377.0
-offset_right = 239.0
-offset_bottom = 630.0
+offset_left = 13.0
+offset_top = 395.0
+offset_right = 263.0
+offset_bottom = 601.0
 
 [node name="DiskContainer" type="HBoxContainer" parent="StructureBarContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 0
 
 [node name="Label" type="Label" parent="StructureBarContainer/DiskContainer"]
 layout_mode = 2
-text = "Disk: "
+size_flags_vertical = 0
+text = "Disk:"
 label_settings = ExtResource("10_5384l")
 
 [node name="ProgressBar" type="ProgressBar" parent="StructureBarContainer/DiskContainer"]
-custom_minimum_size = Vector2(0, 35)
+custom_minimum_size = Vector2(165, 30)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_6dx7l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c1dof")
 max_value = 1.0
 show_percentage = false
 
 [node name="PillarContainer" type="HBoxContainer" parent="StructureBarContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="StructureBarContainer/PillarContainer"]
 layout_mode = 2
-text = "Disk: "
-label_settings = ExtResource("3_6lbk3")
+size_flags_vertical = 0
+text = "Pillar:"
+label_settings = ExtResource("10_5384l")
 
 [node name="ProgressBar" type="ProgressBar" parent="StructureBarContainer/PillarContainer"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(165, 30)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_6dx7l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c1dof")
 max_value = 1.0
+show_percentage = false
 
 [node name="BallContainer" type="HBoxContainer" parent="StructureBarContainer"]
+visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="StructureBarContainer/BallContainer"]
+[node name="Label2" type="Label" parent="StructureBarContainer/BallContainer"]
 layout_mode = 2
-text = "Disk: "
-label_settings = ExtResource("3_6lbk3")
+text = "Ball: "
+label_settings = ExtResource("10_5384l")
 
 [node name="ProgressBar" type="ProgressBar" parent="StructureBarContainer/BallContainer"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(165, 30)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_6dx7l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c1dof")
 max_value = 1.0
+show_percentage = false
 
 [node name="CubeContainer" type="HBoxContainer" parent="StructureBarContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="StructureBarContainer/CubeContainer"]
 layout_mode = 2
-text = "Disk: "
-label_settings = ExtResource("3_6lbk3")
+text = "Cube: "
+label_settings = ExtResource("10_5384l")
 
 [node name="ProgressBar" type="ProgressBar" parent="StructureBarContainer/CubeContainer"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(165, 30)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_6dx7l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c1dof")
 max_value = 1.0
+show_percentage = false
 
 [node name="WallContainer" type="HBoxContainer" parent="StructureBarContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="StructureBarContainer/WallContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-text = "Disk: "
-label_settings = ExtResource("3_6lbk3")
+text = "Wall: "
+label_settings = ExtResource("10_5384l")
 
 [node name="ProgressBar" type="ProgressBar" parent="StructureBarContainer/WallContainer"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(165, 30)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_6dx7l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c1dof")
 max_value = 1.0
+show_percentage = false
 
 [node name="ShopButton" type="Button" parent="."]
 offset_left = 1019.0
