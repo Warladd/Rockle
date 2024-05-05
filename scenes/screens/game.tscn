@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtw6obm6lmpng"]
+[gd_scene load_steps=9 format=3 uid="uid://dtw6obm6lmpng"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rdaht"]
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="2_bwg6y"]
 [ext_resource type="LabelSettings" uid="uid://xd8rgjv5gtlp" path="res://resources/standard_label_settings.tres" id="3_6lbk3"]
-[ext_resource type="Texture2D" uid="uid://blq6w0xknc3ma" path="res://assets/structures/disk.png" id="4_fcy8y"]
+[ext_resource type="Texture2D" uid="uid://esoutmox2yhs" path="res://assets/structures/disk_new.png" id="4_n3fo8"]
 [ext_resource type="Texture2D" uid="uid://bx0pn8txbr2wx" path="res://assets/character/Rumbler.png" id="5_4qlkr"]
+[ext_resource type="Texture2D" uid="uid://bu7ldqi1qg1bf" path="res://assets/structures/pillar_new.png" id="5_or4b6"]
 [ext_resource type="Texture2D" uid="uid://cf8a6htdc168p" path="res://assets/character/Rumbler_straight.png" id="6_ymcde"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_opojv"]
@@ -46,20 +47,21 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("gear_label", "shop_label_1", "shop_label_2", "shop", "shop_button", "pillar_label", "boulder_label", "wall_label", "player_sprite", "disk_timer", "disk_label", "disk_sprite")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("gear_label", "shop_label_1", "shop_label_2", "shop", "shop_button", "boulder_label", "wall_label", "player_sprite", "disk_timer", "disk_label", "disk_sprite", "pillar_sprite", "pillar_label")]
 script = ExtResource("1_rdaht")
 gear_label = NodePath("GearCoinLabel")
 shop_label_1 = NodePath("Shop/TabContainer/Structures/Label")
 shop_label_2 = NodePath("Shop/TabContainer/Modifiers/Label2")
 shop = NodePath("Shop")
 shop_button = NodePath("ShopButton")
-pillar_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer/Label2")
 boulder_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2/Label2")
 wall_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/Label2")
 player_sprite = NodePath("Player")
 disk_timer = NodePath("Structure Timers/DiskTimer")
 disk_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label2")
 disk_sprite = NodePath("Disk")
+pillar_sprite = NodePath("Pillar")
+pillar_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer/Label2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(560, 315)
@@ -356,8 +358,12 @@ text = "Gear Coins: 0"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="Disk" type="Sprite2D" parent="."]
-position = Vector2(467, 413)
-texture = ExtResource("4_fcy8y")
+position = Vector2(430, 414)
+texture = ExtResource("4_n3fo8")
+
+[node name="Pillar" type="Sprite2D" parent="."]
+position = Vector2(428, 318)
+texture = ExtResource("5_or4b6")
 
 [node name="Player" type="AnimatedSprite2D" parent="."]
 position = Vector2(337, 322)
@@ -368,7 +374,7 @@ offset_left = -2.0
 offset_top = 376.0
 offset_right = 1121.0
 offset_bottom = 630.0
-color = Color(0.607938, 0.495143, 0.293674, 1)
+color = Color(0.862368, 0.74564, 0.543697, 1)
 
 [node name="ShopButton" type="Button" parent="."]
 offset_left = 968.0
@@ -392,6 +398,7 @@ one_shot = true
 
 [node name="PillarTimer" type="Timer" parent="Structure Timers"]
 wait_time = 5.0
+one_shot = true
 
 [connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/DiskButton" to="." method="_on_straight_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/PillarButton" to="." method="_on_kick_button_pressed"]
@@ -406,4 +413,3 @@ wait_time = 5.0
 [connection signal="pressed" from="ShopButton" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="SaveTimer" to="." method="_on_save_timer_timeout"]
 [connection signal="timeout" from="Structure Timers/DiskTimer" to="." method="_on_disk_timer_timeout"]
-[connection signal="timeout" from="Structure Timers/PillarTimer" to="." method="_on_structure_timer_timeout"]
