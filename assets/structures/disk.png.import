@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxvyj13776x3d"
-path="res://.godot/imported/boulder.png-71610b7e6fc945c41612cb23e84e3eb1.ctex"
+uid="uid://blq6w0xknc3ma"
+path="res://.godot/imported/disk.png-b1654341375d472f46f68a4ad68ed4a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/structures/normal/boulder.png"
-dest_files=["res://.godot/imported/boulder.png-71610b7e6fc945c41612cb23e84e3eb1.ctex"]
+source_file="res://assets/structures/disk.png"
+dest_files=["res://.godot/imported/disk.png-b1654341375d472f46f68a4ad68ed4a3.ctex"]
 
 [params]
 

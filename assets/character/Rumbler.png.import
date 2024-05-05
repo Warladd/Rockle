@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q41ai1miwirf"
-path="res://.godot/imported/wall_bigger.png-bf62262c5bee7c3db081a3ded1816a1e.ctex"
+uid="uid://bx0pn8txbr2wx"
+path="res://.godot/imported/Rumbler.png-6cedddef749f15de51ebb7981a78e5cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/structures/hover/wall_bigger.png"
-dest_files=["res://.godot/imported/wall_bigger.png-bf62262c5bee7c3db081a3ded1816a1e.ctex"]
+source_file="res://assets/character/Rumbler.png"
+dest_files=["res://.godot/imported/Rumbler.png-6cedddef749f15de51ebb7981a78e5cc.ctex"]
 
 [params]
 

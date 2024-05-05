@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1ehx3nbxog0a"
-path="res://.godot/imported/pillar_bigger.png-1dd4e294fcb2e4ca2773f97cb5b5ad93.ctex"
+uid="uid://cf8a6htdc168p"
+path="res://.godot/imported/Rumbler_straight.png-39b134222dc0da4dd73301182e9390b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/structures/hover/pillar_bigger.png"
-dest_files=["res://.godot/imported/pillar_bigger.png-1dd4e294fcb2e4ca2773f97cb5b5ad93.ctex"]
+source_file="res://assets/character/Rumbler_straight.png"
+dest_files=["res://.godot/imported/Rumbler_straight.png-39b134222dc0da4dd73301182e9390b4.ctex"]
 
 [params]
 
