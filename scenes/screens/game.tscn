@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dboukh73baip7" path="res://assets/structures/click/disk_click.png" id="5_ymnav"]
 [ext_resource type="Texture2D" uid="uid://c3ciqui60acws" path="res://assets/structures/hover/disk_bigger.png" id="6_b8alq"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("gear_label", "shop_label_1", "shop_label_2", "shop", "shop_button", "straight_label", "kick_label", "uppercut_label", "hold_label", "click_button", "disk_button", "pillar_button", "pillar_label", "boulder_button", "boulder_label", "wall_button", "wall_label", "particle_timer")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("gear_label", "shop_label_1", "shop_label_2", "shop", "shop_button", "straight_label", "kick_label", "uppercut_label", "hold_label", "click_button", "disk_button", "pillar_button", "pillar_label", "boulder_button", "boulder_label", "wall_button", "wall_label", "particle_timer", "particle_sprite")]
 script = ExtResource("1_rdaht")
 gear_label = NodePath("Label")
 shop_label_1 = NodePath("Shop/TabContainer/Modifiers/Label")
@@ -27,6 +27,7 @@ boulder_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContain
 wall_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/WallButton")
 wall_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/Label2")
 particle_timer = NodePath("ParticleTimer")
+particle_sprite = NodePath("Sprite2D")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -361,6 +362,8 @@ one_shot = true
 [node name="SaveTimer" type="Timer" parent="."]
 wait_time = 60.0
 autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 
 [connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer/StraightButton" to="." method="_on_straight_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2/KickButton" to="." method="_on_kick_button_pressed"]

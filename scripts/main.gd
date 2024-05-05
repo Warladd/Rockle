@@ -19,8 +19,7 @@ var constant_gears : int = 0
 @export var wall_button : Button
 @export var wall_label : Label
 @export var particle_timer : Timer
-
-var particle_sprite = preload("res://scenes/particle.tscn")
+@export var particle_sprite : Sprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -95,6 +94,7 @@ func _process(_delta) -> void:
 
 func _input(event) -> void:
 	if event.is_action_pressed("esc"):
+		SaveSystem.saving()
 		get_tree().quit(0)
 
 func _on_texture_button_pressed() -> void:
@@ -105,12 +105,6 @@ func _on_texture_button_pressed() -> void:
 	particle_sprite.position = Vector2(randi_range(431, 700), randi_range(156, 405))
 	particle_sprite.show()
 	particle_timer.start()
-	# var ghost: Sprite2D = ghost_scene.instantiate()
-	# get_parent().add_child(ghost)
-	# ghost.global_position = sprite.global_position
-	# ghost.flip_h = sprite.flip_h
-	# ghost.texture = ghost_jump_texture
-	# ghost.modulate = Color(0.067, 0.4, 0.671)
 
 func _on_button_pressed() -> void:
 	shop.show()
