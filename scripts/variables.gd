@@ -6,7 +6,8 @@ class_name SaveFile
 # Structures
 @export var disk : int = 1
 @export var pillar : int = 0
-@export var boulder : int = 0
+@export var ball : int = 0
+@export var cube : int = 0
 @export var wall : int = 0
 
 # Modifiers
@@ -19,5 +20,6 @@ class_name SaveFile
 # Cost
 @export var disk_cost : int = 50
 @export var pillar_cost : int = 150
-@export var boulder_cost : int = 1000
-@export var wall_cost : int = 20000
+@export var ball_cost : int = 1000
+@export var cube_cost : int = 20000
+@export var wall_cost : int = 150000

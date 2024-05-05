@@ -4,6 +4,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("esc"):
 		self.visible = !self.visible
 		get_tree().paused = self.visible
+	if Input.is_action_just_pressed("codes"):
+		pass
+		
 
 func _on_resume_button_pressed():
 	self.visible = !self.visible
@@ -21,6 +24,11 @@ func _on_restart_button_pressed():
 
 func _on_yes_button_pressed():
 	SaveSystem.restart()
+	$ColorRect/VBoxContainer2.hide()
+	$ColorRect/VBoxContainer.show()
+	$ColorRect.color = Color("c69669c9")
+	self.visible = !self.visible
+	get_tree().paused = self.visible
 
 func _on_no_button_pressed():
 	$ColorRect/VBoxContainer.show()

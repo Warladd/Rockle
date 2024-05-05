@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://esoutmox2yhs"
-path="res://.godot/imported/disk_new.png-fd5ad02c421b2c2c1f06c43e8db17b95.ctex"
+uid="uid://d2xj5s3l6led1"
+path="res://.godot/imported/cube.png-26bd7d4293c03098a273006f3d1cf8dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/structures/disk_new.png"
-dest_files=["res://.godot/imported/disk_new.png-fd5ad02c421b2c2c1f06c43e8db17b95.ctex"]
+source_file="res://assets/structures/cube.png"
+dest_files=["res://.godot/imported/cube.png-26bd7d4293c03098a273006f3d1cf8dd.ctex"]
 
 [params]
 
