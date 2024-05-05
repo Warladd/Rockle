@@ -188,7 +188,7 @@ func _process(_delta) -> void:
 			print("disk loaded")
 
 func _input(event) -> void:
-	if event.is_action_pressed("l_click"):
+	if event.is_action_pressed("straight"):
 		if wall_loaded:
 			print("wall hit")
 			wall_loaded = false
@@ -267,7 +267,87 @@ func _input(event) -> void:
 			disk_bar.value = 0
 			disk_tween = create_tween()
 			disk_tween.tween_property(disk_bar, "value", 1, 0.3)
-
+	
+	elif event.is_action_pressed("kick") and SaveSystem.save_game.kick:
+		if wall_loaded:
+			print("wall hit")
+			wall_loaded = false
+			wall_timer.start()
+			wall_tween = create_tween()
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.wall * 300000 * 2
+			gear_label.text = "Gear Coins: " + str(SaveSystem.save_game.gear_coins)
+			player_sprite.play("kick")
+			wall_tween.tween_property(wall_sprite, "position", Vector2(595, 218), 0.4)
+			await wall_tween.finished
+			player_sprite.play("default")
+			wall_sprite.position = Vector2(428, 443)
+			wall_bar.value = 0
+			wall_tween = create_tween()
+			wall_tween.tween_property(wall_bar, "value", 1, 60)
+			
+		elif cube_loaded:
+			print("cube hit")
+			cube_loaded = false
+			cube_timer.start()
+			cube_tween = create_tween()
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.cube * 500 * 2
+			gear_label.text = "Gear Coins: " + str(SaveSystem.save_game.gear_coins)
+			player_sprite.play("kick")
+			cube_tween.tween_property(cube_sprite, "position", Vector2(595, 232), 0.5)
+			await cube_tween.finished
+			player_sprite.play("default")
+			cube_sprite.position = Vector2(444, 431)
+			cube_bar.value = 0
+			cube_tween = create_tween()
+			cube_tween.tween_property(cube_bar, "value", 1, 30)
+			
+		elif ball_loaded:
+			print("ball hit")
+			ball_loaded = false
+			ball_timer.start()
+			ball_tween = create_tween()
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.ball * 100 * 2
+			gear_label.text = "Gear Coins: " + str(SaveSystem.save_game.gear_coins)
+			player_sprite.play("kick")
+			ball_tween.tween_property(ball_sprite, "position", Vector2(595, 194), 0.2)
+			await ball_tween.finished
+			player_sprite.play("default")
+			ball_sprite.position = Vector2(434, 414)
+			ball_bar.value = 0
+			ball_tween = create_tween()
+			ball_tween.tween_property(ball_bar, "value", 1, 10)
+		
+		elif pillar_loaded:
+			print("pillar hit")
+			pillar_loaded = false
+			pillar_timer.start()
+			pillar_tween = create_tween()
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.pillar * 3 * 2
+			gear_label.text = "Gear Coins: " + str(SaveSystem.save_game.gear_coins)
+			player_sprite.play("kick")
+			pillar_tween.tween_property(pillar_sprite, "position", Vector2(595, 220), 0.4)
+			await pillar_tween.finished
+			player_sprite.play("default")
+			pillar_sprite.position = Vector2(428, 455)
+			pillar_bar.value = 0
+			pillar_tween = create_tween()
+			pillar_tween.tween_property(pillar_bar, "value", 1, 5)
+			
+		elif disk_loaded:
+			print("disk hit")
+			disk_loaded = false
+			disk_timer.start()
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.disk * 2
+			gear_label.text = "Gear Coins: " + str(SaveSystem.save_game.gear_coins)
+			player_sprite.play("kick")
+			disk_tween = create_tween()
+			disk_tween.tween_property(disk_sprite, "position", Vector2(595, 213), 0.1)
+			await disk_tween.finished
+			disk_sprite.position = Vector2(430, 413)
+			disk_bar.value = 0
+			disk_tween = create_tween()
+			disk_tween.tween_property(disk_bar, "value", 1, 0.3)
+	
 func _on_button_pressed() -> void:
 	shop.show()
 	shop_label_1.text = "Gear Coins: " + str(SaveSystem.save_game.gear_coins)
@@ -295,6 +375,9 @@ func _on_pillar_button_pressed():
 		pillar_name_label.text = " Pillar" + " (" + str(SaveSystem.save_game.pillar) + ")"
 		if SaveSystem.save_game.pillar == 1:
 			pillar_timer.start()
+			pillar_container.show()
+			pillar_tween = create_tween()
+			pillar_tween.tween_property(pillar_bar, "value", 1, 5)
 		SaveSystem.save_game.pillar_cost = roundi(SaveSystem.save_game.pillar_cost)
 		pillar_label.text = str(SaveSystem.save_game.pillar_cost) + " " + "Coins"
 		gear_label.text = "Gear Coins: " + str(SaveSystem.save_game.gear_coins)
@@ -310,6 +393,9 @@ func _on_ball_button_pressed() -> void:
 		SaveSystem.save_game.ball += 1
 		if SaveSystem.save_game.ball == 1:
 			ball_timer.start()
+			ball_container.show()
+			ball_tween = create_tween()
+			ball_tween.tween_property(ball_bar, "value", 1, 5)
 		ball_name_label.text = " Ball" + " (" + str(SaveSystem.save_game.ball) + ")"
 		SaveSystem.save_game.ball_cost = roundi(SaveSystem.save_game.ball_cost)
 		ball_label.text = str(SaveSystem.save_game.ball_cost) + " " + "Coins"
@@ -326,6 +412,9 @@ func _on_cube_button_pressed():
 		SaveSystem.save_game.cube += 1
 		if SaveSystem.save_game.cube == 1:
 			cube_timer.start()
+			cube_container.show()
+			cube_tween = create_tween()
+			cube_tween.tween_property(cube_bar, "value", 1, 5)
 		cube_name_label.text = " Cube" + " (" + str(SaveSystem.save_game.cube) + ")"
 		SaveSystem.save_game.cube_cost = roundi(SaveSystem.save_game.cube_cost)
 		cube_label.text = str(SaveSystem.save_game.cube_cost) + " " + "Coins"
@@ -342,6 +431,9 @@ func _on_wall_button_pressed() -> void:
 		SaveSystem.save_game.wall += 1
 		if SaveSystem.save_game.wall == 1:
 			wall_timer.start()
+			wall_container.show()
+			wall_tween = create_tween()
+			wall_tween.tween_property(wall_bar, "value", 1, 5)
 		wall_name_label.text = " Wall" + " (" + str(SaveSystem.save_game.wall) + ")"
 		SaveSystem.save_game.wall_cost = roundi(SaveSystem.save_game.wall_cost)
 		wall_label.text = str(SaveSystem.save_game.wall_cost) + " " + "Coins"
