@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dtw6obm6lmpng"]
+[gd_scene load_steps=18 format=3 uid="uid://dtw6obm6lmpng"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rdaht"]
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="2_bwg6y"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="8_aofh8"]
 [ext_resource type="Texture2D" uid="uid://q63j2rrb5hwy" path="res://assets/character/Rumbler_kick.png" id="9_lwleh"]
 [ext_resource type="LabelSettings" uid="uid://ca2wabawemdxc" path="res://resources/charge_label_settings.tres" id="10_5384l"]
-[ext_resource type="Texture2D" uid="uid://bj2yh7f8gqvh4" path="res://assets/character/Rumbler_uppercut.png" id="11_7jo7i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tq13i"]
 font = ExtResource("2_bwg6y")
@@ -55,10 +54,7 @@ animations = [{
 "name": &"straight",
 "speed": 5.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("11_7jo7i")
-}],
+"frames": [],
 "loop": true,
 "name": &"uppercut",
 "speed": 5.0
@@ -105,7 +101,7 @@ wall_bar = NodePath("StructureBarContainer/WallContainer/ProgressBar")
 kick_button = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2/KickButton")
 kick_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2/Label2")
 uppercut_button = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/UppercutButton")
-uppercut_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/Label2")
+uppercut_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/Label2")
 explode_button = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer5/ExplodeButton")
 explode_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/Label2")
 gear_label = NodePath("GearCoinLabel")
@@ -166,8 +162,9 @@ position = Vector2(428, 443)
 texture = ExtResource("7_bokbw")
 
 [node name="Player" type="AnimatedSprite2D" parent="."]
-position = Vector2(330, 321)
+position = Vector2(337, 322)
 sprite_frames = SubResource("SpriteFrames_opojv")
+animation = &"kick"
 
 [node name="Ground" type="ColorRect" parent="."]
 offset_left = -2.0
@@ -285,9 +282,8 @@ offset_top = 5.0
 offset_right = 1211.0
 offset_bottom = 133.0
 scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_bwg6y")
-theme_override_font_sizes/font_size = 185
+theme_override_font_sizes/font_size = 200
 text = "Shop"
 flat = true
 
@@ -349,10 +345,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -324.0
-offset_top = -338.5
-offset_right = -125.0
-offset_bottom = -290.5
+offset_left = -482.0
+offset_top = -339.5
+offset_right = -283.0
+offset_bottom = -291.5
 grow_horizontal = 0
 grow_vertical = 2
 text = "Gear Coins: 0"
@@ -496,10 +492,10 @@ theme_override_fonts/font = ExtResource("2_bwg6y")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers"]
 layout_mode = 2
-offset_left = 807.0
-offset_top = -52.0
-offset_right = 1006.0
-offset_bottom = -4.0
+offset_left = 639.0
+offset_top = 1.0
+offset_right = 838.0
+offset_bottom = 49.0
 text = "Gear Coins: 0"
 label_settings = ExtResource("3_6lbk3")
 
@@ -508,6 +504,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 51.0
+offset_right = 1118.0
+offset_bottom = 628.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -534,6 +534,7 @@ size_flags_vertical = 0
 
 [node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = " Kick"
 label_settings = ExtResource("3_6lbk3")
 
@@ -557,7 +558,7 @@ size_flags_vertical = 0
 [node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = " Uppercut"
+text = " Ball"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="UppercutButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3"]
@@ -574,7 +575,6 @@ text = "5000 Coins"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 0
 
