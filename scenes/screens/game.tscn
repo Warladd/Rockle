@@ -70,7 +70,7 @@ bg_color = Color(0.575317, 0.54622, 0.536891, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1dof"]
 bg_color = Color(0.787727, 0.641632, 0.543549, 1)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("disk_timer", "disk_label", "disk_name_label", "disk_sprite", "disk_container", "disk_bar", "pillar_timer", "pillar_label", "pillar_name_label", "pillar_sprite", "pillar_container", "pillar_bar", "ball_timer", "ball_label", "ball_name_label", "ball_sprite", "ball_container", "ball_bar", "cube_timer", "cube_label", "cube_name_label", "cube_sprite", "cube_container", "cube_bar", "wall_timer", "wall_label", "wall_name_label", "wall_sprite", "wall_container", "wall_bar", "kick_button", "kick_label", "uppercut_button", "uppercut_label", "explode_button", "explode_label", "gear_label", "shop_label_1", "shop_label_2", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("disk_timer", "disk_label", "disk_name_label", "disk_sprite", "disk_container", "disk_bar", "pillar_timer", "pillar_label", "pillar_name_label", "pillar_sprite", "pillar_container", "pillar_bar", "ball_timer", "ball_label", "ball_name_label", "ball_sprite", "ball_container", "ball_bar", "ball_button", "cube_timer", "cube_label", "cube_name_label", "cube_sprite", "cube_container", "cube_bar", "cube_button", "wall_timer", "wall_label", "wall_name_label", "wall_sprite", "wall_container", "wall_bar", "wall_button", "kick_button", "kick_label", "uppercut_button", "uppercut_label", "explode_button", "explode_label", "straight_m_button", "straight_m_label", "white_belt_label", "white_belt_button", "kick_m_button", "kick_m_label", "kick_m_container", "yellow_belt_label", "yellow_belt_button", "yellow_belt_container", "uppercut_m_button", "uppercut_m_label", "uppercut_m_container", "green_belt_label", "green_belt_button", "green_belt_container", "blue_belt_label", "blue_belt_button", "blue_belt_container", "red_belt_label", "red_belt_button", "red_belt_container", "black_belt_label", "black_belt_button", "black_belt_container", "gear_label", "shop_label", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu")]
 script = ExtResource("1_rdaht")
 disk_timer = NodePath("Structure Timers/DiskTimer")
 disk_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label2")
@@ -90,27 +90,54 @@ ball_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxConta
 ball_sprite = NodePath("Sprites/Boulder")
 ball_container = NodePath("StructureBarContainer/BallContainer")
 ball_bar = NodePath("StructureBarContainer/BallContainer/ProgressBar")
+ball_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/BallButton")
 cube_timer = NodePath("Structure Timers/CubeTimer")
 cube_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/Label2")
 cube_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/Label")
 cube_sprite = NodePath("Sprites/Cube")
 cube_container = NodePath("StructureBarContainer/CubeContainer")
 cube_bar = NodePath("StructureBarContainer/CubeContainer/ProgressBar")
+cube_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/CubeButton")
 wall_timer = NodePath("Structure Timers/WallTimer")
 wall_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/Label2")
 wall_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/Label")
 wall_sprite = NodePath("Sprites/Wall")
 wall_container = NodePath("StructureBarContainer/WallContainer")
 wall_bar = NodePath("StructureBarContainer/WallContainer/ProgressBar")
+wall_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/WallButton")
 kick_button = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2/KickButton")
 kick_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2/Label2")
 uppercut_button = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/UppercutButton")
 uppercut_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/Label2")
 explode_button = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer5/ExplodeButton")
 explode_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/Label2")
+straight_m_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/StraightMastery/StraightMButton")
+straight_m_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/StraightMastery/Label2")
+white_belt_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt/Label2")
+white_belt_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt/WhiteBeltButton")
+kick_m_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/KickMastery/KickMButton")
+kick_m_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/KickMastery/Label2")
+kick_m_container = NodePath("Shop/TabContainer/Masteries/VBoxContainer/KickMastery")
+yellow_belt_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/YellowBelt/Label2")
+yellow_belt_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/YellowBelt/YellowBeltButton")
+yellow_belt_container = NodePath("Shop/TabContainer/Masteries/VBoxContainer/YellowBelt")
+uppercut_m_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/UppercutMastery/UppercutMButton")
+uppercut_m_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/UppercutMastery/Label2")
+uppercut_m_container = NodePath("Shop/TabContainer/Masteries/VBoxContainer/UppercutMastery")
+green_belt_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/GreenBelt/Label2")
+green_belt_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/GreenBelt/GreenBeltButton")
+green_belt_container = NodePath("Shop/TabContainer/Masteries/VBoxContainer/GreenBelt")
+blue_belt_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlueBelt/Label2")
+blue_belt_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlueBelt/BlueBeltButton")
+blue_belt_container = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlueBelt")
+red_belt_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/RedBelt/Label2")
+red_belt_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/RedBelt/RedBeltButton")
+red_belt_container = NodePath("Shop/TabContainer/Masteries/VBoxContainer/RedBelt")
+black_belt_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlackBelt/Label2")
+black_belt_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlackBelt/BlackBeltButton")
+black_belt_container = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlackBelt")
 gear_label = NodePath("GearCoinLabel")
-shop_label_1 = NodePath("Shop/TabContainer/Structures/Label")
-shop_label_2 = NodePath("Shop/TabContainer/Modifiers/Label2")
+shop_label = NodePath("Shop/TabContainer/Label")
 shop = NodePath("Shop")
 shop_button = NodePath("ShopButton")
 player_sprite = NodePath("Player")
@@ -308,13 +335,21 @@ one_shot = true
 wait_time = 10.0
 one_shot = true
 
-[node name="CubeTimer" type="Timer" parent="Structure Timers"]
+[node name="WallTimer" type="Timer" parent="Structure Timers"]
 wait_time = 30.0
 one_shot = true
 
-[node name="WallTimer" type="Timer" parent="Structure Timers"]
-wait_time = 60.0
+[node name="CubeTimer" type="Timer" parent="Structure Timers"]
+wait_time = 20.0
 one_shot = true
+
+[node name="Mastery Timers" type="Node" parent="."]
+
+[node name="StraightTimer" type="Timer" parent="Mastery Timers"]
+
+[node name="KickTimer" type="Timer" parent="Mastery Timers"]
+
+[node name="UppercutTimer" type="Timer" parent="Mastery Timers"]
 
 [node name="Shop" type="CanvasLayer" parent="."]
 visible = false
@@ -337,26 +372,17 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 35
+current_tab = 1
+
+[node name="Label" type="Label" parent="Shop/TabContainer"]
+visible = false
+layout_mode = 2
+text = "Gear Coins: 0"
+label_settings = ExtResource("3_6lbk3")
 
 [node name="Structures" type="TabBar" parent="Shop/TabContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bwg6y")
-
-[node name="Label" type="Label" parent="Shop/TabContainer/Structures"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -324.0
-offset_top = -338.5
-offset_right = -125.0
-offset_bottom = -290.5
-grow_horizontal = 0
-grow_vertical = 2
-text = "Gear Coins: 0"
-label_settings = ExtResource("3_6lbk3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Shop/TabContainer/Structures"]
 layout_mode = 1
@@ -437,6 +463,28 @@ layout_mode = 2
 text = "1000 Coins"
 label_settings = ExtResource("3_6lbk3")
 
+[node name="HBoxContainer4" type="HBoxContainer" parent="Shop/TabContainer/Structures/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = " Wall"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="WallButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "20000 Coins"
+label_settings = ExtResource("3_6lbk3")
+
 [node name="HBoxContainer5" type="HBoxContainer" parent="Shop/TabContainer/Structures/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
@@ -457,28 +505,6 @@ alignment = 2
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
-text = "1000 Coins"
-label_settings = ExtResource("3_6lbk3")
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="Shop/TabContainer/Structures/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="Label" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
-layout_mode = 2
-text = " Wall"
-label_settings = ExtResource("3_6lbk3")
-
-[node name="WallButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
-layout_mode = 2
-size_flags_horizontal = 10
-theme_override_fonts/font = ExtResource("2_bwg6y")
-theme_override_font_sizes/font_size = 35
-text = "Buy"
-alignment = 2
-
-[node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
-layout_mode = 2
 text = "150000 Coins"
 label_settings = ExtResource("3_6lbk3")
 
@@ -493,15 +519,6 @@ text = "Exit"
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bwg6y")
-
-[node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers"]
-layout_mode = 2
-offset_left = 807.0
-offset_top = -52.0
-offset_right = 1006.0
-offset_bottom = -4.0
-text = "Gear Coins: 0"
-label_settings = ExtResource("3_6lbk3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Shop/TabContainer/Modifiers"]
 layout_mode = 1
@@ -627,6 +644,241 @@ theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 50
 text = "Exit"
 
+[node name="Masteries" type="TabBar" parent="Shop/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bwg6y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/TabContainer/Masteries"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StraightMastery" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/StraightMastery"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " Straight Mastery"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="StraightMButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/StraightMastery"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/StraightMastery"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "250 Coins"
+label_settings = ExtResource("3_6lbk3")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="WhiteBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " White Belt Mastery"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="WhiteBeltButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt"]
+layout_mode = 2
+text = " 500 Coins"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="KickMastery" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/KickMastery"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " Kick Mastery"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="KickMButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/KickMastery"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/KickMastery"]
+layout_mode = 2
+text = "1000 Coins"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="YellowBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/YellowBelt"]
+layout_mode = 2
+text = " Yellow Belt Mastery"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="YellowBeltButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/YellowBelt"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/YellowBelt"]
+layout_mode = 2
+text = "10000 Coins"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="UppercutMastery" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/UppercutMastery"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " Uppercut Mastery"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="UppercutMButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/UppercutMastery"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/UppercutMastery"]
+layout_mode = 2
+text = "55000 Coins"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="GreenBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/GreenBelt"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " Green Belt Mastery"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="GreenBeltButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/GreenBelt"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/GreenBelt"]
+layout_mode = 2
+text = "100000 Coins"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="BlueBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/BlueBelt"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " Blue Belt Mastery"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="BlueBeltButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/BlueBelt"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/BlueBelt"]
+layout_mode = 2
+text = "1000000 Coins"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="RedBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/RedBelt"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " Red Belt Mastery"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="RedBeltButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/RedBelt"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/RedBelt"]
+layout_mode = 2
+text = "15000000 Coins"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="BlackBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/BlackBelt"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " Black Belt Mastery"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="BlackBeltButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/BlackBelt"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/BlackBelt"]
+layout_mode = 2
+text = "550000000 Coins"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="ExitShopButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
 [node name="SavingLabel" type="Label" parent="."]
 visible = false
 offset_left = 3.0
@@ -715,18 +967,28 @@ text = "Quit"
 [connection signal="timeout" from="Structure Timers/DiskTimer" to="." method="_on_disk_timer_timeout"]
 [connection signal="timeout" from="Structure Timers/PillarTimer" to="." method="_on_pillar_timer_timeout"]
 [connection signal="timeout" from="Structure Timers/BallTimer" to="." method="_on_ball_timer_timeout"]
-[connection signal="timeout" from="Structure Timers/CubeTimer" to="." method="_on_cube_timer_timeout"]
 [connection signal="timeout" from="Structure Timers/WallTimer" to="." method="_on_wall_timer_timeout"]
+[connection signal="timeout" from="Structure Timers/CubeTimer" to="." method="_on_cube_timer_timeout"]
 [connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/DiskButton" to="." method="_on_disk_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/PillarButton" to="." method="_on_pillar_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/BallButton" to="." method="_on_ball_button_pressed"]
-[connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/CubeButton" to="." method="_on_cube_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/WallButton" to="." method="_on_wall_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/CubeButton" to="." method="_on_cube_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/ExitShopButton" to="." method="_on_exit_shop_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2/KickButton" to="." method="_on_kick_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/UppercutButton" to="." method="_on_uppercut_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer5/ExplodeButton" to="." method="_on_explode_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/ExitShopButton" to="." method="_on_exit_shop_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/StraightMastery/StraightMButton" to="." method="_on_straight_m_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt/WhiteBeltButton" to="." method="_on_white_belt_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/KickMastery/KickMButton" to="." method="_on_kick_m_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/YellowBelt/YellowBeltButton" to="." method="_on_yellow_belt_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/UppercutMastery/UppercutMButton" to="." method="_on_uppercut_m_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/GreenBelt/GreenBeltButton" to="." method="_on_green_belt_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/BlueBelt/BlueBeltButton" to="." method="_on_blue_belt_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/RedBelt/RedBeltButton" to="." method="_on_red_belt_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/BlackBelt/BlackBeltButton" to="." method="_on_black_belt_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/ExitShopButton" to="." method="_on_exit_shop_button_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer2/HBoxContainer/YesButton" to="PauseMenu" method="_on_yes_button_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer2/HBoxContainer/NoButton" to="PauseMenu" method="_on_no_button_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
