@@ -139,7 +139,6 @@ func _ready() -> void:
 	gear_label.text = "Gear Coins: " + str(SaveSystem.save_game.gear_coins)
 	shop_label.text = "Gear Coins: " + str(SaveSystem.save_game.gear_coins)
 	
-	
 	# Disk
 	disk_label.text = str(SaveSystem.save_game.disk_cost) + " " + "Coins"
 	disk_name_label.text = " Disk" + " (" + str(SaveSystem.save_game.disk) + ")"
@@ -851,7 +850,7 @@ func _on_uppercut_m_button_pressed():
 func _on_green_belt_button_pressed():
 	if green_belt_cost <= SaveSystem.save_game.gear_coins:
 		SaveSystem.save_game.gear_coins -= green_belt_cost
-		SaveSystem.save_game.belt = 2
+		SaveSystem.save_game.belt = 3
 		green_belt_button.text = "Bought"
 		green_belt_button.disabled = true
 		green_belt_label.hide()
@@ -866,7 +865,7 @@ func _on_green_belt_button_pressed():
 func _on_blue_belt_button_pressed():
 	if blue_belt_cost <= SaveSystem.save_game.gear_coins:
 		SaveSystem.save_game.gear_coins -= blue_belt_cost
-		SaveSystem.save_game.belt = 2
+		SaveSystem.save_game.belt = 4
 		blue_belt_button.text = "Bought"
 		blue_belt_button.disabled = true
 		blue_belt_label.hide()
@@ -879,7 +878,7 @@ func _on_blue_belt_button_pressed():
 func _on_red_belt_button_pressed():
 	if red_belt_cost <= SaveSystem.save_game.gear_coins:
 		SaveSystem.save_game.gear_coins -= red_belt_cost
-		SaveSystem.save_game.belt = 2
+		SaveSystem.save_game.belt = 5
 		red_belt_button.text = "Bought"
 		red_belt_button.disabled = true
 		red_belt_label.hide()
@@ -892,7 +891,7 @@ func _on_red_belt_button_pressed():
 func _on_black_belt_button_pressed():
 	if black_belt_cost <= SaveSystem.save_game.gear_coins:
 		SaveSystem.save_game.gear_coins -= black_belt_cost
-		SaveSystem.save_game.belt = 2
+		SaveSystem.save_game.belt = 6
 		black_belt_button.text = "Bought"
 		black_belt_button.disabled = true
 		black_belt_label.hide()
