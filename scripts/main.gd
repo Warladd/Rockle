@@ -75,6 +75,30 @@ var wall_tween : Tween
 @export var uppercut_label : Label
 @export var explode_button : Button
 @export var explode_label : Label
+var straighting : bool = false
+var kicking : bool = false
+var uppercutting : bool = false
+
+# Combos Combo Site: https://docs.google.com/spreadsheets/d/1zRu2wWWSNwFwwg9O0M-dsk9ASbUwgPAdSt8UNESvni4/edit#gid=6435056
+var struppercut : bool = false
+var struick : bool = false
+var hop : bool = false
+var us : bool = false
+var uk : bool = false
+var ks : bool = false
+var ku : bool = false
+var uu : bool = false
+var kk : bool = false
+
+var strupper_kick : bool = false
+var uks : bool = false
+var kus : bool = false
+var uku : bool = false
+var ukk : bool = false
+var ksk : bool = false
+var kks : bool = false
+var uus : bool = false
+var uuk : bool = false
 
 # Masteries
 @export_group("Mastery Nodes")
@@ -337,6 +361,7 @@ func straight() -> void:
 		player_sprite.play("straight")
 		wall_tween.tween_property(wall_sprite, "position", Vector2(695, 318), 0.4)
 		await wall_tween.finished
+		straighting = false
 		player_sprite.play("default")
 		wall_sprite.position = Vector2(428, 443)
 		wall_bar.value = 0
@@ -353,6 +378,7 @@ func straight() -> void:
 		player_sprite.play("straight")
 		cube_tween.tween_property(cube_sprite, "position", Vector2(695, 332), 0.5)
 		await cube_tween.finished
+		straighting = false
 		player_sprite.play("default")
 		cube_sprite.position = Vector2(444, 431)
 		cube_bar.value = 0
@@ -369,6 +395,7 @@ func straight() -> void:
 		player_sprite.play("straight")
 		ball_tween.tween_property(ball_sprite, "position", Vector2(695, 294), 0.2)
 		await ball_tween.finished
+		straighting = false
 		player_sprite.play("default")
 		ball_sprite.position = Vector2(434, 414)
 		ball_bar.value = 0
@@ -385,6 +412,7 @@ func straight() -> void:
 		player_sprite.play("straight")
 		pillar_tween.tween_property(pillar_sprite, "position", Vector2(695, 320), 0.4)
 		await pillar_tween.finished
+		straighting = false
 		player_sprite.play("default")
 		pillar_sprite.position = Vector2(428, 455)
 		pillar_bar.value = 0
@@ -401,6 +429,7 @@ func straight() -> void:
 		disk_tween = create_tween()
 		disk_tween.tween_property(disk_sprite, "position", Vector2(695, 313), 0.1)
 		await disk_tween.finished
+		straighting = false
 		disk_sprite.position = Vector2(430, 413)
 		disk_bar.value = 0
 		disk_tween = create_tween()
@@ -417,6 +446,7 @@ func kick() -> void:
 		player_sprite.play("kick")
 		wall_tween.tween_property(wall_sprite, "position", Vector2(595, 218), 0.3)
 		await wall_tween.finished
+		kicking = false
 		player_sprite.play("default")
 		wall_sprite.position = Vector2(428, 443)
 		wall_bar.value = 0
@@ -433,6 +463,7 @@ func kick() -> void:
 		player_sprite.play("kick")
 		cube_tween.tween_property(cube_sprite, "position", Vector2(595, 232), 0.5)
 		await cube_tween.finished
+		kicking = false
 		player_sprite.play("default")
 		cube_sprite.position = Vector2(444, 431)
 		cube_bar.value = 0
@@ -449,6 +480,7 @@ func kick() -> void:
 		player_sprite.play("kick")
 		ball_tween.tween_property(ball_sprite, "position", Vector2(595, 194), 0.2)
 		await ball_tween.finished
+		kicking = false
 		player_sprite.play("default")
 		ball_sprite.position = Vector2(434, 414)
 		ball_bar.value = 0
@@ -465,6 +497,7 @@ func kick() -> void:
 		player_sprite.play("kick")
 		pillar_tween.tween_property(pillar_sprite, "position", Vector2(595, 220), 0.3)
 		await pillar_tween.finished
+		kicking = false
 		player_sprite.play("default")
 		pillar_sprite.position = Vector2(428, 455)
 		pillar_bar.value = 0
@@ -481,6 +514,7 @@ func kick() -> void:
 		disk_tween = create_tween()
 		disk_tween.tween_property(disk_sprite, "position", Vector2(595, 213), 0.1)
 		await disk_tween.finished
+		kicking = false
 		disk_sprite.position = Vector2(430, 413)
 		disk_bar.value = 0
 		disk_tween = create_tween()
@@ -499,6 +533,7 @@ func uppercut() -> void:
 		wall_tween.tween_property(wall_sprite, "rotation", 0.52, 0.4)
 		wall_tween.tween_property(wall_sprite, "position", Vector2(595, 218), 0.4)
 		await wall_tween.finished
+		uppercutting = false
 		player_sprite.play("default")
 		wall_sprite.position = Vector2(428, 443)
 		wall_sprite.rotation = 0
@@ -518,6 +553,7 @@ func uppercut() -> void:
 		cube_tween.tween_property(cube_sprite, "rotation", 2.1, 0.4)
 		cube_tween.tween_property(cube_sprite, "position", Vector2(645, 282), 0.4)
 		await cube_tween.finished
+		uppercutting = false
 		player_sprite.play("default")
 		cube_sprite.position = Vector2(444, 431)
 		cube_sprite.rotation = 0
@@ -537,6 +573,7 @@ func uppercut() -> void:
 		ball_tween.tween_property(ball_sprite, "rotation", 5, 0.2)
 		ball_tween.tween_property(ball_sprite, "position", Vector2(645, 244), 0.2)
 		await ball_tween.finished
+		uppercutting = false
 		player_sprite.play("default")
 		ball_sprite.position = Vector2(434, 414)
 		ball_sprite.rotation = 0
@@ -556,6 +593,7 @@ func uppercut() -> void:
 		pillar_tween.tween_property(pillar_sprite, "rotation", 1.5, 0.3)
 		pillar_tween.tween_property(pillar_sprite, "position", Vector2(645, 270), 0.3)
 		await pillar_tween.finished
+		uppercutting = false
 		player_sprite.play("default")
 		pillar_sprite.position = Vector2(428, 455)
 		pillar_sprite.rotation = 0
@@ -575,6 +613,7 @@ func uppercut() -> void:
 		disk_tween.tween_property(disk_sprite, "rotation", 5, 0.1)
 		disk_tween.tween_property(disk_sprite, "position", Vector2(645, 263), 0.1)
 		await disk_tween.finished
+		uppercutting = false
 		disk_sprite.position = Vector2(430, 413)
 		disk_sprite.rotation = 0
 		disk_bar.value = 0
@@ -583,10 +622,37 @@ func uppercut() -> void:
 
 func _input(event) -> void:
 	if event.is_action_pressed("straight"):
+		if straighting:
+			return
+		if uppercutting:
+			us = true
+			return
+		elif kicking:
+			ks = true
+			return
+		straighting = true
 		straight()
 	elif event.is_action_pressed("kick") and SaveSystem.save_game.kick:
+		if kicking:
+			return
+		if straighting:
+			hop = true
+			return
+		elif uppercutting:
+			ku = true
+			return
+		kicking = true
 		kick()
 	elif event.is_action_pressed("uppercut") and SaveSystem.save_game.uppercut:
+		if uppercutting:
+			return
+		elif straighting:
+			struppercut = true
+			return
+		elif kicking:
+			struick = true
+			return
+		uppercutting = true
 		uppercut()
 	
 func _on_button_pressed() -> void:
