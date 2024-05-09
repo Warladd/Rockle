@@ -348,7 +348,7 @@ func straight() -> void:
 		cube_loaded = false
 		cube_timer.start()
 		cube_tween = create_tween()
-		SaveSystem.save_game.gear_coins += SaveSystem.save_game.cube * 300000
+		SaveSystem.save_game.gear_coins += SaveSystem.save_game.cube * 100000
 		gear_label.text = "Gear Coins: " + str(SaveSystem.save_game.gear_coins)
 		player_sprite.play("straight")
 		cube_tween.tween_property(cube_sprite, "position", Vector2(695, 332), 0.5)
@@ -428,7 +428,7 @@ func kick() -> void:
 		cube_loaded = false
 		cube_timer.start()
 		cube_tween = create_tween()
-		SaveSystem.save_game.gear_coins += SaveSystem.save_game.cube * 300000 * 2
+		SaveSystem.save_game.gear_coins += SaveSystem.save_game.cube * 100000 * 2
 		gear_label.text = "Gear Coins: " + str(SaveSystem.save_game.gear_coins)
 		player_sprite.play("kick")
 		cube_tween.tween_property(cube_sprite, "position", Vector2(595, 232), 0.5)
@@ -510,7 +510,7 @@ func uppercut() -> void:
 		print("cube hit")
 		cube_loaded = false
 		cube_timer.start()
-		SaveSystem.save_game.gear_coins += SaveSystem.save_game.cube * 500 * 5
+		SaveSystem.save_game.gear_coins += SaveSystem.save_game.cube * 100000 * 5
 		gear_label.text = "Gear Coins: " + str(SaveSystem.save_game.gear_coins)
 		player_sprite.play("uppercut")
 		cube_tween = create_tween()
