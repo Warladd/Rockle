@@ -1,0 +1,59 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://obfsvgxyn8sb"]
+
+[ext_resource type="Texture2D" uid="uid://dsyoji4bsnnwn" path="res://assets/character/Rumbler5.png" id="1_giveh"]
+[ext_resource type="Texture2D" uid="uid://dlqdif5834wja" path="res://assets/character/Rumbler_explode5.png" id="2_44f6b"]
+[ext_resource type="Texture2D" uid="uid://b454wf4p31qiu" path="res://assets/character/Rumbler_hold5.png" id="3_kxn2s"]
+[ext_resource type="Texture2D" uid="uid://26vcj3gtqp3p" path="res://assets/character/Rumbler_kick5.png" id="4_wi4aq"]
+[ext_resource type="Texture2D" uid="uid://dk0o57xnc0tw4" path="res://assets/character/Rumbler_straight5.png" id="5_3l54e"]
+[ext_resource type="Texture2D" uid="uid://drl6p2n6raf4e" path="res://assets/character/Rumbler_uppercut5.png" id="6_gf6f4"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_giveh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_44f6b")
+}],
+"loop": true,
+"name": &"explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kxn2s")
+}],
+"loop": true,
+"name": &"hold",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_wi4aq")
+}],
+"loop": true,
+"name": &"kick",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3l54e")
+}],
+"loop": true,
+"name": &"straight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_gf6f4")
+}],
+"loop": true,
+"name": &"uppercut",
+"speed": 5.0
+}]

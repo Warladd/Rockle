@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj2yh7f8gqvh4"
-path="res://.godot/imported/Rumbler_uppercut.png-8d3282528b35d379e659808575ecb3f1.ctex"
+uid="uid://dfvqrybqkuc8p"
+path="res://.godot/imported/Rumbler_uppercut3.png-32481aeaa680e785f93b6ac5551fcfba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character/Rumbler_uppercut.png"
-dest_files=["res://.godot/imported/Rumbler_uppercut.png-8d3282528b35d379e659808575ecb3f1.ctex"]
+source_file="res://assets/character/Rumbler_uppercut3.png"
+dest_files=["res://.godot/imported/Rumbler_uppercut3.png-32481aeaa680e785f93b6ac5551fcfba.ctex"]
 
 [params]
 
