@@ -29,6 +29,7 @@ var pillar_tween : Tween
 @export_group("Ball Nodes")
 @export var ball_timer : Timer
 @export var ball_label : Label
+@export var ball_gear : TextureRect
 @export var ball_name_label : Label
 @export var ball_sprite : Sprite2D
 @export var ball_container : HBoxContainer
@@ -43,6 +44,7 @@ var ball_tween : Tween
 @export_group("Cube Nodes")
 @export var cube_timer : Timer
 @export var cube_label : Label
+@export var cube_gear : TextureRect
 @export var cube_name_label : Label
 @export var cube_sprite : Sprite2D
 @export var cube_container : HBoxContainer
@@ -57,6 +59,7 @@ var cube_tween : Tween
 @export_group("Wall Nodes")
 @export var wall_timer : Timer
 @export var wall_label : Label
+@export var wall_gear : TextureRect
 @export var wall_name_label : Label
 @export var wall_sprite : Sprite2D
 @export var wall_container : HBoxContainer
@@ -71,8 +74,10 @@ var wall_tween : Tween
 @export_group("Modifier Nodes")
 @export var kick_button : Button
 @export var kick_label : Label
+@export var kick_gear : TextureRect
 @export var uppercut_button : Button
 @export var uppercut_label : Label
+@export var uppercut_gear : TextureRect
 @export var explode_button : Button
 @export var explode_label : Label
 var straighting : bool = false
@@ -104,30 +109,38 @@ var uuk : bool = false
 @export_group("Mastery Nodes")
 @export var straight_m_button : Button
 @export var straight_m_label : Label
-@export var straight_gear : TextureRect
+@export var straight_m_gear : TextureRect
 @export var white_belt_label : Label
 @export var white_belt_button : Button
+@export var white_belt_gear : TextureRect
 @export var kick_m_button : Button
 @export var kick_m_label : Label
 @export var kick_m_container : HBoxContainer
+@export var kick_m_gear : TextureRect
 @export var yellow_belt_label : Label
 @export var yellow_belt_button : Button
 @export var yellow_belt_container : HBoxContainer
+@export var yellow_belt_gear : TextureRect
 @export var uppercut_m_button : Button
 @export var uppercut_m_label : Label
 @export var uppercut_m_container : HBoxContainer
+@export var uppercut_m_gear : TextureRect
 @export var green_belt_label : Label
 @export var green_belt_button : Button
 @export var green_belt_container : HBoxContainer
+@export var green_belt_gear : TextureRect
 @export var blue_belt_label : Label
 @export var blue_belt_button : Button
 @export var blue_belt_container : HBoxContainer
+@export var blue_belt_gear : TextureRect
 @export var red_belt_label : Label
 @export var red_belt_button : Button
 @export var red_belt_container : HBoxContainer
+@export var red_belt_gear : TextureRect
 @export var black_belt_label : Label
 @export var black_belt_button : Button
 @export var black_belt_container : HBoxContainer
+@export var black_belt_gear : TextureRect
 
 @export_group("Misc")
 @export var gear_label : Label
@@ -182,6 +195,7 @@ func _ready() -> void:
 	# Ball
 	if SaveSystem.save_game.belt < 1:
 		ball_label.hide()
+		ball_gear.hide()
 		ball_name_label.text = " Ball"
 		ball_button.disabled = true
 		ball_button.text = "Locked"
@@ -197,6 +211,7 @@ func _ready() -> void:
 	# Cube
 	if SaveSystem.save_game.belt < 3:
 		cube_label.hide()
+		cube_gear.hide()
 		cube_name_label.text = " Cube"
 		cube_button.disabled = true
 		cube_button.text = "Locked"
@@ -212,6 +227,7 @@ func _ready() -> void:
 	# Wall
 	if SaveSystem.save_game.belt < 2:
 		wall_label.hide()
+		wall_gear.hide()
 		wall_name_label.text = " Wall"
 		wall_button.disabled = true
 		wall_button.text = "Locked"
@@ -228,10 +244,12 @@ func _ready() -> void:
 	if SaveSystem.save_game.kick:
 		kick_button.text = "Bought"
 		kick_label.hide()
+		kick_gear.hide()
 	
 	if SaveSystem.save_game.uppercut:
 		uppercut_button.text = "Bought"
 		uppercut_label.hide()
+		uppercut_gear.hide()
 	
 	if SaveSystem.save_game.explode:
 		explode_button.text = "Bought"
@@ -242,11 +260,13 @@ func _ready() -> void:
 		black_belt_button.text = "Bought"
 		black_belt_button.disabled = true
 		black_belt_label.hide()
+		black_belt_gear.hide()
 	if SaveSystem.save_game.belt >= 5:
 		red_belt_button.text = "Bought"
 		red_belt_button.disabled = true
 		player_sprite.sprite_frames = load("res://resources/black_belt.tres")
 		red_belt_label.hide()
+		red_belt_gear.hide()
 		black_belt_container.show()
 	if SaveSystem.save_game.belt >= 4:
 		blue_belt_button.text = "Bought"
@@ -254,6 +274,7 @@ func _ready() -> void:
 		if SaveSystem.save_game.belt == 4:
 			player_sprite.sprite_frames = load("res://resources/red_belt.tres")
 		blue_belt_label.hide()
+		blue_belt_gear.hide()
 		red_belt_container.show()
 	if SaveSystem.save_game.belt >= 3:
 		green_belt_button.text = "Bought"
@@ -261,6 +282,7 @@ func _ready() -> void:
 		if SaveSystem.save_game.belt == 3:
 			player_sprite.sprite_frames = load("res://resources/blue_belt.tres")
 		green_belt_label.hide()
+		green_belt_gear.hide()
 		blue_belt_container.show()
 	if SaveSystem.save_game.belt >= 2:
 		yellow_belt_button.text = "Bought"
@@ -268,15 +290,20 @@ func _ready() -> void:
 		if SaveSystem.save_game.belt == 2:
 			player_sprite.sprite_frames = load("res://resources/green_belt.tres")
 		yellow_belt_label.hide()
+		yellow_belt_gear.hide()
 		green_belt_container.show()
 		uppercut_m_container.show()
 		if SaveSystem.save_game.uppercut_mastery:
 			uppercut_m_button.text = "Inactive"
+			uppercut_m_gear.hide()
 			uppercut_m_label.hide()
+			uppercut_m_gear.hide()
 	if SaveSystem.save_game.belt >= 1:
 		white_belt_button.text = "Bought"
 		white_belt_button.disabled = true
 		white_belt_label.hide()
+		white_belt_gear.hide()
+		white_belt_gear.hide()
 		if SaveSystem.save_game.belt == 1:
 			player_sprite.sprite_frames = load("res://resources/yellow_belt.tres")
 		yellow_belt_container.show()
@@ -284,9 +311,11 @@ func _ready() -> void:
 		if SaveSystem.save_game.kick_mastery:
 			kick_m_button.text = "Inactive"
 			kick_m_label.hide()
+			kick_m_gear.hide()
 	if SaveSystem.save_game.straight_mastery:
 		straight_m_button.text = "Inactive"
 		straight_m_label.hide()
+		straight_m_gear.hide()
 	if SaveSystem.save_game.straight_active:
 		straight_m_button.text = "Active"
 	elif SaveSystem.save_game.kick_active:
@@ -768,6 +797,7 @@ func _on_kick_button_pressed():
 		SaveSystem.save_game.kick = true
 		kick_button.text = "Bought"
 		kick_label.hide()
+		kick_gear.hide()
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
 		shop_label.text = str(SaveSystem.save_game.gear_coins)
 		SaveSystem.saving()
@@ -781,6 +811,7 @@ func _on_uppercut_button_pressed():
 		SaveSystem.save_game.uppercut = true
 		uppercut_button.text = "Bought"
 		uppercut_label.hide()
+		uppercut_gear.hide()
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
 		shop_label.text = str(SaveSystem.save_game.gear_coins)
 		SaveSystem.saving()
@@ -830,6 +861,7 @@ func _on_straight_m_button_pressed():
 			uppercut_m_button.text = "Inactive"
 			SaveSystem.save_game.uppercut_active = false
 		straight_m_label.hide()
+		straight_m_gear.hide()
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
 		shop_label.text = str(SaveSystem.save_game.gear_coins)
 		SaveSystem.saving()
@@ -842,6 +874,7 @@ func _on_white_belt_button_pressed():
 		white_belt_button.text = "Bought"
 		white_belt_button.disabled = true
 		white_belt_label.hide()
+		white_belt_gear.hide()
 		yellow_belt_container.show()
 		kick_m_container.show()
 		player_sprite.sprite_frames = load("res://resources/yellow_belt.tres")
@@ -878,6 +911,7 @@ func _on_kick_m_button_pressed():
 		SaveSystem.save_game.kick_active = true
 		kick_m_button.text = "Active"
 		kick_m_label.hide()
+		kick_m_gear.hide()
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
 		shop_label.text = str(SaveSystem.save_game.gear_coins)
 		if SaveSystem.save_game.straight_active:
@@ -896,6 +930,7 @@ func _on_yellow_belt_button_pressed():
 		yellow_belt_button.text = "Bought"
 		yellow_belt_button.disabled = true
 		yellow_belt_label.hide()
+		yellow_belt_gear.hide()
 		green_belt_container.show()
 		uppercut_m_container.show()
 		player_sprite.sprite_frames = load("res://resources/green_belt.tres")
@@ -932,6 +967,7 @@ func _on_uppercut_m_button_pressed():
 		SaveSystem.save_game.uppercut_active = true
 		uppercut_m_button.text = "Active"
 		uppercut_m_label.hide()
+		uppercut_m_gear.hide()
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
 		shop_label.text = str(SaveSystem.save_game.gear_coins)
 		if SaveSystem.save_game.straight_active:
@@ -950,6 +986,7 @@ func _on_green_belt_button_pressed():
 		green_belt_button.text = "Bought"
 		green_belt_button.disabled = true
 		green_belt_label.hide()
+		green_belt_gear.hide()
 		blue_belt_container.show()
 		player_sprite.sprite_frames = load("res://resources/blue_belt.tres")
 		cube_button.disabled = false
@@ -967,6 +1004,7 @@ func _on_blue_belt_button_pressed():
 		blue_belt_button.text = "Bought"
 		blue_belt_button.disabled = true
 		blue_belt_label.hide()
+		blue_belt_gear.hide()
 		red_belt_container.show()
 		player_sprite.sprite_frames = load("res://resources/red_belt.tres")
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
@@ -981,6 +1019,7 @@ func _on_red_belt_button_pressed():
 		red_belt_button.text = "Bought"
 		red_belt_button.disabled = true
 		red_belt_label.hide()
+		red_belt_gear.hide()
 		black_belt_container.show()
 		player_sprite.sprite_frames = load("res://resources/black_belt.tres")
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
@@ -995,6 +1034,7 @@ func _on_black_belt_button_pressed():
 		black_belt_button.text = "Bought"
 		black_belt_button.disabled = true
 		black_belt_label.hide()
+		black_belt_gear.hide()
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
 		shop_label.text = str(SaveSystem.save_game.gear_coins)
 		SaveSystem.saving()
