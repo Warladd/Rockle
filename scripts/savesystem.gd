@@ -14,7 +14,6 @@ func saving() -> void:
 func load_game() -> void:
 	if !FileAccess.file_exists("user://savegame.tres") and !FileAccess.file_exists("user://savegame.res"):
 		return
-	
 	if OS.has_feature("standalone"):
 		save_game = ResourceLoader.load("user://savegame.res")
 	else:

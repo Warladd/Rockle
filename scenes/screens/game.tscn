@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtw6obm6lmpng"]
+[gd_scene load_steps=18 format=3 uid="uid://dtw6obm6lmpng"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rdaht"]
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="2_bwg6y"]
 [ext_resource type="LabelSettings" uid="uid://xd8rgjv5gtlp" path="res://resources/standard_label_settings.tres" id="3_6lbk3"]
+[ext_resource type="Texture2D" uid="uid://dudpb7ah1iana" path="res://assets/gear_coin.png" id="3_vfisr"]
 [ext_resource type="Texture2D" uid="uid://esoutmox2yhs" path="res://assets/structures/disk.png" id="4_n3fo8"]
 [ext_resource type="Texture2D" uid="uid://bu7ldqi1qg1bf" path="res://assets/structures/pillar.png" id="5_or4b6"]
 [ext_resource type="Texture2D" uid="uid://b63q7wt1gx3qd" path="res://assets/structures/boulder.png" id="5_uf7ya"]
@@ -11,6 +12,8 @@
 [ext_resource type="SpriteFrames" uid="uid://djw5x6aebbp1f" path="res://resources/white_belt.tres" id="8_8t7ce"]
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="8_aofh8"]
 [ext_resource type="LabelSettings" uid="uid://ca2wabawemdxc" path="res://resources/charge_label_settings.tres" id="10_5384l"]
+[ext_resource type="Texture2D" uid="uid://buy76hpr2jxed" path="res://assets/gear_coin_small.png" id="12_p6s2u"]
+[ext_resource type="Texture2D" uid="uid://bh5jtnw4f5sy" path="res://assets/upgrade.png" id="12_rri2l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tq13i"]
 font = ExtResource("2_bwg6y")
@@ -22,7 +25,7 @@ bg_color = Color(0.575317, 0.54622, 0.536891, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1dof"]
 bg_color = Color(0.787727, 0.641632, 0.543549, 1)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("disk_timer", "disk_label", "disk_name_label", "disk_sprite", "disk_container", "disk_bar", "pillar_timer", "pillar_label", "pillar_name_label", "pillar_sprite", "pillar_container", "pillar_bar", "ball_timer", "ball_label", "ball_name_label", "ball_sprite", "ball_container", "ball_bar", "ball_button", "cube_timer", "cube_label", "cube_name_label", "cube_sprite", "cube_container", "cube_bar", "cube_button", "wall_timer", "wall_label", "wall_name_label", "wall_sprite", "wall_container", "wall_bar", "wall_button", "kick_button", "kick_label", "uppercut_button", "uppercut_label", "explode_button", "explode_label", "straight_m_button", "straight_m_label", "white_belt_label", "white_belt_button", "kick_m_button", "kick_m_label", "kick_m_container", "yellow_belt_label", "yellow_belt_button", "yellow_belt_container", "uppercut_m_button", "uppercut_m_label", "uppercut_m_container", "green_belt_label", "green_belt_button", "green_belt_container", "blue_belt_label", "blue_belt_button", "blue_belt_container", "red_belt_label", "red_belt_button", "red_belt_container", "black_belt_label", "black_belt_button", "black_belt_container", "gear_label", "shop_label", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("disk_timer", "disk_label", "disk_name_label", "disk_sprite", "disk_container", "disk_bar", "pillar_timer", "pillar_label", "pillar_name_label", "pillar_sprite", "pillar_container", "pillar_bar", "ball_timer", "ball_label", "ball_name_label", "ball_sprite", "ball_container", "ball_bar", "ball_button", "cube_timer", "cube_label", "cube_name_label", "cube_sprite", "cube_container", "cube_bar", "cube_button", "wall_timer", "wall_label", "wall_name_label", "wall_sprite", "wall_container", "wall_bar", "wall_button", "kick_button", "kick_label", "uppercut_button", "uppercut_label", "explode_button", "explode_label", "straight_m_button", "straight_m_label", "straight_gear", "white_belt_label", "white_belt_button", "kick_m_button", "kick_m_label", "kick_m_container", "yellow_belt_label", "yellow_belt_button", "yellow_belt_container", "uppercut_m_button", "uppercut_m_label", "uppercut_m_container", "green_belt_label", "green_belt_button", "green_belt_container", "blue_belt_label", "blue_belt_button", "blue_belt_container", "red_belt_label", "red_belt_button", "red_belt_container", "black_belt_label", "black_belt_button", "black_belt_container", "gear_label", "shop_label", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu")]
 script = ExtResource("1_rdaht")
 disk_timer = NodePath("Structure Timers/DiskTimer")
 disk_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label2")
@@ -65,6 +68,7 @@ explode_button = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContain
 explode_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/Label2")
 straight_m_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/StraightMastery/StraightMButton")
 straight_m_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/StraightMastery/Label2")
+straight_gear = NodePath("Shop/TabContainer/Masteries/VBoxContainer/StraightMastery/GearCoin")
 white_belt_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt/Label2")
 white_belt_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt/WhiteBeltButton")
 kick_m_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/KickMastery/KickMButton")
@@ -88,8 +92,8 @@ red_belt_container = NodePath("Shop/TabContainer/Masteries/VBoxContainer/RedBelt
 black_belt_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlackBelt/Label2")
 black_belt_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlackBelt/BlackBeltButton")
 black_belt_container = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlackBelt")
-gear_label = NodePath("GearCoinLabel")
-shop_label = NodePath("Shop/Label")
+gear_label = NodePath("HBoxContainer/GearCoinLabel")
+shop_label = NodePath("Shop/HBoxContainer/GearCoinLabel")
 shop = NodePath("Shop")
 shop_button = NodePath("ShopButton")
 player_sprite = NodePath("Player")
@@ -113,13 +117,20 @@ grow_vertical = 2
 scale = Vector2(1.02328, 1.07143)
 color = Color(0.322442, 0.678822, 0.762932, 1)
 
-[node name="GearCoinLabel" type="Label" parent="."]
-offset_left = 7.0
-offset_top = 8.0
-offset_right = 206.0
-offset_bottom = 56.0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_direction = 2
+offset_left = 55.0
+offset_right = 128.0
+offset_bottom = 192.0
 scale = Vector2(0.25, 0.25)
-text = "Gear Coins: 0"
+
+[node name="GearCoin" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(-100, 96)
+texture = ExtResource("3_vfisr")
+
+[node name="GearCoinLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0"
 label_settings = SubResource("LabelSettings_tq13i")
 
 [node name="Sprites" type="Node2D" parent="."]
@@ -297,7 +308,6 @@ wait_time = 20.0
 one_shot = true
 
 [node name="Shop" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Shop"]
 anchors_preset = 15
@@ -307,13 +317,22 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.71303, 0.611522, 0.545067, 1)
 
-[node name="Label" type="Label" parent="Shop"]
-offset_left = 487.0
-offset_top = 3.0
-offset_right = 686.0
-offset_bottom = 51.0
-text = "Gear Coins: 0"
-label_settings = ExtResource("3_6lbk3")
+[node name="HBoxContainer" type="HBoxContainer" parent="Shop"]
+layout_direction = 2
+offset_left = 486.0
+offset_top = 1.0
+offset_right = 747.0
+offset_bottom = 193.0
+scale = Vector2(0.25, 0.25)
+
+[node name="GearCoin" type="TextureRect" parent="Shop/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_vfisr")
+
+[node name="GearCoinLabel" type="Label" parent="Shop/HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_tq13i")
 
 [node name="TabContainer" type="TabContainer" parent="Shop"]
 anchors_preset = 15
@@ -343,10 +362,40 @@ layout_mode = 2
 size_flags_vertical = 0
 
 [node name="Label" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-text = " Disk"
+text = " Disk "
 label_settings = ExtResource("3_6lbk3")
+
+[node name="Upgrade1" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade2" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade3" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade4" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade5" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+texture = ExtResource("12_rri2l")
+expand_mode = 2
 
 [node name="DiskButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -355,10 +404,14 @@ theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 35
 text = "Buy"
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "10 Coins"
+text = "50"
 label_settings = ExtResource("3_6lbk3")
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -369,9 +422,38 @@ size_flags_vertical = 0
 
 [node name="Label" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 3
-text = " Pillar"
+text = " Pillar "
 label_settings = ExtResource("3_6lbk3")
+
+[node name="Upgrade1" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade2" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade3" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade4" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade5" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 2
+texture = ExtResource("12_rri2l")
+expand_mode = 2
 
 [node name="PillarButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -381,9 +463,13 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "150 Coins"
+text = "150"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Shop/TabContainer/Structures/VBoxContainer"]
@@ -393,8 +479,38 @@ size_flags_vertical = 0
 [node name="Label" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = " Ball"
+text = " Ball "
 label_settings = ExtResource("3_6lbk3")
+
+[node name="Upgrade1" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade2" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade3" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade4" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade5" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 2
+texture = ExtResource("12_rri2l")
+expand_mode = 2
 
 [node name="BallButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
@@ -404,9 +520,13 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-text = "1000 Coins"
+text = "1000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Shop/TabContainer/Structures/VBoxContainer"]
@@ -415,8 +535,38 @@ size_flags_vertical = 0
 
 [node name="Label" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
-text = " Wall"
+text = " Wall "
 label_settings = ExtResource("3_6lbk3")
+
+[node name="Upgrade1" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade2" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade3" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade4" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade5" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 2
+texture = ExtResource("12_rri2l")
+expand_mode = 2
 
 [node name="WallButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
@@ -426,9 +576,13 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
-text = "20000 Coins"
+text = "20000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="Shop/TabContainer/Structures/VBoxContainer"]
@@ -441,6 +595,36 @@ size_flags_horizontal = 8
 text = " Cube"
 label_settings = ExtResource("3_6lbk3")
 
+[node name="Upgrade1" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade2" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade3" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade4" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
+[node name="Upgrade5" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 2
+texture = ExtResource("12_rri2l")
+expand_mode = 2
+
 [node name="CubeButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 10
@@ -449,9 +633,13 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
-text = "150000 Coins"
+text = "150000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="ExitShopButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer"]
@@ -508,6 +696,10 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "250 Coins"
@@ -530,6 +722,10 @@ theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
+
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
@@ -578,6 +774,10 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 text = "150000 Coins"
@@ -620,10 +820,14 @@ theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 35
 text = "Buy"
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/StraightMastery"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/StraightMastery"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "250 Coins"
+text = "250"
 label_settings = ExtResource("3_6lbk3")
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -646,9 +850,13 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt"]
 layout_mode = 2
-text = " 500 Coins"
+text = " 500"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="KickMastery" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -670,9 +878,13 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/KickMastery"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/KickMastery"]
 layout_mode = 2
-text = "1000 Coins"
+text = "1000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="YellowBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -693,9 +905,13 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/YellowBelt"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/YellowBelt"]
 layout_mode = 2
-text = "10000 Coins"
+text = "10000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="UppercutMastery" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -717,9 +933,13 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/UppercutMastery"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/UppercutMastery"]
 layout_mode = 2
-text = "55000 Coins"
+text = "55000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="GreenBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -741,9 +961,13 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/GreenBelt"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/GreenBelt"]
 layout_mode = 2
-text = "100000 Coins"
+text = "100000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="BlueBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -765,9 +989,13 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/BlueBelt"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/BlueBelt"]
 layout_mode = 2
-text = "1000000 Coins"
+text = "1000000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="RedBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -789,9 +1017,13 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/RedBelt"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/RedBelt"]
 layout_mode = 2
-text = "15000000 Coins"
+text = "15000000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="BlackBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -813,9 +1045,13 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/BlackBelt"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/BlackBelt"]
 layout_mode = 2
-text = "550000000 Coins"
+text = "550000000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="ExitShopButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer"]

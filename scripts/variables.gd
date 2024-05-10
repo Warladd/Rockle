@@ -18,6 +18,13 @@ class_name SaveFile
 @export var cube : int = 0
 @export var wall : int = 0
 
+@export var disk_increase : int = 1
+@export var pillar_increase : int = 10
+@export var ball_increase : int = 200
+@export var cube_increase : int = 50000
+@export var wall_increase : int = 10000
+@export var general_increase : int = 1
+
 # Modifiers
 @export var straight : bool = true
 @export var kick : bool = false
