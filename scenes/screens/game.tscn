@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dtw6obm6lmpng"]
+[gd_scene load_steps=19 format=3 uid="uid://dtw6obm6lmpng"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rdaht"]
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="2_bwg6y"]
@@ -18,6 +18,9 @@
 [sub_resource type="LabelSettings" id="LabelSettings_tq13i"]
 font = ExtResource("2_bwg6y")
 font_size = 160
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xytg0"]
+size = Vector2(203, 132)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dx7l"]
 bg_color = Color(0.575317, 0.54622, 0.536891, 1)
@@ -109,7 +112,7 @@ gear_label = NodePath("HBoxContainer/GearCoinLabel")
 shop_label = NodePath("Shop/HBoxContainer/GearCoinLabel")
 shop = NodePath("Shop")
 shop_button = NodePath("ShopButton")
-player_sprite = NodePath("Player")
+player_sprite = NodePath("CharacterBody2D/Player")
 saving_label = NodePath("SavingLabel")
 save_timer = NodePath("SaveTimer")
 pause_menu = NodePath("PauseMenu")
@@ -168,7 +171,14 @@ texture = ExtResource("6_mkmhn")
 position = Vector2(428, 443)
 texture = ExtResource("7_bokbw")
 
-[node name="Player" type="AnimatedSprite2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(478.5, 304)
+shape = SubResource("RectangleShape2D_xytg0")
+disabled = true
+
+[node name="Player" type="AnimatedSprite2D" parent="CharacterBody2D"]
 position = Vector2(330, 321)
 sprite_frames = ExtResource("8_8t7ce")
 animation = &"uppercut"
@@ -321,6 +331,7 @@ wait_time = 20.0
 one_shot = true
 
 [node name="Shop" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Shop"]
 anchors_preset = 15
@@ -707,6 +718,8 @@ size_flags_vertical = 0
 [node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Press Left Click to Straight"
+mouse_filter = 1
 text = " Straight"
 label_settings = ExtResource("3_6lbk3")
 
@@ -723,6 +736,8 @@ size_flags_vertical = 0
 
 [node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+tooltip_text = "Press Space to Kick"
+mouse_filter = 1
 text = " Kick"
 label_settings = ExtResource("3_6lbk3")
 
@@ -750,6 +765,8 @@ size_flags_vertical = 0
 [node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 8
+tooltip_text = "Press Right Click to Uppercut"
+mouse_filter = 1
 text = " Uppercut"
 label_settings = ExtResource("3_6lbk3")
 
@@ -865,7 +882,7 @@ texture = ExtResource("12_p6s2u")
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/StraightMastery"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "250"
+text = "500"
 label_settings = ExtResource("3_6lbk3")
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -894,7 +911,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt"]
 layout_mode = 2
-text = " 500"
+text = "1000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="KickMastery" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -922,7 +939,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/KickMastery"]
 layout_mode = 2
-text = "1000"
+text = "5000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="YellowBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -949,7 +966,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/YellowBelt"]
 layout_mode = 2
-text = "10000"
+text = "15000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="UppercutMastery" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -977,7 +994,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/UppercutMastery"]
 layout_mode = 2
-text = "55000"
+text = "75000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="GreenBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]

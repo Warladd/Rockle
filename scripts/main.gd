@@ -151,17 +151,18 @@ var uuk : bool = false
 @export var saving_label : Label
 @export var save_timer : Timer
 @export var pause_menu : CanvasLayer
+@export var hitbox : CollisionShape2D
 
 # Costs
 var kick_cost : int = 250
 var uppercut_cost : int = 5000
 var explode_cost : int = 500000
-var straight_m_cost : int = 250
-var kick_m_cost : int = 1000
-var uppercut_m_cost : int = 55000
+var straight_m_cost : int = 500
+var kick_m_cost : int = 5000
+var uppercut_m_cost : int = 75000
 
-var white_belt_cost : int = 500
-var yellow_belt_cost : int = 10000
+var white_belt_cost : int = 1000
+var yellow_belt_cost : int = 15000
 var green_belt_cost : int = 100000
 var blue_belt_cost : int = 1000000
 var red_belt_cost : int = 15000000
@@ -312,6 +313,18 @@ func _ready() -> void:
 			kick_m_button.text = "Inactive"
 			kick_m_label.hide()
 			kick_m_gear.hide()
+			
+	if SaveSystem.save_game.belt < 1:
+		kick_button.text = "Locked"
+		kick_button.disabled = true
+		kick_label.hide()
+		kick_gear.hide()
+	if SaveSystem.save_game.belt < 2:
+		uppercut_button.text = "Locked"
+		uppercut_button.disabled = true
+		uppercut_label.hide()
+		uppercut_gear.hide()
+		
 	if SaveSystem.save_game.straight_mastery:
 		straight_m_button.text = "Inactive"
 		straight_m_label.hide()
@@ -677,13 +690,14 @@ func _on_button_pressed() -> void:
 func _on_disk_button_pressed() -> void:
 	if SaveSystem.save_game.gear_coins >= SaveSystem.save_game.disk_cost:
 		SaveSystem.save_game.gear_coins -= SaveSystem.save_game.disk_cost
-		SaveSystem.save_game.disk_cost = (SaveSystem.save_game.disk_cost + 5) * 1.15
-		SaveSystem.save_game.disk_cost = roundi(SaveSystem.save_game.disk_cost)
-		disk_label.text = str(SaveSystem.save_game.disk_cost)
 		SaveSystem.save_game.disk += 1
 		if SaveSystem.save_game.disk == 10 or SaveSystem.save_game.disk == 25 or SaveSystem.save_game.disk == 50 or SaveSystem.save_game.disk == 75 or SaveSystem.save_game.disk == 100:
 			SaveSystem.save_game.disk_increase *= 10
+			SaveSystem.save_game.disk_cost *= 5
+		SaveSystem.save_game.disk_cost = (SaveSystem.save_game.disk_cost + 5) * 1.2
+		SaveSystem.save_game.disk_cost = roundi(SaveSystem.save_game.disk_cost)
 		disk_name_label.text = " Disk" + " (" + str(SaveSystem.save_game.disk) + ")"
+		disk_label.text = str(SaveSystem.save_game.disk_cost)
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
 		shop_label.text = str(SaveSystem.save_game.gear_coins)
 		
@@ -693,12 +707,15 @@ func _on_disk_button_pressed() -> void:
 func _on_pillar_button_pressed():
 	if SaveSystem.save_game.gear_coins >= SaveSystem.save_game.pillar_cost:
 		SaveSystem.save_game.gear_coins -= SaveSystem.save_game.pillar_cost
-		SaveSystem.save_game.pillar_cost = (SaveSystem.save_game.pillar_cost + 20) * 1.2
+		SaveSystem.save_game.pillar_cost = (SaveSystem.save_game.pillar_cost + 25) * 1.3
 		SaveSystem.save_game.pillar += 1
 		pillar_name_label.text = " Pillar" + " (" + str(SaveSystem.save_game.pillar) + ")"
 		if SaveSystem.save_game.pillar == 1:
 			pillar_container.show()
 			pillar_ready = true
+		if SaveSystem.save_game.pillar == 10 or SaveSystem.save_game.pillar == 25 or SaveSystem.save_game.pillar == 50 or SaveSystem.save_game.pillar == 75 or SaveSystem.save_game.pillar == 100:
+			SaveSystem.save_game.pillar_increase *= 10
+			SaveSystem.save_game.pillar_cost *= 5
 		SaveSystem.save_game.pillar_cost = roundi(SaveSystem.save_game.pillar_cost)
 		pillar_label.text = str(SaveSystem.save_game.pillar_cost)
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
@@ -717,6 +734,7 @@ func _on_ball_button_pressed() -> void:
 			ball_ready = true
 		if SaveSystem.save_game.ball == 10 or SaveSystem.save_game.ball == 25 or SaveSystem.save_game.ball == 50 or SaveSystem.save_game.ball == 75 or SaveSystem.save_game.ball == 100:
 			SaveSystem.save_game.ball_increase *= 10
+			SaveSystem.save_game.ball_cost *= 5
 		ball_name_label.text = " Ball" + " (" + str(SaveSystem.save_game.ball) + ")"
 		SaveSystem.save_game.ball_cost = roundi(SaveSystem.save_game.ball_cost)
 		ball_label.text = str(SaveSystem.save_game.ball_cost)
@@ -729,14 +747,16 @@ func _on_ball_button_pressed() -> void:
 func _on_cube_button_pressed():
 	if SaveSystem.save_game.gear_coins >= SaveSystem.save_game.cube_cost:
 		SaveSystem.save_game.gear_coins -= SaveSystem.save_game.cube_cost
-		SaveSystem.save_game.cube_cost = (SaveSystem.save_game.cube_cost + 10000) * 1.6
+		SaveSystem.save_game.cube_cost = (SaveSystem.save_game.cube_cost + 10000) * 1.75
 		SaveSystem.save_game.cube += 1
 		if SaveSystem.save_game.cube == 1:
 			cube_container.show()
 			cube_ready = true
 			cube_label.show()
+			cube_gear.show()
 		if SaveSystem.save_game.cube == 10 or SaveSystem.save_game.cube == 25 or SaveSystem.save_game.cube == 50 or SaveSystem.save_game.cube == 75 or SaveSystem.save_game.cube == 100:
 			SaveSystem.save_game.cube_increase *= 10
+			SaveSystem.save_game.cube_cost *= 5
 		cube_name_label.text = " Cube" + " (" + str(SaveSystem.save_game.cube) + ")"
 		SaveSystem.save_game.cube_cost = roundi(SaveSystem.save_game.cube_cost)
 		cube_label.text = str(SaveSystem.save_game.cube_cost)
@@ -755,6 +775,7 @@ func _on_wall_button_pressed() -> void:
 			wall_ready = true
 		if SaveSystem.save_game.wall == 10 or SaveSystem.save_game.wall == 25 or SaveSystem.save_game.wall == 50 or SaveSystem.save_game.wall == 75 or SaveSystem.save_game.wall == 100:
 			SaveSystem.save_game.wall_increase *= 10
+			SaveSystem.save_game.wall_cost *= 5
 		wall_name_label.text = " Wall" + " (" + str(SaveSystem.save_game.wall) + ")"
 		SaveSystem.save_game.wall_cost = roundi(SaveSystem.save_game.wall_cost)
 		wall_label.text = str(SaveSystem.save_game.wall_cost)
@@ -881,6 +902,11 @@ func _on_white_belt_button_pressed():
 		ball_button.disabled = false
 		ball_button.text = "Buy"
 		ball_label.show()
+		ball_gear.show()
+		kick_button.text = "Buy"
+		kick_button.disabled = false
+		kick_label.show()
+		kick_gear.show()
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
 		shop_label.text = str(SaveSystem.save_game.gear_coins)
 		SaveSystem.saving()
@@ -937,6 +963,11 @@ func _on_yellow_belt_button_pressed():
 		wall_button.disabled = false
 		wall_button.text = "Buy"
 		wall_label.show()
+		wall_gear.show()
+		uppercut_button.disabled = false
+		uppercut_button.text = "Buy"
+		uppercut_label.show()
+		uppercut_gear.show()
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
 		shop_label.text = str(SaveSystem.save_game.gear_coins)
 		SaveSystem.saving()
@@ -992,6 +1023,7 @@ func _on_green_belt_button_pressed():
 		cube_button.disabled = false
 		cube_button.text = "Buy"
 		cube_label.show()
+		cube_gear.show()
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
 		shop_label.text = str(SaveSystem.save_game.gear_coins)
 		SaveSystem.saving()
