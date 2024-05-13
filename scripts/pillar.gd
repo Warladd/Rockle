@@ -23,7 +23,9 @@ func _process(delta):
 	move_and_slide()
 
 func _on_area_2d_body_entered(body):
-	velocity.x += 500
+	if velocity.x > 0:
+		return
+	velocity.x += 600
 
 func _on_area_2d_2_body_entered(body):
 	if body == self:

@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://81gnpf5in3r5"]
+[gd_scene load_steps=5 format=3 uid="uid://81gnpf5in3r5"]
 
 [ext_resource type="Script" path="res://scripts/disk.gd" id="1_1chq5"]
 [ext_resource type="Texture2D" uid="uid://esoutmox2yhs" path="res://assets/structures/disk.png" id="1_dicd0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7o5b3"]
 size = Vector2(80, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjgt6"]
+size = Vector2(82, 33)
 
 [node name="Disk" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector")]
 collision_layer = 4
@@ -34,7 +37,7 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(0, 2.5)
-shape = SubResource("RectangleShape2D_7o5b3")
+shape = SubResource("RectangleShape2D_wjgt6")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

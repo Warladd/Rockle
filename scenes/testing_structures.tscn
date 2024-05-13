@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgjsi1thub6yp"]
+[gd_scene load_steps=5 format=3 uid="uid://cgjsi1thub6yp"]
 
 [ext_resource type="Script" path="res://scripts/testing_structures.gd" id="1_3clck"]
 [ext_resource type="SpriteFrames" uid="uid://djw5x6aebbp1f" path="res://resources/white_belt.tres" id="2_k4vt2"]
-[ext_resource type="PackedScene" uid="uid://w61j5pg3dnfv" path="res://scenes/pillar.tscn" id="3_d7iyc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnk68"]
 size = Vector2(203, 132)
@@ -55,8 +54,7 @@ color = Color(0.862368, 0.74564, 0.543697, 1)
 position = Vector2(-4, 157.5)
 shape = SubResource("RectangleShape2D_gtbvj")
 
-[node name="Pillar" parent="." instance=ExtResource("3_d7iyc")]
-position = Vector2(-183, -68)
+[node name="RayCast2D" type="RayCast2D" parent="."]
 
 [connection signal="timeout" from="DiskTimer" to="." method="_on_disk_timer_timeout"]
 [connection signal="timeout" from="PillarTimer" to="." method="_on_pillar_timer_timeout"]

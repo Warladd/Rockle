@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://w61j5pg3dnfv"]
+[gd_scene load_steps=5 format=3 uid="uid://w61j5pg3dnfv"]
 
 [ext_resource type="Script" path="res://scripts/pillar.gd" id="1_lolv6"]
 [ext_resource type="Texture2D" uid="uid://bu7ldqi1qg1bf" path="res://assets/structures/pillar.png" id="2_kl3oo"]
@@ -6,10 +6,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7o5b3"]
 size = Vector2(55.25, 130.5)
 
-[node name="Pillar" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y4sil"]
+size = Vector2(58, 132)
+
+[node name="Pillar" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector")]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_lolv6")
+death = NodePath("Area2D2")
+detector = NodePath("Area2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_kl3oo")
@@ -32,7 +37,7 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(-2, 0)
-shape = SubResource("RectangleShape2D_7o5b3")
+shape = SubResource("RectangleShape2D_y4sil")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
