@@ -9,10 +9,11 @@ size = Vector2(203, 132)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtbvj"]
 size = Vector2(1134, 321)
 
-[node name="Testing" type="Node2D" node_paths=PackedStringArray("hitbox", "player")]
+[node name="Testing" type="Node2D" node_paths=PackedStringArray("hitbox", "player", "raycast")]
 script = ExtResource("1_3clck")
 hitbox = NodePath("CharacterBody2D/CollisionShape2D")
 player = NodePath("CharacterBody2D")
+raycast = NodePath("RayCast2D")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(-592, -378)
@@ -39,16 +40,6 @@ wait_time = 5.0
 one_shot = true
 autostart = true
 
-[node name="BallTimer" type="Timer" parent="."]
-wait_time = 10.0
-one_shot = true
-autostart = true
-
-[node name="CubeTimer" type="Timer" parent="."]
-wait_time = 15.0
-one_shot = true
-autostart = true
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="Ground" type="ColorRect" parent="StaticBody2D"]
@@ -67,17 +58,10 @@ color = Color(0.862368, 0.74564, 0.543697, 1)
 position = Vector2(-4, 157.5)
 shape = SubResource("RectangleShape2D_gtbvj")
 
-[node name="StructureCooldown" type="Timer" parent="."]
-wait_time = 0.3
-one_shot = true
-
-[node name="ModifierCooldown" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-204, -4)
+target_position = Vector2(0, -150)
+collision_mask = 4
 
 [connection signal="timeout" from="DiskTimer" to="." method="_on_disk_timer_timeout"]
 [connection signal="timeout" from="PillarTimer" to="." method="_on_pillar_timer_timeout"]
-[connection signal="timeout" from="BallTimer" to="." method="_on_ball_timer_timeout"]
-[connection signal="timeout" from="CubeTimer" to="." method="_on_cube_timer_timeout"]
-[connection signal="timeout" from="StructureCooldown" to="." method="_on_structure_cooldown_timeout"]
-[connection signal="timeout" from="ModifierCooldown" to="." method="_on_modifier_cooldown_timeout"]

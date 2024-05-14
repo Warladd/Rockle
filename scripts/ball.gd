@@ -1,16 +1,16 @@
 extends CharacterBody2D
 
-var gravity = -575
+var gravity = -400
 @export var death : Area2D
 @export var detector : Area2D
+var grounded : bool = false
 var damage_value : int = 1
-var grounded : bool = true
 var stored_velocity_x : float = 0
 
 func _ready():
 	death.monitoring = false
 	detector.monitoring = false
-	velocity.y -= 620
+	velocity.y -= 650
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -25,16 +25,13 @@ func _process(delta):
 	if !is_on_floor():
 		velocity.y -= gravity * delta
 	if velocity.x > 0:
-		velocity.x -= 700 * delta
+		velocity.x -= 600 * delta
 	elif velocity.x < 0:
 		velocity.x = 0
 	move_and_slide()
 
 func _on_area_2d_body_entered(body):
-	if body.get_parent().straight:
-		if velocity.x > 0:
-			return
-		velocity.x += 800
+	velocity.x += 800
 
 func _on_area_2d_2_body_entered(body):
 	if velocity.x > 0:
