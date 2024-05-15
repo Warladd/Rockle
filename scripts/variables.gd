@@ -29,7 +29,7 @@ class_name SaveFile
 @export var straight : bool = true
 @export var kick : bool = false
 @export var uppercut : bool = false
-@export var explode : bool = false
+@export var stomp : bool = false
 @export var hold : bool = false
 
 # Masteries
@@ -37,6 +37,8 @@ class_name SaveFile
 @export var straight_mastery : bool = false
 @export var straight_active : bool = false
 # Yellow Belt
+@export var stomp_mastery : bool = false
+@export var stomp_active : bool = false
 @export var kick_mastery : bool = false
 @export var kick_active : bool = false
 # Green Belt

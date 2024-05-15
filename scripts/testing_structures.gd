@@ -2,6 +2,15 @@ extends Node2D
 
 @export var hitbox : CollisionShape2D
 @export var player : CharacterBody2D
+@export var player_sprite : AnimatedSprite2D
+@export var disk_timer : Timer
+@export var pillar_timer : Timer
+@export var ball_timer : Timer
+@export var wall_timer : Timer
+@export var cube_timer : Timer
+@export var animation_timer : Timer
+@export var structure_cooldown : Timer
+@export var modifier_cooldown : Timer
 var disk_scene = preload("res://scenes/disk.tscn")
 var pillar_scene = preload("res://scenes/pillar.tscn")
 var ball_scene = preload("res://scenes/ball.tscn")
@@ -18,8 +27,24 @@ var straight : bool = true
 var kick : bool = false
 var uppercut : bool = false
 
+func _ready():
+	if SaveSystem.save_game.pillar > 0:
+		pillar_timer.start()
+	if SaveSystem.save_game.ball > 0:
+		ball_timer.start() 
+	if SaveSystem.save_game.wall > 0:
+		wall_timer.start()
+	if SaveSystem.save_game.cube > 0:
+		cube_timer.start()
+
 func _physics_process(delta) -> void:
 	if structure_loading or structure_loaded:
+		if SaveSystem.save_game.straight_active:
+			print("auto straighting")
+			player_sprite.play("straight")
+			hitbox.disabled = false
+			straight = true
+			modifier_cooldown.start()
 		return
 	if cubey:
 		print("cube started")
@@ -27,9 +52,9 @@ func _physics_process(delta) -> void:
 		cubey = false
 		var cube = cube_scene.instantiate()
 		add_child(cube)
-		cube.global_position = Vector2(-166, 39)
+		cube.global_position = Vector2(426, 417)
 		await get_tree().create_timer(1).timeout
-		$Timers/CubeTimer.start()
+		cube_timer.start()
 		print("cube timer")
 		structure_loading = false
 		structure_loaded = true
@@ -40,9 +65,9 @@ func _physics_process(delta) -> void:
 		wally = false
 		var wall = wall_scene.instantiate()
 		add_child(wall)
-		wall.global_position = Vector2(-166, 39)
+		wall.global_position = Vector2(426, 446)
 		await get_tree().create_timer(1).timeout
-		$Timers/WallTimer.start()
+		wall_timer.start()
 		print("wall timer")
 		structure_loading = false
 		structure_loaded = true
@@ -53,9 +78,9 @@ func _physics_process(delta) -> void:
 		bally = false
 		var ball = ball_scene.instantiate()
 		add_child(ball)
-		ball.global_position = Vector2(-183, 25)
+		ball.global_position = Vector2(411, 404)
 		await get_tree().create_timer(0.2).timeout
-		$Timers/BallTimer.start()
+		ball_timer.start()
 		print("ball timer")
 		structure_loading = false
 		structure_loaded = true
@@ -66,9 +91,9 @@ func _physics_process(delta) -> void:
 		pillary = false
 		var pillar = pillar_scene.instantiate()
 		add_child(pillar)
-		pillar.global_position = Vector2(-174, 70)
+		pillar.global_position = Vector2(416, 448)
 		await get_tree().create_timer(0.3).timeout
-		$Timers/PillarTimer.start()
+		pillar_timer.start()
 		print("pillar timer")
 		structure_loading = false
 		structure_loaded = true
@@ -79,21 +104,28 @@ func _physics_process(delta) -> void:
 		disky = false
 		var disk = disk_scene.instantiate()
 		add_child(disk)
-		disk.global_position = Vector2(-176, 13)
+		disk.global_position = Vector2(416, 391)
 		await get_tree().create_timer(0.1).timeout
-		$Timers/DiskTimer.start()
+		disk_timer.start()
 		print("disk timer")
 		structure_loading = false
 		structure_loaded = true
 
 func _input(event) -> void:
-	if !structure_loaded or !$Timers/StructureCooldown.is_stopped():
+	if !structure_loaded or !structure_cooldown.is_stopped():
+		if event.is_action_pressed("straight"):
+			player_sprite.play("straight")
+			animation_timer.start()
 		return
 	if event.is_action_pressed("straight"):
 		print("straighting")
+		player_sprite.play("straight")
 		hitbox.disabled = false
 		straight = true
-		$Timers/ModifierCooldown.start()
+		kick = false
+		uppercut = false
+		modifier_cooldown.start()
+		animation_timer.start()
 
 func _on_disk_timer_timeout() -> void:
 	print("disk timer finished")
@@ -109,10 +141,10 @@ func _on_structure_cooldown_timeout():
 	print(structure_loaded)
 
 func _on_modifier_cooldown_timeout():
-	$Timers/StructureCooldown.start()
-	print("structure timer")
-	hitbox.disabled = true
-	straight = false
+	if straight:
+		structure_cooldown.start()
+		print("structure timer")
+		hitbox.disabled = true
 
 func _on_ball_timer_timeout():
 	print("ball timer finished")
@@ -125,3 +157,6 @@ func _on_cube_timer_timeout():
 func _on_wall_timer_timeout():
 	print("wall timer finished")
 	wally = true
+
+func _on_animation_timer_timeout():
+	player_sprite.play("default")

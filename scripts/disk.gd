@@ -17,7 +17,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if velocity.x > 50:
+	if velocity.x > 30:
 		damage_value = 1
 	elif velocity.x < 30:
 		damage_value = 0
@@ -54,8 +54,21 @@ func _on_area_2d_2_body_entered(body):
 	print("disk damage value", damage_value)
 	print("other object damage value", body.damage_value)
 	if damage_value >= body.damage_value:
+		if body.structure == "pillar":
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.pillar * SaveSystem.save_game.pillar_increase * SaveSystem.save_game.general_increase
+		elif body.structure == "cube":
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.cube * SaveSystem.save_game.cube_increase * SaveSystem.save_game.general_increase	
+		elif body.structure == "ball":
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.ball * SaveSystem.save_game.ball_increase * SaveSystem.save_game.general_increase
+		elif body.structure == "wall":
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.wall * SaveSystem.save_game.wall_increase * SaveSystem.save_game.general_increase
+		SaveSystem.saving()
+		print("saving")
 		body.queue_free()
 	if damage_value <= body.damage_value:
+		SaveSystem.save_game.gear_coins += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
+		SaveSystem.saving()
+		print("saving")
 		queue_free()
 	velocity.x = stored_velocity_x
 	stored_velocity_x = 0

@@ -156,7 +156,7 @@ var uuk : bool = false
 # Costs
 var kick_cost : int = 250
 var uppercut_cost : int = 5000
-var explode_cost : int = 500000
+var stomp_cost : int = 300
 var straight_m_cost : int = 500
 var kick_m_cost : int = 5000
 var uppercut_m_cost : int = 75000
@@ -173,7 +173,6 @@ func _ready() -> void:
 	player_sprite.play("default")
 	SaveSystem.load_game()
 	shop.hide()
-	disk_timer.start()
 	pause_menu.hide()
 	gear_label.text = str(SaveSystem.save_game.gear_coins)
 	shop_label.text = str(SaveSystem.save_game.gear_coins)
@@ -204,10 +203,7 @@ func _ready() -> void:
 		ball_label.text = str(SaveSystem.save_game.ball_cost)
 		ball_name_label.text = " Ball" + " (" + str(SaveSystem.save_game.ball) + ")"
 		if SaveSystem.save_game.ball > 0:
-			ball_timer.start()
 			ball_container.show()
-			ball_tween = create_tween()
-			ball_tween.tween_property(ball_bar, "value", 1, 10)
 		
 	# Cube
 	if SaveSystem.save_game.belt < 3:
@@ -252,7 +248,7 @@ func _ready() -> void:
 		uppercut_label.hide()
 		uppercut_gear.hide()
 	
-	if SaveSystem.save_game.explode:
+	if SaveSystem.save_game.stomp:
 		explode_button.text = "Bought"
 		explode_label.hide()
 	
@@ -344,7 +340,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta) -> void:
-	pass
+	if int(gear_label.text) != SaveSystem.save_game.gear_coins:
+		gear_label.text = str(SaveSystem.save_game.gear_coins)
+		shop_label.text = str(SaveSystem.save_game.gear_coins)
 	
 func _on_button_pressed() -> void:
 	shop.show()
@@ -354,9 +352,10 @@ func _on_disk_button_pressed() -> void:
 	if SaveSystem.save_game.gear_coins >= SaveSystem.save_game.disk_cost:
 		SaveSystem.save_game.gear_coins -= SaveSystem.save_game.disk_cost
 		SaveSystem.save_game.disk += 1
+		if SaveSystem.save_game.disk == 9 or SaveSystem.save_game.disk == 24 or SaveSystem.save_game.disk == 49 or SaveSystem.save_game.disk == 74 or SaveSystem.save_game.disk == 99:
+			SaveSystem.save_game.disk_cost *= 5
 		if SaveSystem.save_game.disk == 10 or SaveSystem.save_game.disk == 25 or SaveSystem.save_game.disk == 50 or SaveSystem.save_game.disk == 75 or SaveSystem.save_game.disk == 100:
 			SaveSystem.save_game.disk_increase *= 10
-			SaveSystem.save_game.disk_cost *= 5
 		SaveSystem.save_game.disk_cost = (SaveSystem.save_game.disk_cost + 5) * 1.2
 		SaveSystem.save_game.disk_cost = roundi(SaveSystem.save_game.disk_cost)
 		disk_name_label.text = " Disk" + " (" + str(SaveSystem.save_game.disk) + ")"
@@ -376,9 +375,10 @@ func _on_pillar_button_pressed():
 		if SaveSystem.save_game.pillar == 1:
 			pillar_container.show()
 			pillar_ready = true
+		if SaveSystem.save_game.pillar == 9 or SaveSystem.save_game.pillar == 24 or SaveSystem.save_game.pillar == 49 or SaveSystem.save_game.pillar == 74 or SaveSystem.save_game.pillar == 99:
+			SaveSystem.save_game.pillar_cost *= 5
 		if SaveSystem.save_game.pillar == 10 or SaveSystem.save_game.pillar == 25 or SaveSystem.save_game.pillar == 50 or SaveSystem.save_game.pillar == 75 or SaveSystem.save_game.pillar == 100:
 			SaveSystem.save_game.pillar_increase *= 10
-			SaveSystem.save_game.pillar_cost *= 5
 		SaveSystem.save_game.pillar_cost = roundi(SaveSystem.save_game.pillar_cost)
 		pillar_label.text = str(SaveSystem.save_game.pillar_cost)
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
@@ -395,9 +395,10 @@ func _on_ball_button_pressed() -> void:
 		if SaveSystem.save_game.ball == 1:
 			ball_container.show()
 			ball_ready = true
+		if SaveSystem.save_game.ball == 9 or SaveSystem.save_game.ball == 24 or SaveSystem.save_game.ball == 49 or SaveSystem.save_game.ball == 74 or SaveSystem.save_game.ball == 99:
+			SaveSystem.save_game.ball_cost *= 5
 		if SaveSystem.save_game.ball == 10 or SaveSystem.save_game.ball == 25 or SaveSystem.save_game.ball == 50 or SaveSystem.save_game.ball == 75 or SaveSystem.save_game.ball == 100:
 			SaveSystem.save_game.ball_increase *= 10
-			SaveSystem.save_game.ball_cost *= 5
 		ball_name_label.text = " Ball" + " (" + str(SaveSystem.save_game.ball) + ")"
 		SaveSystem.save_game.ball_cost = roundi(SaveSystem.save_game.ball_cost)
 		ball_label.text = str(SaveSystem.save_game.ball_cost)
@@ -417,9 +418,10 @@ func _on_cube_button_pressed():
 			cube_ready = true
 			cube_label.show()
 			cube_gear.show()
+		if SaveSystem.save_game.cube == 9 or SaveSystem.save_game.cube == 24 or SaveSystem.save_game.cube == 49 or SaveSystem.save_game.cube == 74 or SaveSystem.save_game.cube == 99:
+			SaveSystem.save_game.cube_cost *= 5
 		if SaveSystem.save_game.cube == 10 or SaveSystem.save_game.cube == 25 or SaveSystem.save_game.cube == 50 or SaveSystem.save_game.cube == 75 or SaveSystem.save_game.cube == 100:
 			SaveSystem.save_game.cube_increase *= 10
-			SaveSystem.save_game.cube_cost *= 5
 		cube_name_label.text = " Cube" + " (" + str(SaveSystem.save_game.cube) + ")"
 		SaveSystem.save_game.cube_cost = roundi(SaveSystem.save_game.cube_cost)
 		cube_label.text = str(SaveSystem.save_game.cube_cost)
@@ -436,9 +438,10 @@ func _on_wall_button_pressed() -> void:
 		if SaveSystem.save_game.wall == 1:
 			wall_container.show()
 			wall_ready = true
+		if SaveSystem.save_game.wall == 9 or SaveSystem.save_game.wall == 24 or SaveSystem.save_game.wall == 49 or SaveSystem.save_game.wall == 74 or SaveSystem.save_game.wall == 99:
+			SaveSystem.save_game.wall_cost *= 5
 		if SaveSystem.save_game.wall == 10 or SaveSystem.save_game.wall == 25 or SaveSystem.save_game.wall == 50 or SaveSystem.save_game.wall == 75 or SaveSystem.save_game.wall == 100:
 			SaveSystem.save_game.wall_increase *= 10
-			SaveSystem.save_game.wall_cost *= 5
 		wall_name_label.text = " Wall" + " (" + str(SaveSystem.save_game.wall) + ")"
 		SaveSystem.save_game.wall_cost = roundi(SaveSystem.save_game.wall_cost)
 		wall_label.text = str(SaveSystem.save_game.wall_cost)
@@ -502,11 +505,11 @@ func _on_uppercut_button_pressed():
 		print("saving")
 
 func _on_explode_button_pressed():
-	if SaveSystem.save_game.explode:
+	if SaveSystem.save_game.stomp:
 		return
-	if SaveSystem.save_game.gear_coins >= explode_cost:
-		SaveSystem.save_game.gear_coins -= explode_cost
-		SaveSystem.save_game.explode = true
+	if SaveSystem.save_game.gear_coins >= stomp_cost:
+		SaveSystem.save_game.gear_coins -= stomp_cost
+		SaveSystem.save_game.stomp = true
 		explode_button.text = "Bought"
 		explode_label.hide()
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
