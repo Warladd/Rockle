@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://djw5x6aebbp1f" path="res://resources/white_belt.tres" id="2_k4vt2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnk68"]
-size = Vector2(203, 132)
+size = Vector2(182.5, 132)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtbvj"]
 size = Vector2(1134, 321)
@@ -19,7 +19,7 @@ position = Vector2(-592, -378)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(478.5, 304)
+position = Vector2(465.75, 305)
 shape = SubResource("RectangleShape2D_mnk68")
 disabled = true
 
@@ -44,12 +44,22 @@ wait_time = 10.0
 one_shot = true
 autostart = true
 
+[node name="WallTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
 [node name="CubeTimer" type="Timer" parent="."]
 wait_time = 15.0
 one_shot = true
 autostart = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+top_level = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-4, 157.5)
+shape = SubResource("RectangleShape2D_gtbvj")
 
 [node name="Ground" type="ColorRect" parent="StaticBody2D"]
 anchors_preset = 15
@@ -63,10 +73,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.862368, 0.74564, 0.543697, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-4, 157.5)
-shape = SubResource("RectangleShape2D_gtbvj")
-
 [node name="StructureCooldown" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
@@ -78,6 +84,7 @@ one_shot = true
 [connection signal="timeout" from="DiskTimer" to="." method="_on_disk_timer_timeout"]
 [connection signal="timeout" from="PillarTimer" to="." method="_on_pillar_timer_timeout"]
 [connection signal="timeout" from="BallTimer" to="." method="_on_ball_timer_timeout"]
+[connection signal="timeout" from="WallTimer" to="." method="_on_wall_timer_timeout"]
 [connection signal="timeout" from="CubeTimer" to="." method="_on_cube_timer_timeout"]
 [connection signal="timeout" from="StructureCooldown" to="." method="_on_structure_cooldown_timeout"]
 [connection signal="timeout" from="ModifierCooldown" to="." method="_on_modifier_cooldown_timeout"]

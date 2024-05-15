@@ -1,17 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://dtw6obm6lmpng"]
+[gd_scene load_steps=17 format=3 uid="uid://dtw6obm6lmpng"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rdaht"]
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="2_bwg6y"]
+[ext_resource type="Script" path="res://scripts/testing_structures.gd" id="2_iebus"]
 [ext_resource type="LabelSettings" uid="uid://xd8rgjv5gtlp" path="res://resources/standard_label_settings.tres" id="3_6lbk3"]
 [ext_resource type="Texture2D" uid="uid://dudpb7ah1iana" path="res://assets/gear_coin.png" id="3_vfisr"]
-[ext_resource type="Texture2D" uid="uid://esoutmox2yhs" path="res://assets/structures/disk.png" id="4_n3fo8"]
-[ext_resource type="Texture2D" uid="uid://bu7ldqi1qg1bf" path="res://assets/structures/pillar.png" id="5_or4b6"]
-[ext_resource type="Texture2D" uid="uid://b63q7wt1gx3qd" path="res://assets/structures/boulder.png" id="5_uf7ya"]
-[ext_resource type="Texture2D" uid="uid://d2xj5s3l6led1" path="res://assets/structures/cube.png" id="6_mkmhn"]
-[ext_resource type="Texture2D" uid="uid://dl0ihjvb3tdag" path="res://assets/structures/wall.png" id="7_bokbw"]
 [ext_resource type="SpriteFrames" uid="uid://djw5x6aebbp1f" path="res://resources/white_belt.tres" id="8_8t7ce"]
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="8_aofh8"]
 [ext_resource type="LabelSettings" uid="uid://ca2wabawemdxc" path="res://resources/charge_label_settings.tres" id="10_5384l"]
+[ext_resource type="Script" path="res://scenes/screens/breaking_wall.gd" id="11_pvumh"]
 [ext_resource type="Texture2D" uid="uid://buy76hpr2jxed" path="res://assets/gear_coin_small.png" id="12_p6s2u"]
 [ext_resource type="Texture2D" uid="uid://bh5jtnw4f5sy" path="res://assets/upgrade.png" id="12_rri2l"]
 
@@ -28,41 +25,44 @@ bg_color = Color(0.575317, 0.54622, 0.536891, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1dof"]
 bg_color = Color(0.787727, 0.641632, 0.543549, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfnlq"]
+size = Vector2(20, 425)
+
 [node name="Game" type="Node2D" node_paths=PackedStringArray("disk_timer", "disk_label", "disk_name_label", "disk_sprite", "disk_container", "disk_bar", "pillar_timer", "pillar_label", "pillar_name_label", "pillar_sprite", "pillar_container", "pillar_bar", "ball_timer", "ball_label", "ball_gear", "ball_name_label", "ball_sprite", "ball_container", "ball_bar", "ball_button", "cube_timer", "cube_label", "cube_gear", "cube_name_label", "cube_sprite", "cube_container", "cube_bar", "cube_button", "wall_timer", "wall_label", "wall_gear", "wall_name_label", "wall_sprite", "wall_container", "wall_bar", "wall_button", "kick_button", "kick_label", "kick_gear", "uppercut_button", "uppercut_label", "uppercut_gear", "explode_button", "explode_label", "straight_m_button", "straight_m_label", "straight_m_gear", "white_belt_label", "white_belt_button", "white_belt_gear", "kick_m_button", "kick_m_label", "kick_m_container", "kick_m_gear", "yellow_belt_label", "yellow_belt_button", "yellow_belt_container", "yellow_belt_gear", "uppercut_m_button", "uppercut_m_label", "uppercut_m_container", "uppercut_m_gear", "green_belt_label", "green_belt_button", "green_belt_container", "green_belt_gear", "blue_belt_label", "blue_belt_button", "blue_belt_container", "blue_belt_gear", "red_belt_label", "red_belt_button", "red_belt_container", "red_belt_gear", "black_belt_label", "black_belt_button", "black_belt_container", "black_belt_gear", "gear_label", "shop_label", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu")]
 script = ExtResource("1_rdaht")
-disk_timer = NodePath("Structure Timers/DiskTimer")
+disk_timer = NodePath("")
 disk_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label2")
 disk_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label")
-disk_sprite = NodePath("Sprites/Disk")
+disk_sprite = NodePath("")
 disk_container = NodePath("StructureBarContainer/DiskContainer")
 disk_bar = NodePath("StructureBarContainer/DiskContainer/ProgressBar")
-pillar_timer = NodePath("Structure Timers/PillarTimer")
+pillar_timer = NodePath("")
 pillar_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/Label2")
 pillar_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/Label")
-pillar_sprite = NodePath("Sprites/Pillar")
+pillar_sprite = NodePath("")
 pillar_container = NodePath("StructureBarContainer/PillarContainer")
 pillar_bar = NodePath("StructureBarContainer/PillarContainer/ProgressBar")
-ball_timer = NodePath("Structure Timers/BallTimer")
+ball_timer = NodePath("")
 ball_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/Label2")
 ball_gear = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/GearCoin")
 ball_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/Label")
-ball_sprite = NodePath("Sprites/Boulder")
+ball_sprite = NodePath("")
 ball_container = NodePath("StructureBarContainer/BallContainer")
 ball_bar = NodePath("StructureBarContainer/BallContainer/ProgressBar")
 ball_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/BallButton")
-cube_timer = NodePath("Structure Timers/CubeTimer")
+cube_timer = NodePath("")
 cube_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/Label2")
 cube_gear = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/GearCoin")
 cube_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/Label")
-cube_sprite = NodePath("Sprites/Cube")
+cube_sprite = NodePath("")
 cube_container = NodePath("StructureBarContainer/CubeContainer")
 cube_bar = NodePath("StructureBarContainer/CubeContainer/ProgressBar")
 cube_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/CubeButton")
-wall_timer = NodePath("Structure Timers/WallTimer")
+wall_timer = NodePath("")
 wall_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/Label2")
 wall_gear = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/GearCoin")
 wall_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/Label")
-wall_sprite = NodePath("Sprites/Wall")
+wall_sprite = NodePath("")
 wall_container = NodePath("StructureBarContainer/WallContainer")
 wall_bar = NodePath("StructureBarContainer/WallContainer/ProgressBar")
 wall_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/WallButton")
@@ -117,8 +117,10 @@ saving_label = NodePath("SavingLabel")
 save_timer = NodePath("SaveTimer")
 pause_menu = NodePath("PauseMenu")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(560, 315)
+[node name="Structures" type="Node2D" parent="." node_paths=PackedStringArray("hitbox", "player")]
+script = ExtResource("2_iebus")
+hitbox = NodePath("../CharacterBody2D/CollisionShape2D")
+player = NodePath("../CharacterBody2D")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -149,28 +151,6 @@ layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_tq13i")
 
-[node name="Sprites" type="Node2D" parent="."]
-
-[node name="Disk" type="Sprite2D" parent="Sprites"]
-position = Vector2(430, 414)
-texture = ExtResource("4_n3fo8")
-
-[node name="Pillar" type="Sprite2D" parent="Sprites"]
-position = Vector2(428, 455)
-texture = ExtResource("5_or4b6")
-
-[node name="Boulder" type="Sprite2D" parent="Sprites"]
-position = Vector2(434, 414)
-texture = ExtResource("5_uf7ya")
-
-[node name="Cube" type="Sprite2D" parent="Sprites"]
-position = Vector2(444, 431)
-texture = ExtResource("6_mkmhn")
-
-[node name="Wall" type="Sprite2D" parent="Sprites"]
-position = Vector2(428, 443)
-texture = ExtResource("7_bokbw")
-
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
@@ -189,6 +169,40 @@ offset_top = 376.0
 offset_right = 1121.0
 offset_bottom = 630.0
 color = Color(0.862368, 0.74564, 0.543697, 1)
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="DiskTimer" type="Timer" parent="Timers"]
+one_shot = true
+autostart = true
+
+[node name="PillarTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="BallTimer" type="Timer" parent="Timers"]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="WallTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="CubeTimer" type="Timer" parent="Timers"]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[node name="StructureCooldown" type="Timer" parent="Timers"]
+wait_time = 0.3
+one_shot = true
+
+[node name="ModifierCooldown" type="Timer" parent="Timers"]
+wait_time = 0.1
+one_shot = true
 
 [node name="StructureBarContainer" type="VBoxContainer" parent="."]
 offset_left = 13.0
@@ -307,28 +321,6 @@ flat = true
 
 [node name="SaveTimer" type="Timer" parent="."]
 wait_time = 60.0
-
-[node name="Structure Timers" type="Node" parent="."]
-
-[node name="DiskTimer" type="Timer" parent="Structure Timers"]
-wait_time = 0.3
-one_shot = true
-
-[node name="PillarTimer" type="Timer" parent="Structure Timers"]
-wait_time = 5.0
-one_shot = true
-
-[node name="BallTimer" type="Timer" parent="Structure Timers"]
-wait_time = 10.0
-one_shot = true
-
-[node name="WallTimer" type="Timer" parent="Structure Timers"]
-wait_time = 30.0
-one_shot = true
-
-[node name="CubeTimer" type="Timer" parent="Structure Timers"]
-wait_time = 20.0
-one_shot = true
 
 [node name="Shop" type="CanvasLayer" parent="."]
 visible = false
@@ -1199,13 +1191,24 @@ theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 50
 text = "Quit"
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1129, 211.5)
+shape = SubResource("RectangleShape2D_gfnlq")
+script = ExtResource("11_pvumh")
+
+[connection signal="timeout" from="Timers/DiskTimer" to="Structures" method="_on_disk_timer_timeout"]
+[connection signal="timeout" from="Timers/PillarTimer" to="Structures" method="_on_pillar_timer_timeout"]
+[connection signal="timeout" from="Timers/BallTimer" to="Structures" method="_on_ball_timer_timeout"]
+[connection signal="timeout" from="Timers/WallTimer" to="Structures" method="_on_wall_timer_timeout"]
+[connection signal="timeout" from="Timers/CubeTimer" to="Structures" method="_on_cube_timer_timeout"]
+[connection signal="timeout" from="Timers/StructureCooldown" to="Structures" method="_on_structure_cooldown_timeout"]
+[connection signal="timeout" from="Timers/ModifierCooldown" to="Structures" method="_on_modifier_cooldown_timeout"]
 [connection signal="pressed" from="ShopButton" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="SaveTimer" to="." method="_on_save_timer_timeout"]
-[connection signal="timeout" from="Structure Timers/DiskTimer" to="." method="_on_disk_timer_timeout"]
-[connection signal="timeout" from="Structure Timers/PillarTimer" to="." method="_on_pillar_timer_timeout"]
-[connection signal="timeout" from="Structure Timers/BallTimer" to="." method="_on_ball_timer_timeout"]
-[connection signal="timeout" from="Structure Timers/WallTimer" to="." method="_on_wall_timer_timeout"]
-[connection signal="timeout" from="Structure Timers/CubeTimer" to="." method="_on_cube_timer_timeout"]
 [connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/DiskButton" to="." method="_on_disk_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/PillarButton" to="." method="_on_pillar_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/BallButton" to="." method="_on_ball_button_pressed"]

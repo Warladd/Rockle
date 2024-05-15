@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://esoutmox2yhs"
-path="res://.godot/imported/disk.png-b1654341375d472f46f68a4ad68ed4a3.ctex"
+uid="uid://dpkrj31ut0ote"
+path="res://.godot/imported/ball_ungrounded.png-6eb810dd71adc4fe017c7867a062b827.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/structures/disk.png"
-dest_files=["res://.godot/imported/disk.png-b1654341375d472f46f68a4ad68ed4a3.ctex"]
+source_file="res://assets/structures/ball_ungrounded.png"
+dest_files=["res://.godot/imported/ball_ungrounded.png-6eb810dd71adc4fe017c7867a062b827.ctex"]
 
 [params]
 

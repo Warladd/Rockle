@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl0ihjvb3tdag"
-path="res://.godot/imported/wall.png-213e4f812a45cb8452892923f58b468c.ctex"
+uid="uid://4hwevy5u18eo"
+path="res://.godot/imported/disk_grounded.png-56fcf0c6dcb1215c2b1c3a784c375598.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/structures/wall.png"
-dest_files=["res://.godot/imported/wall.png-213e4f812a45cb8452892923f58b468c.ctex"]
+source_file="res://assets/structures/disk_grounded.png"
+dest_files=["res://.godot/imported/disk_grounded.png-56fcf0c6dcb1215c2b1c3a784c375598.ctex"]
 
 [params]
 

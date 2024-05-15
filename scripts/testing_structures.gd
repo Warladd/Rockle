@@ -5,10 +5,12 @@ extends Node2D
 var disk_scene = preload("res://scenes/disk.tscn")
 var pillar_scene = preload("res://scenes/pillar.tscn")
 var ball_scene = preload("res://scenes/ball.tscn")
+var wall_scene = preload("res://scenes/wall.tscn")
 var cube_scene = preload("res://scenes/cube.tscn")
 var disky : bool = false
 var pillary : bool = false
 var bally : bool = false
+var wally : bool = false
 var cubey : bool = false
 var structure_loading : bool = false
 var structure_loaded : bool = false
@@ -25,10 +27,23 @@ func _physics_process(delta) -> void:
 		cubey = false
 		var cube = cube_scene.instantiate()
 		add_child(cube)
-		cube.global_position = Vector2(-161, -58)
-		await get_tree().create_timer(0.4).timeout
-		$CubeTimer.start()
+		cube.global_position = Vector2(-166, 39)
+		await get_tree().create_timer(1).timeout
+		$Timers/CubeTimer.start()
 		print("cube timer")
+		structure_loading = false
+		structure_loaded = true
+		
+	if wally:
+		print("wall started")
+		structure_loading = true
+		wally = false
+		var wall = wall_scene.instantiate()
+		add_child(wall)
+		wall.global_position = Vector2(-166, 39)
+		await get_tree().create_timer(1).timeout
+		$Timers/WallTimer.start()
+		print("wall timer")
 		structure_loading = false
 		structure_loaded = true
 	
@@ -38,9 +53,9 @@ func _physics_process(delta) -> void:
 		bally = false
 		var ball = ball_scene.instantiate()
 		add_child(ball)
-		ball.global_position = Vector2(-183, -69)
+		ball.global_position = Vector2(-183, 25)
 		await get_tree().create_timer(0.2).timeout
-		$BallTimer.start()
+		$Timers/BallTimer.start()
 		print("ball timer")
 		structure_loading = false
 		structure_loaded = true
@@ -51,9 +66,9 @@ func _physics_process(delta) -> void:
 		pillary = false
 		var pillar = pillar_scene.instantiate()
 		add_child(pillar)
-		pillar.global_position = Vector2(-183, -69)
+		pillar.global_position = Vector2(-174, 70)
 		await get_tree().create_timer(0.3).timeout
-		$PillarTimer.start()
+		$Timers/PillarTimer.start()
 		print("pillar timer")
 		structure_loading = false
 		structure_loaded = true
@@ -64,21 +79,21 @@ func _physics_process(delta) -> void:
 		disky = false
 		var disk = disk_scene.instantiate()
 		add_child(disk)
-		disk.global_position = Vector2(-161, -14)
+		disk.global_position = Vector2(-176, 13)
 		await get_tree().create_timer(0.1).timeout
-		$DiskTimer.start()
+		$Timers/DiskTimer.start()
 		print("disk timer")
 		structure_loading = false
 		structure_loaded = true
 
 func _input(event) -> void:
-	if !structure_loaded or !$StructureCooldown.is_stopped():
+	if !structure_loaded or !$Timers/StructureCooldown.is_stopped():
 		return
 	if event.is_action_pressed("straight"):
 		print("straighting")
 		hitbox.disabled = false
 		straight = true
-		$ModifierCooldown.start()
+		$Timers/ModifierCooldown.start()
 
 func _on_disk_timer_timeout() -> void:
 	print("disk timer finished")
@@ -94,7 +109,7 @@ func _on_structure_cooldown_timeout():
 	print(structure_loaded)
 
 func _on_modifier_cooldown_timeout():
-	$StructureCooldown.start()
+	$Timers/StructureCooldown.start()
 	print("structure timer")
 	hitbox.disabled = true
 	straight = false
@@ -106,3 +121,7 @@ func _on_ball_timer_timeout():
 func _on_cube_timer_timeout():
 	print("cube timer finished")
 	cubey = true
+
+func _on_wall_timer_timeout():
+	print("wall timer finished")
+	wally = true

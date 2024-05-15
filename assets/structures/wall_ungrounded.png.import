@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu7ldqi1qg1bf"
-path="res://.godot/imported/pillar.png-17b53362eabd3109bf1d19f8f0c86223.ctex"
+uid="uid://hgv08dud22lw"
+path="res://.godot/imported/wall_ungrounded.png-58a7088c79a899bb510d78736fd8ac3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/structures/pillar.png"
-dest_files=["res://.godot/imported/pillar.png-17b53362eabd3109bf1d19f8f0c86223.ctex"]
+source_file="res://assets/structures/wall_ungrounded.png"
+dest_files=["res://.godot/imported/wall_ungrounded.png-58a7088c79a899bb510d78736fd8ac3d.ctex"]
 
 [params]
 

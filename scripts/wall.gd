@@ -1,41 +1,44 @@
 extends CharacterBody2D
 
-var gravity = -490
-var structure = "disk"
+var gravity = -690
+var structure = "wall"
 @export var death : Area2D
 @export var detector : Area2D
 @export var sprite : Sprite2D
 @export var collision : CollisionShape2D
-var grounded : bool = false
-var damage_value : int = 0
-var stored_velocity_x : float = 0
+var damage_value : int = 3
+var grounded : bool = true
+var stored_velocity_x : float = 3
+var increase : bool = true
 
 func _ready():
 	death.monitoring = false
 	detector.monitoring = false
-	velocity.y -= 800
+	velocity.y -= 250
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if velocity.x > 50:
-		damage_value = 1
+	if velocity.x > 30:
+		damage_value = 4
 	elif velocity.x < 30:
-		damage_value = 0
+		damage_value = 3
 	if grounded:
-		sprite.texture = load("res://assets/structures/disk_grounded.png")
+		sprite.texture = load("res://assets/structures/wall_grounded.png")
 		if velocity.x < 30:
-			damage_value = 1
+			damage_value = 4
 		elif velocity.x >= 30:
-			damage_value = 2
-		if position.y <= -18:
-			position.y = -18
+			damage_value = 5
+		if increase and position.y > -87:
+			velocity.y = -250
+		if position.y <= -87:
+			position.y = -87
 			velocity.y = 0
 	elif !grounded:
-		sprite.texture = load("res://assets/structures/disk_ungrounded.png")
+		sprite.texture = load("res://assets/structures/wall_ungrounded.png")
 	if !is_on_floor():
 		velocity.y -= gravity * delta
 	if velocity.x > 0:
-		velocity.x -= 500 * delta
+		velocity.x -= 850 * delta
 	elif velocity.x < 0:
 		velocity.x = 0
 	move_and_slide()
@@ -44,14 +47,14 @@ func _on_area_2d_body_entered(body):
 	if body.get_parent().straight:
 		if velocity.x > 0:
 			return
-		velocity.x += 1000
+		velocity.x += 650
 
 func _on_area_2d_2_body_entered(body):
 	if velocity.x > 0:
 		stored_velocity_x = velocity.x
 	if body == self:
 		return
-	print("disk damage value", damage_value)
+	print("cube damage value", damage_value)
 	print("other object damage value", body.damage_value)
 	if damage_value >= body.damage_value:
 		body.queue_free()
@@ -59,9 +62,10 @@ func _on_area_2d_2_body_entered(body):
 		queue_free()
 	velocity.x = stored_velocity_x
 	stored_velocity_x = 0
-		
+
 func _on_timer_timeout():
 	death.monitoring = true
 	detector.monitoring = true
 	velocity.y = 0
 	collision.disabled = false
+	increase = false

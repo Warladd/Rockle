@@ -1,4 +1,4 @@
-[gd_resource type="CircleShape2D" format=3 uid="uid://cbyjc3umkfgkf"]
+[gd_resource type="RectangleShape2D" format=3 uid="uid://cbyjc3umkfgkf"]
 
 [resource]
-radius = 42.0
+size = Vector2(78, 66)

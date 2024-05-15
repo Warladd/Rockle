@@ -1,31 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxmpm8i3rnsd1"]
+[gd_scene load_steps=5 format=3 uid="uid://b6nwr7xurki37"]
 
-[ext_resource type="Script" path="res://scripts/ball.gd" id="1_lqumv"]
-[ext_resource type="Texture2D" uid="uid://dpkrj31ut0ote" path="res://assets/structures/ball_ungrounded.png" id="2_4gfil"]
+[ext_resource type="Script" path="res://scripts/wall.gd" id="1_mukex"]
+[ext_resource type="Texture2D" uid="uid://cpv2llrlowknn" path="res://assets/structures/wall_grounded.png" id="2_a6dpe"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6t0kc"]
-size = Vector2(65, 56)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7o5b3"]
+size = Vector2(86, 140)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0p37y"]
-size = Vector2(67, 54)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfdch"]
+size = Vector2(88, 137)
 
-[node name="Ball" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector", "sprite", "collision")]
+[node name="Wall" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector", "sprite", "collision")]
 collision_layer = 4
 collision_mask = 5
-script = ExtResource("1_lqumv")
+script = ExtResource("1_mukex")
 death = NodePath("Area2D2")
 detector = NodePath("Area2D")
 sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.5, 0)
-shape = SubResource("RectangleShape2D_6t0kc")
-disabled = true
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_4gfil")
+position = Vector2(-2, 0)
+scale = Vector2(0.959, 1)
+texture = ExtResource("2_a6dpe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_7o5b3")
+disabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -33,18 +34,18 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-2.5, 0)
-shape = SubResource("RectangleShape2D_6t0kc")
+shape = SubResource("RectangleShape2D_7o5b3")
 
 [node name="Area2D2" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(-2.5, 0)
-shape = SubResource("RectangleShape2D_0p37y")
+position = Vector2(-2, 0.5)
+shape = SubResource("RectangleShape2D_bfdch")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.65
 one_shot = true
 autostart = true
 
