@@ -13,7 +13,6 @@ var increase : bool = true
 var structures : Node2D
 
 func _ready():
-	death.monitoring = false
 	detector.monitoring = false
 	velocity.y = -360
 
@@ -55,7 +54,6 @@ func _on_area_2d_body_entered(body):
 		velocity.y -= 300
 
 func _on_timer_timeout():
-	death.monitoring = true
 	detector.monitoring = true
 	increase = false
 	velocity.y = 0

@@ -12,7 +12,6 @@ var stored_velocity_x : float = 0
 var structures : Node2D
 
 func _ready():
-	death.monitoring = false
 	detector.monitoring = false
 	velocity.y -= 800
 
@@ -52,7 +51,6 @@ func _on_area_2d_body_entered(body):
 		velocity.y -= 300
 		
 func _on_timer_timeout():
-	death.monitoring = true
 	detector.monitoring = true
 	velocity.y = 0
 	collision.disabled = false

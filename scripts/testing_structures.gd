@@ -165,13 +165,6 @@ func _on_wall_timer_timeout():
 	print("wall timer finished")
 	wally = true
 
-func _on_area_2d_body_entered(_body) -> void:
-	structure_loaded = true
-	
-func _on_structure_detector_body_exited(body):
-	structure_loaded = false
-	player_sprite.play("default")
-
 func _on_animation_timer_timeout():
 	player_sprite.play("default")
 
