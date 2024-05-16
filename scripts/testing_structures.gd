@@ -38,13 +38,18 @@ func _ready():
 		cube_timer.start()
 
 func _physics_process(delta) -> void:
-	if structure_loading or structure_loaded:
-		if SaveSystem.save_game.straight_active:
+	if structure_loading:
+		print("structure loading")
+		return
+	if structure_loaded:
+		if SaveSystem.save_game.straight_active and modifier_cooldown.is_stopped():
+			modifier_cooldown.start()
 			print("auto straighting")
 			player_sprite.play("straight")
 			hitbox.disabled = false
 			straight = true
-			modifier_cooldown.start()
+			kick = false
+			uppercut = false
 		return
 	if cubey:
 		print("cube started")
@@ -59,7 +64,7 @@ func _physics_process(delta) -> void:
 		structure_loading = false
 		structure_loaded = true
 		
-	if wally:
+	elif wally:
 		print("wall started")
 		structure_loading = true
 		wally = false
@@ -112,10 +117,13 @@ func _physics_process(delta) -> void:
 		structure_loaded = true
 
 func _input(event) -> void:
-	if !structure_loaded or !structure_cooldown.is_stopped():
-		if event.is_action_pressed("straight"):
-			player_sprite.play("straight")
-			animation_timer.start()
+	if !structure_loaded:
+		#if event.is_action_pressed("straight"):
+			#player_sprite.play("straight")
+			#animation_timer.start()
+		#elif event.is_action_pressed("kick") and SaveSystem.save_game.kick:
+			#player_sprite.play("kick")
+			#animation_timer.start()
 		return
 	if event.is_action_pressed("straight"):
 		print("straighting")
@@ -125,7 +133,14 @@ func _input(event) -> void:
 		kick = false
 		uppercut = false
 		modifier_cooldown.start()
-		animation_timer.start()
+	elif event.is_action_pressed("kick") and SaveSystem.save_game.kick:
+		print("kicking")
+		player_sprite.play("kick")
+		hitbox.disabled = false
+		kick = true
+		straight = false
+		uppercut = false
+		modifier_cooldown.start()
 
 func _on_disk_timer_timeout() -> void:
 	print("disk timer finished")
@@ -135,16 +150,8 @@ func _on_pillar_timer_timeout() -> void:
 	print("pillar timer finished")
 	pillary = true
 
-func _on_structure_cooldown_timeout():
-	structure_loaded = false
-	print("structure unloaded")
-	print(structure_loaded)
-
 func _on_modifier_cooldown_timeout():
-	if straight:
-		structure_cooldown.start()
-		print("structure timer")
-		hitbox.disabled = true
+	hitbox.disabled = true
 
 func _on_ball_timer_timeout():
 	print("ball timer finished")
@@ -158,5 +165,21 @@ func _on_wall_timer_timeout():
 	print("wall timer finished")
 	wally = true
 
+func _on_area_2d_body_entered(_body) -> void:
+	structure_loaded = true
+	
+func _on_structure_detector_body_exited(body):
+	structure_loaded = false
+	player_sprite.play("default")
+
 func _on_animation_timer_timeout():
+	player_sprite.play("default")
+
+func _on_structure_detector_area_entered(area):
+	print("structure detected")
+	structure_loaded = true
+
+func _on_structure_detector_area_exited(area):
+	print("structure leaving")
+	structure_loaded = false
 	player_sprite.play("default")

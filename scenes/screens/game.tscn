@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dtw6obm6lmpng"]
+[gd_scene load_steps=19 format=3 uid="uid://dtw6obm6lmpng"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rdaht"]
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="2_bwg6y"]
@@ -8,16 +8,16 @@
 [ext_resource type="SpriteFrames" uid="uid://djw5x6aebbp1f" path="res://resources/white_belt.tres" id="8_8t7ce"]
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="8_aofh8"]
 [ext_resource type="LabelSettings" uid="uid://ca2wabawemdxc" path="res://resources/charge_label_settings.tres" id="10_5384l"]
-[ext_resource type="Script" path="res://scenes/screens/breaking_wall.gd" id="11_pvumh"]
+[ext_resource type="Script" path="res://scripts/breaking_wall.gd" id="11_q4tyc"]
 [ext_resource type="Texture2D" uid="uid://buy76hpr2jxed" path="res://assets/gear_coin_small.png" id="12_p6s2u"]
 [ext_resource type="Texture2D" uid="uid://bh5jtnw4f5sy" path="res://assets/upgrade.png" id="12_rri2l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xytg0"]
+size = Vector2(203, 132)
 
 [sub_resource type="LabelSettings" id="LabelSettings_tq13i"]
 font = ExtResource("2_bwg6y")
 font_size = 160
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xytg0"]
-size = Vector2(203, 132)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dx7l"]
 bg_color = Color(0.575317, 0.54622, 0.536891, 1)
@@ -31,28 +31,35 @@ size = Vector2(1187, 254)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfnlq"]
 size = Vector2(20, 425)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("disk_label", "disk_name_label", "disk_container", "disk_bar", "pillar_label", "pillar_name_label", "pillar_container", "pillar_bar", "ball_label", "ball_gear", "ball_name_label", "ball_container", "ball_bar", "ball_button", "cube_label", "cube_gear", "cube_name_label", "cube_container", "cube_bar", "cube_button", "wall_label", "wall_gear", "wall_name_label", "wall_container", "wall_bar", "wall_button", "kick_button", "kick_label", "kick_gear", "uppercut_button", "uppercut_label", "uppercut_gear", "explode_button", "explode_label", "straight_m_button", "straight_m_label", "straight_m_gear", "white_belt_label", "white_belt_button", "white_belt_gear", "kick_m_button", "kick_m_label", "kick_m_container", "kick_m_gear", "yellow_belt_label", "yellow_belt_button", "yellow_belt_container", "yellow_belt_gear", "uppercut_m_button", "uppercut_m_label", "uppercut_m_container", "uppercut_m_gear", "green_belt_label", "green_belt_button", "green_belt_container", "green_belt_gear", "blue_belt_label", "blue_belt_button", "blue_belt_container", "blue_belt_gear", "red_belt_label", "red_belt_button", "red_belt_container", "red_belt_gear", "black_belt_label", "black_belt_button", "black_belt_container", "black_belt_gear", "gear_label", "shop_label", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1paub"]
+size = Vector2(203, 196)
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("disk_label", "disk_name_label", "disk_container", "disk_bar", "pillar_timer", "pillar_label", "pillar_name_label", "pillar_container", "pillar_bar", "ball_timer", "ball_label", "ball_gear", "ball_name_label", "ball_container", "ball_bar", "ball_button", "cube_timer", "cube_label", "cube_gear", "cube_name_label", "cube_container", "cube_bar", "cube_button", "wall_timer", "wall_label", "wall_gear", "wall_name_label", "wall_container", "wall_bar", "wall_button", "kick_button", "kick_label", "kick_gear", "uppercut_button", "uppercut_label", "uppercut_gear", "explode_button", "explode_label", "straight_m_button", "straight_m_label", "straight_m_gear", "white_belt_label", "white_belt_button", "white_belt_gear", "kick_m_button", "kick_m_label", "kick_m_container", "kick_m_gear", "yellow_belt_label", "yellow_belt_button", "yellow_belt_container", "yellow_belt_gear", "uppercut_m_button", "uppercut_m_label", "uppercut_m_container", "uppercut_m_gear", "green_belt_label", "green_belt_button", "green_belt_container", "green_belt_gear", "blue_belt_label", "blue_belt_button", "blue_belt_container", "blue_belt_gear", "red_belt_label", "red_belt_button", "red_belt_container", "red_belt_gear", "black_belt_label", "black_belt_button", "black_belt_container", "black_belt_gear", "gear_label", "shop_label", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu")]
 script = ExtResource("1_rdaht")
 disk_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label2")
 disk_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label")
 disk_container = NodePath("StructureBarContainer/DiskContainer")
 disk_bar = NodePath("StructureBarContainer/DiskContainer/ProgressBar")
+pillar_timer = NodePath("Timers/PillarTimer")
 pillar_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/Label2")
 pillar_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/Label")
 pillar_container = NodePath("StructureBarContainer/PillarContainer")
 pillar_bar = NodePath("StructureBarContainer/PillarContainer/ProgressBar")
+ball_timer = NodePath("Timers/BallTimer")
 ball_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/Label2")
 ball_gear = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/GearCoin")
 ball_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/Label")
 ball_container = NodePath("StructureBarContainer/BallContainer")
 ball_bar = NodePath("StructureBarContainer/BallContainer/ProgressBar")
 ball_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/BallButton")
+cube_timer = NodePath("Timers/CubeTimer")
 cube_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/Label2")
 cube_gear = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/GearCoin")
 cube_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/Label")
 cube_container = NodePath("StructureBarContainer/CubeContainer")
 cube_bar = NodePath("StructureBarContainer/CubeContainer/ProgressBar")
 cube_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/CubeButton")
+wall_timer = NodePath("Timers/WallTimer")
 wall_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/Label2")
 wall_gear = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/GearCoin")
 wall_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/Label")
@@ -105,26 +112,39 @@ gear_label = NodePath("HBoxContainer/GearCoinLabel")
 shop_label = NodePath("Shop/HBoxContainer/GearCoinLabel")
 shop = NodePath("Shop")
 shop_button = NodePath("ShopButton")
-player_sprite = NodePath("CharacterBody2D/Player")
+player_sprite = NodePath("Structures/CharacterBody2D/Player")
 saving_label = NodePath("SavingLabel")
 save_timer = NodePath("SaveTimer")
 pause_menu = NodePath("PauseMenu")
 
-[node name="Structures" type="Node2D" parent="." node_paths=PackedStringArray("hitbox", "player", "player_sprite", "disk_timer", "pillar_timer", "ball_timer", "wall_timer", "cube_timer", "animation_timer", "structure_cooldown", "modifier_cooldown")]
+[node name="Structures" type="Node2D" parent="." node_paths=PackedStringArray("hitbox", "player", "player_sprite", "disk_timer", "pillar_timer", "ball_timer", "wall_timer", "cube_timer", "animation_timer", "modifier_cooldown")]
 script = ExtResource("2_iebus")
-hitbox = NodePath("../CharacterBody2D/CollisionShape2D")
-player = NodePath("../CharacterBody2D")
-player_sprite = NodePath("../CharacterBody2D/Player")
+hitbox = NodePath("CharacterBody2D/CollisionShape2D")
+player = NodePath("CharacterBody2D")
+player_sprite = NodePath("CharacterBody2D/Player")
 disk_timer = NodePath("../Timers/DiskTimer")
 pillar_timer = NodePath("../Timers/PillarTimer")
 ball_timer = NodePath("../Timers/BallTimer")
 wall_timer = NodePath("../Timers/WallTimer")
 cube_timer = NodePath("../Timers/CubeTimer")
 animation_timer = NodePath("../Timers/AnimationTimer")
-structure_cooldown = NodePath("../Timers/StructureCooldown")
 modifier_cooldown = NodePath("../Timers/ModifierCooldown")
 
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Structures"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structures/CharacterBody2D"]
+position = Vector2(478.5, 304)
+shape = SubResource("RectangleShape2D_xytg0")
+disabled = true
+
+[node name="Player" type="AnimatedSprite2D" parent="Structures/CharacterBody2D"]
+position = Vector2(330, 321)
+sprite_frames = ExtResource("8_8t7ce")
+
 [node name="Background" type="ColorRect" parent="."]
+show_behind_parent = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -153,17 +173,6 @@ layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_tq13i")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(478.5, 304)
-shape = SubResource("RectangleShape2D_xytg0")
-disabled = true
-
-[node name="Player" type="AnimatedSprite2D" parent="CharacterBody2D"]
-position = Vector2(330, 321)
-sprite_frames = ExtResource("8_8t7ce")
-
 [node name="Timers" type="Node" parent="."]
 
 [node name="DiskTimer" type="Timer" parent="Timers"]
@@ -186,12 +195,8 @@ one_shot = true
 wait_time = 20.0
 one_shot = true
 
-[node name="StructureCooldown" type="Timer" parent="Timers"]
-wait_time = 0.3
-one_shot = true
-
 [node name="AnimationTimer" type="Timer" parent="Timers"]
-wait_time = 0.5
+wait_time = 0.2
 one_shot = true
 
 [node name="ModifierCooldown" type="Timer" parent="Timers"]
@@ -1192,7 +1197,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2(590.5, 503)
 shape = SubResource("RectangleShape2D_rkvsg")
-script = ExtResource("11_pvumh")
 
 [node name="Ground" type="ColorRect" parent="Floor"]
 offset_left = -2.0
@@ -1201,21 +1205,30 @@ offset_right = 1121.0
 offset_bottom = 630.0
 color = Color(0.862368, 0.74564, 0.543697, 1)
 
-[node name="Breaking_Wall" type="StaticBody2D" parent="."]
+[node name="Breakable Wall" type="Node2D" parent="."]
+script = ExtResource("11_q4tyc")
+
+[node name="Breaking_Wall" type="StaticBody2D" parent="Breakable Wall"]
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Breaking_Wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Breakable Wall/Breaking_Wall"]
 position = Vector2(1151, 212)
 shape = SubResource("RectangleShape2D_gfnlq")
-script = ExtResource("11_pvumh")
+
+[node name="StructureDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StructureDetector"]
+position = Vector2(478.5, 279)
+shape = SubResource("RectangleShape2D_1paub")
 
 [connection signal="timeout" from="Timers/DiskTimer" to="Structures" method="_on_disk_timer_timeout"]
 [connection signal="timeout" from="Timers/PillarTimer" to="Structures" method="_on_pillar_timer_timeout"]
 [connection signal="timeout" from="Timers/BallTimer" to="Structures" method="_on_ball_timer_timeout"]
 [connection signal="timeout" from="Timers/WallTimer" to="Structures" method="_on_wall_timer_timeout"]
 [connection signal="timeout" from="Timers/CubeTimer" to="Structures" method="_on_cube_timer_timeout"]
-[connection signal="timeout" from="Timers/StructureCooldown" to="Structures" method="_on_structure_cooldown_timeout"]
 [connection signal="timeout" from="Timers/AnimationTimer" to="Structures" method="_on_animation_timer_timeout"]
 [connection signal="timeout" from="Timers/ModifierCooldown" to="Structures" method="_on_modifier_cooldown_timeout"]
 [connection signal="pressed" from="ShopButton" to="." method="_on_button_pressed"]
@@ -1245,3 +1258,7 @@ script = ExtResource("11_pvumh")
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/RestartButton" to="PauseMenu" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
+[connection signal="area_entered" from="StructureDetector" to="Structures" method="_on_structure_detector_area_entered"]
+[connection signal="area_exited" from="StructureDetector" to="Structures" method="_on_structure_detector_area_exited"]
+[connection signal="body_entered" from="StructureDetector" to="Structures" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="StructureDetector" to="Structures" method="_on_structure_detector_body_exited"]

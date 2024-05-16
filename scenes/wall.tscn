@@ -10,8 +10,7 @@ size = Vector2(86, 140)
 size = Vector2(88, 137)
 
 [node name="Wall" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector", "sprite", "collision")]
-collision_layer = 4
-collision_mask = 5
+collision_layer = 0
 script = ExtResource("1_mukex")
 death = NodePath("Area2D2")
 detector = NodePath("Area2D")
@@ -37,7 +36,7 @@ position = Vector2(-2.5, 0)
 shape = SubResource("RectangleShape2D_7o5b3")
 
 [node name="Area2D2" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
@@ -50,5 +49,5 @@ one_shot = true
 autostart = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

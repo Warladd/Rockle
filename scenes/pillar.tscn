@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://w61j5pg3dnfv"]
+[gd_scene load_steps=6 format=3 uid="uid://w61j5pg3dnfv"]
 
 [ext_resource type="Script" path="res://scripts/pillar.gd" id="1_lolv6"]
 [ext_resource type="Texture2D" uid="uid://dsne4pbbibpxo" path="res://assets/structures/pillar_ungrounded.png" id="2_c65mt"]
@@ -6,12 +6,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7o5b3"]
 size = Vector2(64, 138)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_endgj"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlarb"]
 size = Vector2(66, 136)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bnbdw"]
+size = Vector2(64, 138)
+
 [node name="Pillar" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector", "collision", "sprite")]
-collision_layer = 4
-collision_mask = 5
+collision_layer = 0
 script = ExtResource("1_lolv6")
 death = NodePath("Area2D2")
 detector = NodePath("Area2D")
@@ -29,12 +31,12 @@ shape = SubResource("RectangleShape2D_7o5b3")
 disabled = true
 
 [node name="Area2D2" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(-5, -3)
-shape = SubResource("RectangleShape2D_endgj")
+shape = SubResource("RectangleShape2D_tlarb")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -42,13 +44,14 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-5, -3)
-shape = SubResource("RectangleShape2D_7o5b3")
+shape = SubResource("RectangleShape2D_bnbdw")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.45
 one_shot = true
 autostart = true
 
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

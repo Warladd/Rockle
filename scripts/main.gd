@@ -154,9 +154,9 @@ var uuk : bool = false
 @export var hitbox : CollisionShape2D
 
 # Costs
-var kick_cost : int = 250
+var kick_cost : int = 1000
 var uppercut_cost : int = 5000
-var stomp_cost : int = 300
+var stomp_cost : int = 750
 var straight_m_cost : int = 500
 var kick_m_cost : int = 5000
 var uppercut_m_cost : int = 75000
@@ -375,6 +375,7 @@ func _on_pillar_button_pressed():
 		if SaveSystem.save_game.pillar == 1:
 			pillar_container.show()
 			pillar_ready = true
+			pillar_timer.start()
 		if SaveSystem.save_game.pillar == 9 or SaveSystem.save_game.pillar == 24 or SaveSystem.save_game.pillar == 49 or SaveSystem.save_game.pillar == 74 or SaveSystem.save_game.pillar == 99:
 			SaveSystem.save_game.pillar_cost *= 5
 		if SaveSystem.save_game.pillar == 10 or SaveSystem.save_game.pillar == 25 or SaveSystem.save_game.pillar == 50 or SaveSystem.save_game.pillar == 75 or SaveSystem.save_game.pillar == 100:
@@ -395,6 +396,7 @@ func _on_ball_button_pressed() -> void:
 		if SaveSystem.save_game.ball == 1:
 			ball_container.show()
 			ball_ready = true
+			ball_timer.start()
 		if SaveSystem.save_game.ball == 9 or SaveSystem.save_game.ball == 24 or SaveSystem.save_game.ball == 49 or SaveSystem.save_game.ball == 74 or SaveSystem.save_game.ball == 99:
 			SaveSystem.save_game.ball_cost *= 5
 		if SaveSystem.save_game.ball == 10 or SaveSystem.save_game.ball == 25 or SaveSystem.save_game.ball == 50 or SaveSystem.save_game.ball == 75 or SaveSystem.save_game.ball == 100:
@@ -418,6 +420,7 @@ func _on_cube_button_pressed():
 			cube_ready = true
 			cube_label.show()
 			cube_gear.show()
+			cube_timer.start()
 		if SaveSystem.save_game.cube == 9 or SaveSystem.save_game.cube == 24 or SaveSystem.save_game.cube == 49 or SaveSystem.save_game.cube == 74 or SaveSystem.save_game.cube == 99:
 			SaveSystem.save_game.cube_cost *= 5
 		if SaveSystem.save_game.cube == 10 or SaveSystem.save_game.cube == 25 or SaveSystem.save_game.cube == 50 or SaveSystem.save_game.cube == 75 or SaveSystem.save_game.cube == 100:
@@ -438,6 +441,7 @@ func _on_wall_button_pressed() -> void:
 		if SaveSystem.save_game.wall == 1:
 			wall_container.show()
 			wall_ready = true
+			wall_timer.start()
 		if SaveSystem.save_game.wall == 9 or SaveSystem.save_game.wall == 24 or SaveSystem.save_game.wall == 49 or SaveSystem.save_game.wall == 74 or SaveSystem.save_game.wall == 99:
 			SaveSystem.save_game.wall_cost *= 5
 		if SaveSystem.save_game.wall == 10 or SaveSystem.save_game.wall == 25 or SaveSystem.save_game.wall == 50 or SaveSystem.save_game.wall == 75 or SaveSystem.save_game.wall == 100:
