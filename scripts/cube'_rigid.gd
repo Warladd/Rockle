@@ -61,7 +61,7 @@ func _on_area_2d_body_entered(body):
 		lock_rotation = false
 		grounded = false
 		linear_velocity.y = 0
-		apply_impulse(Vector2(100,-300))
+		apply_impulse(Vector2(100,-300), Vector2(-50, 0))
 		modifiers.append("uppercut")
 
 func _on_timer_timeout():

@@ -13,11 +13,12 @@ config_version=5
 config/name="Rockle"
 run/main_scene="res://scenes/screens/game.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://assets/rockle_logo.png"
 
 [autoload]
 
 SaveSystem="*res://scripts/savesystem.gd"
+Global="*res://scripts/global.gd"
 
 [display]
 

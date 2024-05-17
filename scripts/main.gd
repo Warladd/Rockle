@@ -218,6 +218,7 @@ func _ready() -> void:
 		wall_button.disabled = true
 		wall_button.text = "Locked"
 	elif SaveSystem.save_game.belt >= 2:
+		wall_button.disabled = false
 		wall_label.text = str(SaveSystem.save_game.wall_cost)
 		wall_name_label.text = " Wall" + " (" + str(SaveSystem.save_game.wall) + ")"
 	
@@ -433,7 +434,6 @@ func _on_wall_button_pressed() -> void:
 		SaveSystem.save_game.wall += 1
 		if SaveSystem.save_game.wall == 1:
 			wall_container.show()
-			wall_ready = true
 			wall_timer.start()
 			wall_tween = create_tween()
 			wall_tween.tween_property(wall_bar, "value", 1, 30)
