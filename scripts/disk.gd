@@ -10,13 +10,15 @@ var grounded : bool = false
 var damage_value : int = 0
 var stored_velocity_x : float = 0
 var structures : Node2D
+var modifiers : Array = []
+var uppercutted : bool = false
 
 func _ready():
 	detector.monitoring = false
 	velocity.y -= 800
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	if velocity.x > 0:
 		damage_value = 1
 	elif velocity.x <= 0:
@@ -46,9 +48,19 @@ func _on_area_2d_body_entered(body):
 		if velocity.x > 0:
 			return
 		velocity.x += 1000
+		modifiers.append("straight")
 	elif structures.kick:
 		grounded = false
+		velocity.y = 0
 		velocity.y -= 300
+		modifiers.append("kick")
+	elif structures.uppercut:
+		uppercutted = true
+		grounded = false
+		velocity.y = 0
+		velocity.y -= 200
+		velocity.x += 500
+		modifiers.append("uppercut")
 		
 func _on_timer_timeout():
 	detector.monitoring = true
@@ -63,10 +75,12 @@ func _on_area_2d_2_area_entered(area):
 	print("disk damage value", damage_value)
 	print("other object damage value", area.get_parent().damage_value)
 	if damage_value <= area.get_parent().damage_value:
-		if structures.straight:
+		if modifiers.has("straight"):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
-		elif structures.kick:
+		if modifiers.has("kick"):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase * 3
+		if modifiers.has("uppercut"):
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase * 5
 		SaveSystem.saving()
 		print("saving")
 	if damage_value >= area.get_parent().damage_value:

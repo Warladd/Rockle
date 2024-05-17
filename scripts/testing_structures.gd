@@ -11,7 +11,7 @@ extends Node2D
 @export var animation_timer : Timer
 @export var structure_cooldown : Timer
 @export var modifier_cooldown : Timer
-var disk_scene = preload("res://scenes/disk.tscn")
+var disk_scene = preload("res://scenes/disk_rigid.tscn")
 var pillar_scene = preload("res://scenes/pillar.tscn")
 var ball_scene = preload("res://scenes/ball.tscn")
 var wall_scene = preload("res://scenes/wall.tscn")
@@ -141,6 +141,14 @@ func _input(event) -> void:
 		straight = false
 		uppercut = false
 		modifier_cooldown.start()
+	elif event.is_action_pressed("uppercut") and SaveSystem.save_game.uppercut:
+		print("uppercutting")
+		player_sprite.play("uppercut")
+		hitbox.disabled = false
+		kick = false
+		straight = false
+		uppercut = true
+		modifier_cooldown.start()
 
 func _on_disk_timer_timeout() -> void:
 	print("disk timer finished")
@@ -170,7 +178,6 @@ func _on_animation_timer_timeout():
 
 func _on_structure_detector_area_entered(area):
 	print("structure detected")
-	structure_loaded = true
 
 func _on_structure_detector_area_exited(area):
 	print("structure leaving")

@@ -10,6 +10,7 @@ var grounded : bool = false
 var damage_value : int = 1
 var stored_velocity_x : float = 0
 var structures : Node2D
+var modifiers : Array = []
 
 func _ready():
 	detector.monitoring = false
@@ -46,9 +47,18 @@ func _on_area_2d_body_entered(body):
 		if velocity.x > 0:
 			return
 		velocity.x += 800
+		modifiers.append("straight")
 	elif body.get_parent().kick:
 		grounded = false
+		velocity.y = 0
 		velocity.y -= 300
+		modifiers.append("kick")
+	elif structures.uppercut:
+		grounded = false
+		velocity.y = 0
+		velocity.y -= 200
+		velocity.x += 300
+		modifiers.append("uppercut")
 		
 func _on_timer_timeout():
 	detector.monitoring = true
@@ -63,10 +73,12 @@ func _on_area_2d_2_area_entered(area):
 	print("ball damage value", damage_value)
 	print("other object damage value", area.get_parent().damage_value)
 	if damage_value <= area.get_parent().damage_value:
-		if structures.straight:
+		if modifiers.has("straight"):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.ball * SaveSystem.save_game.ball_increase * SaveSystem.save_game.general_increase
-		elif structures.kick:
+		if modifiers.has("kick"):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.ball * SaveSystem.save_game.ball_increase * SaveSystem.save_game.general_increase * 3
+		if modifiers.has("uppercut"):
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.ball * SaveSystem.save_game.ball_increase * SaveSystem.save_game.general_increase * 5
 		SaveSystem.saving()
 		print("saving")
 	if damage_value >= area.get_parent().damage_value:

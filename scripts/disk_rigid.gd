@@ -1,80 +1,84 @@
-extends CharacterBody2D
+extends RigidBody2D
 
-var gravity = -690
-var structure = "wall"
+var structure = "disk"
 @export var death : Area2D
 @export var detector : Area2D
 @export var sprite : Sprite2D
 @export var collision : CollisionShape2D
-var damage_value : int = 3
-var grounded : bool = true
-var stored_velocity_x : float = 3
-var increase : bool = true
+var grounded : bool = false
+var damage_value : int = 0
+var stored_velocity_x : float = 0
 var structures : Node2D
 var modifiers : Array = []
+var uppercutted : bool = false
+var rotation_velocity: float = 0
+
+func add_rotation_impulse(impulse: float):
+	rotation_velocity += impulse
 
 func _ready():
 	detector.monitoring = false
-	velocity.y -= 250
+	linear_velocity.y -= 700
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if velocity.x > 0:
-		damage_value = 4
-	elif velocity.x <= 0:
-		damage_value = 3
+func _physics_process(delta):
+	self.rotate(rotation_velocity)
+	
+	var constant = 1
+	var rotation_drag = rotation_velocity * rotation_velocity * constant
+	rotation_velocity -= rotation_drag
+	if linear_velocity.x > 0:
+		damage_value = 1
+	elif linear_velocity.x <= 0:
+		damage_value = 0
 	if grounded:
-		sprite.texture = load("res://assets/structures/wall_grounded.png")
-		if velocity.x <= 0:
-			damage_value = 4
-		elif velocity.x > 0:
-			damage_value = 5
-		if increase and position.y > 306:
-			velocity.y = -250
-		if position.y <= 306:
-			position.y = 306
-			velocity.y = 0
+		sprite.texture = load("res://assets/structures/disk_grounded.png")
+		if linear_velocity.x <= 0:
+			damage_value = 1
+		elif linear_velocity.x > 0:
+			damage_value = 2
+		if position.y <= -18:
+			position.y = -18
+			linear_velocity.y = 0
 	elif !grounded:
-		sprite.texture = load("res://assets/structures/wall_ungrounded.png")
-	if !is_on_floor():
-		velocity.y -= gravity * delta
-	if velocity.x > 0:
-		velocity.x -= 850 * delta
-	elif velocity.x < 0:
-		velocity.x = 0
-	move_and_slide()
+		sprite.texture = load("res://assets/structures/disk_ungrounded.png")
+	if linear_velocity.x > 0:
+		linear_velocity.x -= 500 * delta
+	elif linear_velocity.x < 0:
+		linear_velocity.x = 0
 
 func _on_area_2d_body_entered(body):
 	structures = body.get_parent()
-	if body.get_parent().straight:
-		if velocity.x > 0:
+	if structures.straight:
+		if linear_velocity.x > 0:
 			return
-		velocity.x += 650
+		linear_velocity.x += 1400
 		modifiers.append("straight")
-	elif body.get_parent().kick:
+	if structures.kick:
 		grounded = false
-		velocity.y = 0
-		velocity.y -= 300
+		linear_velocity.y = 0
+		linear_velocity.y -= 300
 		modifiers.append("kick")
-	elif structures.uppercut:
+	if structures.uppercut:
+		lock_rotation = false
+		add_rotation_impulse(0.1)
 		grounded = false
-		velocity.y = 0
-		velocity.y -= 200
-		velocity.x += 300
+		linear_velocity.y = 0
+		linear_velocity.y -= 200
+		linear_velocity.x += 500
 		modifiers.append("uppercut")
-
+		
 func _on_timer_timeout():
 	detector.monitoring = true
-	velocity.y = 0
+	linear_velocity.y = 0
 	collision.disabled = false
-	increase = false
 
 func _on_area_2d_2_area_entered(area):
-	if velocity.x > 0:
-		stored_velocity_x = velocity.x
+	if linear_velocity.x > 0:
+		stored_velocity_x = linear_velocity.x
 	if area.get_parent() == self:
 		return
-	print("cube damage value", damage_value)
+	print("disk damage value", damage_value)
 	print("other object damage value", area.get_parent().damage_value)
 	if damage_value <= area.get_parent().damage_value:
 		if modifiers.has("straight"):
@@ -89,5 +93,5 @@ func _on_area_2d_2_area_entered(area):
 		area.get_parent().queue_free()
 	if damage_value <= area.get_parent().damage_value:
 		queue_free()
-	velocity.x = stored_velocity_x
+	linear_velocity.x = stored_velocity_x
 	stored_velocity_x = 0

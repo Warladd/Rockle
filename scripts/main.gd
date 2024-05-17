@@ -204,6 +204,7 @@ func _ready() -> void:
 		ball_name_label.text = " Ball" + " (" + str(SaveSystem.save_game.ball) + ")"
 		if SaveSystem.save_game.ball > 0:
 			ball_container.show()
+			ball_timer.start()
 		
 	# Cube
 	if SaveSystem.save_game.belt < 3:

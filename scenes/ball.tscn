@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxmpm8i3rnsd1"]
+[gd_scene load_steps=6 format=3 uid="uid://cxmpm8i3rnsd1"]
 
 [ext_resource type="Script" path="res://scripts/ball.gd" id="1_lqumv"]
 [ext_resource type="Texture2D" uid="uid://dpkrj31ut0ote" path="res://assets/structures/ball_ungrounded.png" id="2_4gfil"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvkvu"]
+size = Vector2(78, 66)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t0kc"]
-size = Vector2(65, 56)
+size = Vector2(78, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0p37y"]
-size = Vector2(67, 54)
+size = Vector2(80, 64)
 
 [node name="Ball" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector", "sprite", "collision")]
 collision_layer = 0
@@ -18,12 +21,12 @@ sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.5, 0)
-shape = SubResource("RectangleShape2D_6t0kc")
+position = Vector2(-3, 0)
+shape = SubResource("RectangleShape2D_wvkvu")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_4gfil")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -31,7 +34,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-2.5, 0)
+position = Vector2(-3, 0)
 shape = SubResource("RectangleShape2D_6t0kc")
 
 [node name="Area2D2" type="Area2D" parent="."]
@@ -39,7 +42,7 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(-2.5, 0)
+position = Vector2(-3, 0)
 shape = SubResource("RectangleShape2D_0p37y")
 
 [node name="Timer" type="Timer" parent="."]
