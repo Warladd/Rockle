@@ -47,8 +47,6 @@ func _process(delta):
 func _on_area_2d_body_entered(body):
 	structures = body.get_parent()
 	if body.get_parent().straight:
-		if velocity.x > 0:
-			return
 		velocity.x += 800
 		modifiers.append("straight")
 	elif body.get_parent().kick:
@@ -56,6 +54,10 @@ func _on_area_2d_body_entered(body):
 		velocity.y = 0
 		velocity.y -= 300
 		modifiers.append("kick")
+	elif structures.stomp and !grounded:
+		grounded = true
+		velocity.y += 300
+		velocity.x = 0
 	elif body.get_parent().uppercut:
 		grounded = false
 		velocity.y = 0

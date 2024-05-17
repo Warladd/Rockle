@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends RigidBody2D
 
 var gravity = -690
 var structure = "cube"
@@ -12,64 +12,67 @@ var stored_velocity_x : float = 3
 var increase : bool = true
 var structures : Node2D
 var modifiers : Array = []
+var rotation_velocity: float = 0
+@export var straight_timer : Timer
+@export var kick_timer : Timer
+@export var uppercut_timer : Timer
 
 func _ready():
 	detector.monitoring = false
-	velocity.y -= 300
-
+	linear_velocity.y -= 300
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if velocity.x > 0:
+func _physics_process(delta) -> void:
+	if linear_velocity.x > 0:
 		damage_value = 3
-	elif velocity.x <= 0:
+	elif linear_velocity.x <= 0:
 		damage_value = 2
 	if grounded:
 		sprite.texture = load("res://assets/structures/cube_grounded.png")
-		if velocity.x <= 0:
+		if linear_velocity.x <= 0:
 			damage_value = 3
-		elif velocity.x > 0:
+		elif linear_velocity.x > 0:
 			damage_value = 4
 		if increase and position.y > 335:
-			velocity.y = -360
+			linear_velocity.y = -360
 		if position.y <= -335:
 			position.y = 335
-			velocity.y = 0
+			linear_velocity.y = 0
 	elif !grounded:
 		sprite.texture = load("res://assets/structures/cube_ungrounded.png")
-	if !is_on_floor():
-		velocity.y -= gravity * delta
-	if velocity.x > 0:
-		velocity.x -= 750 * delta
-	elif velocity.x < 0:
-		velocity.x = 0
-	move_and_slide()
-
+		
 func _on_area_2d_body_entered(body):
 	structures = body.get_parent()
-	if body.get_parent().straight:
-		velocity.x += 850
+	if body.get_parent().straight and straight_timer.is_stopped():
+		straight_timer.start()
+		linear_velocity.x += 750
 		modifiers.append("straight")
-	elif body.get_parent().kick:
+	elif body.get_parent().kick and kick_timer.is_stopped():
+		kick_timer.start()
 		grounded = false
-		velocity.y = 0
-		velocity.y -= 300
+		linear_velocity.y -= 400
 		modifiers.append("kick")
-	elif structures.uppercut:
+	elif structures.stomp and !grounded:
+		grounded = true
+		linear_velocity.y += 300
+		linear_velocity.x = 0
+	elif structures.uppercut and uppercut_timer.is_stopped():
+		uppercut_timer.start()
+		lock_rotation = false
 		grounded = false
-		velocity.y = 0
-		velocity.y -= 200
-		velocity.x += 300
+		linear_velocity.y = 0
+		apply_impulse(Vector2(100,-300))
 		modifiers.append("uppercut")
 
 func _on_timer_timeout():
 	detector.monitoring = true
-	velocity.y = 0
+	linear_velocity.y = 0
 	collision.disabled = false
 	increase = false
 
 func _on_area_2d_2_area_entered(area):
-	if velocity.x > 0:
-		stored_velocity_x = velocity.x
+	if linear_velocity.x > 0:
+		stored_velocity_x = linear_velocity.x
 	if area.get_parent() == self:
 		return
 	print("cube damage value", damage_value)
@@ -87,5 +90,5 @@ func _on_area_2d_2_area_entered(area):
 		area.get_parent().queue_free()
 	if damage_value <= area.get_parent().damage_value:
 		queue_free()
-	velocity.x = stored_velocity_x
+	linear_velocity.x = stored_velocity_x
 	stored_velocity_x = 0

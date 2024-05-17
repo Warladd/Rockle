@@ -1,21 +1,42 @@
 extends Node2D
 
+@export_group("Player")
 @export var hitbox : CollisionShape2D
 @export var player : CharacterBody2D
 @export var player_sprite : AnimatedSprite2D
+@export_group("Timers")
 @export var disk_timer : Timer
 @export var pillar_timer : Timer
 @export var ball_timer : Timer
 @export var wall_timer : Timer
 @export var cube_timer : Timer
 @export var animation_timer : Timer
-@export var structure_cooldown : Timer
 @export var modifier_cooldown : Timer
+@export_group("Structures")
+var disk_tween : Tween
+@export var disk_bar : ProgressBar
+
+@export var pillar_container : HBoxContainer
+var pillar_tween : Tween
+@export var pillar_bar : ProgressBar
+
+@export var ball_container : HBoxContainer
+var ball_tween : Tween
+@export var ball_bar : ProgressBar
+
+@export var cube_container : HBoxContainer
+var cube_tween : Tween
+@export var cube_bar : ProgressBar
+
+@export var wall_container: HBoxContainer
+var wall_tween : Tween
+@export var wall_bar : ProgressBar
+
 var disk_scene = preload("res://scenes/disk_rigid.tscn")
 var pillar_scene = preload("res://scenes/pillar.tscn")
 var ball_scene = preload("res://scenes/ball.tscn")
 var wall_scene = preload("res://scenes/wall.tscn")
-var cube_scene = preload("res://scenes/cube.tscn")
+var cube_scene = preload("res://scenes/cube_rigid.tscn")
 var disky : bool = false
 var pillary : bool = false
 var bally : bool = false
@@ -26,16 +47,43 @@ var structure_loaded : bool = false
 var straight : bool = true
 var kick : bool = false
 var uppercut : bool = false
+var stomp : bool = false
 
 func _ready():
+	SaveSystem.load_game()
+	disk_tween = create_tween()
+	disk_tween.tween_property(disk_bar, "value", 1, 1)
+	# Pillar
 	if SaveSystem.save_game.pillar > 0:
+		print("pillar unlocked")
 		pillar_timer.start()
-	if SaveSystem.save_game.ball > 0:
+		pillar_container.show()
+		pillar_tween = create_tween()
+		pillar_tween.tween_property(pillar_bar, "value", 1, 5)
+		
+	# Ball
+	if SaveSystem.save_game.ball >= 1:
+		print("ball unlocked")
 		ball_timer.start() 
-	if SaveSystem.save_game.wall > 0:
-		wall_timer.start()
+		ball_container.show()
+		ball_tween = create_tween()
+		ball_tween.tween_property(ball_bar, "value", 1, 10)
+		
+	# Cube
 	if SaveSystem.save_game.cube > 0:
+		print("cube unlocked")
 		cube_timer.start()
+		cube_container.show()
+		cube_tween = create_tween()
+		cube_tween.tween_property(cube_bar, "value", 1, 15)
+	
+	# Wall
+	if SaveSystem.save_game.wall > 0:
+		print("wall unlocked")
+		wall_timer.start()
+		wall_container.show()
+		wall_tween = create_tween()
+		wall_tween.tween_property(wall_bar, "value", 1, 20)
 
 func _physics_process(delta) -> void:
 	if structure_loading:
@@ -52,6 +100,7 @@ func _physics_process(delta) -> void:
 			uppercut = false
 		return
 	if cubey:
+		cube_bar.value = 0
 		print("cube started")
 		structure_loading = true
 		cubey = false
@@ -60,11 +109,14 @@ func _physics_process(delta) -> void:
 		cube.global_position = Vector2(426, 417)
 		await get_tree().create_timer(1).timeout
 		cube_timer.start()
+		cube_tween = create_tween()
+		cube_tween.tween_property(cube_bar, "value", 1, 15)
 		print("cube timer")
 		structure_loading = false
 		structure_loaded = true
 		
 	elif wally:
+		wall_bar.value = 0
 		print("wall started")
 		structure_loading = true
 		wally = false
@@ -73,11 +125,14 @@ func _physics_process(delta) -> void:
 		wall.global_position = Vector2(426, 446)
 		await get_tree().create_timer(1).timeout
 		wall_timer.start()
+		wall_tween = create_tween()
+		wall_tween.tween_property(wall_bar, "value", 1, 20)
 		print("wall timer")
 		structure_loading = false
 		structure_loaded = true
 	
 	elif bally:
+		ball_bar.value = 0
 		print("ball started")
 		structure_loading = true
 		bally = false
@@ -86,11 +141,14 @@ func _physics_process(delta) -> void:
 		ball.global_position = Vector2(411, 404)
 		await get_tree().create_timer(0.2).timeout
 		ball_timer.start()
+		ball_tween = create_tween()
+		ball_tween.tween_property(ball_bar, "value", 1, 10)
 		print("ball timer")
 		structure_loading = false
 		structure_loaded = true
 		
 	elif pillary:
+		pillar_bar.value = 0
 		print("pillar started")
 		structure_loading = true
 		pillary = false
@@ -99,11 +157,14 @@ func _physics_process(delta) -> void:
 		pillar.global_position = Vector2(416, 448)
 		await get_tree().create_timer(0.3).timeout
 		pillar_timer.start()
+		pillar_tween = create_tween()
+		pillar_tween.tween_property(pillar_bar, "value", 1, 5)
 		print("pillar timer")
 		structure_loading = false
 		structure_loaded = true
 		
 	elif disky:
+		disk_bar.value = 0
 		print("disk started")
 		structure_loading = true
 		disky = false
@@ -112,6 +173,8 @@ func _physics_process(delta) -> void:
 		disk.global_position = Vector2(416, 391)
 		await get_tree().create_timer(0.1).timeout
 		disk_timer.start()
+		disk_tween = create_tween()
+		disk_tween.tween_property(disk_bar, "value", 1, 1)
 		print("disk timer")
 		structure_loading = false
 		structure_loaded = true
@@ -132,6 +195,16 @@ func _input(event) -> void:
 		straight = true
 		kick = false
 		uppercut = false
+		stomp = false
+		modifier_cooldown.start()
+	elif event.is_action_pressed("stomp") and SaveSystem.save_game.stomp:
+		print("stomping")
+		player_sprite.play("stomp")
+		hitbox.disabled = false
+		kick = false
+		straight = false
+		uppercut = false
+		stomp = true
 		modifier_cooldown.start()
 	elif event.is_action_pressed("kick") and SaveSystem.save_game.kick:
 		print("kicking")
@@ -140,6 +213,7 @@ func _input(event) -> void:
 		kick = true
 		straight = false
 		uppercut = false
+		stomp = false
 		modifier_cooldown.start()
 	elif event.is_action_pressed("uppercut") and SaveSystem.save_game.uppercut:
 		print("uppercutting")
@@ -148,6 +222,7 @@ func _input(event) -> void:
 		kick = false
 		straight = false
 		uppercut = true
+		stomp = false
 		modifier_cooldown.start()
 
 func _on_disk_timer_timeout() -> void:

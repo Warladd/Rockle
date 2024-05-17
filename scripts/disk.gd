@@ -45,8 +45,6 @@ func _physics_process(delta):
 func _on_area_2d_body_entered(body):
 	structures = body.get_parent()
 	if structures.straight:
-		if velocity.x > 0:
-			return
 		velocity.x += 1000
 		modifiers.append("straight")
 	elif structures.kick:

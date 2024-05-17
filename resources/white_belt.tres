@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://djw5x6aebbp1f"]
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://djw5x6aebbp1f"]
 
 [ext_resource type="Texture2D" uid="uid://dqy00ygswjhe" path="res://assets/character/Rumbler1.png" id="1_48n5o"]
 [ext_resource type="Texture2D" uid="uid://qy8me0ma38xa" path="res://assets/character/Rumbler_explode1.png" id="1_xq80n"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://hsqecbwhjtyc" path="res://assets/character/Rumbler_kick1.png" id="3_1bvkt"]
 [ext_resource type="Texture2D" uid="uid://b3uneuc62gk8o" path="res://assets/character/Rumbler_straight1.png" id="4_mdkkt"]
 [ext_resource type="Texture2D" uid="uid://db820p715gxnr" path="res://assets/character/Rumbler_uppercut1.png" id="5_mptbm"]
+[ext_resource type="Texture2D" uid="uid://bsobauoebjvn4" path="res://assets/character/Rumbler_stomp1.png" id="5_qn2ou"]
 
 [resource]
 animations = [{
@@ -39,6 +40,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"kick",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qn2ou")
+}],
+"loop": true,
+"name": &"stomp",
 "speed": 5.0
 }, {
 "frames": [{

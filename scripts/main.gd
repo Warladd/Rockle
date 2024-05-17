@@ -75,6 +75,9 @@ var wall_tween : Tween
 @export var kick_button : Button
 @export var kick_label : Label
 @export var kick_gear : TextureRect
+@export var stomp_button : Button
+@export var stomp_label : Label
+@export var stomp_gear : TextureRect
 @export var uppercut_button : Button
 @export var uppercut_label : Label
 @export var uppercut_gear : TextureRect
@@ -180,17 +183,10 @@ func _ready() -> void:
 	# Disk
 	disk_label.text = str(SaveSystem.save_game.disk_cost)
 	disk_name_label.text = " Disk" + " (" + str(SaveSystem.save_game.disk) + ")"
-	disk_tween = create_tween()
-	disk_tween.tween_property(disk_bar, "value", 1, 0.3)
 	
 	# Pillar
 	pillar_label.text = str(SaveSystem.save_game.pillar_cost)
 	pillar_name_label.text = " Pillar" + " (" + str(SaveSystem.save_game.pillar) + ")"
-	if SaveSystem.save_game.pillar > 0:
-		pillar_timer.start()
-		pillar_container.show()
-		pillar_tween = create_tween()
-		pillar_tween.tween_property(pillar_bar, "value", 1, 5)
 		
 	# Ball
 	if SaveSystem.save_game.belt < 1:
@@ -202,9 +198,6 @@ func _ready() -> void:
 	elif SaveSystem.save_game.belt >= 1:
 		ball_label.text = str(SaveSystem.save_game.ball_cost)
 		ball_name_label.text = " Ball" + " (" + str(SaveSystem.save_game.ball) + ")"
-		if SaveSystem.save_game.ball > 0:
-			ball_container.show()
-			ball_timer.start()
 		
 	# Cube
 	if SaveSystem.save_game.belt < 3:
@@ -216,11 +209,6 @@ func _ready() -> void:
 	elif SaveSystem.save_game.belt >= 2:
 		cube_label.text = str(SaveSystem.save_game.cube_cost)
 		cube_name_label.text = " Cube" + " (" + str(SaveSystem.save_game.cube) + ")"
-		if SaveSystem.save_game.cube > 0:
-			cube_timer.start()
-			cube_container.show()
-			cube_tween = create_tween()
-			cube_tween.tween_property(cube_bar, "value", 1, 20)
 		
 	# Wall
 	if SaveSystem.save_game.belt < 2:
@@ -232,11 +220,6 @@ func _ready() -> void:
 	elif SaveSystem.save_game.belt >= 2:
 		wall_label.text = str(SaveSystem.save_game.wall_cost)
 		wall_name_label.text = " Wall" + " (" + str(SaveSystem.save_game.wall) + ")"
-		if SaveSystem.save_game.wall > 0:
-			wall_timer.start()
-			wall_container.show()
-			wall_tween = create_tween()
-			wall_tween.tween_property(wall_bar, "value", 1, 30)
 	
 	# Modifiers
 	if SaveSystem.save_game.kick:
@@ -244,14 +227,15 @@ func _ready() -> void:
 		kick_label.hide()
 		kick_gear.hide()
 	
+	if SaveSystem.save_game.stomp:
+		stomp_button.text = "Bought"
+		stomp_label.hide()
+		stomp_gear.hide()
+	
 	if SaveSystem.save_game.uppercut:
 		uppercut_button.text = "Bought"
 		uppercut_label.hide()
 		uppercut_gear.hide()
-	
-	if SaveSystem.save_game.stomp:
-		explode_button.text = "Bought"
-		explode_label.hide()
 	
 	# Belt Stuff
 	if SaveSystem.save_game.belt == 6:
@@ -316,6 +300,10 @@ func _ready() -> void:
 		kick_button.disabled = true
 		kick_label.hide()
 		kick_gear.hide()
+		stomp_button.text = "Locked"
+		stomp_button.disabled = true
+		stomp_label.hide()
+		stomp_gear.hide()
 	if SaveSystem.save_game.belt < 2:
 		uppercut_button.text = "Locked"
 		uppercut_button.disabled = true
@@ -377,6 +365,8 @@ func _on_pillar_button_pressed():
 			pillar_container.show()
 			pillar_ready = true
 			pillar_timer.start()
+			pillar_tween = create_tween()
+			pillar_tween.tween_property(pillar_bar, "value", 1, 5)
 		if SaveSystem.save_game.pillar == 9 or SaveSystem.save_game.pillar == 24 or SaveSystem.save_game.pillar == 49 or SaveSystem.save_game.pillar == 74 or SaveSystem.save_game.pillar == 99:
 			SaveSystem.save_game.pillar_cost *= 5
 		if SaveSystem.save_game.pillar == 10 or SaveSystem.save_game.pillar == 25 or SaveSystem.save_game.pillar == 50 or SaveSystem.save_game.pillar == 75 or SaveSystem.save_game.pillar == 100:
@@ -398,6 +388,8 @@ func _on_ball_button_pressed() -> void:
 			ball_container.show()
 			ball_ready = true
 			ball_timer.start()
+			ball_tween = create_tween()
+			ball_tween.tween_property(ball_bar, "value", 1, 10)
 		if SaveSystem.save_game.ball == 9 or SaveSystem.save_game.ball == 24 or SaveSystem.save_game.ball == 49 or SaveSystem.save_game.ball == 74 or SaveSystem.save_game.ball == 99:
 			SaveSystem.save_game.ball_cost *= 5
 		if SaveSystem.save_game.ball == 10 or SaveSystem.save_game.ball == 25 or SaveSystem.save_game.ball == 50 or SaveSystem.save_game.ball == 75 or SaveSystem.save_game.ball == 100:
@@ -419,9 +411,9 @@ func _on_cube_button_pressed():
 		if SaveSystem.save_game.cube == 1:
 			cube_container.show()
 			cube_ready = true
-			cube_label.show()
-			cube_gear.show()
 			cube_timer.start()
+			cube_tween = create_tween()
+			cube_tween.tween_property(cube_bar, "value", 1, 15)
 		if SaveSystem.save_game.cube == 9 or SaveSystem.save_game.cube == 24 or SaveSystem.save_game.cube == 49 or SaveSystem.save_game.cube == 74 or SaveSystem.save_game.cube == 99:
 			SaveSystem.save_game.cube_cost *= 5
 		if SaveSystem.save_game.cube == 10 or SaveSystem.save_game.cube == 25 or SaveSystem.save_game.cube == 50 or SaveSystem.save_game.cube == 75 or SaveSystem.save_game.cube == 100:
@@ -443,6 +435,8 @@ func _on_wall_button_pressed() -> void:
 			wall_container.show()
 			wall_ready = true
 			wall_timer.start()
+			wall_tween = create_tween()
+			wall_tween.tween_property(wall_bar, "value", 1, 30)
 		if SaveSystem.save_game.wall == 9 or SaveSystem.save_game.wall == 24 or SaveSystem.save_game.wall == 49 or SaveSystem.save_game.wall == 74 or SaveSystem.save_game.wall == 99:
 			SaveSystem.save_game.wall_cost *= 5
 		if SaveSystem.save_game.wall == 10 or SaveSystem.save_game.wall == 25 or SaveSystem.save_game.wall == 50 or SaveSystem.save_game.wall == 75 or SaveSystem.save_game.wall == 100:
@@ -481,6 +475,20 @@ func _on_wall_timer_timeout():
 	print("wall timer finished")
 	wall_ready = true
 
+func _on_stomp_button_pressed():
+	if SaveSystem.save_game.stomp:
+		return
+	if SaveSystem.save_game.gear_coins >= stomp_cost:
+		SaveSystem.save_game.gear_coins -= stomp_cost
+		SaveSystem.save_game.stomp = true
+		stomp_button.text = "Bought"
+		stomp_label.hide()
+		stomp_gear.hide()
+		gear_label.text = str(SaveSystem.save_game.gear_coins)
+		shop_label.text = str(SaveSystem.save_game.gear_coins)
+		SaveSystem.saving()
+		print("saving")
+	
 func _on_kick_button_pressed():
 	if SaveSystem.save_game.kick:
 		return
