@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Rockle"
-run/main_scene="res://scenes/screens/game.tscn"
+run/main_scene="res://scenes/screens/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://assets/rockle_logo.png"
 

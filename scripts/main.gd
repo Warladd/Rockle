@@ -116,18 +116,10 @@ var uuk : bool = false
 @export var white_belt_label : Label
 @export var white_belt_button : Button
 @export var white_belt_gear : TextureRect
-@export var kick_m_button : Button
-@export var kick_m_label : Label
-@export var kick_m_container : HBoxContainer
-@export var kick_m_gear : TextureRect
 @export var yellow_belt_label : Label
 @export var yellow_belt_button : Button
 @export var yellow_belt_container : HBoxContainer
 @export var yellow_belt_gear : TextureRect
-@export var uppercut_m_button : Button
-@export var uppercut_m_label : Label
-@export var uppercut_m_container : HBoxContainer
-@export var uppercut_m_gear : TextureRect
 @export var green_belt_label : Label
 @export var green_belt_button : Button
 @export var green_belt_container : HBoxContainer
@@ -224,35 +216,35 @@ func _ready() -> void:
 	
 	# Modifiers
 	if SaveSystem.save_game.kick:
-		kick_button.text = "Bought"
+		kick_button.text = "Owned"
 		kick_label.hide()
 		kick_gear.hide()
 	
 	if SaveSystem.save_game.stomp:
-		stomp_button.text = "Bought"
+		stomp_button.text = "Owned"
 		stomp_label.hide()
 		stomp_gear.hide()
 	
 	if SaveSystem.save_game.uppercut:
-		uppercut_button.text = "Bought"
+		uppercut_button.text = "Owned"
 		uppercut_label.hide()
 		uppercut_gear.hide()
 	
 	# Belt Stuff
 	if SaveSystem.save_game.belt == 6:
-		black_belt_button.text = "Bought"
+		black_belt_button.text = "Owned"
 		black_belt_button.disabled = true
 		black_belt_label.hide()
 		black_belt_gear.hide()
 	if SaveSystem.save_game.belt >= 5:
-		red_belt_button.text = "Bought"
+		red_belt_button.text = "Owned"
 		red_belt_button.disabled = true
 		player_sprite.sprite_frames = load("res://resources/black_belt.tres")
 		red_belt_label.hide()
 		red_belt_gear.hide()
 		black_belt_container.show()
 	if SaveSystem.save_game.belt >= 4:
-		blue_belt_button.text = "Bought"
+		blue_belt_button.text = "Owned"
 		blue_belt_button.disabled = true
 		if SaveSystem.save_game.belt == 4:
 			player_sprite.sprite_frames = load("res://resources/red_belt.tres")
@@ -260,7 +252,7 @@ func _ready() -> void:
 		blue_belt_gear.hide()
 		red_belt_container.show()
 	if SaveSystem.save_game.belt >= 3:
-		green_belt_button.text = "Bought"
+		green_belt_button.text = "Owned"
 		green_belt_button.disabled = true
 		if SaveSystem.save_game.belt == 3:
 			player_sprite.sprite_frames = load("res://resources/blue_belt.tres")
@@ -268,21 +260,15 @@ func _ready() -> void:
 		green_belt_gear.hide()
 		blue_belt_container.show()
 	if SaveSystem.save_game.belt >= 2:
-		yellow_belt_button.text = "Bought"
+		yellow_belt_button.text = "Owned"
 		yellow_belt_button.disabled = true
 		if SaveSystem.save_game.belt == 2:
 			player_sprite.sprite_frames = load("res://resources/green_belt.tres")
 		yellow_belt_label.hide()
 		yellow_belt_gear.hide()
 		green_belt_container.show()
-		uppercut_m_container.show()
-		if SaveSystem.save_game.uppercut_mastery:
-			uppercut_m_button.text = "Inactive"
-			uppercut_m_gear.hide()
-			uppercut_m_label.hide()
-			uppercut_m_gear.hide()
 	if SaveSystem.save_game.belt >= 1:
-		white_belt_button.text = "Bought"
+		white_belt_button.text = "Owned"
 		white_belt_button.disabled = true
 		white_belt_label.hide()
 		white_belt_gear.hide()
@@ -290,11 +276,6 @@ func _ready() -> void:
 		if SaveSystem.save_game.belt == 1:
 			player_sprite.sprite_frames = load("res://resources/yellow_belt.tres")
 		yellow_belt_container.show()
-		kick_m_container.show()
-		if SaveSystem.save_game.kick_mastery:
-			kick_m_button.text = "Inactive"
-			kick_m_label.hide()
-			kick_m_gear.hide()
 			
 	if SaveSystem.save_game.belt < 1:
 		kick_button.text = "Locked"
@@ -317,10 +298,6 @@ func _ready() -> void:
 		straight_m_gear.hide()
 	if SaveSystem.save_game.straight_active:
 		straight_m_button.text = "Active"
-	elif SaveSystem.save_game.kick_active:
-		kick_m_button.text = "Active"
-	elif SaveSystem.save_game.uppercut_active:
-		uppercut_m_button.text = "Active"
 	
 	save_timer.start()
 	#if SaveSystem.save_game.kick:
@@ -336,6 +313,7 @@ func _process(_delta) -> void:
 	
 func _on_button_pressed() -> void:
 	shop.show()
+	Global.shop = true
 	shop_label.text = str(SaveSystem.save_game.gear_coins)
 
 func _on_disk_button_pressed() -> void:
@@ -451,6 +429,7 @@ func _on_wall_button_pressed() -> void:
 
 func _on_exit_shop_button_pressed():
 	shop.visible = false
+	Global.shop = false
 
 func _on_save_timer_timeout():
 	SaveSystem.saving()
@@ -481,7 +460,7 @@ func _on_stomp_button_pressed():
 	if SaveSystem.save_game.gear_coins >= stomp_cost:
 		SaveSystem.save_game.gear_coins -= stomp_cost
 		SaveSystem.save_game.stomp = true
-		stomp_button.text = "Bought"
+		stomp_button.text = "Owned"
 		stomp_label.hide()
 		stomp_gear.hide()
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
@@ -495,7 +474,7 @@ func _on_kick_button_pressed():
 	if SaveSystem.save_game.gear_coins >= kick_cost:
 		SaveSystem.save_game.gear_coins -= kick_cost
 		SaveSystem.save_game.kick = true
-		kick_button.text = "Bought"
+		kick_button.text = "Owned"
 		kick_label.hide()
 		kick_gear.hide()
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
@@ -509,7 +488,7 @@ func _on_uppercut_button_pressed():
 	if SaveSystem.save_game.gear_coins >= uppercut_cost:
 		SaveSystem.save_game.gear_coins -= uppercut_cost
 		SaveSystem.save_game.uppercut = true
-		uppercut_button.text = "Bought"
+		uppercut_button.text = "Owned"
 		uppercut_label.hide()
 		uppercut_gear.hide()
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
@@ -523,7 +502,7 @@ func _on_explode_button_pressed():
 	if SaveSystem.save_game.gear_coins >= stomp_cost:
 		SaveSystem.save_game.gear_coins -= stomp_cost
 		SaveSystem.save_game.stomp = true
-		explode_button.text = "Bought"
+		explode_button.text = "Owned"
 		explode_label.hide()
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
 		shop_label.text = str(SaveSystem.save_game.gear_coins)
@@ -540,12 +519,6 @@ func _on_straight_m_button_pressed():
 	elif SaveSystem.save_game.straight_mastery and !SaveSystem.save_game.straight_active:
 		straight_m_button.text = "Active"
 		SaveSystem.save_game.straight_active = true
-		if SaveSystem.save_game.kick_active:
-			kick_m_button.text = "Inactive"
-			SaveSystem.save_game.kick_active = false
-		if SaveSystem.save_game.uppercut_active:
-			uppercut_m_button.text = "Inactive"
-			SaveSystem.save_game.uppercut_active = false
 		SaveSystem.saving()
 		print("saving")
 		return
@@ -554,12 +527,6 @@ func _on_straight_m_button_pressed():
 		SaveSystem.save_game.straight_mastery = true
 		SaveSystem.save_game.straight_active = true
 		straight_m_button.text = "Active"
-		if SaveSystem.save_game.kick_active:
-			kick_m_button.text = "Inactive"
-			SaveSystem.save_game.kick_active = false
-		if SaveSystem.save_game.uppercut_active:
-			uppercut_m_button.text = "Inactive"
-			SaveSystem.save_game.uppercut_active = false
 		straight_m_label.hide()
 		straight_m_gear.hide()
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
@@ -571,12 +538,11 @@ func _on_white_belt_button_pressed():
 	if white_belt_cost <= SaveSystem.save_game.gear_coins:
 		SaveSystem.save_game.gear_coins -= white_belt_cost
 		SaveSystem.save_game.belt = 1
-		white_belt_button.text = "Bought"
+		white_belt_button.text = "Owned"
 		white_belt_button.disabled = true
 		white_belt_label.hide()
 		white_belt_gear.hide()
 		yellow_belt_container.show()
-		kick_m_container.show()
 		player_sprite.sprite_frames = load("res://resources/yellow_belt.tres")
 		ball_button.disabled = false
 		ball_button.text = "Buy"
@@ -591,53 +557,15 @@ func _on_white_belt_button_pressed():
 		SaveSystem.saving()
 		print("saving")
 
-func _on_kick_m_button_pressed():
-	if SaveSystem.save_game.kick_active:
-		kick_m_button.text = "Inactive"
-		SaveSystem.save_game.kick_active = false
-		SaveSystem.saving()
-		print("saving")
-		return
-	elif SaveSystem.save_game.kick_mastery and !SaveSystem.save_game.kick_active:
-		kick_m_button.text = "Active"
-		SaveSystem.save_game.kick_active = true
-		if SaveSystem.save_game.straight_active:
-			straight_m_button.text = "Inactive"
-			SaveSystem.save_game.straight_active = false
-		if SaveSystem.save_game.uppercut_active:
-			uppercut_m_button.text = "Inactive"
-			SaveSystem.save_game.uppercut_active = false
-		SaveSystem.saving()
-		print("saving")
-		return
-	if kick_m_cost <= SaveSystem.save_game.gear_coins:
-		SaveSystem.save_game.gear_coins -= kick_m_cost
-		SaveSystem.save_game.kick_mastery = true
-		SaveSystem.save_game.kick_active = true
-		kick_m_button.text = "Active"
-		kick_m_label.hide()
-		kick_m_gear.hide()
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
-		if SaveSystem.save_game.straight_active:
-			straight_m_button.text = "Inactive"
-			SaveSystem.save_game.straight_active = false
-		if SaveSystem.save_game.uppercut_active:
-			uppercut_m_button.text = "Inactive"
-			SaveSystem.save_game.uppercut_active = false
-		SaveSystem.saving()
-		print("saving")
-
 func _on_yellow_belt_button_pressed():
 	if yellow_belt_cost <= SaveSystem.save_game.gear_coins:
 		SaveSystem.save_game.gear_coins -= yellow_belt_cost
 		SaveSystem.save_game.belt = 2
-		yellow_belt_button.text = "Bought"
+		yellow_belt_button.text = "Owned"
 		yellow_belt_button.disabled = true
 		yellow_belt_label.hide()
 		yellow_belt_gear.hide()
 		green_belt_container.show()
-		uppercut_m_container.show()
 		player_sprite.sprite_frames = load("res://resources/green_belt.tres")
 		wall_button.disabled = false
 		wall_button.text = "Buy"
@@ -652,48 +580,11 @@ func _on_yellow_belt_button_pressed():
 		SaveSystem.saving()
 		print("saving")
 
-func _on_uppercut_m_button_pressed():
-	if SaveSystem.save_game.uppercut_active:
-		uppercut_m_button.text = "Inactive"
-		SaveSystem.save_game.uppercut_active = false
-		SaveSystem.saving()
-		print("saving")
-		return
-	if SaveSystem.save_game.uppercut_mastery and !SaveSystem.save_game.uppercut_active:
-		uppercut_m_button.text = "Active"
-		SaveSystem.save_game.uppercut_active = true
-		if SaveSystem.save_game.straight_active:
-			straight_m_button.text = "Inactive"
-			SaveSystem.save_game.straight_active = false
-		if SaveSystem.save_game.kick_active:
-			kick_m_button.text = "Inactive"
-			SaveSystem.save_game.kick_active = false
-		SaveSystem.saving()
-		print("saving")
-		return
-	if uppercut_m_cost <= SaveSystem.save_game.gear_coins:
-		SaveSystem.save_game.gear_coins -= uppercut_m_cost
-		SaveSystem.save_game.uppercut_mastery = true
-		SaveSystem.save_game.uppercut_active = true
-		uppercut_m_button.text = "Active"
-		uppercut_m_label.hide()
-		uppercut_m_gear.hide()
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
-		if SaveSystem.save_game.straight_active:
-			straight_m_button.text = "Inactive"
-			SaveSystem.save_game.straight_active = false
-		if SaveSystem.save_game.kick_active:
-			kick_m_button.text = "Inactive"
-			SaveSystem.save_game.kick_active = false
-		SaveSystem.saving()
-		print("saving")
-
 func _on_green_belt_button_pressed():
 	if green_belt_cost <= SaveSystem.save_game.gear_coins:
 		SaveSystem.save_game.gear_coins -= green_belt_cost
 		SaveSystem.save_game.belt = 3
-		green_belt_button.text = "Bought"
+		green_belt_button.text = "Owned"
 		green_belt_button.disabled = true
 		green_belt_label.hide()
 		green_belt_gear.hide()
@@ -712,7 +603,7 @@ func _on_blue_belt_button_pressed():
 	if blue_belt_cost <= SaveSystem.save_game.gear_coins:
 		SaveSystem.save_game.gear_coins -= blue_belt_cost
 		SaveSystem.save_game.belt = 4
-		blue_belt_button.text = "Bought"
+		blue_belt_button.text = "Owned"
 		blue_belt_button.disabled = true
 		blue_belt_label.hide()
 		blue_belt_gear.hide()
@@ -727,7 +618,7 @@ func _on_red_belt_button_pressed():
 	if red_belt_cost <= SaveSystem.save_game.gear_coins:
 		SaveSystem.save_game.gear_coins -= red_belt_cost
 		SaveSystem.save_game.belt = 5
-		red_belt_button.text = "Bought"
+		red_belt_button.text = "Owned"
 		red_belt_button.disabled = true
 		red_belt_label.hide()
 		red_belt_gear.hide()
@@ -742,7 +633,7 @@ func _on_black_belt_button_pressed():
 	if black_belt_cost <= SaveSystem.save_game.gear_coins:
 		SaveSystem.save_game.gear_coins -= black_belt_cost
 		SaveSystem.save_game.belt = 6
-		black_belt_button.text = "Bought"
+		black_belt_button.text = "Owned"
 		black_belt_button.disabled = true
 		black_belt_label.hide()
 		black_belt_gear.hide()

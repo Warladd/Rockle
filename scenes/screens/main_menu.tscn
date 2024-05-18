@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwp8wypah0dpe"]
+[gd_scene load_steps=4 format=3 uid="uid://dwp8wypah0dpe"]
 
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_20ixj"]
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="1_ww6ra"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7idaa"]
 font = ExtResource("1_ww6ra")
-font_size = 100
+font_size = 750
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_20ixj")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -21,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.785893, 0.594593, 0.486806, 1)
+color = Color(0.822846, 0.643891, 0.543693, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -30,11 +32,54 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -132.0
-offset_top = -226.0
-offset_right = 128.0
-offset_bottom = -106.0
+offset_left = -213.0
+offset_top = -240.0
+offset_right = 1742.0
+offset_bottom = 661.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "Rockle"
 label_settings = SubResource("LabelSettings_7idaa")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 346.0
+offset_top = 279.0
+offset_right = 751.0
+offset_bottom = 639.0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ww6ra")
+theme_override_font_sizes/font_size = 60
+text = "Play"
+flat = true
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ww6ra")
+theme_override_font_sizes/font_size = 60
+text = "Settings"
+flat = true
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ww6ra")
+theme_override_font_sizes/font_size = 60
+text = "Controls"
+flat = true
+
+[node name="Button4" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ww6ra")
+theme_override_font_sizes/font_size = 60
+text = "Quit"
+flat = true
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

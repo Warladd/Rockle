@@ -11,7 +11,6 @@ extends Node2D
 @export var wall_timer : Timer
 @export var cube_timer : Timer
 @export var animation_timer : Timer
-@export var modifier_cooldown : Timer
 @export_group("Structures")
 var disk_tween : Tween
 @export var disk_bar : ProgressBar
@@ -90,14 +89,12 @@ func _physics_process(delta) -> void:
 		print("structure loading")
 		return
 	if structure_loaded:
-		if SaveSystem.save_game.straight_active and modifier_cooldown.is_stopped():
-			modifier_cooldown.start()
+		if SaveSystem.save_game.straight_active:
 			print("auto straighting")
 			player_sprite.play("straight")
 			hitbox.disabled = false
 			straight = true
-			kick = false
-			uppercut = false
+			modifier_cooldown()
 		return
 	if cubey:
 		cube_bar.value = 0
@@ -180,7 +177,7 @@ func _physics_process(delta) -> void:
 		structure_loaded = true
 
 func _input(event) -> void:
-	if !structure_loaded:
+	if !structure_loaded or Global.shop:
 		#if event.is_action_pressed("straight"):
 			#player_sprite.play("straight")
 			#animation_timer.start()
@@ -193,37 +190,25 @@ func _input(event) -> void:
 		player_sprite.play("straight")
 		hitbox.disabled = false
 		straight = true
-		kick = false
-		uppercut = false
-		stomp = false
-		modifier_cooldown.start()
+		modifier_cooldown()
 	elif event.is_action_pressed("stomp") and SaveSystem.save_game.stomp:
 		print("stomping")
 		player_sprite.play("stomp")
 		hitbox.disabled = false
-		kick = false
-		straight = false
-		uppercut = false
 		stomp = true
-		modifier_cooldown.start()
+		modifier_cooldown()
 	elif event.is_action_pressed("kick") and SaveSystem.save_game.kick:
 		print("kicking")
 		player_sprite.play("kick")
 		hitbox.disabled = false
 		kick = true
-		straight = false
-		uppercut = false
-		stomp = false
-		modifier_cooldown.start()
+		modifier_cooldown()
 	elif event.is_action_pressed("uppercut") and SaveSystem.save_game.uppercut:
 		print("uppercutting")
 		player_sprite.play("uppercut")
 		hitbox.disabled = false
-		kick = false
-		straight = false
 		uppercut = true
-		stomp = false
-		modifier_cooldown.start()
+		modifier_cooldown()
 
 func _on_disk_timer_timeout() -> void:
 	print("disk timer finished")
@@ -233,8 +218,14 @@ func _on_pillar_timer_timeout() -> void:
 	print("pillar timer finished")
 	pillary = true
 
-func _on_modifier_cooldown_timeout():
+func modifier_cooldown():
+	await get_tree().create_timer(0.05).timeout
 	hitbox.disabled = true
+	straight = false
+	uppercut = false
+	stomp = false
+	kick = false
+	animation_timer.start()
 
 func _on_ball_timer_timeout():
 	print("ball timer finished")
@@ -257,4 +248,3 @@ func _on_structure_detector_area_entered(area):
 func _on_structure_detector_area_exited(area):
 	print("structure leaving")
 	structure_loaded = false
-	player_sprite.play("default")
