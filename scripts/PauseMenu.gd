@@ -34,3 +34,10 @@ func _on_no_button_pressed():
 	$ColorRect/VBoxContainer.show()
 	$ColorRect.color = Color("c69669c9")
 	$ColorRect/VBoxContainer2.hide()
+
+func _on_quitto_menu_button_pressed():
+	SaveSystem.saving()
+	self.visible = !self.visible
+	get_tree().paused = self.visible
+	await get_tree().create_timer(0.5).timeout
+	get_tree().change_scene_to_file("res://scenes/screens/main_menu.tscn")

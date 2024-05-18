@@ -1,13 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwp8wypah0dpe"]
+[gd_scene load_steps=9 format=3 uid="uid://dwp8wypah0dpe"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_20ixj"]
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="1_ww6ra"]
+[ext_resource type="Texture2D" uid="uid://dte7kek3jrsng" path="res://assets/shiftstones/adamant_stone_inactive.png" id="3_k2p2s"]
+[ext_resource type="Texture2D" uid="uid://cdtui7frld5f5" path="res://assets/shiftstones/surge_stone_deactivated.png" id="4_lifwp"]
+[ext_resource type="Texture2D" uid="uid://byqg2vvspp361" path="res://assets/shiftstones/volatile_stone_deactivated.png" id="5_pomtw"]
+[ext_resource type="Texture2D" uid="uid://0ruvpjp4ojva" path="res://assets/shiftstones/flow_stone_deactivated.png" id="6_0s045"]
+[ext_resource type="PackedScene" uid="uid://bu4fraknk5a5n" path="res://scenes/screens/settings.tscn" id="7_tmij6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7idaa"]
 font = ExtResource("1_ww6ra")
 font_size = 750
 
-[node name="Main Menu" type="Control"]
+[node name="Main Menu" type="Control" node_paths=PackedStringArray("settings", "surge", "adamant", "flow", "volatile")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +20,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_20ixj")
+settings = NodePath("Settings")
+surge = NodePath("Shiftstones/SurgeStoneDeactivated")
+adamant = NodePath("Shiftstones/AdamantStoneInactive")
+flow = NodePath("Shiftstones/FlowStoneDeactivated")
+volatile = NodePath("Shiftstones/VolatileStoneDeactivated")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -23,7 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.822846, 0.643891, 0.543693, 1)
+color = Color(0.876757, 0.733451, 0.65413, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -32,10 +42,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -213.0
-offset_top = -240.0
-offset_right = 1742.0
-offset_bottom = 661.0
+offset_left = -195.0
+offset_top = -242.0
+offset_right = 1760.0
+offset_bottom = 659.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
@@ -44,17 +54,18 @@ label_settings = SubResource("LabelSettings_7idaa")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 346.0
-offset_top = 279.0
-offset_right = 751.0
-offset_bottom = 639.0
+offset_left = 449.0
+offset_top = 282.0
+offset_right = 968.0
+offset_bottom = 998.0
+scale = Vector2(0.45, 0.45)
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_ww6ra")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 140
 text = "Play"
 flat = true
 
@@ -62,7 +73,7 @@ flat = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_ww6ra")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 140
 text = "Settings"
 flat = true
 
@@ -70,7 +81,7 @@ flat = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_ww6ra")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 140
 text = "Controls"
 flat = true
 
@@ -78,8 +89,45 @@ flat = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_ww6ra")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 140
 text = "Quit"
 flat = true
 
+[node name="Settings" parent="." instance=ExtResource("7_tmij6")]
+visible = false
+
+[node name="Shiftstones" type="Node" parent="."]
+
+[node name="SurgeStoneDeactivated" type="Sprite2D" parent="Shiftstones"]
+position = Vector2(386, 321)
+scale = Vector2(2, 2)
+texture = ExtResource("4_lifwp")
+
+[node name="AdamantStoneInactive" type="Sprite2D" parent="Shiftstones"]
+position = Vector2(386, 401)
+scale = Vector2(2, 2)
+texture = ExtResource("3_k2p2s")
+
+[node name="FlowStoneDeactivated" type="Sprite2D" parent="Shiftstones"]
+position = Vector2(386, 481)
+scale = Vector2(2, 2)
+texture = ExtResource("6_0s045")
+
+[node name="VolatileStoneDeactivated" type="Sprite2D" parent="Shiftstones"]
+position = Vector2(386, 569)
+scale = Vector2(2, 2)
+texture = ExtResource("5_pomtw")
+
+[connection signal="mouse_entered" from="VBoxContainer/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Button" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Button2" to="." method="_on_button_2_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Button2" to="." method="_on_button_2_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Button3" to="." method="_on_button_3_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Button3" to="." method="_on_button_3_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Button4" to="." method="_on_button_4_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Button4" to="." method="_on_button_4_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="visibility_changed" from="Settings" to="Settings" method="_on_visibility_changed"]

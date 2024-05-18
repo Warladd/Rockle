@@ -89,7 +89,7 @@ func _physics_process(delta) -> void:
 		print("structure loading")
 		return
 	if structure_loaded:
-		if SaveSystem.save_game.straight_active:
+		if SaveSystem.save_game.straight_active and animation_timer.is_stopped():
 			print("auto straighting")
 			player_sprite.play("straight")
 			hitbox.disabled = false

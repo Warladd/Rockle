@@ -12,13 +12,16 @@ size = Vector2(78, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0p37y"]
 size = Vector2(80, 64)
 
-[node name="Ball" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector", "sprite", "collision")]
+[node name="Ball" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector", "sprite", "collision", "straight_timer", "kick_timer", "uppercut_timer")]
 collision_layer = 0
 script = ExtResource("1_lqumv")
 death = NodePath("Area2D2")
 detector = NodePath("Area2D")
 sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
+straight_timer = NodePath("StraightTimer")
+kick_timer = NodePath("KickTimer")
+uppercut_timer = NodePath("UppercutTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, 0)
@@ -49,6 +52,18 @@ shape = SubResource("RectangleShape2D_0p37y")
 wait_time = 0.2
 one_shot = true
 autostart = true
+
+[node name="StraightTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="KickTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="UppercutTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]

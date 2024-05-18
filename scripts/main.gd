@@ -163,6 +163,10 @@ var blue_belt_cost : int = 1000000
 var red_belt_cost : int = 15000000
 var black_belt_cost : int = 550000000
 
+# Popup
+var popup_label = preload("res://scenes/popup_label.tscn")
+@export var popup_container : VBoxContainer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player_sprite.play("default")
@@ -307,6 +311,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta) -> void:
+	if Global.popup_number != 0:
+		var label = popup_label.instantiate()
+		popup_container.add_child(label)
+		Global.popup_number = 0
 	if int(gear_label.text) != SaveSystem.save_game.gear_coins:
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
 		shop_label.text = str(SaveSystem.save_game.gear_coins)

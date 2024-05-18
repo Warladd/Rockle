@@ -45,7 +45,7 @@ func _physics_process(delta):
 func _on_area_2d_body_entered(body):
 	structures = body.get_parent()
 	if structures.straight:
-		velocity.x += 1000
+		velocity.x += 1200
 		modifiers.append("straight")
 	elif structures.kick:
 		grounded = false

@@ -34,7 +34,7 @@ size = Vector2(29, 425)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1paub"]
 size = Vector2(384, 261)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("disk_label", "disk_name_label", "disk_container", "disk_bar", "pillar_timer", "pillar_label", "pillar_name_label", "pillar_container", "pillar_bar", "ball_timer", "ball_label", "ball_gear", "ball_name_label", "ball_container", "ball_bar", "ball_button", "cube_timer", "cube_label", "cube_gear", "cube_name_label", "cube_container", "cube_bar", "cube_button", "wall_timer", "wall_label", "wall_gear", "wall_name_label", "wall_container", "wall_bar", "wall_button", "kick_button", "kick_label", "kick_gear", "stomp_button", "stomp_label", "stomp_gear", "uppercut_button", "uppercut_label", "uppercut_gear", "explode_button", "explode_label", "straight_m_button", "straight_m_label", "straight_m_gear", "white_belt_label", "white_belt_button", "white_belt_gear", "yellow_belt_label", "yellow_belt_button", "yellow_belt_container", "yellow_belt_gear", "green_belt_label", "green_belt_button", "green_belt_container", "green_belt_gear", "blue_belt_label", "blue_belt_button", "blue_belt_container", "blue_belt_gear", "red_belt_label", "red_belt_button", "red_belt_container", "red_belt_gear", "black_belt_label", "black_belt_button", "black_belt_container", "black_belt_gear", "gear_label", "shop_label", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("disk_label", "disk_name_label", "disk_container", "disk_bar", "pillar_timer", "pillar_label", "pillar_name_label", "pillar_container", "pillar_bar", "ball_timer", "ball_label", "ball_gear", "ball_name_label", "ball_container", "ball_bar", "ball_button", "cube_timer", "cube_label", "cube_gear", "cube_name_label", "cube_container", "cube_bar", "cube_button", "wall_timer", "wall_label", "wall_gear", "wall_name_label", "wall_container", "wall_bar", "wall_button", "kick_button", "kick_label", "kick_gear", "stomp_button", "stomp_label", "stomp_gear", "uppercut_button", "uppercut_label", "uppercut_gear", "explode_button", "explode_label", "straight_m_button", "straight_m_label", "straight_m_gear", "white_belt_label", "white_belt_button", "white_belt_gear", "yellow_belt_label", "yellow_belt_button", "yellow_belt_container", "yellow_belt_gear", "green_belt_label", "green_belt_button", "green_belt_container", "green_belt_gear", "blue_belt_label", "blue_belt_button", "blue_belt_container", "blue_belt_gear", "red_belt_label", "red_belt_button", "red_belt_container", "red_belt_gear", "black_belt_label", "black_belt_button", "black_belt_container", "black_belt_gear", "gear_label", "shop_label", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu", "popup_container")]
 script = ExtResource("1_rdaht")
 disk_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label2")
 disk_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label")
@@ -111,6 +111,21 @@ player_sprite = NodePath("Structures/CharacterBody2D/Player")
 saving_label = NodePath("SavingLabel")
 save_timer = NodePath("SaveTimer")
 pause_menu = NodePath("PauseMenu")
+popup_container = NodePath("VBoxContainer")
+
+[node name="Background" type="ColorRect" parent="."]
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -1.0
+offset_right = 1094.0
+offset_bottom = 587.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.02328, 1.07143)
+color = Color(0.322442, 0.678822, 0.762932, 1)
 
 [node name="Structures" type="Node2D" parent="." node_paths=PackedStringArray("hitbox", "player", "player_sprite", "disk_timer", "pillar_timer", "ball_timer", "wall_timer", "cube_timer", "animation_timer", "disk_bar", "pillar_container", "pillar_bar", "ball_container", "ball_bar", "cube_container", "cube_bar", "wall_container", "wall_bar")]
 script = ExtResource("2_iebus")
@@ -147,20 +162,6 @@ position = Vector2(330, 321)
 sprite_frames = ExtResource("8_8t7ce")
 animation = &"stomp"
 
-[node name="Background" type="ColorRect" parent="."]
-show_behind_parent = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -3.0
-offset_top = -1.0
-offset_right = 1094.0
-offset_bottom = 587.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.02328, 1.07143)
-color = Color(0.322442, 0.678822, 0.762932, 1)
-
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_direction = 2
 offset_left = 55.0
@@ -176,6 +177,13 @@ texture = ExtResource("3_vfisr")
 layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_tq13i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 63.0
+offset_top = 48.0
+offset_right = 225.0
+offset_bottom = 436.0
+scale = Vector2(0.25, 0.25)
 
 [node name="Timers" type="Node" parent="."]
 
@@ -1110,11 +1118,17 @@ theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 50
 text = "Restart"
 
+[node name="QuittoMenuButton" type="Button" parent="PauseMenu/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 50
+text = "Quit to Main Menu"
+
 [node name="QuitButton" type="Button" parent="PauseMenu/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 50
-text = "Quit"
+text = "Quit to Desktop"
 
 [node name="Floor" type="StaticBody2D" parent="."]
 top_level = true
@@ -1289,6 +1303,7 @@ shape = SubResource("RectangleShape2D_1paub")
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer2/HBoxContainer/NoButton" to="PauseMenu" method="_on_no_button_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/RestartButton" to="PauseMenu" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/QuittoMenuButton" to="PauseMenu" method="_on_quitto_menu_button_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
 [connection signal="area_entered" from="StructureDetector" to="Structures" method="_on_structure_detector_area_entered"]
 [connection signal="area_exited" from="StructureDetector" to="Structures" method="_on_structure_detector_area_exited"]

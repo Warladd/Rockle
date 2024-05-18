@@ -14,6 +14,7 @@ var stored_velocity_x : float = 0
 var structures : Node2D
 var modifiers : Array = []
 var uppercutted : bool = false
+var gear_amount : int = 0
 
 func _ready():
 	detector.monitoring = false
@@ -41,7 +42,7 @@ func _on_area_2d_body_entered(body):
 	structures = body.get_parent()
 	if structures.straight and straight_timer.is_stopped():
 		straight_timer.start()
-		linear_velocity.x += 1000
+		linear_velocity.x += 1500
 		modifiers.append("straight")
 	elif structures.kick and kick_timer.is_stopped():
 		kick_timer.start()
@@ -76,10 +77,14 @@ func _on_area_2d_2_area_entered(area):
 	if damage_value <= area.get_parent().damage_value:
 		if modifiers.has("straight"):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
+			gear_amount += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
 		if modifiers.has("kick"):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
+			gear_amount += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
 		if modifiers.has("uppercut"):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
+			gear_amount += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
+		Global.popup_number = gear_amount
 		SaveSystem.saving()
 		print("saving")
 	if damage_value >= area.get_parent().damage_value:

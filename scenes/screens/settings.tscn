@@ -1,32 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://bu4fraknk5a5n"]
 
+[ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="2_n5sae"]
 [ext_resource type="Script" path="res://scripts/settings.gd" id="2_o4kiu"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_qlrxe"]
-font_size = 50
-
-[node name="Settings" type="Popup" node_paths=PackedStringArray("display_options", "master_vol", "music_vol", "sfx_vol", "godmode_button", "ohko_button", "walk_button", "jump_button", "dash_button", "double_jump_button", "wall_jump_button", "charged_dash_button", "grappling_hook_button", "teleport_button")]
-disable_3d = true
-mode = 2
-title = "Settings"
-size = Vector2i(920, 590)
-visible = true
-unresizable = false
+[node name="Settings" type="CanvasLayer" node_paths=PackedStringArray("display_options", "master_vol", "music_vol", "sfx_vol")]
 script = ExtResource("2_o4kiu")
 display_options = NodePath("SettingTabs/Video/MarginContainer/VideoSettings/DisplayModeBtn")
 master_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/MasterVolSlider")
 music_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/MusicVolSlider")
 sfx_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/SFXVolSlider")
-godmode_button = NodePath("SettingTabs/Gameplay/MarginContainer/GameplaySettings/GodModeButton")
-ohko_button = NodePath("SettingTabs/Gameplay/MarginContainer/GameplaySettings/OHKOButton")
-walk_button = NodePath("SettingTabs/Gameplay/MarginContainer/GameplaySettings/WalkButton")
-jump_button = NodePath("SettingTabs/Gameplay/MarginContainer/GameplaySettings/JumpButton")
-dash_button = NodePath("SettingTabs/Gameplay/MarginContainer/GameplaySettings/DashButton")
-double_jump_button = NodePath("SettingTabs/Gameplay/MarginContainer/GameplaySettings/DoubleJumpButton")
-wall_jump_button = NodePath("SettingTabs/Gameplay/MarginContainer/GameplaySettings/WallJumpButton")
-charged_dash_button = NodePath("SettingTabs/Gameplay/MarginContainer/GameplaySettings/ChargedDashButton")
-grappling_hook_button = NodePath("SettingTabs/Gameplay/MarginContainer/GameplaySettings/GrapplingHookButton")
-teleport_button = NodePath("SettingTabs/Gameplay/MarginContainer/GameplaySettings/TeleportButton")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -34,7 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.180392, 0.392157, 0.176471, 1)
+color = Color(0.755599, 0.666679, 0.574268, 1)
 
 [node name="SettingTabs" type="TabContainer" parent="."]
 anchors_preset = 15
@@ -42,9 +24,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 35
+current_tab = 1
 
 [node name="Video" type="TabBar" parent="SettingTabs"]
+visible = false
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n5sae")
 
 [node name="MarginContainer" type="MarginContainer" parent="SettingTabs/Video"]
 layout_mode = 1
@@ -64,13 +51,17 @@ columns = 2
 
 [node name="DisplayModeLabel" type="Label" parent="SettingTabs/Video/MarginContainer/VideoSettings"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 50
 text = "Display Mode"
 
 [node name="DisplayModeBtn" type="OptionButton" parent="SettingTabs/Video/MarginContainer/VideoSettings"]
 layout_direction = 3
 layout_mode = 2
 size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 50
+flat = true
 item_count = 2
 selected = 0
 popup/item_0/text = "  Windowed"
@@ -79,7 +70,6 @@ popup/item_1/text = "Fullscreen"
 popup/item_1/id = 1
 
 [node name="Audio" type="TabBar" parent="SettingTabs"]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="SettingTabs/Audio"]
@@ -100,7 +90,8 @@ columns = 2
 
 [node name="MasterVolLabel" type="Label" parent="SettingTabs/Audio/MarginContainer/AudioSettings"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 50
 text = "Master Volume"
 
 [node name="MasterVolSlider" type="HSlider" parent="SettingTabs/Audio/MarginContainer/AudioSettings"]
@@ -114,7 +105,8 @@ value = -15.0
 
 [node name="MusicVolLabel" type="Label" parent="SettingTabs/Audio/MarginContainer/AudioSettings"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 50
 text = "Music
 "
 
@@ -129,7 +121,8 @@ value = -15.0
 
 [node name="SFXVolLabel" type="Label" parent="SettingTabs/Audio/MarginContainer/AudioSettings"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 50
 text = "SFX"
 
 [node name="SFXVolSlider" type="HSlider" parent="SettingTabs/Audio/MarginContainer/AudioSettings"]
@@ -140,148 +133,6 @@ size_flags_vertical = 1
 min_value = -50.0
 max_value = 0.0
 value = -15.0
-
-[node name="Gameplay" type="TabBar" parent="SettingTabs"]
-visible = false
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="SettingTabs/Gameplay"]
-layout_mode = 0
-offset_right = 322.0
-offset_bottom = 192.0
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="GameplaySettings" type="GridContainer" parent="SettingTabs/Gameplay/MarginContainer"]
-layout_mode = 2
-columns = 2
-
-[node name="CheatsLabel" type="Label" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-text = "Cheats"
-label_settings = SubResource("LabelSettings_qlrxe")
-
-[node name="Label2" type="Label" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-
-[node name="GodModeLabel" type="Label" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 10
-theme_override_font_sizes/font_size = 35
-text = "Godmode"
-
-[node name="GodModeButton" type="CheckButton" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-
-[node name="OHKOLabel" type="Label" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "OHKO"
-
-[node name="OHKOButton" type="CheckButton" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-
-[node name="AbilitiesLabel" type="Label" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-text = "Abilties"
-label_settings = SubResource("LabelSettings_qlrxe")
-
-[node name="Label3" type="Label" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-
-[node name="WalkLabel" type="Label" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 10
-theme_override_font_sizes/font_size = 25
-text = "Walk"
-
-[node name="WalkButton" type="CheckButton" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-
-[node name="JumpLabel" type="Label" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 10
-theme_override_font_sizes/font_size = 25
-text = "Jump"
-
-[node name="JumpButton" type="CheckButton" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-
-[node name="DashLabel" type="Label" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Dash"
-
-[node name="DashButton" type="CheckButton" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-
-[node name="DoubleJumpLabel" type="Label" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Double Jump"
-
-[node name="DoubleJumpButton" type="CheckButton" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-
-[node name="WallJumpLabel" type="Label" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Wall Jump"
-
-[node name="WallJumpButton" type="CheckButton" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-
-[node name="ChargedDashLabel" type="Label" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Charged Dash"
-
-[node name="ChargedDashButton" type="CheckButton" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-
-[node name="GrapplingHookLabel" type="Label" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "GrapplingHook"
-
-[node name="GrapplingHookButton" type="CheckButton" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-
-[node name="TeleportLabel" type="Label" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Teleport"
-
-[node name="TeleportButton" type="CheckButton" parent="SettingTabs/Gameplay/MarginContainer/GameplaySettings"]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 3
@@ -297,24 +148,13 @@ grow_vertical = 0
 
 [node name="BackButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 60
 text = "Back"
+flat = true
 
-[connection signal="about_to_popup" from="." to="." method="_on_about_to_popup"]
-[connection signal="popup_hide" from="." to="." method="_on_popup_hide"]
-[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="item_selected" from="SettingTabs/Video/MarginContainer/VideoSettings/DisplayModeBtn" to="." method="_on_display_mode_btn_item_selected"]
-[connection signal="focus_entered" from="SettingTabs/Audio/MarginContainer/AudioSettings/MasterVolLabel" to="." method="_on_master_vol_label_focus_entered"]
 [connection signal="value_changed" from="SettingTabs/Audio/MarginContainer/AudioSettings/MasterVolSlider" to="." method="_on_master_vol_slider_value_changed"]
 [connection signal="value_changed" from="SettingTabs/Audio/MarginContainer/AudioSettings/MusicVolSlider" to="." method="_on_music_vol_slider_value_changed"]
 [connection signal="value_changed" from="SettingTabs/Audio/MarginContainer/AudioSettings/SFXVolSlider" to="." method="_on_sfx_vol_slider_value_changed"]
-[connection signal="toggled" from="SettingTabs/Gameplay/MarginContainer/GameplaySettings/GodModeButton" to="." method="_on_god_mode_button_toggled"]
-[connection signal="toggled" from="SettingTabs/Gameplay/MarginContainer/GameplaySettings/OHKOButton" to="." method="_on_ohko_button_toggled"]
-[connection signal="toggled" from="SettingTabs/Gameplay/MarginContainer/GameplaySettings/WalkButton" to="." method="_on_walk_button_toggled"]
-[connection signal="toggled" from="SettingTabs/Gameplay/MarginContainer/GameplaySettings/JumpButton" to="." method="_on_jump_button_toggled"]
-[connection signal="toggled" from="SettingTabs/Gameplay/MarginContainer/GameplaySettings/DashButton" to="." method="_on_dash_button_toggled"]
-[connection signal="toggled" from="SettingTabs/Gameplay/MarginContainer/GameplaySettings/DoubleJumpButton" to="." method="_on_double_jump_button_toggled"]
-[connection signal="toggled" from="SettingTabs/Gameplay/MarginContainer/GameplaySettings/WallJumpButton" to="." method="_on_wall_jump_button_toggled"]
-[connection signal="toggled" from="SettingTabs/Gameplay/MarginContainer/GameplaySettings/ChargedDashButton" to="." method="_on_charged_dash_button_toggled"]
-[connection signal="toggled" from="SettingTabs/Gameplay/MarginContainer/GameplaySettings/GrapplingHookButton" to="." method="_on_grappling_hook_button_toggled"]
-[connection signal="toggled" from="SettingTabs/Gameplay/MarginContainer/GameplaySettings/TeleportButton" to="." method="_on_teleport_button_toggled"]
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
