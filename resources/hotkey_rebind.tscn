@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf4yyohqoqlkj"]
+
+[ext_resource type="Theme" uid="uid://q7oavojuo262" path="res://resources/RemapButton.tres" id="1_nd1oe"]
+[ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="1_xmmrp"]
+[ext_resource type="Script" path="res://scripts/hotkey_rebind.gd" id="2_xno51"]
+
+[node name="Hotkey Rebind" type="Button" groups=["hotkey_button"]]
+custom_minimum_size = Vector2(220, 0)
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("1_nd1oe")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_xmmrp")
+theme_override_font_sizes/font_size = 50
+text = "ACTION_KEY"
+script = ExtResource("2_xno51")
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

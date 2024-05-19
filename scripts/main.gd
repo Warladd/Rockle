@@ -147,6 +147,7 @@ var uuk : bool = false
 @export var save_timer : Timer
 @export var pause_menu : CanvasLayer
 @export var hitbox : CollisionShape2D
+@export var settings : CanvasLayer
 
 # Costs
 var kick_cost : int = 1000
@@ -169,6 +170,7 @@ var popup_label = preload("res://scenes/popup_label.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	settings.hide()
 	player_sprite.play("default")
 	SaveSystem.load_game()
 	shop.hide()

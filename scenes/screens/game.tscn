@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dtw6obm6lmpng"]
+[gd_scene load_steps=20 format=3 uid="uid://dtw6obm6lmpng"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rdaht"]
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="2_bwg6y"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/breaking_wall.gd" id="11_q4tyc"]
 [ext_resource type="Texture2D" uid="uid://buy76hpr2jxed" path="res://assets/gear_coin_small.png" id="12_p6s2u"]
 [ext_resource type="Texture2D" uid="uid://bh5jtnw4f5sy" path="res://assets/upgrade.png" id="12_rri2l"]
+[ext_resource type="PackedScene" uid="uid://bu4fraknk5a5n" path="res://scenes/screens/settings.tscn" id="12_ygs3y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xytg0"]
 size = Vector2(203, 132)
@@ -34,7 +35,7 @@ size = Vector2(29, 425)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1paub"]
 size = Vector2(384, 261)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("disk_label", "disk_name_label", "disk_container", "disk_bar", "pillar_timer", "pillar_label", "pillar_name_label", "pillar_container", "pillar_bar", "ball_timer", "ball_label", "ball_gear", "ball_name_label", "ball_container", "ball_bar", "ball_button", "cube_timer", "cube_label", "cube_gear", "cube_name_label", "cube_container", "cube_bar", "cube_button", "wall_timer", "wall_label", "wall_gear", "wall_name_label", "wall_container", "wall_bar", "wall_button", "kick_button", "kick_label", "kick_gear", "stomp_button", "stomp_label", "stomp_gear", "uppercut_button", "uppercut_label", "uppercut_gear", "explode_button", "explode_label", "straight_m_button", "straight_m_label", "straight_m_gear", "white_belt_label", "white_belt_button", "white_belt_gear", "yellow_belt_label", "yellow_belt_button", "yellow_belt_container", "yellow_belt_gear", "green_belt_label", "green_belt_button", "green_belt_container", "green_belt_gear", "blue_belt_label", "blue_belt_button", "blue_belt_container", "blue_belt_gear", "red_belt_label", "red_belt_button", "red_belt_container", "red_belt_gear", "black_belt_label", "black_belt_button", "black_belt_container", "black_belt_gear", "gear_label", "shop_label", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu", "popup_container")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("disk_label", "disk_name_label", "disk_container", "disk_bar", "pillar_timer", "pillar_label", "pillar_name_label", "pillar_container", "pillar_bar", "ball_timer", "ball_label", "ball_gear", "ball_name_label", "ball_container", "ball_bar", "ball_button", "cube_timer", "cube_label", "cube_gear", "cube_name_label", "cube_container", "cube_bar", "cube_button", "wall_timer", "wall_label", "wall_gear", "wall_name_label", "wall_container", "wall_bar", "wall_button", "kick_button", "kick_label", "kick_gear", "stomp_button", "stomp_label", "stomp_gear", "uppercut_button", "uppercut_label", "uppercut_gear", "explode_button", "explode_label", "straight_m_button", "straight_m_label", "straight_m_gear", "white_belt_label", "white_belt_button", "white_belt_gear", "yellow_belt_label", "yellow_belt_button", "yellow_belt_container", "yellow_belt_gear", "green_belt_label", "green_belt_button", "green_belt_container", "green_belt_gear", "blue_belt_label", "blue_belt_button", "blue_belt_container", "blue_belt_gear", "red_belt_label", "red_belt_button", "red_belt_container", "red_belt_gear", "black_belt_label", "black_belt_button", "black_belt_container", "black_belt_gear", "gear_label", "shop_label", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu", "settings", "popup_container")]
 script = ExtResource("1_rdaht")
 disk_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label2")
 disk_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label")
@@ -111,6 +112,7 @@ player_sprite = NodePath("Structures/CharacterBody2D/Player")
 saving_label = NodePath("SavingLabel")
 save_timer = NodePath("SaveTimer")
 pause_menu = NodePath("PauseMenu")
+settings = NodePath("Settings")
 popup_container = NodePath("VBoxContainer")
 
 [node name="Background" type="ColorRect" parent="."]
@@ -1049,10 +1051,10 @@ offset_bottom = 629.0
 text = "Saving..."
 label_settings = ExtResource("3_6lbk3")
 
-[node name="PauseMenu" type="CanvasLayer" parent="."]
+[node name="PauseMenu" type="CanvasLayer" parent="." node_paths=PackedStringArray("settings")]
 process_mode = 3
-visible = false
 script = ExtResource("8_aofh8")
+settings = NodePath("../Settings")
 
 [node name="ColorRect" type="ColorRect" parent="PauseMenu"]
 anchors_preset = 15
@@ -1060,7 +1062,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.776471, 0.588235, 0.411765, 0.788235)
+color = Color(0.776471, 0.588235, 0.411765, 0.913725)
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="PauseMenu/ColorRect"]
 visible = false
@@ -1111,6 +1113,13 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 50
 text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="PauseMenu/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 50
+text = "Settings
+"
 
 [node name="RestartButton" type="Button" parent="PauseMenu/ColorRect/VBoxContainer"]
 layout_mode = 2
@@ -1260,6 +1269,10 @@ collision_mask = 0
 position = Vector2(1146.5, 212)
 shape = SubResource("RectangleShape2D_gfnlq")
 
+[node name="Settings" parent="." instance=ExtResource("12_ygs3y")]
+process_mode = 3
+visible = false
+
 [node name="StructureDetector" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
@@ -1302,6 +1315,7 @@ shape = SubResource("RectangleShape2D_1paub")
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer2/HBoxContainer/YesButton" to="PauseMenu" method="_on_yes_button_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer2/HBoxContainer/NoButton" to="PauseMenu" method="_on_no_button_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/SettingsButton" to="PauseMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/RestartButton" to="PauseMenu" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/QuittoMenuButton" to="PauseMenu" method="_on_quitto_menu_button_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]

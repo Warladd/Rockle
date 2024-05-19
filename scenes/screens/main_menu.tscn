@@ -114,7 +114,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("6_0s045")
 
 [node name="VolatileStoneDeactivated" type="Sprite2D" parent="Shiftstones"]
-position = Vector2(386, 569)
+position = Vector2(386, 564)
 scale = Vector2(2, 2)
 texture = ExtResource("5_pomtw")
 

@@ -1,4 +1,5 @@
 extends CanvasLayer
+@export var settings : CanvasLayer
 
 func _process(delta):
 	if Input.is_action_just_pressed("esc"):
@@ -41,3 +42,6 @@ func _on_quitto_menu_button_pressed():
 	get_tree().paused = self.visible
 	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file("res://scenes/screens/main_menu.tscn")
+
+func _on_settings_button_pressed():
+	settings.show()

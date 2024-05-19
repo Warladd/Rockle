@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bu4fraknk5a5n"]
+[gd_scene load_steps=4 format=3 uid="uid://bu4fraknk5a5n"]
 
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="2_n5sae"]
 [ext_resource type="Script" path="res://scripts/settings.gd" id="2_o4kiu"]
+[ext_resource type="LabelSettings" uid="uid://do0om8riihnu6" path="res://resources/control_label_settings.tres" id="3_w374r"]
 
-[node name="Settings" type="CanvasLayer" node_paths=PackedStringArray("display_options", "master_vol", "music_vol", "sfx_vol")]
+[node name="Settings" type="CanvasLayer" node_paths=PackedStringArray("display_options", "master_vol", "music_vol", "sfx_vol", "control_settings")]
 script = ExtResource("2_o4kiu")
 display_options = NodePath("SettingTabs/Video/MarginContainer/VideoSettings/DisplayModeBtn")
 master_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/MasterVolSlider")
 music_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/MusicVolSlider")
 sfx_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/SFXVolSlider")
+control_settings = NodePath("SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -26,7 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_n5sae")
 theme_override_font_sizes/font_size = 35
-current_tab = 1
+current_tab = 2
 
 [node name="Video" type="TabBar" parent="SettingTabs"]
 visible = false
@@ -40,10 +42,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
 [node name="VideoSettings" type="GridContainer" parent="SettingTabs/Video/MarginContainer"]
 layout_mode = 2
@@ -70,6 +72,7 @@ popup/item_1/text = "Fullscreen"
 popup/item_1/id = 1
 
 [node name="Audio" type="TabBar" parent="SettingTabs"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="SettingTabs/Audio"]
@@ -79,10 +82,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
 [node name="AudioSettings" type="GridContainer" parent="SettingTabs/Audio/MarginContainer"]
 layout_mode = 2
@@ -133,6 +136,45 @@ size_flags_vertical = 1
 min_value = -50.0
 max_value = 0.0
 value = -15.0
+
+[node name="Controls" type="TabBar" parent="SettingTabs"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingTabs/Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SettingTabs/Controls/MarginContainer"]
+layout_mode = 2
+
+[node name="ControlSettings" type="GridContainer" parent="SettingTabs/Controls/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="StraightKeyLabel" type="Label" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Straight"
+label_settings = ExtResource("3_w374r")
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 50
+text = "INPUT KEY"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 3

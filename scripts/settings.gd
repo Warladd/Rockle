@@ -2,16 +2,20 @@ extends CanvasLayer
 
 # Video Settings
 @export var display_options : Button
-@onready var settings_menu = self
 
 # Audio Settings
 @export var master_vol : Slider
 @export var music_vol : Slider
 @export var sfx_vol : Slider
 
+# Controls
+@export var control_settings : GridContainer
+@export var action_items : Array[String]
+
+
 # Functions
 func _ready():
-	self.visible = false
+	visible = true
 
 func _on_display_mode_btn_item_selected(index) -> void:
 	SaveSystem.settings.toggle_fullscreen(index)
@@ -27,7 +31,7 @@ func _on_sfx_vol_slider_value_changed(value) -> void:
 
 func _on_back_button_pressed() -> void:
 	SaveSystem.save_settings()
-	self.visible = false
+	visible = false
 
 func _on_popup_hide() -> void:
 	SaveSystem.save_settings()
@@ -38,3 +42,13 @@ func _on_visibility_changed():
 	master_vol.value = SaveSystem.settings.master_vol_value
 	music_vol.value = SaveSystem.settings.music_vol_value
 	sfx_vol.value = SaveSystem.settings.sfx_vol_value
+
+func create_action_remap_items() -> void:
+	var previous_item = control_settings.get_child(control_settings.get_child_count() - 1)
+	for index in range(action_items.size()):
+		var action = action_items[index]
+		var label = Label.new()
+		label.text = action
+		label.label_settings = load("res://resources/control_label_settings.tres")
+		
+		control_settings.add_child(label)
