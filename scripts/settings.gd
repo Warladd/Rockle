@@ -35,9 +35,6 @@ func _on_back_button_pressed() -> void:
 	SaveSystem.save_settings()
 	visible = false
 
-func _on_popup_hide() -> void:
-	SaveSystem.save_settings()
-
 func _on_visibility_changed():
 	SaveSystem.load_game()
 	display_options.selected = SaveSystem.settings.display_option_value
@@ -45,19 +42,19 @@ func _on_visibility_changed():
 	music_vol.value = SaveSystem.settings.music_vol_value
 	sfx_vol.value = SaveSystem.settings.sfx_vol_value
 
-func create_action_remap_items() -> void:
-	var previous_item = control_settings.get_child(control_settings.get_child_count() - 1)
-	for index in range(action_items.size()):
-		var action = action_items[index]
-		var label = Label.new()
-		label.text = action
-		label.label_settings = load("res://resources/control_label_settings.tres")
-		control_settings.add_child(label)
-		var button = RemapButton.new()
-		button.action = action
-		button.focus_neighbor_top = previous_item.get_path()
-		previous_item.focus_neighbor_bottom = button.get_path()
-		if index == action_items.size() - 1:
-			button.focus_neighbor_bottom = back_button.get_path()
-		previous_item = button
-		control_settings.add_child(button)
+#func create_action_remap_items() -> void:
+	#var previous_item = control_settings.get_child(control_settings.get_child_count() - 1)
+	#for index in range(action_items.size()):
+		#var action = action_items[index]
+		#var label = Label.new()
+		#label.text = action
+		#label.label_settings = load("res://resources/control_label_settings.tres")
+		#control_settings.add_child(label)
+		#var button = RemapButton.new()
+		#button.action = action
+		#button.focus_neighbor_top = previous_item.get_path()
+		#previous_item.focus_neighbor_bottom = button.get_path()
+		#if index == action_items.size() - 1:
+			#button.focus_neighbor_bottom = back_button.get_path()
+		#previous_item = button
+		#control_settings.add_child(button)

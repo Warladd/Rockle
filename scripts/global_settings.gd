@@ -4,8 +4,6 @@ class_name Settings extends Resource
 @export var master_vol_value = -15
 @export var music_vol_value = -15
 @export var sfx_vol_value = -15
-#@export var input_type : Game.INPUT_SCHEMES = Game.INPUT_SCHEMES.KEYBOARD_AND_MOUSE
-
 
 func toggle_fullscreen(value) -> void:
 	display_option_value = value

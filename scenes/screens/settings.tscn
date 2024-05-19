@@ -12,7 +12,7 @@ display_options = NodePath("SettingTabs/Video/MarginContainer/VideoSettings/Disp
 master_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/MasterVolSlider")
 music_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/MusicVolSlider")
 sfx_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/SFXVolSlider")
-control_settings = NodePath("SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings")
+control_settings = NodePath("SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings")
 back_button = NodePath("VBoxContainer/BackButton")
 
 [node name="Background" type="ColorRect" parent="."]
@@ -155,79 +155,92 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SettingTabs/Controls/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingTabs/Controls/MarginContainer"]
 layout_mode = 2
 
-[node name="ControlSettings" type="GridContainer" parent="SettingTabs/Controls/MarginContainer/ScrollContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="SettingTabs/Controls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ControlSettings" type="GridContainer" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 columns = 2
 
-[node name="Label" type="Label" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+[node name="Label" type="Label" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
 layout_mode = 2
 text = "Straight"
 label_settings = ExtResource("3_w374r")
 
-[node name="Button" type="Button" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+[node name="Button" type="Button" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
 custom_minimum_size = Vector2(440, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 theme = ExtResource("4_octia")
-text = "Left Click"
+text = "PlaceHolder"
 script = ExtResource("5_s5qva")
 action = "straight"
 
-[node name="Label3" type="Label" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+[node name="Label3" type="Label" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
 layout_mode = 2
 text = "Stomp"
 label_settings = ExtResource("3_w374r")
 
-[node name="Button3" type="Button" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+[node name="Button3" type="Button" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
 custom_minimum_size = Vector2(440, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 theme = ExtResource("4_octia")
-text = "Left Click"
+text = "Placingholder"
 script = ExtResource("5_s5qva")
 action = "stomp"
 
-[node name="Label2" type="Label" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+[node name="Label2" type="Label" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
 layout_mode = 2
 text = "Kick"
 label_settings = ExtResource("3_w374r")
 
-[node name="Button2" type="Button" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+[node name="Button2" type="Button" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
 custom_minimum_size = Vector2(440, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 theme = ExtResource("4_octia")
-text = "Left Click"
+text = "Placeable Holder"
 script = ExtResource("5_s5qva")
 
-[node name="Label4" type="Label" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+[node name="Label4" type="Label" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
 layout_mode = 2
 text = "Uppercut"
 label_settings = ExtResource("3_w374r")
 
-[node name="Button4" type="Button" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+[node name="Button4" type="Button" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
 custom_minimum_size = Vector2(440, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 theme = ExtResource("4_octia")
-text = "Right Mouse Button"
+text = "Placeholder?"
 script = ExtResource("5_s5qva")
 action = "uppercut"
 
-[node name="Label5" type="Label" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+[node name="Label5" type="Label" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
 layout_mode = 2
 text = "Pause"
 label_settings = ExtResource("3_w374r")
 
-[node name="Label6" type="Label" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+[node name="Label6" type="Label" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Esc"
 label_settings = ExtResource("3_w374r")
+
+[node name="ResetButton" type="Button" parent="SettingTabs/Controls/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme = ExtResource("4_octia")
+text = "Reset Controls"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 3
@@ -252,4 +265,5 @@ flat = true
 [connection signal="value_changed" from="SettingTabs/Audio/MarginContainer/AudioSettings/MasterVolSlider" to="." method="_on_master_vol_slider_value_changed"]
 [connection signal="value_changed" from="SettingTabs/Audio/MarginContainer/AudioSettings/MusicVolSlider" to="." method="_on_music_vol_slider_value_changed"]
 [connection signal="value_changed" from="SettingTabs/Audio/MarginContainer/AudioSettings/SFXVolSlider" to="." method="_on_sfx_vol_slider_value_changed"]
+[connection signal="pressed" from="SettingTabs/Controls/MarginContainer/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

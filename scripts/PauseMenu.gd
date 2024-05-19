@@ -38,9 +38,9 @@ func _on_no_button_pressed():
 
 func _on_quitto_menu_button_pressed():
 	SaveSystem.saving()
+	await get_tree().create_timer(0.5).timeout
 	self.visible = !self.visible
 	get_tree().paused = self.visible
-	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file("res://scenes/screens/main_menu.tscn")
 
 func _on_settings_button_pressed():

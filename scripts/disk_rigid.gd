@@ -52,7 +52,7 @@ func _on_area_2d_body_entered(body):
 		modifiers.append("kick")
 	elif structures.stomp and !grounded:
 		grounded = true
-		linear_velocity.y += 300
+		linear_velocity.y += 1000
 		linear_velocity.x = 0
 	elif structures.uppercut and uppercut_timer.is_stopped():
 		uppercut_timer.start()

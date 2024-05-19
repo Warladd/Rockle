@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://gr3eo2a1whh"]
+
+[ext_resource type="FontFile" uid="uid://b3xk2n465gskq" path="res://assets/fonts/Crang.ttf" id="1_0cam0"]
+[ext_resource type="LabelSettings" uid="uid://d2hhavr0qasiu" path="res://resources/dialogue_box_text.tres" id="1_jojf5"]
+[ext_resource type="FontFile" uid="uid://dsbe80q132ao2" path="res://assets/fonts/chinese rocks free.ttf" id="3_5vmd5"]
+[ext_resource type="Texture2D" uid="uid://bcv0ryfhcjyi0" path="res://assets/rumble_guy_portrait.png" id="4_n5xx6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7nsut"]
+font = ExtResource("1_0cam0")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_g08sc"]
+font = ExtResource("3_5vmd5")
+font_size = 45
+
+[node name="Dialogue Box" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 431.0
+offset_right = 1123.0
+offset_bottom = 631.0
+color = Color(0.219501, 0.219501, 0.219501, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 11.0
+offset_right = 1105.0
+offset_bottom = 182.0
+text = "Welcome to the Tutorial! This is the wonderful World of Rockle and it seems you 
+need some guidance. I'm here to help!"
+label_settings = ExtResource("1_jojf5")
+
+[node name="Label2" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+text = ">"
+label_settings = SubResource("LabelSettings_7nsut")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 371.0
+offset_right = 438.0
+offset_bottom = 431.0
+color = Color(0.262932, 0.262932, 0.262932, 1)
+
+[node name="Label" type="Label" parent="ColorRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Rumble Guy"
+label_settings = SubResource("LabelSettings_g08sc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 208.0
+offset_right = 225.0
+offset_bottom = 431.0
+texture = ExtResource("4_n5xx6")

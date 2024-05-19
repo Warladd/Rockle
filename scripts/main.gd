@@ -175,8 +175,11 @@ func _ready() -> void:
 	SaveSystem.load_game()
 	shop.hide()
 	pause_menu.hide()
-	gear_label.text = str(SaveSystem.save_game.gear_coins)
-	shop_label.text = str(SaveSystem.save_game.gear_coins)
+	var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+	for i in range(int((len(gear_coin_string) - 1) /3)):
+		gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+	gear_label.text = gear_coin_string
+	shop_label.text = gear_coin_string
 	
 	# Disk
 	disk_label.text = str(SaveSystem.save_game.disk_cost)
@@ -318,8 +321,11 @@ func _process(_delta) -> void:
 		popup_container.add_child(label)
 		Global.popup_number = 0
 	if int(gear_label.text) != SaveSystem.save_game.gear_coins:
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 	
 func _on_button_pressed() -> void:
 	shop.show()
