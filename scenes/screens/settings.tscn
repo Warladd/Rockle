@@ -13,7 +13,6 @@ master_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/MasterVol
 music_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/MusicVolSlider")
 sfx_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/SFXVolSlider")
 control_settings = NodePath("SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings")
-action_items = Array[String](["stomp", "kick", "uppercut"])
 back_button = NodePath("VBoxContainer/BackButton")
 
 [node name="Background" type="ColorRect" parent="."]
@@ -170,12 +169,65 @@ text = "Straight"
 label_settings = ExtResource("3_w374r")
 
 [node name="Button" type="Button" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
-custom_minimum_size = Vector2(220, 0)
+custom_minimum_size = Vector2(440, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 theme = ExtResource("4_octia")
 text = "Left Click"
 script = ExtResource("5_s5qva")
+action = "straight"
+
+[node name="Label3" type="Label" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+layout_mode = 2
+text = "Stomp"
+label_settings = ExtResource("3_w374r")
+
+[node name="Button3" type="Button" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("4_octia")
+text = "Left Click"
+script = ExtResource("5_s5qva")
+action = "stomp"
+
+[node name="Label2" type="Label" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+layout_mode = 2
+text = "Kick"
+label_settings = ExtResource("3_w374r")
+
+[node name="Button2" type="Button" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("4_octia")
+text = "Left Click"
+script = ExtResource("5_s5qva")
+
+[node name="Label4" type="Label" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+layout_mode = 2
+text = "Uppercut"
+label_settings = ExtResource("3_w374r")
+
+[node name="Button4" type="Button" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("4_octia")
+text = "Right Mouse Button"
+script = ExtResource("5_s5qva")
+action = "uppercut"
+
+[node name="Label5" type="Label" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+layout_mode = 2
+text = "Pause"
+label_settings = ExtResource("3_w374r")
+
+[node name="Label6" type="Label" parent="SettingTabs/Controls/MarginContainer/ScrollContainer/ControlSettings"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Esc"
+label_settings = ExtResource("3_w374r")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 3

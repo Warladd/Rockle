@@ -1,7 +1,7 @@
 extends Button 
 class_name RemapButton
 
-@export var action : String
+@export var action : String = "kick"
 
 func _init():
 	toggle_mode = true
@@ -10,9 +10,6 @@ func _init():
 func _ready() -> void:
 	set_process_unhandled_input(false)
 	update_key_text()
-	self.grow_horizontal = Control.GROW_DIRECTION_END
-	self.SIZE_EXPAND
-	self.custom_minimum_size = Vector2(220, 0)
 
 func _toggled(toggled_on):
 	set_process_unhandled_input(toggled_on)

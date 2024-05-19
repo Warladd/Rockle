@@ -17,7 +17,7 @@ extends CanvasLayer
 # Functions
 func _ready():
 	visible = false
-	create_action_remap_items()
+	#create_action_remap_items()
 
 func _on_display_mode_btn_item_selected(index) -> void:
 	SaveSystem.settings.toggle_fullscreen(index)

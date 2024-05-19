@@ -25,6 +25,7 @@ Global="*res://scripts/global.gd"
 window/size/viewport_width=1120
 window/size/viewport_height=630
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="res://assets/custom_cursor.png"
 
 [input]
 
