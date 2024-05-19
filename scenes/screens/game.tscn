@@ -1053,6 +1053,7 @@ label_settings = ExtResource("3_6lbk3")
 
 [node name="PauseMenu" type="CanvasLayer" parent="." node_paths=PackedStringArray("settings")]
 process_mode = 3
+visible = false
 script = ExtResource("8_aofh8")
 settings = NodePath("../Settings")
 

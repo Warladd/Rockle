@@ -12,10 +12,12 @@ extends CanvasLayer
 @export var control_settings : GridContainer
 @export var action_items : Array[String]
 
+@export var back_button : Button
 
 # Functions
 func _ready():
-	visible = true
+	visible = false
+	create_action_remap_items()
 
 func _on_display_mode_btn_item_selected(index) -> void:
 	SaveSystem.settings.toggle_fullscreen(index)
@@ -50,5 +52,12 @@ func create_action_remap_items() -> void:
 		var label = Label.new()
 		label.text = action
 		label.label_settings = load("res://resources/control_label_settings.tres")
-		
 		control_settings.add_child(label)
+		var button = RemapButton.new()
+		button.action = action
+		button.focus_neighbor_top = previous_item.get_path()
+		previous_item.focus_neighbor_bottom = button.get_path()
+		if index == action_items.size() - 1:
+			button.focus_neighbor_bottom = back_button.get_path()
+		previous_item = button
+		control_settings.add_child(button)

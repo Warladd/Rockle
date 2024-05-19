@@ -1,7 +1,18 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://q7oavojuo262"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://q7oavojuo262"]
 
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="1_ykbgg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wepxf"]
+bg_color = Color(0.273156, 0.210626, 0.190835, 1)
 
 [resource]
 default_font = ExtResource("1_ykbgg")
 default_font_size = 50
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/font_sizes/font_size = 50
+Button/fonts/font = ExtResource("1_ykbgg")
+Button/styles/disabled = SubResource("StyleBoxFlat_wepxf")
+Button/styles/focus = SubResource("StyleBoxFlat_wepxf")
+Button/styles/hover = SubResource("StyleBoxFlat_wepxf")
+Button/styles/normal = SubResource("StyleBoxFlat_wepxf")
+Button/styles/pressed = SubResource("StyleBoxFlat_wepxf")
