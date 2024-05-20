@@ -1,15 +1,112 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgttq52mtkhdc"]
+[gd_scene load_steps=27 format=3 uid="uid://bgttq52mtkhdc"]
 
+[ext_resource type="Script" path="res://scenes/screens/tutorial.gd" id="1_64bv7"]
 [ext_resource type="PackedScene" uid="uid://gr3eo2a1whh" path="res://scenes/dialogue_box.tscn" id="1_p1pcp"]
+[ext_resource type="Texture2D" uid="uid://cwp8ebeixbs45" path="res://assets/tutorial/biggest vs smallest1.png" id="1_sn1jy"]
+[ext_resource type="Texture2D" uid="uid://im1k6uytchho" path="res://assets/tutorial/biggest vs smallest2.png" id="2_e3s8s"]
+[ext_resource type="Texture2D" uid="uid://bovcyp1513g3e" path="res://assets/tutorial/biggest vs smallest3.png" id="3_bebda"]
+[ext_resource type="Texture2D" uid="uid://bnv0kg0qmmdu8" path="res://assets/tutorial/biggest vs smallest4.png" id="4_usjwd"]
+[ext_resource type="Texture2D" uid="uid://dc1exnyogxgfa" path="res://assets/tutorial/biggest vs smallest5.png" id="5_2hq5j"]
+[ext_resource type="Texture2D" uid="uid://vw02o4ux2qy4" path="res://assets/tutorial/biggest vs smallest6.png" id="6_3sg1i"]
+[ext_resource type="Texture2D" uid="uid://dhp83aihb3edx" path="res://assets/tutorial/biggest vs smallest7.png" id="7_vjev1"]
+[ext_resource type="Texture2D" uid="uid://di6vnm42bkma6" path="res://assets/tutorial/biggest vs smallest8.png" id="8_jn2f7"]
+[ext_resource type="Texture2D" uid="uid://suw5oaumrpi0" path="res://assets/tutorial/biggest vs smallest9.png" id="9_l1r3k"]
+[ext_resource type="Texture2D" uid="uid://cepvmthkqw0oe" path="res://assets/tutorial/moving vs not moving1.png" id="10_140m1"]
+[ext_resource type="Texture2D" uid="uid://bu55roxlvjuuq" path="res://assets/tutorial/moving vs not moving2.png" id="11_a2030"]
+[ext_resource type="Texture2D" uid="uid://bj5gn0rrv1khj" path="res://assets/tutorial/multipliers.png" id="11_gxkyu"]
+[ext_resource type="Texture2D" uid="uid://btawl6qb0426" path="res://assets/tutorial/moving vs not moving3.png" id="12_in57r"]
+[ext_resource type="Texture2D" uid="uid://cw0a7ab67hwlr" path="res://assets/tutorial/structure damage values.png" id="12_ppp3b"]
+[ext_resource type="Texture2D" uid="uid://c6ba1hyjhumyd" path="res://assets/tutorial/grounded vs ungrounded.png" id="13_syh31"]
+[ext_resource type="Texture2D" uid="uid://qu1exo3xf5sh" path="res://assets/tutorial/moving vs not moving4.png" id="13_yvnad"]
+[ext_resource type="Texture2D" uid="uid://byq4i4v7f6ovl" path="res://assets/tutorial/moving vs not moving5.png" id="14_khas5"]
+[ext_resource type="Texture2D" uid="uid://o4u3a3i81vop" path="res://assets/tutorial/moving vs not moving6.png" id="15_6n04p"]
+[ext_resource type="Texture2D" uid="uid://c3cxehvkmo3f5" path="res://assets/tutorial/moving vs not moving7.png" id="16_xvqne"]
+[ext_resource type="Texture2D" uid="uid://bccfi8eadpeku" path="res://assets/tutorial/moving vs not moving8.png" id="17_8sc6j"]
+[ext_resource type="Texture2D" uid="uid://dli6hip1h7nlh" path="res://assets/tutorial/moving vs not moving9.png" id="18_2rhj3"]
+[ext_resource type="Texture2D" uid="uid://dvcn8ejypx2gc" path="res://assets/tutorial/moving vs not moving10.png" id="19_2vo5x"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_qoi4n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sn1jy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_e3s8s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bebda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_usjwd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2hq5j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3sg1i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vjev1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jn2f7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_l1r3k")
+}],
+"loop": true,
+"name": &"bigvsmall",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ofkmb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_140m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_a2030")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_in57r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_yvnad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_khas5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_6n04p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xvqne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_8sc6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_2rhj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_2vo5x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource("1_64bv7")
 
 [node name="Background" type="ColorRect" parent="."]
 show_behind_parent = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -3.0
+offset_left = -1.0
 offset_top = -1.0
 offset_right = 1094.0
 offset_bottom = 587.0
@@ -18,4 +115,37 @@ grow_vertical = 2
 scale = Vector2(1.02328, 1.07143)
 color = Color(0.322442, 0.678822, 0.762932, 1)
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(712.354, 217.359)
+scale = Vector2(6.79115, 7.11198)
+sprite_frames = SubResource("SpriteFrames_qoi4n")
+animation = &"bigvsmall"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(780, 228)
+scale = Vector2(13.5786, 13.5786)
+sprite_frames = SubResource("SpriteFrames_ofkmb")
+
 [node name="Dialogue Box" parent="." instance=ExtResource("1_p1pcp")]
+
+[node name="Multipliers" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(621.375, 216.035)
+scale = Vector2(5.25368, 5.25367)
+texture = ExtResource("11_gxkyu")
+
+[node name="StructureDamageValues" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(586, 189)
+scale = Vector2(5.53125, 5.53125)
+texture = ExtResource("12_ppp3b")
+
+[node name="GroundedVsUngrounded" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(815.875, 215.125)
+scale = Vector2(8.515, 8.515)
+texture = ExtResource("13_syh31")
+
+[editable path="Dialogue Box"]

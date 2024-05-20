@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://gr3eo2a1whh"]
+[gd_scene load_steps=8 format=3 uid="uid://gr3eo2a1whh"]
 
 [ext_resource type="FontFile" uid="uid://b3xk2n465gskq" path="res://assets/fonts/Crang.ttf" id="1_0cam0"]
 [ext_resource type="LabelSettings" uid="uid://d2hhavr0qasiu" path="res://resources/dialogue_box_text.tres" id="1_jojf5"]
+[ext_resource type="Script" path="res://scenes/dialogue_box.gd" id="1_mp3qf"]
 [ext_resource type="FontFile" uid="uid://dsbe80q132ao2" path="res://assets/fonts/chinese rocks free.ttf" id="3_5vmd5"]
 [ext_resource type="Texture2D" uid="uid://bcv0ryfhcjyi0" path="res://assets/rumble_guy_portrait.png" id="4_n5xx6"]
 
@@ -13,13 +14,15 @@ font_size = 40
 font = ExtResource("3_5vmd5")
 font_size = 45
 
-[node name="Dialogue Box" type="Control"]
+[node name="Dialogue Box" type="Control" node_paths=PackedStringArray("text_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mp3qf")
+text_label = NodePath("ColorRect/Label")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -35,7 +38,7 @@ offset_left = 14.0
 offset_top = 11.0
 offset_right = 1105.0
 offset_bottom = 182.0
-text = "Welcome to the Tutorial! This is the wonderful World of Rockle and it seems you 
+text = "Welcome to the Tutorial! This is the wonderful world of Rockle and it seems you 
 need some guidance. I'm here to help!"
 label_settings = ExtResource("1_jojf5")
 
