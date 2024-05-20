@@ -568,6 +568,10 @@ func _on_white_belt_button_pressed():
 		kick_button.disabled = false
 		kick_label.show()
 		kick_gear.show()
+		stomp_button.text = "Buy"
+		stomp_button.disabled = false
+		stomp_label.show()
+		stomp_gear.show()
 		gear_label.text = str(SaveSystem.save_game.gear_coins)
 		shop_label.text = str(SaveSystem.save_game.gear_coins)
 		SaveSystem.saving()
