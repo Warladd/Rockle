@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgttq52mtkhdc"]
+
+[ext_resource type="PackedScene" uid="uid://gr3eo2a1whh" path="res://scenes/dialogue_box.tscn" id="1_p1pcp"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -1.0
+offset_right = 1094.0
+offset_bottom = 587.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.02328, 1.07143)
+color = Color(0.322442, 0.678822, 0.762932, 1)
+
+[node name="Dialogue Box" parent="." instance=ExtResource("1_p1pcp")]

@@ -182,11 +182,17 @@ func _ready() -> void:
 	shop_label.text = gear_coin_string
 	
 	# Disk
-	disk_label.text = str(SaveSystem.save_game.disk_cost)
+	gear_coin_string = str(SaveSystem.save_game.disk_cost)
+	for i in range(int((len(gear_coin_string) - 1) /3)):
+		gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+	disk_label.text = gear_coin_string
 	disk_name_label.text = " Disk" + " (" + str(SaveSystem.save_game.disk) + ")"
 	
 	# Pillar
-	pillar_label.text = str(SaveSystem.save_game.pillar_cost)
+	gear_coin_string = str(SaveSystem.save_game.pillar_cost)
+	for i in range(int((len(gear_coin_string) - 1) /3)):
+		gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+	pillar_label.text = gear_coin_string
 	pillar_name_label.text = " Pillar" + " (" + str(SaveSystem.save_game.pillar) + ")"
 		
 	# Ball
@@ -197,7 +203,10 @@ func _ready() -> void:
 		ball_button.disabled = true
 		ball_button.text = "Locked"
 	elif SaveSystem.save_game.belt >= 1:
-		ball_label.text = str(SaveSystem.save_game.ball_cost)
+		gear_coin_string = str(SaveSystem.save_game.ball_cost)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		ball_label.text = gear_coin_string
 		ball_name_label.text = " Ball" + " (" + str(SaveSystem.save_game.ball) + ")"
 		
 	# Cube
@@ -208,7 +217,10 @@ func _ready() -> void:
 		cube_button.disabled = true
 		cube_button.text = "Locked"
 	elif SaveSystem.save_game.belt >= 2:
-		cube_label.text = str(SaveSystem.save_game.cube_cost)
+		gear_coin_string = str(SaveSystem.save_game.cube_cost)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		cube_label.text = gear_coin_string
 		cube_name_label.text = " Cube" + " (" + str(SaveSystem.save_game.cube) + ")"
 		
 	# Wall
@@ -220,7 +232,10 @@ func _ready() -> void:
 		wall_button.text = "Locked"
 	elif SaveSystem.save_game.belt >= 2:
 		wall_button.disabled = false
-		wall_label.text = str(SaveSystem.save_game.wall_cost)
+		gear_coin_string = str(SaveSystem.save_game.wall_cost)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		wall_label.text = gear_coin_string
 		wall_name_label.text = " Wall" + " (" + str(SaveSystem.save_game.wall) + ")"
 	
 	# Modifiers
@@ -343,10 +358,15 @@ func _on_disk_button_pressed() -> void:
 		SaveSystem.save_game.disk_cost = (SaveSystem.save_game.disk_cost + 5) * 1.2
 		SaveSystem.save_game.disk_cost = roundi(SaveSystem.save_game.disk_cost)
 		disk_name_label.text = " Disk" + " (" + str(SaveSystem.save_game.disk) + ")"
-		disk_label.text = str(SaveSystem.save_game.disk_cost)
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
-		
+		var wall_string = str(SaveSystem.save_game.disk_cost)
+		for i in range(int((len(wall_string) - 1) /3)):
+			wall_string = wall_string.insert(len(wall_string) - 4 * (i) - 3, ",")
+		disk_label.text = wall_string
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 		SaveSystem.saving()
 		print("saving")
 
@@ -368,9 +388,15 @@ func _on_pillar_button_pressed():
 			SaveSystem.save_game.pillar_increase *= 10
 		SaveSystem.save_game.pillar_cost = roundi(SaveSystem.save_game.pillar_cost)
 		pillar_label.text = str(SaveSystem.save_game.pillar_cost)
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
-		
+		var wall_string = str(SaveSystem.save_game.pillar_cost)
+		for i in range(int((len(wall_string) - 1) /3)):
+			wall_string = wall_string.insert(len(wall_string) - 4 * (i) - 3, ",")
+		pillar_label.text = wall_string
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 		SaveSystem.saving()
 		print("saving")
 
@@ -391,9 +417,15 @@ func _on_ball_button_pressed() -> void:
 			SaveSystem.save_game.ball_increase *= 10
 		ball_name_label.text = " Ball" + " (" + str(SaveSystem.save_game.ball) + ")"
 		SaveSystem.save_game.ball_cost = roundi(SaveSystem.save_game.ball_cost)
-		ball_label.text = str(SaveSystem.save_game.ball_cost)
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
+		var wall_string = str(SaveSystem.save_game.ball_cost)
+		for i in range(int((len(wall_string) - 1) /3)):
+			wall_string = wall_string.insert(len(wall_string) - 4 * (i) - 3, ",")
+		ball_label.text = wall_string
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 		
 		SaveSystem.saving()
 		print("saving")
@@ -415,9 +447,15 @@ func _on_cube_button_pressed():
 			SaveSystem.save_game.cube_increase *= 10
 		cube_name_label.text = " Cube" + " (" + str(SaveSystem.save_game.cube) + ")"
 		SaveSystem.save_game.cube_cost = roundi(SaveSystem.save_game.cube_cost)
-		cube_label.text = str(SaveSystem.save_game.cube_cost)
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
+		var wall_string = str(SaveSystem.save_game.cube_cost)
+		for i in range(int((len(wall_string) - 1) /3)):
+			wall_string = wall_string.insert(len(wall_string) - 4 * (i) - 3, ",")
+		cube_label.text = wall_string
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 		SaveSystem.saving()
 		print("saving")
 
@@ -437,9 +475,15 @@ func _on_wall_button_pressed() -> void:
 			SaveSystem.save_game.wall_increase *= 10
 		wall_name_label.text = " Wall" + " (" + str(SaveSystem.save_game.wall) + ")"
 		SaveSystem.save_game.wall_cost = roundi(SaveSystem.save_game.wall_cost)
-		wall_label.text = str(SaveSystem.save_game.wall_cost)
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
+		var wall_string = str(SaveSystem.save_game.wall_cost)
+		for i in range(int((len(wall_string) - 1) /3)):
+			wall_string = wall_string.insert(len(wall_string) - 4 * (i) - 3, ",")
+		wall_label.text = wall_string
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 		SaveSystem.saving()
 		print("saving")
 
@@ -479,8 +523,11 @@ func _on_stomp_button_pressed():
 		stomp_button.text = "Owned"
 		stomp_label.hide()
 		stomp_gear.hide()
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 		SaveSystem.saving()
 		print("saving")
 	
@@ -493,8 +540,11 @@ func _on_kick_button_pressed():
 		kick_button.text = "Owned"
 		kick_label.hide()
 		kick_gear.hide()
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 		SaveSystem.saving()
 		print("saving")
 
@@ -507,8 +557,11 @@ func _on_uppercut_button_pressed():
 		uppercut_button.text = "Owned"
 		uppercut_label.hide()
 		uppercut_gear.hide()
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 		SaveSystem.saving()
 		print("saving")
 
@@ -520,8 +573,11 @@ func _on_explode_button_pressed():
 		SaveSystem.save_game.stomp = true
 		explode_button.text = "Owned"
 		explode_label.hide()
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 		SaveSystem.saving()
 		print("saving")
 
@@ -545,8 +601,11 @@ func _on_straight_m_button_pressed():
 		straight_m_button.text = "Active"
 		straight_m_label.hide()
 		straight_m_gear.hide()
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 		SaveSystem.saving()
 		print("saving")
 
@@ -572,8 +631,11 @@ func _on_white_belt_button_pressed():
 		stomp_button.disabled = false
 		stomp_label.show()
 		stomp_gear.show()
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 		SaveSystem.saving()
 		print("saving")
 
@@ -595,8 +657,11 @@ func _on_yellow_belt_button_pressed():
 		uppercut_button.text = "Buy"
 		uppercut_label.show()
 		uppercut_gear.show()
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 		SaveSystem.saving()
 		print("saving")
 
@@ -614,8 +679,11 @@ func _on_green_belt_button_pressed():
 		cube_button.text = "Buy"
 		cube_label.show()
 		cube_gear.show()
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 		SaveSystem.saving()
 		print("saving")
 
@@ -629,8 +697,11 @@ func _on_blue_belt_button_pressed():
 		blue_belt_gear.hide()
 		red_belt_container.show()
 		player_sprite.sprite_frames = load("res://resources/red_belt.tres")
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 		SaveSystem.saving()
 		print("saving")
 
@@ -644,8 +715,11 @@ func _on_red_belt_button_pressed():
 		red_belt_gear.hide()
 		black_belt_container.show()
 		player_sprite.sprite_frames = load("res://resources/black_belt.tres")
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 		SaveSystem.saving()
 		print("saving")
 
@@ -657,7 +731,10 @@ func _on_black_belt_button_pressed():
 		black_belt_button.disabled = true
 		black_belt_label.hide()
 		black_belt_gear.hide()
-		gear_label.text = str(SaveSystem.save_game.gear_coins)
-		shop_label.text = str(SaveSystem.save_game.gear_coins)
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
 		SaveSystem.saving()
 		print("saving")

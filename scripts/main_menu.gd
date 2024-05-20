@@ -10,7 +10,10 @@ func _ready():
 	settings.hide()
 
 func _on_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/screens/game.tscn")
+	if !SaveSystem.save_game.tutorial:
+		get_tree().change_scene_to_file("res://scenes/screens/game.tscn")
+	elif SaveSystem.save_game.tutorial:
+		get_tree().change_scene_to_file("res://scenes/screens/tutorial.tscn")
 
 func _on_button_2_pressed():
 	settings.show()

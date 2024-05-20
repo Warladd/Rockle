@@ -653,7 +653,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer6"]
 layout_mode = 2
-text = "750 Coins"
+text = "750"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
@@ -681,7 +681,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "1000 Coins"
+text = "1,000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
@@ -710,7 +710,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-text = "5000 Coins"
+text = "5,000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
@@ -837,7 +837,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt"]
 layout_mode = 2
-text = "1000"
+text = "1,000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="KickMastery" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -865,7 +865,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/KickMastery"]
 layout_mode = 2
-text = "5000"
+text = "5,000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="YellowBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -892,7 +892,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/YellowBelt"]
 layout_mode = 2
-text = "15000"
+text = "15,000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="UppercutMastery" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -920,7 +920,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/UppercutMastery"]
 layout_mode = 2
-text = "75000"
+text = "75,000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="GreenBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -948,7 +948,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/GreenBelt"]
 layout_mode = 2
-text = "100000"
+text = "100,000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="BlueBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -976,7 +976,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/BlueBelt"]
 layout_mode = 2
-text = "1000000"
+text = "1,000,000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="RedBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -1004,7 +1004,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/RedBelt"]
 layout_mode = 2
-text = "15000000"
+text = "15,000,000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="BlackBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
@@ -1032,7 +1032,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/BlackBelt"]
 layout_mode = 2
-text = "550000000"
+text = "550,000,000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="ExitShopButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer"]
