@@ -8,10 +8,11 @@ func _init():
 	toggle_mode = true
 
 func _ready() -> void:
+	SaveSystem.load_game()
 	_load_keybindings_from_settings()
 
 func _load_keybindings_from_settings():
-	var keybindings = SaveSystem.settings.load_keybindings()
+	var keybindings = SaveSystem.keybinds.load_keybindings()
 	InputMap.action_erase_events(action)
 	var i
 	if action == "straight":
@@ -49,7 +50,7 @@ func _input(event):
 				#return
 			InputMap.action_erase_events(action)
 			InputMap.action_add_event(action, event)
-			SaveSystem.settings.save_keybinding(action, event)
+			SaveSystem.keybinds.save_keybinding(action, event)
 			text = "%s" % InputMap.action_get_events(action)[0].as_text()
 			
 			is_remapping = false

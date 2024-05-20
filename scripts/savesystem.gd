@@ -39,10 +39,24 @@ func load_game() -> void:
 		return
 	if OS.has_feature("standalone"):
 		save_game = ResourceLoader.load("user://savegame.res")
-		settings = ResourceLoader.load("user://settings.res")
+		if !FileAccess.file_exists("user://settings.res"):
+			pass
+		else:
+			settings = ResourceLoader.load("user://settings.res")
+		if !FileAccess.file_exists("user://keybinds.res"):
+			pass
+		else:
+			keybinds = ResourceLoader.load("user://keybinds.res")
 	else:
 		save_game = ResourceLoader.load("user://savegame.tres")
-		settings = ResourceLoader.load("user://settings.tres")
+		if !FileAccess.file_exists("user://settings.tres"):
+			pass
+		else:
+			settings = ResourceLoader.load("user://settings.tres")
+		if !FileAccess.file_exists("user://keybinds.tres"):
+			pass
+		else:
+			keybinds = ResourceLoader.load("user://keybinds.tres")
 
 func restart() -> void:
 	save_game = SaveFile.new()

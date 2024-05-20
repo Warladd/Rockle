@@ -10,7 +10,6 @@ extends CanvasLayer
 
 # Controls
 @export var control_settings : GridContainer
-@export var action_items : Array[String]
 
 @export var back_button : Button
 
