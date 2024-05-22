@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bgttq52mtkhdc"]
+[gd_scene load_steps=16 format=3 uid="uid://bgttq52mtkhdc"]
 
 [ext_resource type="Script" path="res://scenes/screens/tutorial.gd" id="1_64bv7"]
 [ext_resource type="PackedScene" uid="uid://gr3eo2a1whh" path="res://scenes/dialogue_box.tscn" id="1_p1pcp"]
 [ext_resource type="Texture2D" uid="uid://cepvmthkqw0oe" path="res://assets/tutorial/moving vs not moving1.png" id="10_140m1"]
 [ext_resource type="Texture2D" uid="uid://bu55roxlvjuuq" path="res://assets/tutorial/moving vs not moving2.png" id="11_a2030"]
+[ext_resource type="Texture2D" uid="uid://ca8pgrttmmqmc" path="res://assets/tutorial/crtv.png" id="12_cepqb"]
 [ext_resource type="Texture2D" uid="uid://btawl6qb0426" path="res://assets/tutorial/moving vs not moving3.png" id="12_in57r"]
 [ext_resource type="Texture2D" uid="uid://qu1exo3xf5sh" path="res://assets/tutorial/moving vs not moving4.png" id="13_yvnad"]
 [ext_resource type="Texture2D" uid="uid://byq4i4v7f6ovl" path="res://assets/tutorial/moving vs not moving5.png" id="14_khas5"]
@@ -51,6 +52,22 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_f63m4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_cepqb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_64bv7")
 
@@ -74,10 +91,14 @@ position = Vector2(780, 228)
 scale = Vector2(13.5786, 13.5786)
 sprite_frames = SubResource("SpriteFrames_ofkmb")
 
+[node name="CRTV" type="AnimatedSprite2D" parent="."]
+position = Vector2(764, 285)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_f63m4")
+animation = &"new_animation"
+
 [node name="Dialogue Box" parent="." instance=ExtResource("1_p1pcp")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
-[node name="CRTV" type="AnimatedSprite2D" parent="."]
 
 [editable path="Dialogue Box"]
