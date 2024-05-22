@@ -1,8 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://bgttq52mtkhdc"]
+[gd_scene load_steps=31 format=3 uid="uid://bgttq52mtkhdc"]
 
-[ext_resource type="Script" path="res://scenes/screens/tutorial.gd" id="1_64bv7"]
+[ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_64bv7"]
 [ext_resource type="PackedScene" uid="uid://gr3eo2a1whh" path="res://scenes/dialogue_box.tscn" id="1_p1pcp"]
+[ext_resource type="Texture2D" uid="uid://cwp8ebeixbs45" path="res://assets/tutorial/biggest vs smallest1.png" id="2_yppgi"]
+[ext_resource type="Texture2D" uid="uid://im1k6uytchho" path="res://assets/tutorial/biggest vs smallest2.png" id="3_38hvu"]
+[ext_resource type="Texture2D" uid="uid://bovcyp1513g3e" path="res://assets/tutorial/biggest vs smallest3.png" id="4_l1k1j"]
+[ext_resource type="Texture2D" uid="uid://bnv0kg0qmmdu8" path="res://assets/tutorial/biggest vs smallest4.png" id="5_mjoyk"]
+[ext_resource type="Texture2D" uid="uid://dc1exnyogxgfa" path="res://assets/tutorial/biggest vs smallest5.png" id="6_h5gkt"]
+[ext_resource type="Texture2D" uid="uid://vw02o4ux2qy4" path="res://assets/tutorial/biggest vs smallest6.png" id="7_1ljr5"]
+[ext_resource type="Texture2D" uid="uid://dhp83aihb3edx" path="res://assets/tutorial/biggest vs smallest7.png" id="8_yty3w"]
+[ext_resource type="Texture2D" uid="uid://di6vnm42bkma6" path="res://assets/tutorial/biggest vs smallest8.png" id="9_xv8yc"]
 [ext_resource type="Texture2D" uid="uid://cepvmthkqw0oe" path="res://assets/tutorial/moving vs not moving1.png" id="10_140m1"]
+[ext_resource type="Texture2D" uid="uid://suw5oaumrpi0" path="res://assets/tutorial/biggest vs smallest9.png" id="10_cafj5"]
+[ext_resource type="Texture2D" uid="uid://c6ba1hyjhumyd" path="res://assets/tutorial/grounded vs ungrounded.png" id="11_2dd58"]
 [ext_resource type="Texture2D" uid="uid://bu55roxlvjuuq" path="res://assets/tutorial/moving vs not moving2.png" id="11_a2030"]
 [ext_resource type="Texture2D" uid="uid://ca8pgrttmmqmc" path="res://assets/tutorial/crtv.png" id="12_cepqb"]
 [ext_resource type="Texture2D" uid="uid://btawl6qb0426" path="res://assets/tutorial/moving vs not moving3.png" id="12_in57r"]
@@ -13,9 +23,51 @@
 [ext_resource type="Texture2D" uid="uid://bccfi8eadpeku" path="res://assets/tutorial/moving vs not moving8.png" id="17_8sc6j"]
 [ext_resource type="Texture2D" uid="uid://dli6hip1h7nlh" path="res://assets/tutorial/moving vs not moving9.png" id="18_2rhj3"]
 [ext_resource type="Texture2D" uid="uid://dvcn8ejypx2gc" path="res://assets/tutorial/moving vs not moving10.png" id="19_2vo5x"]
+[ext_resource type="Texture2D" uid="uid://bj5gn0rrv1khj" path="res://assets/tutorial/multipliers.png" id="22_v7bq1"]
+[ext_resource type="Texture2D" uid="uid://cw0a7ab67hwlr" path="res://assets/tutorial/structure damage values.png" id="23_18x1s"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ofkmb"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yppgi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_38hvu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l1k1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mjoyk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_h5gkt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1ljr5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_yty3w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_xv8yc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_cafj5")
+}],
+"loop": true,
+"name": &"biggest_v_smallest",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_2dd58")
+}],
+"loop": true,
+"name": &"ground_v_unground",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("10_140m1")
@@ -48,7 +100,23 @@ animations = [{
 "texture": ExtResource("19_2vo5x")
 }],
 "loop": true,
-"name": &"default",
+"name": &"move_v_not_move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_v7bq1")
+}],
+"loop": true,
+"name": &"multipliers",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_18x1s")
+}],
+"loop": true,
+"name": &"structures",
 "speed": 5.0
 }]
 
@@ -68,6 +136,44 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_ehqyw"]
+resource_name = "structures"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dialogue Box/ColorRect/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Welcome to the Tutorial! This is the wonderful world of Rockle and it seems you 
+need some guidance. I'm here to help!"]
+}
+
+[sub_resource type="Animation" id="Animation_kdjqd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dialogue Box/ColorRect/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Welcome to the Tutorial! This is the wonderful world of Rockle and it seems you 
+need some guidance. I'm here to help!"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1svmk"]
+_data = {
+"RESET": SubResource("Animation_kdjqd"),
+"structures": SubResource("Animation_ehqyw")
+}
+
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_64bv7")
 
@@ -86,19 +192,35 @@ scale = Vector2(1.02328, 1.07143)
 color = Color(0.322442, 0.678822, 0.762932, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(780, 228)
-scale = Vector2(13.5786, 13.5786)
+position = Vector2(768, 210)
+scale = Vector2(6.19465, 6.19465)
 sprite_frames = SubResource("SpriteFrames_ofkmb")
+animation = &"structures"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 641.0
+offset_top = 89.0
+offset_right = 889.0
+offset_bottom = 136.0
+color = Color(0.207843, 0.207843, 0.25098, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 599.0
+offset_top = 26.0
+offset_right = 928.0
+offset_bottom = 73.0
+color = Color(0.321569, 0.678431, 0.764706, 1)
 
 [node name="CRTV" type="AnimatedSprite2D" parent="."]
 position = Vector2(764, 285)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_f63m4")
-animation = &"new_animation"
 
 [node name="Dialogue Box" parent="." instance=ExtResource("1_p1pcp")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1svmk")
+}
 
 [editable path="Dialogue Box"]

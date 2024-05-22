@@ -2,9 +2,10 @@
 
 [ext_resource type="FontFile" uid="uid://b3xk2n465gskq" path="res://assets/fonts/Crang.ttf" id="1_0cam0"]
 [ext_resource type="LabelSettings" uid="uid://d2hhavr0qasiu" path="res://resources/dialogue_box_text.tres" id="1_jojf5"]
-[ext_resource type="Script" path="res://scenes/dialogue_box.gd" id="1_mp3qf"]
+[ext_resource type="Script" path="res://scripts/dialogue_box.gd" id="1_mp3qf"]
 [ext_resource type="FontFile" uid="uid://dsbe80q132ao2" path="res://assets/fonts/chinese rocks free.ttf" id="3_5vmd5"]
 [ext_resource type="Texture2D" uid="uid://bcv0ryfhcjyi0" path="res://assets/rumble_guy_portrait.png" id="4_n5xx6"]
+
 
 [sub_resource type="LabelSettings" id="LabelSettings_7nsut"]
 font = ExtResource("1_0cam0")
