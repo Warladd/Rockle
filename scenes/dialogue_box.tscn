@@ -6,7 +6,6 @@
 [ext_resource type="FontFile" uid="uid://dsbe80q132ao2" path="res://assets/fonts/chinese rocks free.ttf" id="3_5vmd5"]
 [ext_resource type="Texture2D" uid="uid://bcv0ryfhcjyi0" path="res://assets/rumble_guy_portrait.png" id="4_n5xx6"]
 
-
 [sub_resource type="LabelSettings" id="LabelSettings_7nsut"]
 font = ExtResource("1_0cam0")
 font_size = 40

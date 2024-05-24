@@ -19,7 +19,7 @@ func _on_button_2_pressed():
 	settings.show()
 
 func _on_button_3_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://scenes/screens/tutorial.tscn")
 
 func _on_button_4_pressed():
 	get_tree().quit(0)

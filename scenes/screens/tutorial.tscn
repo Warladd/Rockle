@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bgttq52mtkhdc"]
+[gd_scene load_steps=88 format=3 uid="uid://bgttq52mtkhdc"]
 
 [ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_64bv7"]
 [ext_resource type="PackedScene" uid="uid://gr3eo2a1whh" path="res://scenes/dialogue_box.tscn" id="1_p1pcp"]
@@ -14,21 +14,66 @@
 [ext_resource type="Texture2D" uid="uid://suw5oaumrpi0" path="res://assets/tutorial/biggest vs smallest9.png" id="10_cafj5"]
 [ext_resource type="Texture2D" uid="uid://c6ba1hyjhumyd" path="res://assets/tutorial/grounded vs ungrounded.png" id="11_2dd58"]
 [ext_resource type="Texture2D" uid="uid://bu55roxlvjuuq" path="res://assets/tutorial/moving vs not moving2.png" id="11_a2030"]
+[ext_resource type="Texture2D" uid="uid://c2v8u5w2sfap0" path="res://assets/tutorial/combos/combos1.png" id="11_u12o3"]
 [ext_resource type="Texture2D" uid="uid://ca8pgrttmmqmc" path="res://assets/tutorial/crtv.png" id="12_cepqb"]
+[ext_resource type="Texture2D" uid="uid://dg4ws06pvgbyn" path="res://assets/tutorial/combos/combos2.png" id="12_fvlxc"]
 [ext_resource type="Texture2D" uid="uid://btawl6qb0426" path="res://assets/tutorial/moving vs not moving3.png" id="12_in57r"]
+[ext_resource type="Texture2D" uid="uid://dtswubjbryym6" path="res://assets/tutorial/combos/combos3.png" id="13_5pupk"]
 [ext_resource type="Texture2D" uid="uid://qu1exo3xf5sh" path="res://assets/tutorial/moving vs not moving4.png" id="13_yvnad"]
 [ext_resource type="Texture2D" uid="uid://byq4i4v7f6ovl" path="res://assets/tutorial/moving vs not moving5.png" id="14_khas5"]
+[ext_resource type="Texture2D" uid="uid://dpdca2vdjwqh0" path="res://assets/tutorial/combos/combos4.png" id="14_qqahn"]
 [ext_resource type="Texture2D" uid="uid://o4u3a3i81vop" path="res://assets/tutorial/moving vs not moving6.png" id="15_6n04p"]
+[ext_resource type="Texture2D" uid="uid://bfu45i6skj871" path="res://assets/tutorial/combos/combos5.png" id="15_rtice"]
+[ext_resource type="Texture2D" uid="uid://cap6dwt102a5s" path="res://assets/tutorial/combos/combos6.png" id="16_a7gf5"]
 [ext_resource type="Texture2D" uid="uid://c3cxehvkmo3f5" path="res://assets/tutorial/moving vs not moving7.png" id="16_xvqne"]
+[ext_resource type="Texture2D" uid="uid://bkt18gqrs5wys" path="res://assets/tutorial/combos/combos7.png" id="17_3pmdt"]
 [ext_resource type="Texture2D" uid="uid://bccfi8eadpeku" path="res://assets/tutorial/moving vs not moving8.png" id="17_8sc6j"]
 [ext_resource type="Texture2D" uid="uid://dli6hip1h7nlh" path="res://assets/tutorial/moving vs not moving9.png" id="18_2rhj3"]
+[ext_resource type="Texture2D" uid="uid://rvt8yculoh74" path="res://assets/tutorial/combos/combos8.png" id="18_d0ep0"]
 [ext_resource type="Texture2D" uid="uid://dvcn8ejypx2gc" path="res://assets/tutorial/moving vs not moving10.png" id="19_2vo5x"]
+[ext_resource type="Texture2D" uid="uid://dy265s4oqcabv" path="res://assets/tutorial/combos/combos9.png" id="19_ggo0m"]
+[ext_resource type="Texture2D" uid="uid://bdkqmbmiqsx02" path="res://assets/tutorial/combos/combos10.png" id="20_f5fhn"]
+[ext_resource type="Texture2D" uid="uid://s7plcjm8bi6l" path="res://assets/tutorial/combos/combos11.png" id="21_qm3gq"]
 [ext_resource type="Texture2D" uid="uid://bj5gn0rrv1khj" path="res://assets/tutorial/multipliers.png" id="22_v7bq1"]
+[ext_resource type="Texture2D" uid="uid://dxyejw2up8d51" path="res://assets/tutorial/combos/combos12.png" id="22_xeuwd"]
+[ext_resource type="Texture2D" uid="uid://d31s0ym5aiqou" path="res://assets/tutorial/combos/combos13.png" id="23_5qe26"]
 [ext_resource type="Texture2D" uid="uid://cw0a7ab67hwlr" path="res://assets/tutorial/structure damage values.png" id="23_18x1s"]
+[ext_resource type="Texture2D" uid="uid://cginh2lgu3j6q" path="res://assets/tutorial/combos/combos14.png" id="24_voxh5"]
+[ext_resource type="Texture2D" uid="uid://csu0uoxxvno5r" path="res://assets/tutorial/combos/combos15.png" id="25_5owqf"]
 [ext_resource type="Texture2D" uid="uid://c15ml3no54202" path="res://assets/tutorial/crtv_flash.png" id="25_p61fh"]
 [ext_resource type="Texture2D" uid="uid://bjnmnoe8fg1bh" path="res://assets/tutorial/crtv_static1.png" id="25_qsgv3"]
 [ext_resource type="Texture2D" uid="uid://burhojc53eam0" path="res://assets/tutorial/crtv_static2.png" id="26_2t872"]
+[ext_resource type="Texture2D" uid="uid://5m3iiwm0b02w" path="res://assets/tutorial/combos/combos16.png" id="26_iie3n"]
+[ext_resource type="Texture2D" uid="uid://bhxhhimp5jx15" path="res://assets/tutorial/combos/combos17.png" id="27_824lb"]
 [ext_resource type="Texture2D" uid="uid://281xj6g423t8" path="res://assets/tutorial/crtv_static3.png" id="27_dmamo"]
+[ext_resource type="Texture2D" uid="uid://xjnub13vjxxp" path="res://assets/tutorial/combos/combos18.png" id="28_8nl1r"]
+[ext_resource type="Texture2D" uid="uid://s7emd7lhwlio" path="res://assets/tutorial/combos/combos19.png" id="29_kkjhs"]
+[ext_resource type="Texture2D" uid="uid://cl13i4i4a8g8p" path="res://assets/tutorial/combos/combos20.png" id="30_dml4r"]
+[ext_resource type="Texture2D" uid="uid://bnma61qr27c8d" path="res://assets/tutorial/combos/combos21.png" id="31_0totv"]
+[ext_resource type="Texture2D" uid="uid://c77nii354s7qf" path="res://assets/tutorial/combos/combos22.png" id="32_s4dc7"]
+[ext_resource type="Texture2D" uid="uid://l7t3lvsooecv" path="res://assets/tutorial/combos/combos23.png" id="33_yoave"]
+[ext_resource type="Texture2D" uid="uid://bno8ex7htl0so" path="res://assets/tutorial/combos/combos24.png" id="34_5aakp"]
+[ext_resource type="Texture2D" uid="uid://bli31gv5e4as3" path="res://assets/tutorial/combos/combos25.png" id="35_jkuho"]
+[ext_resource type="Texture2D" uid="uid://j23poono0tlt" path="res://assets/tutorial/combos/combos26.png" id="36_4ja2y"]
+[ext_resource type="Texture2D" uid="uid://ir0q2uihjjsv" path="res://assets/tutorial/combos/combos27.png" id="37_lvf0j"]
+[ext_resource type="Texture2D" uid="uid://fkqypr7sk3dp" path="res://assets/tutorial/combos/combos28.png" id="38_q7bnk"]
+[ext_resource type="Texture2D" uid="uid://dl36y4fl52s24" path="res://assets/tutorial/combos/combos29.png" id="39_trn8o"]
+[ext_resource type="Texture2D" uid="uid://blqi148c6cphb" path="res://assets/tutorial/combos/combos30.png" id="40_gksju"]
+[ext_resource type="Texture2D" uid="uid://7pgefxebi5m8" path="res://assets/tutorial/combos/combos31.png" id="41_axsak"]
+[ext_resource type="Texture2D" uid="uid://7fghd7gg7pyx" path="res://assets/tutorial/combos/combos32.png" id="42_cj6bf"]
+[ext_resource type="Texture2D" uid="uid://dhsaxaohl01t8" path="res://assets/tutorial/combos/combos33.png" id="43_1klxm"]
+[ext_resource type="Texture2D" uid="uid://bs5peytkpm3ms" path="res://assets/tutorial/combos/combos34.png" id="44_onq16"]
+[ext_resource type="Texture2D" uid="uid://c13kotx05jswj" path="res://assets/tutorial/combos/combos35.png" id="45_6mt6b"]
+[ext_resource type="Texture2D" uid="uid://cp5ernmbipski" path="res://assets/tutorial/combos/combos36.png" id="46_305tj"]
+[ext_resource type="Texture2D" uid="uid://npvn5g7vahu4" path="res://assets/tutorial/combos/combos37.png" id="47_416mp"]
+[ext_resource type="Texture2D" uid="uid://clchxdgw3oqo2" path="res://assets/tutorial/combos/combos38.png" id="48_jseip"]
+[ext_resource type="Texture2D" uid="uid://bceixj3h0hd0j" path="res://assets/tutorial/combos/combos39.png" id="49_rcu4v"]
+[ext_resource type="Texture2D" uid="uid://dfu2j3mnj4j2l" path="res://assets/tutorial/combos/combos40.png" id="50_tq64k"]
+[ext_resource type="Texture2D" uid="uid://djku11fsimqgl" path="res://assets/tutorial/combos/combos41.png" id="51_s0iim"]
+[ext_resource type="Texture2D" uid="uid://bby5lhilicg2b" path="res://assets/tutorial/combos/combos42.png" id="52_hy74n"]
+[ext_resource type="Texture2D" uid="uid://6w0fyh35ojxh" path="res://assets/tutorial/combos/combos44.png" id="54_rd68w"]
+[ext_resource type="Texture2D" uid="uid://w8s1towk2g12" path="res://assets/tutorial/combos/combos45.png" id="55_d6cwx"]
+[ext_resource type="Texture2D" uid="uid://jaosxspm8fi3" path="res://assets/tutorial/combos/combos46.png" id="56_0hkda"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ofkmb"]
 animations = [{
@@ -62,6 +107,146 @@ animations = [{
 }],
 "loop": true,
 "name": &"biggest_v_smallest",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_u12o3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_fvlxc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_5pupk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_qqahn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_rtice")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_a7gf5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_3pmdt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_d0ep0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ggo0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_f5fhn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_qm3gq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_xeuwd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_5qe26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_voxh5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_5owqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_iie3n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_824lb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_8nl1r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_kkjhs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_dml4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_0totv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_s4dc7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_yoave")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_5aakp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_jkuho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_4ja2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_lvf0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_q7bnk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_trn8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_gksju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_axsak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_cj6bf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_1klxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_onq16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_6mt6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_305tj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_416mp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_jseip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_rcu4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_tq64k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_s0iim")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_hy74n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_rd68w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_d6cwx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_0hkda")
+}],
+"loop": true,
+"name": &"combos",
 "speed": 5.0
 }, {
 "frames": [{
@@ -162,92 +347,90 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Dialogue Box/ColorRect/Label:text")
+tracks/0/path = NodePath("Sprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["Welcome to the Tutorial! This is the wonderful world of Rockle and it seems you need some 
-guidance. I'm here to help!"]
+"update": 0,
+"values": [Vector2(767, 196)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/path = NodePath("Sprite:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(767, 196)]
+"values": [Vector2(2.05648, 2.05648)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:scale")
+tracks/2/path = NodePath("Sprite:animation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2.05648, 2.05648)]
+"update": 1,
+"values": [&"structures"]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite2D:animation")
+tracks/3/path = NodePath("CRTV:animation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"structures"]
+"values": [&"default"]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AnimatedSprite2D:frame")
+tracks/4/path = NodePath("Sprite:speed_scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"update": 0,
+"values": [1.2]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("CRTV:animation")
+tracks/5/path = NodePath("Sprite:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"default"]
+"values": [false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("AnimatedSprite2D:speed_scale")
+tracks/6/path = NodePath("ColorRect:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.2]
+"update": 1,
+"values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_ehqyw"]
-resource_name = "structures"
-length = 0.001
+[sub_resource type="Animation" id="Animation_ds3nd"]
+resource_name = "beginning"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -259,152 +442,173 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["These are called structures. They are the objects you can hit. The values under them are 
-their tier points otherwise known as their strength. When a structure comes into contact 
-with another it may break, break the other structure, or they will both break. The first 
-happens when it has less strength than the other. The second happens when it has more 
-strength than the other, and the third happens when they share the same strength."]
+"values": ["Welcome to the Tutorial! This is the wonderful world of Rockle and it seems you need some 
+guidance. I'm here to help! I'll explain the various mechanics that make up this game."]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/path = NodePath("CRTV:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(767, 196)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2.05648, 2.05648)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite2D:animation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"structures"]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AnimatedSprite2D:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("CRTV:animation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(3.7998e-08),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"default"]
 }
-
-[sub_resource type="Animation" id="Animation_rwdfi"]
-resource_name = "static"
-length = 1.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CRTV:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1e-05, 1e-05),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"static", &"flash"]
+"values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_x6wvw"]
-resource_name = "moving vs not moving"
+[sub_resource type="Animation" id="Animation_2y8fn"]
+resource_name = "big vs small"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Sprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"move_v_not_move"]
+"values": [&"biggest_v_smallest"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:speed_scale")
+tracks/1/path = NodePath("Sprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.2]
+"values": [Vector2(772.512, 199)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:position")
+tracks/2/path = NodePath("Sprite:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(769.397, 215.038)]
+"values": [Vector2(3.86219, 3.96062)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite2D:scale")
+tracks/3/path = NodePath("Dialogue Box/ColorRect/Label:text")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(5.46412, 5.73079)]
+"update": 1,
+"values": ["If you combine them together with a wall you get the highest possible strength for a spawnable structure. The inverse is a non moving, ungrounded disk with a whopping tier value of 0."]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Dialogue Box/ColorRect/Label:text")
+tracks/4/path = NodePath("CRTV:animation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["This is one of the two ways that influence a structure's tier points. It's movement! Whenever 
-a structure is moving it will have a +1 to it's base value! This is how a disk can deal any 
-damage."]
+"values": [&"default"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_jrnxi"]
+resource_name = "combos"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dialogue Box/ColorRect/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["The most unique thing about this game is combos. Combining modifiers will grant you different results allowing you to destroy structures that you may not be able to otherwise. Doing multiple modifiers on a structure will grant you a lot of gear coins. The more of them, the better. 
+"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"combos"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(760.361, 201.154)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.83024, 2.85275)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -421,10 +625,11 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_v4gb4"]
 resource_name = "grounded vs ungrounded"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Sprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -436,7 +641,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/path = NodePath("Sprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -448,7 +653,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:scale")
+tracks/2/path = NodePath("Sprite:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -483,66 +688,116 @@ tracks/4/keys = {
 "update": 1,
 "values": [&"default"]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
-[sub_resource type="Animation" id="Animation_2y8fn"]
-resource_name = "big vs small"
+[sub_resource type="Animation" id="Animation_x6wvw"]
+resource_name = "moving vs not moving"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Sprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"biggest_v_smallest"]
+"values": [&"move_v_not_move"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/path = NodePath("Sprite:speed_scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(772.512, 199)]
+"values": [1.2]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:scale")
+tracks/2/path = NodePath("Sprite:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(3.86219, 3.96062)]
+"values": [Vector2(769.397, 215.038)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Dialogue Box/ColorRect/Label:text")
+tracks/3/path = NodePath("Sprite:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5.46412, 5.73079)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Dialogue Box/ColorRect/Label:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["If you combine them together with a wall you get the highest possible strength for a 
-spawnable structure. The inverse is a non moving, ungrounded disk with a whopping tier value
-of 0."]
+"values": ["This is one of the two ways that influence a structure's tier points. It's movement! Whenever 
+a structure is moving it will have a +1 to it's base value! This is how a disk can deal any 
+damage."]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CRTV:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_3wrcb"]
 resource_name = "multipliers"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Sprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -554,7 +809,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/path = NodePath("Sprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -566,7 +821,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:scale")
+tracks/2/path = NodePath("Sprite:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -575,15 +830,208 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(2.63825, 2.70549)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Dialogue Box/ColorRect/Label:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["When you reach a milestone for a structure your base value for that structure will increase by 10 times. Although, the cost before the next milestone will cost over 5 times more than the one before it. 
+Ex. Buying the 10th disk costs 6 times the cost of the 9th disk."]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CRTV:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
 
-[sub_resource type="Animation" id="Animation_ds3nd"]
-resource_name = "beginning"
+[sub_resource type="Animation" id="Animation_rwdfi"]
+resource_name = "static"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CRTV:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1e-05, 1e-05),
+"update": 1,
+"values": [&"static", &"flash"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ehqyw"]
+resource_name = "structures"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dialogue Box/ColorRect/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["These are called structures. The values under them are their tier points also known as strength. The names of the structures left to right are: Disk, Pillar, Ball, Cube, and Wall. When one of these structures collide with another the structure with least tier points will break. If they have the same strength then they will both break. 
+Ex. A disk will break against a ball. A pillar and a ball will both break on collision."]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(767, 196)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.05648, 2.05648)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"structures"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CRTV:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(3.7998e-08),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_q3bhe"]
+resource_name = "ending"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CRTV:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Dialogue Box/ColorRect/Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["This is the end of the tutorial, I believe that you can now venture out into the world of rockle. If you still don't understand anything feel free to find me in the lobby near the flowstone. There will be a sign labeled 'Tutorial'. I may update my teaching in the future so make sure to come back sometimes. See you later!"]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1svmk"]
 _data = {
 "RESET": SubResource("Animation_kdjqd"),
 "beginning": SubResource("Animation_ds3nd"),
 "big vs small": SubResource("Animation_2y8fn"),
+"combos": SubResource("Animation_jrnxi"),
+"ending": SubResource("Animation_q3bhe"),
 "grounded vs ungrounded": SubResource("Animation_v4gb4"),
 "moving vs not moving": SubResource("Animation_x6wvw"),
 "multipliers": SubResource("Animation_3wrcb"),
@@ -591,8 +1039,11 @@ _data = {
 "structures": SubResource("Animation_ehqyw")
 }
 
-[node name="Tutorial" type="Node2D"]
+[node name="Tutorial" type="Node2D" node_paths=PackedStringArray("anim_player", "enter_label", "crtv")]
 script = ExtResource("1_64bv7")
+anim_player = NodePath("AnimationPlayer")
+enter_label = NodePath("Dialogue Box/ColorRect/Label2")
+crtv = NodePath("CRTV")
 
 [node name="Background" type="ColorRect" parent="."]
 show_behind_parent = true
@@ -615,7 +1066,8 @@ offset_right = 889.0
 offset_bottom = 324.0
 color = Color(0.207843, 0.207843, 0.25098, 1)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(767, 196)
 scale = Vector2(2.05648, 2.05648)
 sprite_frames = SubResource("SpriteFrames_ofkmb")
@@ -633,7 +1085,7 @@ color = Color(0.321569, 0.678431, 0.764706, 1)
 position = Vector2(764, 285)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_f63m4")
-frame_progress = 0.92719
+frame_progress = 0.414388
 speed_scale = 2.0
 
 [node name="Dialogue Box" parent="." instance=ExtResource("1_p1pcp")]
@@ -649,7 +1101,8 @@ offset_bottom = 645.0
 
 [node name="Label" parent="Dialogue Box/ColorRect" index="0"]
 text = "Welcome to the Tutorial! This is the wonderful world of Rockle and it seems you need some 
-guidance. I'm here to help!"
+guidance. I'm here to help! I'll explain the various mechanics that make up this game."
+autowrap_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
