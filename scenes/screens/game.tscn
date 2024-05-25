@@ -1,10 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://dtw6obm6lmpng"]
+[gd_scene load_steps=22 format=3 uid="uid://dtw6obm6lmpng"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rdaht"]
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="2_bwg6y"]
+[ext_resource type="Texture2D" uid="uid://d3xi3oue24hhb" path="res://assets/clouds.png" id="2_dqj61"]
 [ext_resource type="Script" path="res://scripts/testing_structures.gd" id="2_iebus"]
 [ext_resource type="LabelSettings" uid="uid://xd8rgjv5gtlp" path="res://resources/standard_label_settings.tres" id="3_6lbk3"]
 [ext_resource type="Texture2D" uid="uid://dudpb7ah1iana" path="res://assets/gear_coin.png" id="3_vfisr"]
+[ext_resource type="Texture2D" uid="uid://dqpskp83hv2pk" path="res://assets/Giant Wall.png" id="7_ielk0"]
 [ext_resource type="SpriteFrames" uid="uid://djw5x6aebbp1f" path="res://resources/white_belt.tres" id="8_8t7ce"]
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="8_aofh8"]
 [ext_resource type="LabelSettings" uid="uid://ca2wabawemdxc" path="res://resources/charge_label_settings.tres" id="10_5384l"]
@@ -16,21 +18,21 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xytg0"]
 size = Vector2(203, 132)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfnlq"]
+size = Vector2(62.5, 425)
+
 [sub_resource type="LabelSettings" id="LabelSettings_tq13i"]
 font = ExtResource("2_bwg6y")
 font_size = 160
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkvsg"]
-size = Vector2(1187, 254)
+size = Vector2(1122, 254)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dx7l"]
 bg_color = Color(0.575317, 0.54622, 0.536891, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1dof"]
 bg_color = Color(0.787727, 0.641632, 0.543549, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfnlq"]
-size = Vector2(29, 425)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1paub"]
 size = Vector2(384, 261)
@@ -122,12 +124,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -3.0
 offset_top = -1.0
-offset_right = 1094.0
-offset_bottom = 587.0
+offset_right = 1090.0
+offset_bottom = 354.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.02328, 1.07143)
 color = Color(0.322442, 0.678822, 0.762932, 1)
+
+[node name="Clouds" type="Sprite2D" parent="."]
+position = Vector2(539, 177)
+texture = ExtResource("2_dqj61")
 
 [node name="Structures" type="Node2D" parent="." node_paths=PackedStringArray("hitbox", "player", "player_sprite", "disk_timer", "pillar_timer", "ball_timer", "wall_timer", "cube_timer", "animation_timer", "disk_bar", "pillar_container", "pillar_bar", "ball_container", "ball_bar", "cube_container", "cube_bar", "wall_container", "wall_bar")]
 script = ExtResource("2_iebus")
@@ -164,22 +170,6 @@ position = Vector2(330, 321)
 sprite_frames = ExtResource("8_8t7ce")
 animation = &"stomp"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_direction = 2
-offset_left = 55.0
-offset_right = 128.0
-offset_bottom = 192.0
-scale = Vector2(0.25, 0.25)
-
-[node name="GearCoin" type="Sprite2D" parent="HBoxContainer"]
-position = Vector2(-100, 96)
-texture = ExtResource("3_vfisr")
-
-[node name="GearCoinLabel" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_tq13i")
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 63.0
 offset_top = 48.0
@@ -213,11 +203,44 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
+[node name="Breakable Wall" type="Node2D" parent="."]
+script = ExtResource("11_q4tyc")
+
+[node name="GiantWall" type="Sprite2D" parent="Breakable Wall"]
+position = Vector2(1147.5, 195.5)
+scale = Vector2(4.075, 3.91)
+texture = ExtResource("7_ielk0")
+
+[node name="Breaking_Wall" type="Area2D" parent="Breakable Wall"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Breakable Wall/Breaking_Wall"]
+position = Vector2(1097.25, 180)
+shape = SubResource("RectangleShape2D_gfnlq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_direction = 2
+offset_left = 55.0
+offset_top = 3.0
+offset_right = 128.0
+offset_bottom = 195.0
+scale = Vector2(0.25, 0.25)
+
+[node name="GearCoin" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(-100, 96)
+texture = ExtResource("3_vfisr")
+
+[node name="GearCoinLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_tq13i")
+
 [node name="ShopButton" type="Button" parent="."]
-offset_left = 1019.0
-offset_top = 5.0
-offset_right = 1211.0
-offset_bottom = 133.0
+offset_left = 974.0
+offset_top = 2.0
+offset_right = 1322.0
+offset_bottom = 233.0
 scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_bwg6y")
@@ -616,7 +639,6 @@ size_flags_vertical = 0
 [node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "Press Left Click to Straight"
 mouse_filter = 1
 text = " Straight"
 label_settings = ExtResource("3_6lbk3")
@@ -634,7 +656,6 @@ size_flags_vertical = 0
 
 [node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer6"]
 layout_mode = 2
-tooltip_text = "Press Space to Stomp"
 mouse_filter = 1
 text = " Stomp"
 label_settings = ExtResource("3_6lbk3")
@@ -662,7 +683,6 @@ size_flags_vertical = 0
 
 [node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-tooltip_text = "Press Z to Kick"
 mouse_filter = 1
 text = " Kick"
 label_settings = ExtResource("3_6lbk3")
@@ -691,7 +711,6 @@ size_flags_vertical = 0
 [node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 8
-tooltip_text = "Press Right Click to Uppercut"
 mouse_filter = 1
 text = " Uppercut"
 label_settings = ExtResource("3_6lbk3")
@@ -1145,7 +1164,7 @@ top_level = true
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(590.5, 503)
+position = Vector2(558, 503)
 shape = SubResource("RectangleShape2D_rkvsg")
 
 [node name="Ground" type="ColorRect" parent="Floor"]
@@ -1258,17 +1277,6 @@ theme_override_styles/background = SubResource("StyleBoxFlat_6dx7l")
 theme_override_styles/fill = SubResource("StyleBoxFlat_c1dof")
 max_value = 1.0
 show_percentage = false
-
-[node name="Breakable Wall" type="Node2D" parent="."]
-script = ExtResource("11_q4tyc")
-
-[node name="Breaking_Wall" type="Area2D" parent="Breakable Wall"]
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Breakable Wall/Breaking_Wall"]
-position = Vector2(1146.5, 212)
-shape = SubResource("RectangleShape2D_gfnlq")
 
 [node name="Settings" parent="." instance=ExtResource("12_ygs3y")]
 process_mode = 3
