@@ -1,11 +1,17 @@
-[gd_scene load_steps=22 format=3 uid="uid://dtw6obm6lmpng"]
+[gd_scene load_steps=28 format=3 uid="uid://dtw6obm6lmpng"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rdaht"]
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="2_bwg6y"]
-[ext_resource type="Texture2D" uid="uid://d3xi3oue24hhb" path="res://assets/clouds.png" id="2_dqj61"]
 [ext_resource type="Script" path="res://scripts/testing_structures.gd" id="2_iebus"]
+[ext_resource type="Texture2D" uid="uid://cn05bgi4janpn" path="res://assets/mountains_testing_back.png" id="2_oulwa"]
+[ext_resource type="Script" path="res://scripts/background.gd" id="2_q1wf8"]
+[ext_resource type="Texture2D" uid="uid://b7hb1op7son8f" path="res://assets/clouds_1.png" id="3_2prhk"]
 [ext_resource type="LabelSettings" uid="uid://xd8rgjv5gtlp" path="res://resources/standard_label_settings.tres" id="3_6lbk3"]
 [ext_resource type="Texture2D" uid="uid://dudpb7ah1iana" path="res://assets/gear_coin.png" id="3_vfisr"]
+[ext_resource type="Texture2D" uid="uid://843fqkh3wfvb" path="res://assets/mountains_testing_front.png" id="4_d1gks"]
+[ext_resource type="Texture2D" uid="uid://cqbjkac5sfbki" path="res://assets/clouds_2.png" id="4_xjvxm"]
+[ext_resource type="Texture2D" uid="uid://dr2g6jho5slhg" path="res://assets/clouds_3.png" id="5_kv0hw"]
+[ext_resource type="Texture2D" uid="uid://cj63ekvcqcgn8" path="res://assets/clouds_4.png" id="6_aj4dd"]
 [ext_resource type="Texture2D" uid="uid://dqpskp83hv2pk" path="res://assets/Giant Wall.png" id="7_ielk0"]
 [ext_resource type="SpriteFrames" uid="uid://djw5x6aebbp1f" path="res://resources/white_belt.tres" id="8_8t7ce"]
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="8_aofh8"]
@@ -17,6 +23,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xytg0"]
 size = Vector2(203, 132)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1paub"]
+size = Vector2(384, 261)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfnlq"]
 size = Vector2(62.5, 425)
@@ -33,9 +42,6 @@ bg_color = Color(0.575317, 0.54622, 0.536891, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1dof"]
 bg_color = Color(0.787727, 0.641632, 0.543549, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1paub"]
-size = Vector2(384, 261)
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("disk_label", "disk_name_label", "disk_container", "disk_bar", "pillar_timer", "pillar_label", "pillar_name_label", "pillar_container", "pillar_bar", "ball_timer", "ball_label", "ball_gear", "ball_name_label", "ball_container", "ball_bar", "ball_button", "cube_timer", "cube_label", "cube_gear", "cube_name_label", "cube_container", "cube_bar", "cube_button", "wall_timer", "wall_label", "wall_gear", "wall_name_label", "wall_container", "wall_bar", "wall_button", "kick_button", "kick_label", "kick_gear", "stomp_button", "stomp_label", "stomp_gear", "uppercut_button", "uppercut_label", "uppercut_gear", "explode_button", "explode_label", "straight_m_button", "straight_m_label", "straight_m_gear", "white_belt_label", "white_belt_button", "white_belt_gear", "yellow_belt_label", "yellow_belt_button", "yellow_belt_container", "yellow_belt_gear", "green_belt_label", "green_belt_button", "green_belt_container", "green_belt_gear", "blue_belt_label", "blue_belt_button", "blue_belt_container", "blue_belt_gear", "red_belt_label", "red_belt_button", "red_belt_container", "red_belt_gear", "black_belt_label", "black_belt_button", "black_belt_container", "black_belt_gear", "gear_label", "shop_label", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu", "settings", "popup_container")]
 script = ExtResource("1_rdaht")
@@ -117,23 +123,71 @@ pause_menu = NodePath("PauseMenu")
 settings = NodePath("Settings")
 popup_container = NodePath("VBoxContainer")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ParallaxBackground" parent="."]
+layer = -10
+script = ExtResource("2_q1wf8")
+
+[node name="Background" type="ColorRect" parent="Background"]
 show_behind_parent = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -3.0
-offset_top = -1.0
-offset_right = 1090.0
-offset_bottom = 354.0
+offset_right = -26.0
+offset_bottom = -150.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.02328, 1.07143)
 color = Color(0.322442, 0.678822, 0.762932, 1)
+metadata/_edit_lock_ = true
 
-[node name="Clouds" type="Sprite2D" parent="."]
-position = Vector2(539, 177)
-texture = ExtResource("2_dqj61")
+[node name="MountainsBack" type="Sprite2D" parent="Background"]
+position = Vector2(541, 218)
+texture = ExtResource("2_oulwa")
+metadata/_edit_lock_ = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+scale = Vector2(1.024, 0.857143)
+motion_scale = Vector2(0.65, 0.65)
+motion_offset = Vector2(100, 0)
+motion_mirroring = Vector2(1120, 0)
+
+[node name="Clouds" type="Sprite2D" parent="Background/ParallaxLayer"]
+position = Vector2(561.523, 332.5)
+scale = Vector2(1.094, 0.75)
+texture = ExtResource("3_2prhk")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Background"]
+scale = Vector2(1.024, 0.857143)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1250, 0)
+
+[node name="Clouds2" type="Sprite2D" parent="Background/ParallaxLayer2"]
+position = Vector2(496.094, 207.667)
+scale = Vector2(1.094, 0.86)
+texture = ExtResource("4_xjvxm")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.75, 0.75)
+motion_mirroring = Vector2(1120, 0)
+
+[node name="Clouds3" type="Sprite2D" parent="Background/ParallaxLayer3"]
+position = Vector2(532, 222)
+scale = Vector2(1, 0.8)
+texture = ExtResource("5_kv0hw")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(1120, 0)
+
+[node name="Clouds4" type="Sprite2D" parent="Background/ParallaxLayer4"]
+position = Vector2(492, 195)
+scale = Vector2(1.094, 0.7)
+texture = ExtResource("6_aj4dd")
+
+[node name="MountainsFront" type="Sprite2D" parent="Background"]
+position = Vector2(538, 216)
+texture = ExtResource("4_d1gks")
+metadata/_edit_lock_ = true
 
 [node name="Structures" type="Node2D" parent="." node_paths=PackedStringArray("hitbox", "player", "player_sprite", "disk_timer", "pillar_timer", "ball_timer", "wall_timer", "cube_timer", "animation_timer", "disk_bar", "pillar_container", "pillar_bar", "ball_container", "ball_bar", "cube_container", "cube_bar", "wall_container", "wall_bar")]
 script = ExtResource("2_iebus")
@@ -157,6 +211,7 @@ wall_container = NodePath("../StructureBarContainer/WallContainer")
 wall_bar = NodePath("../StructureBarContainer/WallContainer/ProgressBar")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Structures"]
+position = Vector2(-200, 0)
 collision_layer = 2
 collision_mask = 0
 
@@ -169,6 +224,14 @@ disabled = true
 position = Vector2(330, 321)
 sprite_frames = ExtResource("8_8t7ce")
 animation = &"stomp"
+
+[node name="StructureDetector" type="Area2D" parent="Structures/CharacterBody2D"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structures/CharacterBody2D/StructureDetector"]
+position = Vector2(388, 246.5)
+shape = SubResource("RectangleShape2D_1paub")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 63.0
@@ -1282,14 +1345,10 @@ show_percentage = false
 process_mode = 3
 visible = false
 
-[node name="StructureDetector" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StructureDetector"]
-position = Vector2(388, 246.5)
-shape = SubResource("RectangleShape2D_1paub")
-
+[connection signal="area_entered" from="Structures/CharacterBody2D/StructureDetector" to="Structures" method="_on_structure_detector_area_entered"]
+[connection signal="area_exited" from="Structures/CharacterBody2D/StructureDetector" to="Structures" method="_on_structure_detector_area_exited"]
+[connection signal="body_entered" from="Structures/CharacterBody2D/StructureDetector" to="Structures" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Structures/CharacterBody2D/StructureDetector" to="Structures" method="_on_structure_detector_body_exited"]
 [connection signal="timeout" from="Timers/DiskTimer" to="Structures" method="_on_disk_timer_timeout"]
 [connection signal="timeout" from="Timers/PillarTimer" to="Structures" method="_on_pillar_timer_timeout"]
 [connection signal="timeout" from="Timers/BallTimer" to="Structures" method="_on_ball_timer_timeout"]
@@ -1328,7 +1387,3 @@ shape = SubResource("RectangleShape2D_1paub")
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/RestartButton" to="PauseMenu" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/QuittoMenuButton" to="PauseMenu" method="_on_quitto_menu_button_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
-[connection signal="area_entered" from="StructureDetector" to="Structures" method="_on_structure_detector_area_entered"]
-[connection signal="area_exited" from="StructureDetector" to="Structures" method="_on_structure_detector_area_exited"]
-[connection signal="body_entered" from="StructureDetector" to="Structures" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="StructureDetector" to="Structures" method="_on_structure_detector_body_exited"]

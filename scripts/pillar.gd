@@ -95,6 +95,9 @@ func _on_area_2d_2_area_entered(area):
 		if modifiers.has("uppercut"):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.pillar * SaveSystem.save_game.pillar_increase * SaveSystem.save_game.general_increase * 2
 			gear_amount += SaveSystem.save_game.pillar * SaveSystem.save_game.pillar_increase * SaveSystem.save_game.general_increase * 2
+		if grounded:
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.pillar * SaveSystem.save_game.pillar_increase * SaveSystem.save_game.general_increase
+			gear_amount += SaveSystem.save_game.pillar * SaveSystem.save_game.pillar_increase * SaveSystem.save_game.general_increase
 		Global.popup_number = gear_amount
 		SaveSystem.saving()
 		print("saving")

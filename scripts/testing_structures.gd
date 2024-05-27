@@ -103,7 +103,7 @@ func _physics_process(delta) -> void:
 		cubey = false
 		var cube = cube_scene.instantiate()
 		add_child(cube)
-		cube.global_position = Vector2(426, 417)
+		cube.global_position = Vector2(226, 417)
 		await get_tree().create_timer(1).timeout
 		cube_timer.start()
 		cube_tween = create_tween()
@@ -119,7 +119,7 @@ func _physics_process(delta) -> void:
 		wally = false
 		var wall = wall_scene.instantiate()
 		add_child(wall)
-		wall.global_position = Vector2(426, 446)
+		wall.global_position = Vector2(226, 446)
 		await get_tree().create_timer(1).timeout
 		wall_timer.start()
 		wall_tween = create_tween()
@@ -135,7 +135,7 @@ func _physics_process(delta) -> void:
 		bally = false
 		var ball = ball_scene.instantiate()
 		add_child(ball)
-		ball.global_position = Vector2(411, 404)
+		ball.global_position = Vector2(211, 404)
 		await get_tree().create_timer(0.2).timeout
 		ball_timer.start()
 		ball_tween = create_tween()
@@ -151,7 +151,7 @@ func _physics_process(delta) -> void:
 		pillary = false
 		var pillar = pillar_scene.instantiate()
 		add_child(pillar)
-		pillar.global_position = Vector2(416, 448)
+		pillar.global_position = Vector2(216, 448)
 		await get_tree().create_timer(0.3).timeout
 		pillar_timer.start()
 		pillar_tween = create_tween()
@@ -167,7 +167,7 @@ func _physics_process(delta) -> void:
 		disky = false
 		var disk = disk_scene.instantiate()
 		add_child(disk)
-		disk.global_position = Vector2(416, 391)
+		disk.global_position = Vector2(216, 391)
 		await get_tree().create_timer(0.1).timeout
 		disk_timer.start()
 		disk_tween = create_tween()
