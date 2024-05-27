@@ -1,7 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://wt6tk48qfnrj"]
 
 [ext_resource type="Script" path="res://scripts/cube'.gd" id="1_lfmna"]
-[ext_resource type="Texture2D" uid="uid://dgqsa65iidm7r" path="res://assets/structures/cube_grounded.png" id="2_orikk"]
+[ext_resource type="Texture2D" uid="uid://dgqsa65iidm7r" path="res://assets/images/structures/cube_grounded.png" id="2_orikk"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtvwe"]
 size = Vector2(86, 81)

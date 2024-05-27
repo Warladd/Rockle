@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cxmpm8i3rnsd1"]
 
 [ext_resource type="Script" path="res://scripts/ball.gd" id="1_lqumv"]
-[ext_resource type="Texture2D" uid="uid://dpkrj31ut0ote" path="res://assets/structures/ball_ungrounded.png" id="2_4gfil"]
+[ext_resource type="Texture2D" uid="uid://dpkrj31ut0ote" path="res://assets/images/structures/ball_ungrounded.png" id="2_4gfil"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvkvu"]
 size = Vector2(78, 66)

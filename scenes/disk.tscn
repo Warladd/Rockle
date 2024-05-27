@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://81gnpf5in3r5"]
 
 [ext_resource type="Script" path="res://scripts/disk.gd" id="1_1chq5"]
-[ext_resource type="Texture2D" uid="uid://mujrrxupnbt1" path="res://assets/structures/disk_ungrounded.png" id="2_8ifpy"]
+[ext_resource type="Texture2D" uid="uid://mujrrxupnbt1" path="res://assets/images/structures/disk_ungrounded.png" id="2_8ifpy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2mjn"]
 size = Vector2(80, 30)

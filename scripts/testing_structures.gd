@@ -1,6 +1,7 @@
 extends Node2D
 
 @export_group("Player")
+@export var sfx_player : AudioStreamPlayer2D
 @export var hitbox : CollisionShape2D
 @export var player : CharacterBody2D
 @export var player_sprite : AnimatedSprite2D

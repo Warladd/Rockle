@@ -1,24 +1,24 @@
 [gd_scene load_steps=28 format=3 uid="uid://dtw6obm6lmpng"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rdaht"]
-[ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="2_bwg6y"]
+[ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/images/fonts/chinese rocks rg.otf" id="2_bwg6y"]
 [ext_resource type="Script" path="res://scripts/testing_structures.gd" id="2_iebus"]
-[ext_resource type="Texture2D" uid="uid://cn05bgi4janpn" path="res://assets/mountains_testing_back.png" id="2_oulwa"]
+[ext_resource type="Texture2D" uid="uid://cn05bgi4janpn" path="res://assets/images/mountains_testing_back.png" id="2_oulwa"]
 [ext_resource type="Script" path="res://scripts/background.gd" id="2_q1wf8"]
-[ext_resource type="Texture2D" uid="uid://b7hb1op7son8f" path="res://assets/clouds_1.png" id="3_2prhk"]
+[ext_resource type="Texture2D" uid="uid://b7hb1op7son8f" path="res://assets/images/clouds_1.png" id="3_2prhk"]
 [ext_resource type="LabelSettings" uid="uid://xd8rgjv5gtlp" path="res://resources/standard_label_settings.tres" id="3_6lbk3"]
-[ext_resource type="Texture2D" uid="uid://dudpb7ah1iana" path="res://assets/gear_coin.png" id="3_vfisr"]
-[ext_resource type="Texture2D" uid="uid://843fqkh3wfvb" path="res://assets/mountains_testing_front.png" id="4_d1gks"]
-[ext_resource type="Texture2D" uid="uid://cqbjkac5sfbki" path="res://assets/clouds_2.png" id="4_xjvxm"]
-[ext_resource type="Texture2D" uid="uid://dr2g6jho5slhg" path="res://assets/clouds_3.png" id="5_kv0hw"]
-[ext_resource type="Texture2D" uid="uid://cj63ekvcqcgn8" path="res://assets/clouds_4.png" id="6_aj4dd"]
-[ext_resource type="Texture2D" uid="uid://dqpskp83hv2pk" path="res://assets/Giant Wall.png" id="7_ielk0"]
+[ext_resource type="Texture2D" uid="uid://dudpb7ah1iana" path="res://assets/images/gear_coin.png" id="3_vfisr"]
+[ext_resource type="Texture2D" uid="uid://843fqkh3wfvb" path="res://assets/images/mountains_testing_front.png" id="4_d1gks"]
+[ext_resource type="Texture2D" uid="uid://cqbjkac5sfbki" path="res://assets/images/clouds_2.png" id="4_xjvxm"]
+[ext_resource type="Texture2D" uid="uid://dr2g6jho5slhg" path="res://assets/images/clouds_3.png" id="5_kv0hw"]
+[ext_resource type="Texture2D" uid="uid://cj63ekvcqcgn8" path="res://assets/images/clouds_4.png" id="6_aj4dd"]
+[ext_resource type="Texture2D" uid="uid://dqpskp83hv2pk" path="res://assets/images/Giant Wall.png" id="7_ielk0"]
 [ext_resource type="SpriteFrames" uid="uid://djw5x6aebbp1f" path="res://resources/white_belt.tres" id="8_8t7ce"]
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="8_aofh8"]
 [ext_resource type="LabelSettings" uid="uid://ca2wabawemdxc" path="res://resources/charge_label_settings.tres" id="10_5384l"]
 [ext_resource type="Script" path="res://scripts/breaking_wall.gd" id="11_q4tyc"]
-[ext_resource type="Texture2D" uid="uid://buy76hpr2jxed" path="res://assets/gear_coin_small.png" id="12_p6s2u"]
-[ext_resource type="Texture2D" uid="uid://bh5jtnw4f5sy" path="res://assets/upgrade.png" id="12_rri2l"]
+[ext_resource type="Texture2D" uid="uid://buy76hpr2jxed" path="res://assets/images/gear_coin_small.png" id="12_p6s2u"]
+[ext_resource type="Texture2D" uid="uid://bh5jtnw4f5sy" path="res://assets/images/upgrade.png" id="12_rri2l"]
 [ext_resource type="PackedScene" uid="uid://bu4fraknk5a5n" path="res://scenes/screens/settings.tscn" id="12_ygs3y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xytg0"]
@@ -189,8 +189,9 @@ position = Vector2(538, 216)
 texture = ExtResource("4_d1gks")
 metadata/_edit_lock_ = true
 
-[node name="Structures" type="Node2D" parent="." node_paths=PackedStringArray("hitbox", "player", "player_sprite", "disk_timer", "pillar_timer", "ball_timer", "wall_timer", "cube_timer", "animation_timer", "disk_bar", "pillar_container", "pillar_bar", "ball_container", "ball_bar", "cube_container", "cube_bar", "wall_container", "wall_bar")]
+[node name="Structures" type="Node2D" parent="." node_paths=PackedStringArray("sfx_player", "hitbox", "player", "player_sprite", "disk_timer", "pillar_timer", "ball_timer", "wall_timer", "cube_timer", "animation_timer", "disk_bar", "pillar_container", "pillar_bar", "ball_container", "ball_bar", "cube_container", "cube_bar", "wall_container", "wall_bar")]
 script = ExtResource("2_iebus")
+sfx_player = NodePath("SFXPlayer")
 hitbox = NodePath("CharacterBody2D/CollisionShape2D")
 player = NodePath("CharacterBody2D")
 player_sprite = NodePath("CharacterBody2D/Player")
@@ -232,6 +233,9 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Structures/CharacterBody2D/StructureDetector"]
 position = Vector2(388, 246.5)
 shape = SubResource("RectangleShape2D_1paub")
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="Structures"]
+bus = &"SFX"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 63.0
