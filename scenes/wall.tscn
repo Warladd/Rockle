@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b6nwr7xurki37"]
 
 [ext_resource type="Script" path="res://scripts/wall.gd" id="1_mukex"]
-[ext_resource type="Texture2D" uid="uid://cpv2llrlowknn" path="res://assets/images/structures/wall_grounded.png" id="2_a6dpe"]
+[ext_resource type="Texture2D" uid="uid://cpv2llrlowknn" path="res://assets/images/structures/wall_grounded.png" id="2_4sdxi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7o5b3"]
 size = Vector2(86, 140)
@@ -23,7 +23,7 @@ uppercut_timer = NodePath("UppercutTimer")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2, 0)
 scale = Vector2(0.959, 1)
-texture = ExtResource("2_a6dpe")
+texture = ExtResource("2_4sdxi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 0)

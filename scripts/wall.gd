@@ -28,7 +28,7 @@ func _process(delta):
 	elif velocity.x <= 0:
 		damage_value = 3
 	if grounded:
-		sprite.texture = load("res://assets/structures/wall_grounded.png")
+		sprite.texture = load("res://assets/images/structures/wall_grounded.png")
 		if velocity.x <= 0:
 			damage_value = 4
 		elif velocity.x > 0:
@@ -39,7 +39,7 @@ func _process(delta):
 			position.y = 306
 			velocity.y = 0
 	elif !grounded:
-		sprite.texture = load("res://assets/structures/wall_ungrounded.png")
+		sprite.texture = load("res://assets/images/structures/wall_ungrounded.png")
 	if !is_on_floor():
 		velocity.y -= gravity * delta
 	if velocity.x > 0:

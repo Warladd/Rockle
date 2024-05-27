@@ -22,8 +22,8 @@ class_name SaveFile
 @export var disk_increase : int = 1
 @export var pillar_increase : int = 10
 @export var ball_increase : int = 200
-@export var cube_increase : int = 50000
-@export var wall_increase : int = 10000
+@export var cube_increase : int = 25000
+@export var wall_increase : int = 5000
 @export var general_increase : int = 1
 
 # Modifiers

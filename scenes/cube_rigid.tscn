@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ch5qunvvgij18"]
 
 [ext_resource type="Script" path="res://scripts/cube'_rigid.gd" id="1_3orqk"]
-[ext_resource type="Texture2D" uid="uid://dgqsa65iidm7r" path="res://assets/images/structures/cube_grounded.png" id="2_gr27h"]
+[ext_resource type="Texture2D" uid="uid://dgqsa65iidm7r" path="res://assets/images/structures/cube_grounded.png" id="2_gg4fy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtvwe"]
 size = Vector2(86, 81)
@@ -24,7 +24,7 @@ uppercut_timer = NodePath("UppercutTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("2_gr27h")
+texture = ExtResource("2_gg4fy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)

@@ -21,10 +21,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_20ixj")
 settings = NodePath("Settings")
-surge = NodePath("Shiftstones/SurgeStoneDeactivated")
-adamant = NodePath("Shiftstones/AdamantStoneInactive")
-flow = NodePath("Shiftstones/FlowStoneDeactivated")
-volatile = NodePath("Shiftstones/VolatileStoneDeactivated")
+surge = NodePath("Shiftstones/VBoxContainer/SurgeStoneDeactivated")
+adamant = NodePath("Shiftstones/VBoxContainer/AdamantStoneInactive")
+flow = NodePath("Shiftstones/VBoxContainer/FlowStoneDeactivated")
+volatile = NodePath("Shiftstones/VBoxContainer/VolatileStoneDeactivated")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -54,9 +54,9 @@ label_settings = SubResource("LabelSettings_7idaa")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 449.0
+offset_left = 484.0
 offset_top = 283.0
-offset_right = 1412.0
+offset_right = 1447.0
 offset_bottom = 1671.0
 scale = Vector2(0.23, 0.23)
 
@@ -98,22 +98,28 @@ visible = false
 
 [node name="Shiftstones" type="Node" parent="."]
 
-[node name="SurgeStoneDeactivated" type="Sprite2D" parent="Shiftstones"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Shiftstones"]
+offset_left = 37.0
+offset_top = 1.0
+offset_right = 77.0
+offset_bottom = 41.0
+
+[node name="SurgeStoneDeactivated" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
 position = Vector2(386, 321)
 scale = Vector2(2, 2)
 texture = ExtResource("4_lifwp")
 
-[node name="AdamantStoneInactive" type="Sprite2D" parent="Shiftstones"]
+[node name="AdamantStoneInactive" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
 position = Vector2(386, 401)
 scale = Vector2(2, 2)
 texture = ExtResource("3_k2p2s")
 
-[node name="FlowStoneDeactivated" type="Sprite2D" parent="Shiftstones"]
+[node name="FlowStoneDeactivated" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
 position = Vector2(386, 481)
 scale = Vector2(2, 2)
 texture = ExtResource("6_0s045")
 
-[node name="VolatileStoneDeactivated" type="Sprite2D" parent="Shiftstones"]
+[node name="VolatileStoneDeactivated" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
 position = Vector2(386, 564)
 scale = Vector2(2, 2)
 texture = ExtResource("5_pomtw")

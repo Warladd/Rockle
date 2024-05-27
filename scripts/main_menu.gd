@@ -25,25 +25,25 @@ func _on_button_4_pressed():
 	get_tree().quit(0)
 
 func _on_button_mouse_entered():
-	surge.texture = load("res://assets/shiftstones/surge_stone_activated.png")
+	surge.texture = load("res://assets/images/shiftstones/surge_stone_activated.png")
 
 func _on_button_mouse_exited():
-	surge.texture = load("res://assets/shiftstones/surge_stone_deactivated.png")
+	surge.texture = load("res://assets/images/shiftstones/surge_stone_deactivated.png")
 
 func _on_button_2_mouse_entered():
-	adamant.texture = load("res://assets/shiftstones/adamant_stone_active.png")
+	adamant.texture = load("res://assets/images/shiftstones/adamant_stone_active.png")
 
 func _on_button_2_mouse_exited():
-	adamant.texture = load("res://assets/shiftstones/adamant_stone_inactive.png")
+	adamant.texture = load("res://assets/images/shiftstones/adamant_stone_inactive.png")
 
 func _on_button_3_mouse_entered():
-	flow.texture = load("res://assets/shiftstones/flow_stone_activated.png")
+	flow.texture = load("res://assets/images/shiftstones/flow_stone_activated.png")
 
 func _on_button_3_mouse_exited():
-	flow.texture = load("res://assets/shiftstones/flow_stone_deactivated.png")
+	flow.texture = load("res://assets/images/shiftstones/flow_stone_deactivated.png")
 
 func _on_button_4_mouse_entered():
-	volatile.texture = load("res://assets/shiftstones/volatile_stone_activated.png")
+	volatile.texture = load("res://assets/images/shiftstones/volatile_stone_activated.png")
 
 func _on_button_4_mouse_exited():
-	volatile.texture = load("res://assets/shiftstones/volatile_stone_deactivated.png")
+	volatile.texture = load("res://assets/images/shiftstones/volatile_stone_deactivated.png")

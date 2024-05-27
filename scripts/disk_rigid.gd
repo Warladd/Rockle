@@ -27,7 +27,7 @@ func _physics_process(delta):
 	elif linear_velocity.x <= 0:
 		damage_value = 0
 	if grounded:
-		sprite.texture = load("res://assets/structures/disk_grounded.png")
+		sprite.texture = load("res://assets/images/structures/disk_grounded.png")
 		if linear_velocity.x <= 0:
 			damage_value = 1
 		elif linear_velocity.x > 0:
@@ -36,7 +36,7 @@ func _physics_process(delta):
 			position.y = -18
 			linear_velocity.y = 0
 	elif !grounded:
-		sprite.texture = load("res://assets/structures/disk_ungrounded.png")
+		sprite.texture = load("res://assets/images/structures/disk_ungrounded.png")
 
 func _on_area_2d_body_entered(body):
 	structures = body.get_parent()
