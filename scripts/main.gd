@@ -571,7 +571,7 @@ func _on_explode_button_pressed():
 	if SaveSystem.save_game.gear_coins >= stomp_cost:
 		SaveSystem.save_game.gear_coins -= stomp_cost
 		SaveSystem.save_game.stomp = true
-		explode_button.text = "Owned"
+		explode_button.tet = "Owned"
 		explode_label.hide()
 		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
 		for i in range(int((len(gear_coin_string) - 1) /3)):

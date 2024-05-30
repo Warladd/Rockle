@@ -17,12 +17,11 @@ var modifiers : Array = []
 var uppercutted : bool = false
 var gear_amount : int = 0
 var dead : bool = false
+var touching_floor : bool = false
 
 func _ready():
 	detector.monitoring = false
 	linear_velocity.y -= 700
-	sfx_player.stream = load("res://assets/audio/sfx/disk_and_ball_spawn.mp3")
-	sfx_player.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -48,20 +47,32 @@ func _physics_process(delta):
 func _on_area_2d_body_entered(body):
 	structures = body.get_parent()
 	if structures.straight and straight_timer.is_stopped():
+		sfx_player.stream = load("res://assets/audio/sfx/straight.mp3")
+		sfx_player.play()
 		straight_timer.start()
 		linear_velocity.x += 1500
 		modifiers.append("straight")
 	elif structures.kick and kick_timer.is_stopped():
 		kick_timer.start()
-		grounded = false
+		if grounded:
+			sfx_player.stream = load("res://assets/audio/sfx/grounded_kick.mp3")
+			sfx_player.play()
+			grounded = false
+		elif !grounded:
+			sfx_player.stream = load("res://assets/audio/sfx/ungrounded_kick.mp3")
+			sfx_player.play()
 		linear_velocity.y = 0
 		linear_velocity.y -= 300
 		modifiers.append("kick")
 	elif structures.stomp and !grounded:
+		sfx_player.stream = load("res://assets/audio/sfx/stomp.mp3")
+		sfx_player.play()
 		grounded = true
 		linear_velocity.y += 1000
 		linear_velocity.x = 0
 	elif structures.uppercut and uppercut_timer.is_stopped():
+		sfx_player.stream = load("res://assets/audio/sfx/ungrounded_upper.mp3")
+		sfx_player.play()
 		uppercut_timer.start()
 		lock_rotation = false
 		grounded = false
@@ -70,6 +81,8 @@ func _on_area_2d_body_entered(body):
 		modifiers.append("uppercut")
 		
 func _on_timer_timeout():
+	sfx_player.stream = load("res://assets/audio/sfx/disk_and_ball_spawn.mp3")
+	sfx_player.play()
 	detector.monitoring = true
 	linear_velocity.y = 0
 	collision.disabled = false
@@ -101,3 +114,15 @@ func _on_area_2d_2_area_entered(area):
 		queue_free()
 	linear_velocity.x = stored_velocity_x
 	stored_velocity_x = 0
+
+func _on_area_2d_3_body_entered(body):
+	if grounded or !body.name == "Floor" or touching_floor or !detector.monitoring:
+		return
+	touching_floor = true
+	sfx_player.stream = load("res://assets/audio/sfx/disky.mp3")
+	sfx_player.play()
+
+func _on_area_2d_3_body_exited(body):
+	if !body.name == "Floor":
+		return
+	touching_floor = false

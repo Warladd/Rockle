@@ -16,6 +16,7 @@ var gear_amount : int = 0
 @export var straight_timer : Timer
 @export var kick_timer : Timer
 @export var uppercut_timer : Timer
+var was_on_floor : bool = false
 
 func _ready():
 	detector.monitoring = false
@@ -46,25 +47,43 @@ func _process(delta):
 		velocity.x -= 650 * delta
 	elif velocity.x < 0:
 		velocity.x = 0
+	was_on_floor = is_on_floor()
 	move_and_slide()
+	if was_on_floor != is_on_floor():
+		if is_on_floor():
+			sfx_player.stream = load("res://assets/audio/sfx/bally.mp3")
+			sfx_player.play()
 
 func _on_area_2d_body_entered(body):
 	structures = body.get_parent()
 	if body.get_parent().straight and straight_timer.is_stopped():
+		sfx_player.stream = load("res://assets/audio/sfx/straight.mp3")
+		sfx_player.play()
 		straight_timer.start()
 		velocity.x += 800
 		modifiers.append("straight")
 	elif body.get_parent().kick and kick_timer.is_stopped():
 		kick_timer.start()
+		if grounded:
+			sfx_player.stream = load("res://assets/audio/sfx/grounded_kick.mp3")
+			sfx_player.play()
+			grounded = false
+		elif !grounded:
+			sfx_player.stream = load("res://assets/audio/sfx/ungrounded_kick.mp3")
+			sfx_player.play()
 		grounded = false
 		velocity.y = 0
 		velocity.y -= 300
 		modifiers.append("kick")
 	elif structures.stomp and !grounded:
+		sfx_player.stream = load("res://assets/audio/sfx/stomp.mp3")
+		sfx_player.play()
 		grounded = true
 		velocity.y += 1000
 		velocity.x = 0
 	elif structures.uppercut and uppercut_timer.is_stopped():
+		sfx_player.stream = load("res://assets/audio/sfx/ungrounded_upper.mp3")
+		sfx_player.play()
 		uppercut_timer.start()
 		grounded = false
 		velocity.y = 0
@@ -85,6 +104,7 @@ func _on_area_2d_2_area_entered(area):
 	print("ball damage value", damage_value)
 	print("other object damage value", area.get_parent().damage_value)
 	if damage_value <= area.get_parent().damage_value:
+		Global.ball_break.emit()
 		if modifiers.has("straight"):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.ball * SaveSystem.save_game.ball_increase * SaveSystem.save_game.general_increase
 			gear_amount += SaveSystem.save_game.ball * SaveSystem.save_game.ball_increase * SaveSystem.save_game.general_increase

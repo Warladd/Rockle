@@ -49,25 +49,42 @@ func _process(delta):
 		velocity.x -= 850 * delta
 	elif velocity.x < 0:
 		velocity.x = 0
+	var was_on_floor = is_on_floor()
 	move_and_slide()
+	if was_on_floor != is_on_floor():
+		if is_on_floor():
+			sfx_player.stream = load("res://assets/audio/sfx/wally.mp3")
+			sfx_player.play()
 
 func _on_area_2d_body_entered(body):
 	structures = body.get_parent()
 	if body.get_parent().straight and straight_timer.is_stopped():
 		straight_timer.start()
+		sfx_player.stream = load("res://assets/audio/sfx/straight.mp3")
+		sfx_player.play()
 		velocity.x += 650
 		modifiers.append("straight")
 	elif body.get_parent().kick and kick_timer.is_stopped():
 		kick_timer.start()
-		grounded = false
+		if grounded:
+			sfx_player.stream = load("res://assets/audio/sfx/grounded_kick.mp3")
+			sfx_player.play()
+			grounded = false
+		elif !grounded:
+			sfx_player.stream = load("res://assets/audio/sfx/ungrounded_kick.mp3")
+			sfx_player.play()
 		velocity.y = 0
 		velocity.y -= 300
 		modifiers.append("kick")
 	elif structures.stomp and !grounded:
+		sfx_player.stream = load("res://assets/audio/sfx/stomp.mp3")
+		sfx_player.play()
 		grounded = true
 		velocity.y += 1000
 		velocity.x = 0
 	elif structures.uppercut and uppercut_timer.is_stopped():
+		sfx_player.stream = load("res://assets/audio/sfx/ungrounded_upper.mp3")
+		sfx_player.play()
 		uppercut_timer.start()
 		grounded = false
 		velocity.y = 0

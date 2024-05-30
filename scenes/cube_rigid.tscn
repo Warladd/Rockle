@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://ch5qunvvgij18"]
+[gd_scene load_steps=6 format=3 uid="uid://ch5qunvvgij18"]
 
 [ext_resource type="Script" path="res://scripts/cube'_rigid.gd" id="1_3orqk"]
 [ext_resource type="Texture2D" uid="uid://dgqsa65iidm7r" path="res://assets/images/structures/cube_grounded.png" id="2_gg4fy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtvwe"]
 size = Vector2(86, 81)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2d5d"]
+size = Vector2(86, 82)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1van"]
 size = Vector2(88, 79)
@@ -40,6 +43,12 @@ collision_mask = 2
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_vtvwe")
 
+[node name="Area2D3" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+shape = SubResource("RectangleShape2D_j2d5d")
+
 [node name="Area2D2" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
@@ -66,8 +75,13 @@ wait_time = 0.4
 one_shot = true
 
 [node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = -15.0
 bus = &"SFX"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="Area2D3" to="." method="_on_area_2d_3_area_entered"]
+[connection signal="area_exited" from="Area2D3" to="." method="_on_area_2d_3_area_exited"]
+[connection signal="body_entered" from="Area2D3" to="." method="_on_area_2d_3_body_entered"]
+[connection signal="body_exited" from="Area2D3" to="." method="_on_area_2d_3_body_exited"]
 [connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

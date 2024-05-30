@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cs5v7kd4y7mie"
+path="res://.godot/imported/2024-05-29 20-14-49.mp3-3af1424bd03aa4d16d541271c67a5c30.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/2024-05-29 20-14-49.mp3"
+dest_files=["res://.godot/imported/2024-05-29 20-14-49.mp3-3af1424bd03aa4d16d541271c67a5c30.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

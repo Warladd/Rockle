@@ -7,9 +7,3 @@ signal pillar_break
 signal ball_break
 signal wall_break
 signal cube_break
-signal straight
-signal kick_ground
-signal kick_unground
-signal uppercut_ground
-signal uppercut_unground
-signal stomp

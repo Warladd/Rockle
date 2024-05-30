@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwp8wypah0dpe"]
+[gd_scene load_steps=10 format=3 uid="uid://dwp8wypah0dpe"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_20ixj"]
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/images/fonts/chinese rocks rg.otf" id="1_ww6ra"]
+[ext_resource type="PackedScene" uid="uid://ccgls6dolnjm" path="res://scenes/sfx_player.tscn" id="2_gqbqs"]
 [ext_resource type="Texture2D" uid="uid://dte7kek3jrsng" path="res://assets/images/shiftstones/adamant_stone_inactive.png" id="3_k2p2s"]
 [ext_resource type="Texture2D" uid="uid://cdtui7frld5f5" path="res://assets/images/shiftstones/surge_stone_deactivated.png" id="4_lifwp"]
 [ext_resource type="Texture2D" uid="uid://byqg2vvspp361" path="res://assets/images/shiftstones/volatile_stone_deactivated.png" id="5_pomtw"]
@@ -25,6 +26,8 @@ surge = NodePath("Shiftstones/VBoxContainer/SurgeStoneDeactivated")
 adamant = NodePath("Shiftstones/VBoxContainer/AdamantStoneInactive")
 flow = NodePath("Shiftstones/VBoxContainer/FlowStoneDeactivated")
 volatile = NodePath("Shiftstones/VBoxContainer/VolatileStoneDeactivated")
+
+[node name="SFXPlayer" parent="." instance=ExtResource("2_gqbqs")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
