@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://db820p715gxnr" path="res://assets/images/character/Rumbler_uppercut1.png" id="5_mptbm"]
 [ext_resource type="Texture2D" uid="uid://bsobauoebjvn4" path="res://assets/images/character/Rumbler_stomp1.png" id="5_qn2ou"]
 
-
 [resource]
 animations = [{
 "frames": [{

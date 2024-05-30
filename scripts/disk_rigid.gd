@@ -5,6 +5,7 @@ var structure = "disk"
 @export var detector : Area2D
 @export var sprite : Sprite2D
 @export var collision : CollisionShape2D
+@export var sfx_player : AudioStreamPlayer2D
 @export var straight_timer : Timer
 @export var kick_timer : Timer
 @export var uppercut_timer : Timer
@@ -15,13 +16,19 @@ var structures : Node2D
 var modifiers : Array = []
 var uppercutted : bool = false
 var gear_amount : int = 0
+var dead : bool = false
 
 func _ready():
 	detector.monitoring = false
 	linear_velocity.y -= 700
+	sfx_player.stream = load("res://assets/audio/sfx/disk_and_ball_spawn.mp3")
+	sfx_player.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if dead:
+		await sfx_player.finished
+		queue_free()
 	if linear_velocity.x > 0:
 		damage_value = 1
 	elif linear_velocity.x <= 0:
@@ -75,6 +82,7 @@ func _on_area_2d_2_area_entered(area):
 	print("disk damage value", damage_value)
 	print("other object damage value", area.get_parent().damage_value)
 	if damage_value <= area.get_parent().damage_value:
+		Global.disk_break.emit()
 		if modifiers.has("straight"):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
 			gear_amount += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
@@ -90,9 +98,6 @@ func _on_area_2d_2_area_entered(area):
 		Global.popup_number = gear_amount
 		SaveSystem.saving()
 		print("saving")
-	if damage_value >= area.get_parent().damage_value:
-		area.get_parent().queue_free()
-	if damage_value <= area.get_parent().damage_value:
 		queue_free()
 	linear_velocity.x = stored_velocity_x
 	stored_velocity_x = 0

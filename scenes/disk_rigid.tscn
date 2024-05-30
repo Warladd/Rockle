@@ -12,7 +12,7 @@ size = Vector2(80, 30)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj0nm"]
 size = Vector2(82, 28)
 
-[node name="Disk" type="RigidBody2D" node_paths=PackedStringArray("death", "detector", "sprite", "collision", "straight_timer", "kick_timer", "uppercut_timer")]
+[node name="Disk" type="RigidBody2D" node_paths=PackedStringArray("death", "detector", "sprite", "collision", "sfx_player", "straight_timer", "kick_timer", "uppercut_timer")]
 collision_layer = 0
 mass = 0.1
 gravity_scale = 0.5
@@ -23,6 +23,7 @@ death = NodePath("Area2D2")
 detector = NodePath("Area2D")
 sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
+sfx_player = NodePath("SFXPlayer")
 straight_timer = NodePath("StraightTimer")
 kick_timer = NodePath("KickTimer")
 uppercut_timer = NodePath("UppercutTimer")
@@ -64,6 +65,9 @@ one_shot = true
 [node name="UppercutTimer" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]

@@ -6,6 +6,7 @@ var structure = "cube"
 @export var detector : Area2D
 @export var sprite : Sprite2D
 @export var collision : CollisionShape2D
+@export var sfx_player : AudioStreamPlayer2D
 var damage_value : int = 2
 var grounded : bool = true
 var stored_velocity_x : float = 3
@@ -21,6 +22,8 @@ var gear_amount : int = 0
 func _ready():
 	detector.monitoring = false
 	linear_velocity.y -= 300
+	sfx_player.stream = load("res://assets/audio/sfx/pillar_and_cube_spawn.mp3")
+	sfx_player.play()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
@@ -94,9 +97,6 @@ func _on_area_2d_2_area_entered(area):
 		Global.popup_number = gear_amount
 		SaveSystem.saving()
 		print("saving")
-	if damage_value >= area.get_parent().damage_value:
-		area.get_parent().queue_free()
-	if damage_value <= area.get_parent().damage_value:
 		queue_free()
 	linear_velocity.x = stored_velocity_x
 	stored_velocity_x = 0

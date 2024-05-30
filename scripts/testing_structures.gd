@@ -51,6 +51,17 @@ var stomp : bool = false
 
 func _ready():
 	SaveSystem.load_game()
+	Global.disk_break.connect(_disk_break)
+	Global.pillar_break.connect(_pillar_break)
+	Global.ball_break.connect(_ball_break)
+	Global.wall_break.connect(_wall_break)
+	Global.cube_break.connect(_cube_break)
+	Global.straight.connect(_straight)
+	Global.kick_ground.connect(_kick_ground)
+	Global.kick_unground.connect(_kick_unground)
+	Global.uppercut_ground.connect(_uppercut_ground)
+	Global.uppercut_unground.connect(_uppercut_unground)
+	Global.stomp.connect(_stomp)
 	disk_tween = create_tween()
 	disk_tween.tween_property(disk_bar, "value", 1, 1)
 	# Pillar
@@ -249,3 +260,37 @@ func _on_structure_detector_area_entered(area):
 func _on_structure_detector_area_exited(area):
 	print("structure leaving")
 	structure_loaded = false
+
+func _disk_break():
+	sfx_player.stream = load("res://assets/audio/sfx/disk_break.mp3")
+	sfx_player.play()
+func _pillar_break():
+	sfx_player.stream = load("res://assets/audio/sfx/disk_break.mp3")
+	sfx_player.play()
+func _ball_break():
+	sfx_player.stream = load("res://assets/audio/sfx/disk_break.mp3")
+	sfx_player.play()
+func _wall_break():
+	sfx_player.stream = load("res://assets/audio/sfx/disk_break.mp3")
+	sfx_player.play()
+func _cube_break():
+	sfx_player.stream = load("res://assets/audio/sfx/disk_break.mp3")
+	sfx_player.play()
+func _straight():
+	sfx_player.stream = load("res://assets/audio/sfx/disk_break.mp3")
+	sfx_player.play()
+func _kick_ground():
+	sfx_player.stream = load("res://assets/audio/sfx/disk_break.mp3")
+	sfx_player.play()
+func _kick_unground():
+	sfx_player.stream = load("res://assets/audio/sfx/disk_break.mp3")
+	sfx_player.play()
+func _uppercut_ground():
+	sfx_player.stream = load("res://assets/audio/sfx/disk_break.mp3")
+	sfx_player.play()
+func _uppercut_unground():
+	sfx_player.stream = load("res://assets/audio/sfx/disk_break.mp3")
+	sfx_player.play()
+func _stomp():
+	sfx_player.stream = load("res://assets/audio/sfx/disk_break.mp3")
+	sfx_player.play()

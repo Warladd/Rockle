@@ -6,6 +6,7 @@ var structure = "ball"
 @export var detector : Area2D
 @export var sprite : Sprite2D
 @export var collision : CollisionShape2D
+@export var sfx_player : AudioStreamPlayer2D
 var grounded : bool = false
 var damage_value : int = 1
 var stored_velocity_x : float = 0
@@ -19,6 +20,8 @@ var gear_amount : int = 0
 func _ready():
 	detector.monitoring = false
 	velocity.y -= 650
+	sfx_player.stream = load("res://assets/audio/sfx/disk_and_ball_spawn.mp3")
+	sfx_player.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -97,9 +100,6 @@ func _on_area_2d_2_area_entered(area):
 		Global.popup_number = gear_amount
 		SaveSystem.saving()
 		print("saving")
-	if damage_value >= area.get_parent().damage_value:
-		area.get_parent().queue_free()
-	if damage_value <= area.get_parent().damage_value:
 		queue_free()
 	velocity.x = stored_velocity_x
 	stored_velocity_x = 0
