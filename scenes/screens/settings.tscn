@@ -6,9 +6,10 @@
 [ext_resource type="Theme" uid="uid://q7oavojuo262" path="res://resources/RemapButton.tres" id="4_octia"]
 [ext_resource type="Script" path="res://scripts/hotkey_rebind.gd" id="5_s5qva"]
 
-[node name="Settings" type="CanvasLayer" node_paths=PackedStringArray("display_options", "master_vol", "music_vol", "sfx_vol", "control_settings", "back_button")]
+[node name="Settings" type="CanvasLayer" node_paths=PackedStringArray("display_options", "main_menu_options", "master_vol", "music_vol", "sfx_vol", "control_settings", "back_button")]
 script = ExtResource("2_o4kiu")
 display_options = NodePath("SettingTabs/Video/MarginContainer/VideoSettings/DisplayModeBtn")
+main_menu_options = NodePath("SettingTabs/Video/MarginContainer/VideoSettings/MainMenuBtn")
 master_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/MasterVolSlider")
 music_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/MusicVolSlider")
 sfx_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/SFXVolSlider")
@@ -71,6 +72,27 @@ selected = 0
 popup/item_0/text = "  Windowed"
 popup/item_0/id = 0
 popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+
+[node name="MainMenuLabel" type="Label" parent="SettingTabs/Video/MarginContainer/VideoSettings"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 50
+text = "Main Menu Layout"
+
+[node name="MainMenuBtn" type="OptionButton" parent="SettingTabs/Video/MarginContainer/VideoSettings"]
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 50
+flat = true
+item_count = 2
+selected = 0
+popup/item_0/text = "Title to the Left"
+popup/item_0/id = 0
+popup/item_1/text = "Title in the Middle"
 popup/item_1/id = 1
 
 [node name="Audio" type="TabBar" parent="SettingTabs"]
@@ -262,6 +284,7 @@ text = "Back"
 flat = true
 
 [connection signal="item_selected" from="SettingTabs/Video/MarginContainer/VideoSettings/DisplayModeBtn" to="." method="_on_display_mode_btn_item_selected"]
+[connection signal="item_selected" from="SettingTabs/Video/MarginContainer/VideoSettings/MainMenuBtn" to="." method="_on_main_menu_btn_item_selected"]
 [connection signal="value_changed" from="SettingTabs/Audio/MarginContainer/AudioSettings/MasterVolSlider" to="." method="_on_master_vol_slider_value_changed"]
 [connection signal="value_changed" from="SettingTabs/Audio/MarginContainer/AudioSettings/MusicVolSlider" to="." method="_on_music_vol_slider_value_changed"]
 [connection signal="value_changed" from="SettingTabs/Audio/MarginContainer/AudioSettings/SFXVolSlider" to="." method="_on_sfx_vol_slider_value_changed"]

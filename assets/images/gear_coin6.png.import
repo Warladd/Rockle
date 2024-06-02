@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c68j4rav5l1pr"
-path="res://.godot/imported/light_on.png-e6a8327600ce8caf6767ce440b559c41.ctex"
+uid="uid://bd06mplni2oua"
+path="res://.godot/imported/gear_coin6.png-496f04f8b674160eb84d5db7265c2468.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/light_on.png"
-dest_files=["res://.godot/imported/light_on.png-e6a8327600ce8caf6767ce440b559c41.ctex"]
+source_file="res://assets/images/gear_coin6.png"
+dest_files=["res://.godot/imported/gear_coin6.png-496f04f8b674160eb84d5db7265c2468.ctex"]
 
 [params]
 

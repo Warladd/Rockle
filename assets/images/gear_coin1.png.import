@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://miul0cguedyd"
-path="res://.godot/imported/custom_cursor.png-08194bedbddac866ddca27da2b4d003c.ctex"
+uid="uid://buy76hpr2jxed"
+path="res://.godot/imported/gear_coin1.png-2b7276640518ed35a665dd8fc47bd09f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/custom_cursor.png"
-dest_files=["res://.godot/imported/custom_cursor.png-08194bedbddac866ddca27da2b4d003c.ctex"]
+source_file="res://assets/images/gear_coin1.png"
+dest_files=["res://.godot/imported/gear_coin1.png-2b7276640518ed35a665dd8fc47bd09f.ctex"]
 
 [params]
 

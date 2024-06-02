@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4ow3vnp2r5o"
-path="res://.godot/imported/adamant_stone_inactive.png-c9a7d7604764cdbbcb75ae4c2a2fd186.ctex"
+uid="uid://duww5m6m2jglw"
+path="res://.godot/imported/tower2.png-aba49263b8c498059b74dd413d172e9a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/shiftstones/adamant_stone_inactive.png"
-dest_files=["res://.godot/imported/adamant_stone_inactive.png-c9a7d7604764cdbbcb75ae4c2a2fd186.ctex"]
+source_file="res://assets/images/tower2.png"
+dest_files=["res://.godot/imported/tower2.png-aba49263b8c498059b74dd413d172e9a.ctex"]
 
 [params]
 

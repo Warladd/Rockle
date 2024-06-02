@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tugp0bgilvhb"
-path="res://.godot/imported/light_off.png-c2729491ffcd96265544c8fe2d137e53.ctex"
+uid="uid://c42u30my2ajgk"
+path="res://.godot/imported/tower6.png-0debc159d67208f82e5ce7cc115a59e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/light_off.png"
-dest_files=["res://.godot/imported/light_off.png-c2729491ffcd96265544c8fe2d137e53.ctex"]
+source_file="res://assets/images/tower6.png"
+dest_files=["res://.godot/imported/tower6.png-0debc159d67208f82e5ce7cc115a59e8.ctex"]
 
 [params]
 

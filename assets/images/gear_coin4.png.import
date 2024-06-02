@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4ow3vnp2r5o"
-path="res://.godot/imported/adamant_stone_inactive.png-c9a7d7604764cdbbcb75ae4c2a2fd186.ctex"
+uid="uid://tbul80u8o6k3"
+path="res://.godot/imported/gear_coin4.png-112c98c5e4a1fc9bb7e45d78fdd1e68b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/shiftstones/adamant_stone_inactive.png"
-dest_files=["res://.godot/imported/adamant_stone_inactive.png-c9a7d7604764cdbbcb75ae4c2a2fd186.ctex"]
+source_file="res://assets/images/gear_coin4.png"
+dest_files=["res://.godot/imported/gear_coin4.png-112c98c5e4a1fc9bb7e45d78fdd1e68b.ctex"]
 
 [params]
 

@@ -7,3 +7,4 @@ signal pillar_break
 signal ball_break
 signal wall_break
 signal cube_break
+signal change_menu

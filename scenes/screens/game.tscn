@@ -17,8 +17,7 @@
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="8_aofh8"]
 [ext_resource type="LabelSettings" uid="uid://ca2wabawemdxc" path="res://resources/charge_label_settings.tres" id="10_5384l"]
 [ext_resource type="Script" path="res://scripts/breaking_wall.gd" id="11_q4tyc"]
-[ext_resource type="Texture2D" uid="uid://buy76hpr2jxed" path="res://assets/images/gear_coin_small.png" id="12_p6s2u"]
-[ext_resource type="Texture2D" uid="uid://bh5jtnw4f5sy" path="res://assets/images/upgrade.png" id="12_rri2l"]
+[ext_resource type="Texture2D" uid="uid://buy76hpr2jxed" path="res://assets/images/gear_coin1.png" id="12_p6s2u"]
 [ext_resource type="PackedScene" uid="uid://bu4fraknk5a5n" path="res://scenes/screens/settings.tscn" id="12_ygs3y"]
 [ext_resource type="AudioStream" uid="uid://cs5v7kd4y7mie" path="res://assets/audio/2024-05-29 20-14-49.mp3" id="22_nngo4"]
 
@@ -34,6 +33,8 @@ size = Vector2(62.5, 425)
 [sub_resource type="LabelSettings" id="LabelSettings_tq13i"]
 font = ExtResource("2_bwg6y")
 font_size = 160
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2fv8h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkvsg"]
 size = Vector2(1122, 254)
@@ -380,35 +381,35 @@ label_settings = ExtResource("3_6lbk3")
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade2" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade3" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade4" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade5" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 2
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="DiskButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
@@ -443,35 +444,35 @@ label_settings = ExtResource("3_6lbk3")
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade2" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade3" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade4" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade5" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 2
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="PillarButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
@@ -505,35 +506,35 @@ label_settings = ExtResource("3_6lbk3")
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade2" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade3" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade4" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade5" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 2
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="BallButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
@@ -566,35 +567,35 @@ label_settings = ExtResource("3_6lbk3")
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade2" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade3" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade4" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade5" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 2
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="WallButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
@@ -628,35 +629,35 @@ label_settings = ExtResource("3_6lbk3")
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade2" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade3" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade4" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="Upgrade5" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 2
-texture = ExtResource("12_rri2l")
+texture = SubResource("CompressedTexture2D_2fv8h")
 expand_mode = 2
 
 [node name="CubeButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
@@ -1348,6 +1349,7 @@ visible = false
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("22_nngo4")
+volume_db = 10.0
 autoplay = true
 bus = &"Music"
 

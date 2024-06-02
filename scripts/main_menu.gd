@@ -4,10 +4,24 @@ extends Control
 @export var adamant : Sprite2D
 @export var flow : Sprite2D
 @export var volatile : Sprite2D
+@export var tower : Sprite2D
+@export var gear_coin : TextureRect
+@export var gc_amount : Label
 
 func _ready():
 	SaveSystem.load_game()
+	change_menu()
 	settings.hide()
+	if SaveSystem.save_game.belt == 6:
+		tower.texture = load("res://assets/images/tower%d.png" % SaveSystem.save_game.belt)
+		gear_coin.texture = load("res://assets/images/gear_coin%d.png" % SaveSystem.save_game.belt)
+	tower.texture = load("res://assets/images/tower%d.png" % (SaveSystem.save_game.belt + 1))
+	gear_coin.texture = load("res://assets/images/gear_coin%d.png" % (SaveSystem.save_game.belt + 1))
+	var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+	for i in range(int((len(gear_coin_string) - 1) /3)):
+		gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+	gc_amount.text = gear_coin_string
+	Global.change_menu.connect(change_menu)
 
 func _on_button_pressed():
 	if !SaveSystem.save_game.tutorial:
@@ -47,3 +61,9 @@ func _on_button_4_mouse_entered():
 
 func _on_button_4_mouse_exited():
 	volatile.texture = load("res://assets/images/shiftstones/volatile_stone_deactivated.png")
+
+func change_menu():
+	if SaveSystem.settings.main_menu_value == 1 and scene_file_path != "res://scenes/screens/main_menu_alt.tscn":
+		Global.get_tree().change_scene_to_file("res://scenes/screens/main_menu_alt.tscn")
+	elif SaveSystem.settings.main_menu_value == 0 and scene_file_path != "res://scenes/screens/main_menu.tscn":
+		Global.get_tree().change_scene_to_file("res://scenes/screens/main_menu.tscn")

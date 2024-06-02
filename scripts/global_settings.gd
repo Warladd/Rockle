@@ -4,6 +4,7 @@ class_name Settings extends Resource
 @export var master_vol_value = -15
 @export var music_vol_value = -15
 @export var sfx_vol_value = -15
+@export var main_menu_value = 0
 
 func toggle_fullscreen(value) -> void:
 	display_option_value = value
@@ -11,6 +12,9 @@ func toggle_fullscreen(value) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+func toggle_main_menu(value) -> void:
+	main_menu_value = value
 
 func update_vol(bus_idx, vol) -> void:
 	if bus_idx == 0:

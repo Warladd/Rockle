@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4ow3vnp2r5o"
-path="res://.godot/imported/adamant_stone_inactive.png-c9a7d7604764cdbbcb75ae4c2a2fd186.ctex"
+uid="uid://dnyo3j251gwnf"
+path="res://.godot/imported/quit_button1.png-d6343720655950d5427bcf152dd4b207.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/shiftstones/adamant_stone_inactive.png"
-dest_files=["res://.godot/imported/adamant_stone_inactive.png-c9a7d7604764cdbbcb75ae4c2a2fd186.ctex"]
+source_file="res://assets/images/quit_button1.png"
+dest_files=["res://.godot/imported/quit_button1.png-d6343720655950d5427bcf152dd4b207.ctex"]
 
 [params]
 

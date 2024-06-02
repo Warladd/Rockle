@@ -1,0 +1,177 @@
+[gd_scene load_steps=21 format=3 uid="uid://bcv47cr0kycdd"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_j54nc"]
+[ext_resource type="PackedScene" uid="uid://ccgls6dolnjm" path="res://scenes/sfx_player.tscn" id="2_ypco6"]
+[ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/images/fonts/chinese rocks rg.otf" id="3_2fjw8"]
+[ext_resource type="Texture2D" uid="uid://tbul80u8o6k3" path="res://assets/images/gear_coin4.png" id="4_nnrhe"]
+[ext_resource type="Texture2D" uid="uid://c1u0q3nu25nq" path="res://assets/images/play_button1.png" id="5_5b2gm"]
+[ext_resource type="Texture2D" uid="uid://c16wpj3uxvkyq" path="res://assets/images/play_button2.png" id="6_s3v8q"]
+[ext_resource type="Texture2D" uid="uid://cpa8sfg2cq06o" path="res://assets/images/settings_button1.png" id="7_0udkx"]
+[ext_resource type="Texture2D" uid="uid://c3n5206x60uyn" path="res://assets/images/settings_button2.png" id="8_ojvc4"]
+[ext_resource type="Texture2D" uid="uid://css46rpcwclio" path="res://assets/images/tutorial_button1.png" id="9_5aj5q"]
+[ext_resource type="Texture2D" uid="uid://vau5h8kq6q0i" path="res://assets/images/tutorial_button.png" id="10_thp8i"]
+[ext_resource type="Texture2D" uid="uid://dnyo3j251gwnf" path="res://assets/images/quit_button1.png" id="11_6hcv7"]
+[ext_resource type="Texture2D" uid="uid://chusp3xmb7hjc" path="res://assets/images/quit_button2.png" id="12_im1yd"]
+[ext_resource type="PackedScene" uid="uid://bu4fraknk5a5n" path="res://scenes/screens/settings.tscn" id="13_7emsa"]
+[ext_resource type="Texture2D" uid="uid://cdtui7frld5f5" path="res://assets/images/shiftstones/surge_stone_deactivated.png" id="14_hb08s"]
+[ext_resource type="Texture2D" uid="uid://b4ow3vnp2r5o" path="res://assets/images/shiftstones/adamant_stone_inactive.png" id="15_5oiyo"]
+[ext_resource type="Texture2D" uid="uid://0ruvpjp4ojva" path="res://assets/images/shiftstones/flow_stone_deactivated.png" id="16_bdcak"]
+[ext_resource type="Texture2D" uid="uid://byqg2vvspp361" path="res://assets/images/shiftstones/volatile_stone_deactivated.png" id="17_03cja"]
+[ext_resource type="Texture2D" uid="uid://bpjus7p7h7l7l" path="res://assets/images/pillar_and_other_in_main_menu.png" id="18_q01b8"]
+[ext_resource type="Texture2D" uid="uid://ccqy08go2n4pt" path="res://assets/images/tower4.png" id="19_y6plv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7idaa"]
+font = ExtResource("3_2fjw8")
+font_size = 900
+
+[node name="Main Menu" type="Control" node_paths=PackedStringArray("settings", "surge", "adamant", "flow", "volatile", "tower", "gear_coin", "gc_amount")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j54nc")
+settings = NodePath("Settings")
+surge = NodePath("Shiftstones/VBoxContainer/SurgeStoneDeactivated")
+adamant = NodePath("Shiftstones/VBoxContainer/AdamantStoneInactive")
+flow = NodePath("Shiftstones/VBoxContainer/FlowStoneDeactivated")
+volatile = NodePath("Shiftstones/VBoxContainer/VolatileStoneDeactivated")
+tower = NodePath("Tower")
+gear_coin = NodePath("GearCoin")
+gc_amount = NodePath("GcAmount")
+
+[node name="SFXPlayer" parent="." instance=ExtResource("2_ypco6")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.846867, 0.681048, 0.588653, 1)
+
+[node name="GcAmount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 5.0
+offset_right = 430.0
+offset_bottom = 149.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_2fjw8")
+theme_override_font_sizes/font_size = 120
+text = "1,012,568"
+
+[node name="GearCoin" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 8.0
+offset_right = 47.0
+offset_bottom = 52.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_nnrhe")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -239.0
+offset_top = -264.0
+offset_right = 2368.0
+offset_bottom = 936.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+text = "Rockle"
+label_settings = SubResource("LabelSettings_7idaa")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 445.0
+offset_top = 287.0
+offset_right = 1695.0
+offset_bottom = 1686.0
+scale = Vector2(0.23, 0.23)
+
+[node name="Button" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("5_5b2gm")
+texture_hover = ExtResource("6_s3v8q")
+stretch_mode = 3
+
+[node name="Button2" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_0udkx")
+texture_hover = ExtResource("8_ojvc4")
+
+[node name="Button3" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("9_5aj5q")
+texture_hover = ExtResource("10_thp8i")
+
+[node name="Button4" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("11_6hcv7")
+texture_hover = ExtResource("12_im1yd")
+stretch_mode = 3
+
+[node name="Settings" parent="." instance=ExtResource("13_7emsa")]
+visible = false
+
+[node name="Shiftstones" type="Node" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shiftstones"]
+offset_left = 17.0
+offset_top = -4.0
+offset_right = 57.0
+offset_bottom = 36.0
+
+[node name="SurgeStoneDeactivated" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
+position = Vector2(385, 323)
+scale = Vector2(2, 2)
+texture = ExtResource("14_hb08s")
+
+[node name="AdamantStoneInactive" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
+position = Vector2(385, 402)
+scale = Vector2(2, 2)
+texture = ExtResource("15_5oiyo")
+
+[node name="FlowStoneDeactivated" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
+position = Vector2(385, 485)
+scale = Vector2(2, 2)
+texture = ExtResource("16_bdcak")
+
+[node name="VolatileStoneDeactivated" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
+position = Vector2(386, 572)
+scale = Vector2(2, 2)
+texture = ExtResource("17_03cja")
+
+[node name="PillarInMainMenu" type="Sprite2D" parent="."]
+position = Vector2(554, 316)
+scale = Vector2(1.01518, 1)
+texture = ExtResource("18_q01b8")
+
+[node name="Tower" type="Sprite2D" parent="."]
+position = Vector2(554, 316)
+scale = Vector2(1.01518, 1)
+texture = ExtResource("19_y6plv")
+
+[connection signal="mouse_entered" from="VBoxContainer/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Button2" to="." method="_on_button_2_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Button2" to="." method="_on_button_2_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Button3" to="." method="_on_button_3_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Button3" to="." method="_on_button_3_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Button4" to="." method="_on_button_4_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Button4" to="." method="_on_button_4_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="visibility_changed" from="Settings" to="Settings" method="_on_visibility_changed"]

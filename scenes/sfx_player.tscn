@@ -1,5 +1,4 @@
 [gd_scene format=3 uid="uid://ccgls6dolnjm"]
 
 [node name="SFXPlayer" type="AudioStreamPlayer2D"]
-volume_db = -10.0
 bus = &"SFX"

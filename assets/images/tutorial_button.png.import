@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4ow3vnp2r5o"
-path="res://.godot/imported/adamant_stone_inactive.png-c9a7d7604764cdbbcb75ae4c2a2fd186.ctex"
+uid="uid://vau5h8kq6q0i"
+path="res://.godot/imported/tutorial_button.png-d9bc7086572647f303329e785730a7fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/shiftstones/adamant_stone_inactive.png"
-dest_files=["res://.godot/imported/adamant_stone_inactive.png-c9a7d7604764cdbbcb75ae4c2a2fd186.ctex"]
+source_file="res://assets/images/tutorial_button.png"
+dest_files=["res://.godot/imported/tutorial_button.png-d9bc7086572647f303329e785730a7fb.ctex"]
 
 [params]
 

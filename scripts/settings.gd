@@ -2,6 +2,7 @@ extends CanvasLayer
 
 # Video Settings
 @export var display_options : Button
+@export var main_menu_options : OptionButton
 
 # Audio Settings
 @export var master_vol : Slider
@@ -15,6 +16,13 @@ extends CanvasLayer
 
 # Functions
 func _ready():
+	SaveSystem.load_game()
+	display_options.selected = SaveSystem.settings.display_option_value
+	main_menu_options.selected = SaveSystem.settings.main_menu_value
+	master_vol.value = SaveSystem.settings.master_vol_value
+	music_vol.value = SaveSystem.settings.music_vol_value
+	sfx_vol.value = SaveSystem.settings.sfx_vol_value
+	SaveSystem.settings.toggle_fullscreen(SaveSystem.settings.display_option_value)
 	visible = false
 	#create_action_remap_items()
 
@@ -33,13 +41,7 @@ func _on_sfx_vol_slider_value_changed(value) -> void:
 func _on_back_button_pressed() -> void:
 	SaveSystem.save_settings()
 	visible = false
-
-func _on_visibility_changed():
-	SaveSystem.load_game()
-	display_options.selected = SaveSystem.settings.display_option_value
-	master_vol.value = SaveSystem.settings.master_vol_value
-	music_vol.value = SaveSystem.settings.music_vol_value
-	sfx_vol.value = SaveSystem.settings.sfx_vol_value
+	Global.change_menu.emit()
 
 #func create_action_remap_items() -> void:
 	#var previous_item = control_settings.get_child(control_settings.get_child_count() - 1)
@@ -57,3 +59,7 @@ func _on_visibility_changed():
 			#button.focus_neighbor_bottom = back_button.get_path()
 		#previous_item = button
 		#control_settings.add_child(button)
+
+func _on_main_menu_btn_item_selected(index):
+	SaveSystem.settings.toggle_main_menu(index)
+	SaveSystem.save_settings()

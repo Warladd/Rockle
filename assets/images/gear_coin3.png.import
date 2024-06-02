@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpd4rlvfcilrt"
-path="res://.godot/imported/boulders_in_main_menu.png-c81425cbe23ff7e3cf53c0d976656e1c.ctex"
+uid="uid://du5bh3vodpy3n"
+path="res://.godot/imported/gear_coin3.png-aaf9a3b325b3dfb4e5c33c5b78214aac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/boulders_in_main_menu.png"
-dest_files=["res://.godot/imported/boulders_in_main_menu.png-c81425cbe23ff7e3cf53c0d976656e1c.ctex"]
+source_file="res://assets/images/gear_coin3.png"
+dest_files=["res://.godot/imported/gear_coin3.png-aaf9a3b325b3dfb4e5c33c5b78214aac.ctex"]
 
 [params]
 

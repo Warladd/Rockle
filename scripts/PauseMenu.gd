@@ -41,7 +41,10 @@ func _on_quitto_menu_button_pressed():
 	await get_tree().create_timer(0.5).timeout
 	self.visible = !self.visible
 	get_tree().paused = self.visible
-	get_tree().change_scene_to_file("res://scenes/screens/main_menu.tscn")
+	if SaveSystem.settings.main_menu_value == 1:
+		Global.get_tree().change_scene_to_file("res://scenes/screens/main_menu_alt.tscn")
+	elif SaveSystem.settings.main_menu_value == 0:
+		Global.get_tree().change_scene_to_file("res://scenes/screens/main_menu.tscn")
 
 func _on_settings_button_pressed():
 	settings.show()
