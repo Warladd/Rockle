@@ -110,12 +110,12 @@ scale = Vector2(2, 2)
 texture = ExtResource("4_lifwp")
 
 [node name="AdamantStoneInactive" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
-position = Vector2(385, 404)
+position = Vector2(385, 402)
 scale = Vector2(2, 2)
 texture = ExtResource("3_k2p2s")
 
 [node name="FlowStoneDeactivated" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
-position = Vector2(385, 490)
+position = Vector2(385, 485)
 scale = Vector2(2, 2)
 texture = ExtResource("6_0s045")
 
