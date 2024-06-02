@@ -1,26 +1,26 @@
-[gd_scene load_steps=20 format=3 uid="uid://fk2xw4yx0mb4"]
+[gd_scene load_steps=20 format=3 uid="uid://dqsk8veka5xcl"]
 
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_20ixj"]
-[ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/images/fonts/chinese rocks rg.otf" id="1_ww6ra"]
-[ext_resource type="PackedScene" uid="uid://ccgls6dolnjm" path="res://scenes/sfx_player.tscn" id="2_gqbqs"]
-[ext_resource type="Texture2D" uid="uid://b4ow3vnp2r5o" path="res://assets/images/shiftstones/adamant_stone_inactive.png" id="3_k2p2s"]
-[ext_resource type="Texture2D" uid="uid://cdtui7frld5f5" path="res://assets/images/shiftstones/surge_stone_deactivated.png" id="4_lifwp"]
-[ext_resource type="Texture2D" uid="uid://c1u0q3nu25nq" path="res://assets/images/play_button1.png" id="4_uuvla"]
-[ext_resource type="Texture2D" uid="uid://byqg2vvspp361" path="res://assets/images/shiftstones/volatile_stone_deactivated.png" id="5_pomtw"]
-[ext_resource type="Texture2D" uid="uid://c16wpj3uxvkyq" path="res://assets/images/play_button2.png" id="5_wtxup"]
-[ext_resource type="Texture2D" uid="uid://0ruvpjp4ojva" path="res://assets/images/shiftstones/flow_stone_deactivated.png" id="6_0s045"]
-[ext_resource type="Texture2D" uid="uid://cpa8sfg2cq06o" path="res://assets/images/settings_button1.png" id="6_gu7sc"]
-[ext_resource type="Texture2D" uid="uid://c3n5206x60uyn" path="res://assets/images/settings_button2.png" id="7_aap6f"]
-[ext_resource type="PackedScene" uid="uid://bu4fraknk5a5n" path="res://scenes/screens/settings.tscn" id="7_tmij6"]
-[ext_resource type="Texture2D" uid="uid://css46rpcwclio" path="res://assets/images/tutorial_button1.png" id="8_ra521"]
-[ext_resource type="Texture2D" uid="uid://vau5h8kq6q0i" path="res://assets/images/tutorial_button.png" id="9_a3nlj"]
-[ext_resource type="Texture2D" uid="uid://dnyo3j251gwnf" path="res://assets/images/quit_button1.png" id="10_tb1v3"]
-[ext_resource type="Texture2D" uid="uid://chusp3xmb7hjc" path="res://assets/images/quit_button2.png" id="11_1vell"]
-[ext_resource type="Texture2D" uid="uid://dch8t6rvsbw8p" path="res://assets/images/gear_coin5.png" id="17_jel0a"]
-[ext_resource type="Texture2D" uid="uid://duvvlveefbhdn" path="res://assets/images/tower5.png" id="17_jyl3k"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_v1en6"]
+[ext_resource type="PackedScene" uid="uid://ccgls6dolnjm" path="res://scenes/sfx_player.tscn" id="2_fibno"]
+[ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/images/fonts/chinese rocks rg.otf" id="3_q0lwh"]
+[ext_resource type="Texture2D" uid="uid://c1u0q3nu25nq" path="res://assets/images/play_button1.png" id="4_6st1b"]
+[ext_resource type="Texture2D" uid="uid://c16wpj3uxvkyq" path="res://assets/images/play_button2.png" id="5_1gunb"]
+[ext_resource type="Texture2D" uid="uid://cpa8sfg2cq06o" path="res://assets/images/settings_button1.png" id="6_r6mmw"]
+[ext_resource type="Texture2D" uid="uid://c3n5206x60uyn" path="res://assets/images/settings_button2.png" id="7_ntok2"]
+[ext_resource type="Texture2D" uid="uid://css46rpcwclio" path="res://assets/images/tutorial_button1.png" id="8_pgiy7"]
+[ext_resource type="Texture2D" uid="uid://vau5h8kq6q0i" path="res://assets/images/tutorial_button.png" id="9_ottr5"]
+[ext_resource type="Texture2D" uid="uid://dnyo3j251gwnf" path="res://assets/images/quit_button1.png" id="10_26ks0"]
+[ext_resource type="Texture2D" uid="uid://chusp3xmb7hjc" path="res://assets/images/quit_button2.png" id="11_lcxn3"]
+[ext_resource type="PackedScene" uid="uid://bu4fraknk5a5n" path="res://scenes/screens/settings.tscn" id="12_j0fnj"]
+[ext_resource type="Texture2D" uid="uid://cdtui7frld5f5" path="res://assets/images/shiftstones/surge_stone_deactivated.png" id="13_ygsrs"]
+[ext_resource type="Texture2D" uid="uid://b4ow3vnp2r5o" path="res://assets/images/shiftstones/adamant_stone_inactive.png" id="14_dsqvq"]
+[ext_resource type="Texture2D" uid="uid://0ruvpjp4ojva" path="res://assets/images/shiftstones/flow_stone_deactivated.png" id="15_ev8re"]
+[ext_resource type="Texture2D" uid="uid://byqg2vvspp361" path="res://assets/images/shiftstones/volatile_stone_deactivated.png" id="16_2v17i"]
+[ext_resource type="Texture2D" uid="uid://duvvlveefbhdn" path="res://assets/images/tower5.png" id="17_mtfsj"]
+[ext_resource type="Texture2D" uid="uid://dch8t6rvsbw8p" path="res://assets/images/gear_coin5.png" id="18_7blkm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7idaa"]
-font = ExtResource("1_ww6ra")
+font = ExtResource("3_q0lwh")
 font_size = 800
 
 [node name="Main Menu" type="Control" node_paths=PackedStringArray("settings", "surge", "adamant", "flow", "volatile", "tower", "gear_coin", "gc_amount")]
@@ -30,7 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_20ixj")
+script = ExtResource("1_v1en6")
 settings = NodePath("Settings")
 surge = NodePath("Shiftstones/VBoxContainer/SurgeStoneDeactivated")
 adamant = NodePath("Shiftstones/VBoxContainer/AdamantStoneInactive")
@@ -40,7 +40,7 @@ tower = NodePath("Tower")
 gear_coin = NodePath("GearCoin")
 gc_amount = NodePath("GcAmount")
 
-[node name="SFXPlayer" parent="." instance=ExtResource("2_gqbqs")]
+[node name="SFXPlayer" parent="." instance=ExtResource("2_fibno")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -58,10 +58,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -540.0
-offset_top = -263.0
-offset_right = 2067.0
-offset_bottom = 937.0
+offset_left = 107.0
+offset_top = -258.0
+offset_right = 2714.0
+offset_bottom = 942.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
@@ -70,88 +70,89 @@ label_settings = SubResource("LabelSettings_7idaa")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 28.0
-offset_top = 248.0
-offset_right = 1278.0
-offset_bottom = 1647.0
+offset_left = 683.0
+offset_top = 247.0
+offset_right = 1933.0
+offset_bottom = 1646.0
 scale = Vector2(0.23, 0.23)
 
 [node name="Button" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("4_uuvla")
-texture_hover = ExtResource("5_wtxup")
+texture_normal = ExtResource("4_6st1b")
+texture_hover = ExtResource("5_1gunb")
 
 [node name="Button2" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("6_gu7sc")
-texture_hover = ExtResource("7_aap6f")
+texture_normal = ExtResource("6_r6mmw")
+texture_hover = ExtResource("7_ntok2")
 
 [node name="Button3" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("8_ra521")
-texture_hover = ExtResource("9_a3nlj")
+texture_normal = ExtResource("8_pgiy7")
+texture_hover = ExtResource("9_ottr5")
 
 [node name="Button4" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("10_tb1v3")
-texture_hover = ExtResource("11_1vell")
+texture_normal = ExtResource("10_26ks0")
+texture_hover = ExtResource("11_lcxn3")
 
-[node name="Settings" parent="." instance=ExtResource("7_tmij6")]
+[node name="Settings" parent="." instance=ExtResource("12_j0fnj")]
 visible = false
 
 [node name="Shiftstones" type="Node" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Shiftstones"]
-offset_top = -41.0
-offset_right = 40.0
-offset_bottom = -1.0
+offset_left = 655.0
+offset_top = -42.0
+offset_right = 695.0
+offset_bottom = -2.0
 
 [node name="SurgeStoneDeactivated" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
 position = Vector2(385, 323)
 scale = Vector2(2, 2)
-texture = ExtResource("4_lifwp")
+texture = ExtResource("13_ygsrs")
 
 [node name="AdamantStoneInactive" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
 position = Vector2(385, 402)
 scale = Vector2(2, 2)
-texture = ExtResource("3_k2p2s")
+texture = ExtResource("14_dsqvq")
 
 [node name="FlowStoneDeactivated" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
 position = Vector2(385, 485)
 scale = Vector2(2, 2)
-texture = ExtResource("6_0s045")
+texture = ExtResource("15_ev8re")
 
 [node name="VolatileStoneDeactivated" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
 position = Vector2(386, 572)
 scale = Vector2(2, 2)
-texture = ExtResource("5_pomtw")
+texture = ExtResource("16_2v17i")
 
 [node name="Tower" type="Sprite2D" parent="."]
-position = Vector2(397, 315)
+position = Vector2(-72, 315)
 scale = Vector2(1.01518, 1)
-texture = ExtResource("17_jyl3k")
+texture = ExtResource("17_mtfsj")
 
 [node name="GcAmount" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1017.0
-offset_top = 2.0
-offset_right = 1409.0
-offset_bottom = 146.0
+offset_left = 37.0
+offset_top = 5.0
+offset_right = 429.0
+offset_bottom = 149.0
 scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_ww6ra")
+theme_override_fonts/font = ExtResource("3_q0lwh")
 theme_override_font_sizes/font_size = 120
 text = "1,012,568"
 
 [node name="GearCoin" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 982.0
-offset_top = 5.0
-offset_right = 1028.0
-offset_bottom = 49.0
+offset_left = 2.00006
+offset_top = 8.0
+offset_right = 48.0001
+offset_bottom = 52.0
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("17_jel0a")
+texture = ExtResource("18_7blkm")
 
 [connection signal="mouse_entered" from="VBoxContainer/Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/Button" to="." method="_on_button_mouse_exited"]

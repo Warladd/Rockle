@@ -63,7 +63,9 @@ func _on_button_4_mouse_exited():
 	volatile.texture = load("res://assets/images/shiftstones/volatile_stone_deactivated.png")
 
 func change_menu():
-	if SaveSystem.settings.main_menu_value == 1 and scene_file_path != "res://scenes/screens/main_menu_alt.tscn":
+	if SaveSystem.settings.main_menu_value == 2 and scene_file_path != "res://scenes/screens/main_menu_alt_2.tscn":
+		Global.get_tree().change_scene_to_file("res://scenes/screens/main_menu_alt_2.tscn")
+	elif SaveSystem.settings.main_menu_value == 1 and scene_file_path != "res://scenes/screens/main_menu_alt.tscn":
 		Global.get_tree().change_scene_to_file("res://scenes/screens/main_menu_alt.tscn")
 	elif SaveSystem.settings.main_menu_value == 0 and scene_file_path != "res://scenes/screens/main_menu.tscn":
 		Global.get_tree().change_scene_to_file("res://scenes/screens/main_menu.tscn")
