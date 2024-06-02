@@ -1,13 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwp8wypah0dpe"]
+[gd_scene load_steps=16 format=3 uid="uid://dwp8wypah0dpe"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_20ixj"]
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/images/fonts/chinese rocks rg.otf" id="1_ww6ra"]
 [ext_resource type="PackedScene" uid="uid://ccgls6dolnjm" path="res://scenes/sfx_player.tscn" id="2_gqbqs"]
 [ext_resource type="Texture2D" uid="uid://dte7kek3jrsng" path="res://assets/images/shiftstones/adamant_stone_inactive.png" id="3_k2p2s"]
 [ext_resource type="Texture2D" uid="uid://cdtui7frld5f5" path="res://assets/images/shiftstones/surge_stone_deactivated.png" id="4_lifwp"]
+[ext_resource type="Texture2D" uid="uid://c1u0q3nu25nq" path="res://assets/images/play_button1.png" id="4_uuvla"]
 [ext_resource type="Texture2D" uid="uid://byqg2vvspp361" path="res://assets/images/shiftstones/volatile_stone_deactivated.png" id="5_pomtw"]
+[ext_resource type="Texture2D" uid="uid://c16wpj3uxvkyq" path="res://assets/images/play_button2.png" id="5_wtxup"]
 [ext_resource type="Texture2D" uid="uid://0ruvpjp4ojva" path="res://assets/images/shiftstones/flow_stone_deactivated.png" id="6_0s045"]
+[ext_resource type="Texture2D" uid="uid://cpa8sfg2cq06o" path="res://assets/images/settings_button1.png" id="6_gu7sc"]
+[ext_resource type="Texture2D" uid="uid://c3n5206x60uyn" path="res://assets/images/settings_button2.png" id="7_aap6f"]
 [ext_resource type="PackedScene" uid="uid://bu4fraknk5a5n" path="res://scenes/screens/settings.tscn" id="7_tmij6"]
+[ext_resource type="Texture2D" uid="uid://css46rpcwclio" path="res://assets/images/tutorial_button1.png" id="8_ra521"]
+[ext_resource type="Texture2D" uid="uid://bpjus7p7h7l7l" path="res://assets/images/pillar_and_other_in_main_menu.png" id="9_wp3gs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7idaa"]
 font = ExtResource("1_ww6ra")
@@ -58,35 +64,26 @@ label_settings = SubResource("LabelSettings_7idaa")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 484.0
-offset_top = 283.0
+offset_top = 291.0
 offset_right = 1447.0
-offset_bottom = 1671.0
+offset_bottom = 1644.0
 scale = Vector2(0.23, 0.23)
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Button" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_ww6ra")
-theme_override_font_sizes/font_size = 280
-text = "Play"
-flat = true
+texture_normal = ExtResource("4_uuvla")
+texture_hover = ExtResource("5_wtxup")
+stretch_mode = 3
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="Button2" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_ww6ra")
-theme_override_font_sizes/font_size = 280
-text = "Settings"
-flat = true
+texture_normal = ExtResource("6_gu7sc")
+texture_hover = ExtResource("7_aap6f")
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
+[node name="Button3" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_ww6ra")
-theme_override_font_sizes/font_size = 280
-text = "Tutorial"
-flat = true
+texture_normal = ExtResource("8_ra521")
 
 [node name="Button4" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -108,17 +105,17 @@ offset_right = 77.0
 offset_bottom = 41.0
 
 [node name="SurgeStoneDeactivated" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
-position = Vector2(386, 321)
+position = Vector2(385, 323)
 scale = Vector2(2, 2)
 texture = ExtResource("4_lifwp")
 
 [node name="AdamantStoneInactive" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
-position = Vector2(386, 401)
+position = Vector2(385, 404)
 scale = Vector2(2, 2)
 texture = ExtResource("3_k2p2s")
 
 [node name="FlowStoneDeactivated" type="Sprite2D" parent="Shiftstones/VBoxContainer"]
-position = Vector2(386, 481)
+position = Vector2(385, 490)
 scale = Vector2(2, 2)
 texture = ExtResource("6_0s045")
 
@@ -126,6 +123,16 @@ texture = ExtResource("6_0s045")
 position = Vector2(386, 564)
 scale = Vector2(2, 2)
 texture = ExtResource("5_pomtw")
+
+[node name="PillarInMainMenu" type="Sprite2D" parent="."]
+position = Vector2(554, 316)
+scale = Vector2(1.01518, 1)
+texture = ExtResource("9_wp3gs")
+
+[node name="PillarInMainMenu2" type="Sprite2D" parent="."]
+position = Vector2(554, 316)
+scale = Vector2(1.01518, 1)
+texture = ExtResource("9_wp3gs")
 
 [connection signal="mouse_entered" from="VBoxContainer/Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/Button" to="." method="_on_button_mouse_exited"]
