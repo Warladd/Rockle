@@ -11,6 +11,7 @@ class_name SaveFile
 # Black Belt = 5
 # Black Belt Mastery = 6
 @export var tutorial : bool = true
+@export var safe_opened : bool = false
 
 # Structures
 @export var disk : int = 1
