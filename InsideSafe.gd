@@ -11,9 +11,9 @@ func _ready():
 	hide()
 
 func _input(event):
-	if event.is_action_pressed("left_click") and SaveSystem.save_game.safe_opened:
+	if event.is_action_pressed("left_click") and SaveSystem.save_game.safe_opened and coins.visible:
 		coins.hide()
-		SaveSystem.save_game.gear_coins += 1000
+		SaveSystem.save_game.gear_coins += 5000
 		back_btn.disabled = false
 		tiny_safe.hide()
 

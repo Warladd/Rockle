@@ -23,7 +23,7 @@
 font = ExtResource("3_q0lwh")
 font_size = 800
 
-[node name="Main Menu" type="Control" node_paths=PackedStringArray("settings", "surge", "adamant", "flow", "volatile", "tower", "gear_coin", "gc_amount")]
+[node name="Main Menu" type="Control" node_paths=PackedStringArray("settings", "surge", "adamant", "flow", "volatile", "tower", "gear_coin", "gc_amount", "sfx_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,6 +39,7 @@ volatile = NodePath("Shiftstones/VBoxContainer/VolatileStoneDeactivated")
 tower = NodePath("Tower")
 gear_coin = NodePath("GearCoin")
 gc_amount = NodePath("GcAmount")
+sfx_player = NodePath("SFXPlayer")
 
 [node name="SFXPlayer" parent="." instance=ExtResource("2_fibno")]
 

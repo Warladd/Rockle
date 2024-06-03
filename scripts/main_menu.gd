@@ -7,6 +7,7 @@ extends Control
 @export var tower : Sprite2D
 @export var gear_coin : TextureRect
 @export var gc_amount : Label
+@export var sfx_player : AudioStreamPlayer2D
 
 func _ready():
 	SaveSystem.load_game()
@@ -39,24 +40,40 @@ func _on_button_4_pressed():
 	get_tree().quit(0)
 
 func _on_button_mouse_entered():
+	var sound = randi_range(1, 4)
+	var sound_string = "res://assets/audio/sfx/gem_sounds/gem_sound_%d.mp3" % sound
+	sfx_player.stream = load(sound_string)
+	sfx_player.play()
 	surge.texture = load("res://assets/images/shiftstones/surge_stone_activated.png")
 
 func _on_button_mouse_exited():
 	surge.texture = load("res://assets/images/shiftstones/surge_stone_deactivated.png")
 
 func _on_button_2_mouse_entered():
+	var sound = randi_range(1, 4)
+	var sound_string = "res://assets/audio/sfx/gem_sounds/gem_sound_%d.mp3" % sound
+	sfx_player.stream = load(sound_string)
+	sfx_player.play()
 	adamant.texture = load("res://assets/images/shiftstones/adamant_stone_active.png")
 
 func _on_button_2_mouse_exited():
 	adamant.texture = load("res://assets/images/shiftstones/adamant_stone_inactive.png")
 
 func _on_button_3_mouse_entered():
+	var sound = randi_range(1, 4)
+	var sound_string = "res://assets/audio/sfx/gem_sounds/gem_sound_%d.mp3" % sound
+	sfx_player.stream = load(sound_string)
+	sfx_player.play()
 	flow.texture = load("res://assets/images/shiftstones/flow_stone_activated.png")
 
 func _on_button_3_mouse_exited():
 	flow.texture = load("res://assets/images/shiftstones/flow_stone_deactivated.png")
 
 func _on_button_4_mouse_entered():
+	var sound = randi_range(1, 4)
+	var sound_string = "res://assets/audio/sfx/gem_sounds/gem_sound_%d.mp3" % sound
+	sfx_player.stream = load(sound_string)
+	sfx_player.play()
 	volatile.texture = load("res://assets/images/shiftstones/volatile_stone_activated.png")
 
 func _on_button_4_mouse_exited():
