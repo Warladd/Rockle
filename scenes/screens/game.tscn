@@ -193,6 +193,14 @@ position = Vector2(538, 216)
 texture = ExtResource("4_d1gks")
 metadata/_edit_lock_ = true
 
+[node name="Safe" type="TextureButton" parent="."]
+offset_left = 922.0
+offset_top = 194.0
+offset_right = 1050.0
+offset_bottom = 322.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("21_y8dtv")
+
 [node name="Structures" type="Node2D" parent="." node_paths=PackedStringArray("hitbox", "player", "player_sprite", "disk_timer", "pillar_timer", "ball_timer", "wall_timer", "cube_timer", "animation_timer", "disk_bar", "pillar_container", "pillar_bar", "ball_container", "ball_bar", "cube_container", "cube_bar", "wall_container", "wall_bar")]
 script = ExtResource("2_iebus")
 hitbox = NodePath("CharacterBody2D/CollisionShape2D")
@@ -1149,7 +1157,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.776471, 0.588235, 0.411765, 0.913725)
+color = Color(0.776471, 0.588235, 0.411765, 1)
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="PauseMenu/ColorRect"]
 visible = false
@@ -1349,10 +1357,15 @@ show_percentage = false
 process_mode = 3
 visible = false
 
-[node name="InsideSafe" type="CanvasLayer" parent="."]
+[node name="InsideSafe" type="CanvasLayer" parent="." node_paths=PackedStringArray("safe", "pass_key", "coins", "back_btn", "tiny_safe")]
 process_mode = 3
 layer = 2
 script = ExtResource("15_uvagp")
+safe = NodePath("Safe")
+pass_key = NodePath("LineEdit")
+coins = NodePath("Coins")
+back_btn = NodePath("BackButton")
+tiny_safe = NodePath("../Safe")
 
 [node name="Background" type="ColorRect" parent="InsideSafe"]
 anchors_preset = 15
@@ -1395,14 +1408,1093 @@ text = "Back"
 flat = true
 
 [node name="LineEdit" type="LineEdit" parent="InsideSafe"]
-offset_left = 515.0
+offset_left = 512.0
 offset_top = 286.0
-offset_right = 641.0
+offset_right = 638.0
 offset_bottom = 344.0
 placeholder_text = "0000"
 alignment = 1
 max_length = 4
 virtual_keyboard_type = 2
+
+[node name="Coins" type="Node2D" parent="InsideSafe"]
+visible = false
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(435, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(404, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(411, 568)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin1"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin1"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin1"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin4" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(495, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin5" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(464, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin6" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(471, 568)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin6"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin6"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin6"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin7" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(559, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin8" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(528, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin9" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(535, 569)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin9"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin9"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin9"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin10" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(619, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin11" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(588, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin12" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(595, 569)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin12"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin12"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin12"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin13" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(409, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin14" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(378, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin15" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(385, 568)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin15"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin15"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin15"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin16" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(469, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin17" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(438, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin18" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(445, 568)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin18"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin18"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin18"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin19" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(533, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin20" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(502, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin21" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(509, 569)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin21"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin21"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin21"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin22" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(593, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin23" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(562, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin24" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(569, 569)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin24"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin24"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin24"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin25" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(627, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin26" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(596, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin27" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(603, 570)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin27"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin27"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin27"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin28" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(687, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin29" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(656, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin30" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(663, 570)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin30"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin30"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin30"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin31" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(751, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin32" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(720, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin33" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(727, 571)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin33"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin33"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin33"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin34" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(811, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin35" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(780, 593)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin36" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(787, 571)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin36"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin36"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin36"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin37" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(601, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin38" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(570, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin39" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(577, 570)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin39"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin39"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin39"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin40" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(661, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin41" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(630, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin42" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(637, 570)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin42"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin42"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin42"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin43" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(725, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin115" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(836, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin116" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(848, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin117" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(367, 507)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin118" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(362, 506)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin119" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(392, 487)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin120" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(454, 492)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin121" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(516, 498)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin122" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(604, 503)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin123" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(679, 503)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin124" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(731, 496)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin125" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(794, 491)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin126" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(848, 503)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin127" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(481, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin128" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(490, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin129" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(520, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin130" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(429, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin131" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(415, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin132" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(394, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin133" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(369, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin134" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(360, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin135" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(360, 583)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin136" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(360, 577)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin137" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(360, 570)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin138" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(450, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin139" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(456, 587)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin140" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(469, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin141" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(552, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin142" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(675, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin143" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(708, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin144" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(644, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin145" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(658, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin146" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(798, 588)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin147" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(806, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin148" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(847, 586)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin149" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(847, 578)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin150" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(847, 572)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin151" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(847, 572)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin152" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(845, 555)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin153" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(825, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin154" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(803, 496)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin155" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(827, 479)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin44" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(694, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin45" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(701, 571)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin45"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin45"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin45"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin46" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(785, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin47" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(754, 593)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin48" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(761, 571)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin48"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin48"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin48"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin49" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(416, 555)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin50" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(385, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin51" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(392, 534)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin51"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin51"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin51"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin52" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(476, 555)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin53" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(445, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin54" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(452, 534)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin54"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin54"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin54"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin55" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(540, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin56" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(509, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin57" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(516, 535)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin57"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin57"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin57"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin58" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(600, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin59" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(569, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin60" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(576, 535)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin60"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin60"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin60"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin61" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(390, 555)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin62" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(359, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin63" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(366, 534)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin63"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin63"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin63"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin64" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(450, 555)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin65" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(419, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin66" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(426, 534)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin66"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin66"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin66"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin67" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(514, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin68" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(483, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin69" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(490, 535)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin69"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin69"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin69"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin70" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(574, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin71" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(543, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin72" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(550, 535)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin72"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin72"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin72"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin73" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(627, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin74" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(596, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin75" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(603, 535)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin75"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin75"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin75"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin76" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(687, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin77" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(656, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin78" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(663, 535)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin78"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin78"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin78"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin79" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(751, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin80" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(720, 558)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin81" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(727, 536)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin81"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin81"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin81"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin82" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(811, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin83" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(780, 558)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin84" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(787, 536)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin84"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin84"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin84"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin85" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(601, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin86" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(570, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin87" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(577, 535)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin87"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin87"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin87"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin88" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(661, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin89" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(630, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin90" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(637, 535)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin90"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin90"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin90"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin91" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(725, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin92" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(694, 558)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin93" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(701, 536)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin93"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin93"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin93"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin94" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(785, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin95" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(754, 558)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin96" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(761, 536)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin96"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin96"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin96"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin97" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(812, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin98" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(781, 593)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin99" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(788, 571)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin99"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin99"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin99"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin100" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(716, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin101" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(683, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin102" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(693, 571)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin102"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin102"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin102"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin103" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(627, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin104" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(594, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin105" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(603, 572)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin105"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin105"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin105"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin106" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(541, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin107" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(510, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin108" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(517, 569)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin108"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin108"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin108"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin109" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(466, 581)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin110" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(435, 582)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin111" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(442, 560)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin111"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin111"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin111"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin112" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(392, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin113" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(363, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin114" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(367, 572)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin114"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin114"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin114"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("22_nngo4")
@@ -1410,14 +2502,7 @@ volume_db = 10.0
 autoplay = true
 bus = &"Music"
 
-[node name="Safe" type="TextureButton" parent="."]
-offset_left = 922.0
-offset_top = 194.0
-offset_right = 1050.0
-offset_bottom = 322.0
-scale = Vector2(0.3, 0.3)
-texture_normal = ExtResource("21_y8dtv")
-
+[connection signal="pressed" from="Safe" to="InsideSafe" method="_on_safe_pressed"]
 [connection signal="area_entered" from="Structures/CharacterBody2D/StructureDetector" to="Structures" method="_on_structure_detector_area_entered"]
 [connection signal="area_exited" from="Structures/CharacterBody2D/StructureDetector" to="Structures" method="_on_structure_detector_area_exited"]
 [connection signal="body_entered" from="Structures/CharacterBody2D/StructureDetector" to="Structures" method="_on_area_2d_body_entered"]
@@ -1463,4 +2548,3 @@ texture_normal = ExtResource("21_y8dtv")
 [connection signal="visibility_changed" from="InsideSafe" to="InsideSafe" method="_on_visibility_changed"]
 [connection signal="pressed" from="InsideSafe/BackButton" to="InsideSafe" method="_on_back_button_pressed"]
 [connection signal="text_submitted" from="InsideSafe/LineEdit" to="InsideSafe" method="_on_line_edit_text_submitted"]
-[connection signal="pressed" from="Safe" to="InsideSafe" method="_on_safe_pressed"]
