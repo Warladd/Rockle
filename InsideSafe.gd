@@ -19,6 +19,7 @@ func _input(event):
 
 func _on_visibility_changed():
 	get_tree().paused = visible
+	Global.shop = visible
 
 func _on_safe_pressed():
 	if SaveSystem.save_game.safe_opened:

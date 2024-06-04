@@ -246,6 +246,20 @@ text = "Placeholder?"
 script = ExtResource("5_s5qva")
 action = "uppercut"
 
+[node name="Label7" type="Label" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
+layout_mode = 2
+text = "Parry"
+label_settings = ExtResource("3_w374r")
+
+[node name="Button5" type="Button" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("4_octia")
+text = "PlaceyHolder"
+script = ExtResource("5_s5qva")
+action = "parry"
+
 [node name="Label5" type="Label" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
 layout_mode = 2
 text = "Pause"

@@ -9,7 +9,7 @@ size = Vector2(86, 140)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfdch"]
 size = Vector2(88, 137)
 
-[node name="Wall" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector", "sprite", "collision", "sfx_player", "straight_timer", "kick_timer", "uppercut_timer")]
+[node name="Wall" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector", "sprite", "collision", "sfx_player", "straight_timer", "kick_timer", "uppercut_timer", "parry_timer")]
 collision_layer = 0
 script = ExtResource("1_mukex")
 death = NodePath("Area2D2")
@@ -20,6 +20,7 @@ sfx_player = NodePath("SFXPlayer")
 straight_timer = NodePath("StraightTimer")
 kick_timer = NodePath("KickTimer")
 uppercut_timer = NodePath("UppercutTimer")
+parry_timer = NodePath("ParryTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2, 0)
@@ -62,6 +63,10 @@ one_shot = true
 
 [node name="UppercutTimer" type="Timer" parent="."]
 wait_time = 0.4
+one_shot = true
+
+[node name="ParryTimer" type="Timer" parent="."]
+wait_time = 1.5
 one_shot = true
 
 [node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]

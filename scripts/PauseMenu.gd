@@ -2,7 +2,7 @@ extends CanvasLayer
 @export var settings : CanvasLayer
 
 func _process(delta):
-	if Input.is_action_just_pressed("esc"):
+	if Input.is_action_just_pressed("esc") and !Global.shop:
 		self.visible = !self.visible
 		get_tree().paused = self.visible
 	if Input.is_action_just_pressed("codes"):
@@ -19,21 +19,18 @@ func _on_quit_button_pressed():
 
 func _on_restart_button_pressed():
 	$ColorRect/VBoxContainer.hide()
-	$ColorRect.color = Color("c6966900")
 	$ColorRect/VBoxContainer2.show()
 
 func _on_yes_button_pressed():
 	SaveSystem.restart()
 	$ColorRect/VBoxContainer2.hide()
 	$ColorRect/VBoxContainer.show()
-	$ColorRect.color = Color("c69669c9")
 	self.visible = !self.visible
 	get_tree().paused = self.visible
 	get_tree().reload_current_scene()
 
 func _on_no_button_pressed():
 	$ColorRect/VBoxContainer.show()
-	$ColorRect.color = Color("c69669c9")
 	$ColorRect/VBoxContainer2.hide()
 
 func _on_quitto_menu_button_pressed():

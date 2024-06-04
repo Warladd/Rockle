@@ -16,6 +16,7 @@ var rotation_velocity: float = 0
 @export var straight_timer : Timer
 @export var kick_timer : Timer
 @export var uppercut_timer : Timer
+@export var parry_timer : Timer
 var gear_amount : int = 0
 var touching_floor : bool = false
 
@@ -27,6 +28,11 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
+	if linear_velocity.x != 0 or grounded:
+		parry_timer.stop()
+	if !parry_timer.is_stopped():
+		linear_velocity.y = 0
+		gravity_scale = 0
 	if linear_velocity.x > 0:
 		damage_value = 3
 	elif linear_velocity.x <= 0:
@@ -50,6 +56,7 @@ func _on_area_2d_body_entered(body):
 	if body.get_parent().straight and straight_timer.is_stopped():
 		sfx_player.stream = load("res://assets/audio/sfx/straight.mp3")
 		sfx_player.play()
+		parry_timer.stop()
 		straight_timer.start()
 		linear_velocity.x += 750
 		modifiers.append("straight")
@@ -62,24 +69,34 @@ func _on_area_2d_body_entered(body):
 			sfx_player.stream = load("res://assets/audio/sfx/ungrounded_kick.mp3")
 			sfx_player.play()
 		kick_timer.start()
+		parry_timer.stop()
 		linear_velocity.y -= 400
 		modifiers.append("kick")
 	elif structures.stomp and !grounded:
 		sfx_player.stream = load("res://assets/audio/sfx/stomp.mp3")
 		sfx_player.play()
+		parry_timer.stop()
 		grounded = true
 		linear_velocity.y += 1000
 		linear_velocity.x = 0
 	elif structures.uppercut and uppercut_timer.is_stopped():
 		sfx_player.stream = load("res://assets/audio/sfx/ungrounded_upper.mp3")
 		sfx_player.play()
+		parry_timer.stop()
 		uppercut_timer.start()
 		lock_rotation = false
 		grounded = false
 		linear_velocity.y = 0
 		apply_impulse(Vector2(100,-300), Vector2(-50, 0))
 		modifiers.append("uppercut")
-
+	elif structures.parry and parry_timer.is_stopped():
+		sfx_player.stream = load("res://assets/audio/sfx/parry.mp3")
+		sfx_player.play()
+		grounded = false
+		parry_timer.start()
+		linear_velocity.y = 0
+		linear_velocity.x = 0
+		
 func _on_timer_timeout():
 	detector.monitoring = true
 	linear_velocity.y = 0
@@ -108,6 +125,7 @@ func _on_area_2d_2_area_entered(area):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.cube * SaveSystem.save_game.cube_increase * SaveSystem.save_game.general_increase
 			gear_amount += SaveSystem.save_game.cube * SaveSystem.save_game.cube_increase * SaveSystem.save_game.general_increase	
 		Global.popup_number = gear_amount
+		Global.popup.emit()
 		SaveSystem.saving()
 		print("saving")
 		queue_free()
@@ -145,3 +163,6 @@ func _on_area_2d_3_area_exited(area):
 		return
 	touching_floor = false
 	print("no cubey")
+
+func _on_parry_timer_timeout():
+	gravity_scale = 1

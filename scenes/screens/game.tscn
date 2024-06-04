@@ -47,7 +47,7 @@ bg_color = Color(0.575317, 0.54622, 0.536891, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1dof"]
 bg_color = Color(0.787727, 0.641632, 0.543549, 1)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("disk_label", "disk_name_label", "disk_container", "disk_bar", "pillar_timer", "pillar_label", "pillar_name_label", "pillar_container", "pillar_bar", "ball_timer", "ball_label", "ball_gear", "ball_name_label", "ball_container", "ball_bar", "ball_button", "cube_timer", "cube_label", "cube_gear", "cube_name_label", "cube_container", "cube_bar", "cube_button", "wall_timer", "wall_label", "wall_gear", "wall_name_label", "wall_container", "wall_bar", "wall_button", "kick_button", "kick_label", "kick_gear", "stomp_button", "stomp_label", "stomp_gear", "uppercut_button", "uppercut_label", "uppercut_gear", "explode_button", "explode_label", "straight_m_button", "straight_m_label", "straight_m_gear", "white_belt_label", "white_belt_button", "white_belt_gear", "yellow_belt_label", "yellow_belt_button", "yellow_belt_container", "yellow_belt_gear", "green_belt_label", "green_belt_button", "green_belt_container", "green_belt_gear", "blue_belt_label", "blue_belt_button", "blue_belt_container", "blue_belt_gear", "red_belt_label", "red_belt_button", "red_belt_container", "red_belt_gear", "black_belt_label", "black_belt_button", "black_belt_container", "black_belt_gear", "gear_label", "shop_label", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu", "settings", "popup_container")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("disk_label", "disk_name_label", "disk_container", "disk_bar", "pillar_timer", "pillar_label", "pillar_name_label", "pillar_container", "pillar_bar", "ball_timer", "ball_label", "ball_gear", "ball_name_label", "ball_container", "ball_bar", "ball_button", "cube_timer", "cube_label", "cube_gear", "cube_name_label", "cube_container", "cube_bar", "cube_button", "wall_timer", "wall_label", "wall_gear", "wall_name_label", "wall_container", "wall_bar", "wall_button", "kick_button", "kick_label", "kick_gear", "stomp_button", "stomp_label", "stomp_gear", "uppercut_button", "uppercut_label", "uppercut_gear", "parry_button", "parry_label", "parry_gear", "explode_button", "explode_label", "straight_m_button", "straight_m_label", "straight_m_gear", "white_belt_label", "white_belt_button", "white_belt_gear", "yellow_belt_label", "yellow_belt_button", "yellow_belt_container", "yellow_belt_gear", "green_belt_label", "green_belt_button", "green_belt_container", "green_belt_gear", "blue_belt_label", "blue_belt_button", "blue_belt_container", "blue_belt_gear", "red_belt_label", "red_belt_button", "red_belt_container", "red_belt_gear", "black_belt_label", "black_belt_button", "black_belt_container", "black_belt_gear", "gear_label", "shop_label", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu", "settings", "popup_container")]
 script = ExtResource("1_rdaht")
 disk_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label2")
 disk_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label")
@@ -88,6 +88,9 @@ stomp_gear = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer6/
 uppercut_button = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/UppercutButton")
 uppercut_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/Label2")
 uppercut_gear = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/GearCoin")
+parry_button = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer7/ParryButton")
+parry_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer7/Label2")
+parry_gear = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer7/GearCoin")
 explode_button = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer5/ExplodeButton")
 explode_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/Label2")
 straight_m_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/StraightMastery/StraightMButton")
@@ -235,7 +238,7 @@ disabled = true
 [node name="Player" type="AnimatedSprite2D" parent="Structures/CharacterBody2D"]
 position = Vector2(330, 321)
 sprite_frames = ExtResource("8_8t7ce")
-animation = &"stomp"
+animation = &"parry"
 
 [node name="StructureDetector" type="Area2D" parent="Structures/CharacterBody2D"]
 collision_layer = 0
@@ -749,7 +752,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer6"]
 layout_mode = 2
-text = "750"
+text = "1000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
@@ -776,7 +779,7 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "1,000"
+text = "5,000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
@@ -804,7 +807,38 @@ texture = ExtResource("12_p6s2u")
 
 [node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-text = "5,000"
+text = "20,000"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 1
+text = " Parry"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="ParryButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+disabled = true
+text = "Locked"
+alignment = 2
+
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer7"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer7"]
+visible = false
+layout_mode = 2
+text = "20,000,000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
@@ -1157,7 +1191,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.776471, 0.588235, 0.411765, 1)
+color = Color(0.776471, 0.588235, 0.411765, 0.894118)
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="PauseMenu/ColorRect"]
 visible = false
@@ -1360,6 +1394,7 @@ visible = false
 [node name="InsideSafe" type="CanvasLayer" parent="." node_paths=PackedStringArray("safe", "pass_key", "coins", "back_btn", "tiny_safe")]
 process_mode = 3
 layer = 2
+visible = false
 script = ExtResource("15_uvagp")
 safe = NodePath("Safe")
 pass_key = NodePath("LineEdit")
@@ -2526,6 +2561,7 @@ bus = &"Music"
 [connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer6/StompButton" to="." method="_on_stomp_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2/KickButton" to="." method="_on_kick_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/UppercutButton" to="." method="_on_uppercut_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer7/ParryButton" to="." method="_on_parry_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer5/ExplodeButton" to="." method="_on_explode_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/ExitShopButton" to="." method="_on_exit_shop_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/StraightMastery/StraightMButton" to="." method="_on_straight_m_button_pressed"]

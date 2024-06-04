@@ -17,6 +17,7 @@ var gear_amount : int = 0
 @export var straight_timer : Timer
 @export var kick_timer : Timer
 @export var uppercut_timer : Timer
+@export var parry_timer : Timer
 
 func _ready():
 	detector.monitoring = false
@@ -43,7 +44,7 @@ func _process(delta):
 			velocity.y = 0
 	elif !grounded:
 		sprite.texture = load("res://assets/images/structures/wall_ungrounded.png")
-	if !is_on_floor():
+	if !is_on_floor() and parry_timer.is_stopped():
 		velocity.y -= gravity * delta
 	if velocity.x > 0:
 		velocity.x -= 850 * delta
@@ -62,10 +63,12 @@ func _on_area_2d_body_entered(body):
 		straight_timer.start()
 		sfx_player.stream = load("res://assets/audio/sfx/straight.mp3")
 		sfx_player.play()
+		parry_timer.stop()
 		velocity.x += 650
 		modifiers.append("straight")
 	elif body.get_parent().kick and kick_timer.is_stopped():
 		kick_timer.start()
+		parry_timer.stop()
 		if grounded:
 			sfx_player.stream = load("res://assets/audio/sfx/grounded_kick.mp3")
 			sfx_player.play()
@@ -80,6 +83,7 @@ func _on_area_2d_body_entered(body):
 		sfx_player.stream = load("res://assets/audio/sfx/stomp.mp3")
 		sfx_player.play()
 		grounded = true
+		parry_timer.stop()
 		velocity.y += 1000
 		velocity.x = 0
 	elif structures.uppercut and uppercut_timer.is_stopped():
@@ -87,10 +91,18 @@ func _on_area_2d_body_entered(body):
 		sfx_player.play()
 		uppercut_timer.start()
 		grounded = false
+		parry_timer.stop()
 		velocity.y = 0
 		velocity.y -= 200
 		velocity.x += 300
 		modifiers.append("uppercut")
+	elif structures.parry and parry_timer.is_stopped():
+		sfx_player.stream = load("res://assets/audio/sfx/parry.mp3")
+		sfx_player.play()
+		grounded = false
+		parry_timer.start()
+		velocity.y = 0
+		velocity.x = 0
 
 func _on_timer_timeout():
 	detector.monitoring = true
@@ -119,6 +131,7 @@ func _on_area_2d_2_area_entered(area):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.wall * SaveSystem.save_game.wall_increase * SaveSystem.save_game.general_increase
 			gear_amount += SaveSystem.save_game.wall * SaveSystem.save_game.wall_increase * SaveSystem.save_game.general_increase
 		Global.popup_number = gear_amount
+		Global.popup.emit()
 		SaveSystem.saving()
 		print("saving")
 		queue_free()

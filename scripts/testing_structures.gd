@@ -48,6 +48,7 @@ var straight : bool = true
 var kick : bool = false
 var uppercut : bool = false
 var stomp : bool = false
+var parry : bool = false
 
 func _ready():
 	SaveSystem.load_game()
@@ -215,6 +216,12 @@ func _input(event) -> void:
 		hitbox.disabled = false
 		uppercut = true
 		modifier_cooldown()
+	elif event.is_action_pressed("parry") and SaveSystem.save_game.parry:
+		print("parrying")
+		player_sprite.play("parry")
+		hitbox.disabled = false
+		parry = true
+		modifier_cooldown()
 
 func _on_disk_timer_timeout() -> void:
 	print("disk timer finished")
@@ -231,6 +238,7 @@ func modifier_cooldown():
 	uppercut = false
 	stomp = false
 	kick = false
+	parry = false
 	animation_timer.start()
 
 func _on_ball_timer_timeout():

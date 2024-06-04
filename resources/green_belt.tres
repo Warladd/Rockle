@@ -1,13 +1,13 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://dyd6yveff1ag3"]
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://dyd6yveff1ag3"]
 
 [ext_resource type="Texture2D" uid="uid://clkr6irlt4uf6" path="res://assets/images/character/Rumbler3.png" id="1_sk1lk"]
 [ext_resource type="Texture2D" uid="uid://dnswipth8ve3y" path="res://assets/images/character/Rumbler_explode3.png" id="2_oerod"]
 [ext_resource type="Texture2D" uid="uid://c5l3bo14ttckv" path="res://assets/images/character/Rumbler_hold3.png" id="3_1ql77"]
 [ext_resource type="Texture2D" uid="uid://orhgi02ddvqr" path="res://assets/images/character/Rumbler_kick3.png" id="4_lwio7"]
+[ext_resource type="Texture2D" uid="uid://btymqpv6na22u" path="res://assets/images/character/Rumbler_parry3.png" id="5_gyb0e"]
 [ext_resource type="Texture2D" uid="uid://ckbgm2cbpjlc8" path="res://assets/images/character/Rumbler_stomp3.png" id="5_kdjqj"]
 [ext_resource type="Texture2D" uid="uid://dps7nla6oayr7" path="res://assets/images/character/Rumbler_straight3.png" id="5_x4txg"]
 [ext_resource type="Texture2D" uid="uid://dfvqrybqkuc8p" path="res://assets/images/character/Rumbler_uppercut3.png" id="6_12ksr"]
-
 
 [resource]
 animations = [{
@@ -41,6 +41,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"kick",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_gyb0e")
+}],
+"loop": true,
+"name": &"parry",
 "speed": 5.0
 }, {
 "frames": [{

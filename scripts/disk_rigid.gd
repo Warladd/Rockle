@@ -9,6 +9,7 @@ var structure = "disk"
 @export var straight_timer : Timer
 @export var kick_timer : Timer
 @export var uppercut_timer : Timer
+@export var parry_timer : Timer
 var grounded : bool = false
 var damage_value : int = 0
 var stored_velocity_x : float = 0
@@ -25,6 +26,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if linear_velocity.x != 0 or grounded:
+		parry_timer.stop()
+	if !parry_timer.is_stopped():
+		linear_velocity.y = 0
+		gravity_scale = 0
 	if dead:
 		await sfx_player.finished
 		queue_free()
@@ -54,6 +60,7 @@ func _on_area_2d_body_entered(body):
 		modifiers.append("straight")
 	elif structures.kick and kick_timer.is_stopped():
 		kick_timer.start()
+		parry_timer.stop()
 		if grounded:
 			sfx_player.stream = load("res://assets/audio/sfx/grounded_kick.mp3")
 			sfx_player.play()
@@ -67,6 +74,7 @@ func _on_area_2d_body_entered(body):
 	elif structures.stomp and !grounded:
 		sfx_player.stream = load("res://assets/audio/sfx/stomp.mp3")
 		sfx_player.play()
+		parry_timer.stop()
 		grounded = true
 		linear_velocity.y += 1000
 		linear_velocity.x = 0
@@ -74,11 +82,19 @@ func _on_area_2d_body_entered(body):
 		sfx_player.stream = load("res://assets/audio/sfx/ungrounded_upper.mp3")
 		sfx_player.play()
 		uppercut_timer.start()
+		parry_timer.stop()
 		lock_rotation = false
 		grounded = false
 		linear_velocity.y = 0
 		apply_impulse(Vector2(15, -30), Vector2(10, 10))
 		modifiers.append("uppercut")
+	elif structures.parry and parry_timer.is_stopped():
+		sfx_player.stream = load("res://assets/audio/sfx/parry.mp3")
+		sfx_player.play()
+		grounded = false
+		parry_timer.start()
+		linear_velocity.y = 0
+		linear_velocity.x = 0
 		
 func _on_timer_timeout():
 	sfx_player.stream = load("res://assets/audio/sfx/disk_and_ball_spawn.mp3")
@@ -109,6 +125,7 @@ func _on_area_2d_2_area_entered(area):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
 			gear_amount += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
 		Global.popup_number = gear_amount
+		Global.popup.emit()
 		SaveSystem.saving()
 		print("saving")
 		queue_free()
@@ -126,3 +143,6 @@ func _on_area_2d_3_body_exited(body):
 	if !body.name == "Floor":
 		return
 	touching_floor = false
+
+func _on_parry_timer_timeout():
+	gravity_scale = 0.5

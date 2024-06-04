@@ -4,6 +4,7 @@ class_name Keybinds
 @export var stomp_input : String = "space"
 @export var kick_input : String = "z"
 @export var uppercut_input : String = "mouse_2"
+@export var parry_input : String = "x"
 
 func save_keybinding(action : StringName, event: InputEvent):
 	if action == "straight":
@@ -26,6 +27,11 @@ func save_keybinding(action : StringName, event: InputEvent):
 			uppercut_input = OS.get_keycode_string(event.physical_keycode)
 		elif event is InputEventMouseButton:
 			uppercut_input = "mouse_" + str(event.button_index)
+	elif action == "parry":
+		if event is InputEventKey:
+			parry_input = OS.get_keycode_string(event.physical_keycode)
+		elif event is InputEventMouseButton:
+			parry_input = "mouse_" + str(event.button_index)
 	SaveSystem.save_keybinds()
 
 func load_keybindings():
@@ -62,5 +68,13 @@ func load_keybindings():
 		input_event = InputEventKey.new()
 		input_event.keycode = OS.find_keycode_from_string(uppercut_input)
 	keybindings[3] = input_event
+	input_event = null
+	if parry_input.contains("mouse_"):
+		input_event = InputEventMouseButton.new()
+		input_event.button_index = int(parry_input.split("_")[1])
+	else:
+		input_event = InputEventKey.new()
+		input_event.keycode = OS.find_keycode_from_string(parry_input)
+	keybindings[4] = input_event
 	input_event = null
 	return keybindings
