@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://w61j5pg3dnfv"]
+
+[ext_resource type="Script" path="res://scripts/pillar.gd" id="1_lolv6"]
+[ext_resource type="Texture2D" uid="uid://dsne4pbbibpxo" path="res://assets/images/structures/pillar_ungrounded.png" id="2_c65mt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7o5b3"]
+size = Vector2(64, 138)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlarb"]
+size = Vector2(66, 136)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bnbdw"]
+size = Vector2(64, 138)
+
+[node name="Pillar" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector", "collision", "sprite", "sfx_player", "straight_timer", "kick_timer", "uppercut_timer", "parry_timer")]
+collision_layer = 0
+script = ExtResource("1_lolv6")
+death = NodePath("Area2D2")
+detector = NodePath("Area2D")
+collision = NodePath("CollisionShape2D")
+sprite = NodePath("Sprite2D")
+sfx_player = NodePath("SFXPlayer")
+straight_timer = NodePath("StraightTimer")
+kick_timer = NodePath("KickTimer")
+uppercut_timer = NodePath("UppercutTimer")
+parry_timer = NodePath("ParryTimer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, 0)
+scale = Vector2(1.15, 1.2)
+texture = ExtResource("2_c65mt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, -3)
+shape = SubResource("RectangleShape2D_7o5b3")
+disabled = true
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-5, -3)
+shape = SubResource("RectangleShape2D_tlarb")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-5, -3)
+shape = SubResource("RectangleShape2D_bnbdw")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.45
+one_shot = true
+autostart = true
+
+[node name="StraightTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="KickTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="UppercutTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="ParryTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

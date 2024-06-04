@@ -1,46 +1,333 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtw6obm6lmpng"]
+[gd_scene load_steps=31 format=3 uid="uid://dtw6obm6lmpng"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rdaht"]
-[ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/fonts/chinese rocks rg.otf" id="2_bwg6y"]
+[ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/images/fonts/chinese rocks rg.otf" id="2_bwg6y"]
+[ext_resource type="Script" path="res://scripts/testing_structures.gd" id="2_iebus"]
+[ext_resource type="Texture2D" uid="uid://cn05bgi4janpn" path="res://assets/images/mountains_testing_back.png" id="2_oulwa"]
+[ext_resource type="Script" path="res://scripts/background.gd" id="2_q1wf8"]
+[ext_resource type="Texture2D" uid="uid://b7hb1op7son8f" path="res://assets/images/clouds_1.png" id="3_2prhk"]
 [ext_resource type="LabelSettings" uid="uid://xd8rgjv5gtlp" path="res://resources/standard_label_settings.tres" id="3_6lbk3"]
-[ext_resource type="Texture2D" uid="uid://cecbvd8n2ff67" path="res://assets/structures/click/wall_click.png" id="4_vdik3"]
-[ext_resource type="Texture2D" uid="uid://dboukh73baip7" path="res://assets/structures/click/disk_click.png" id="5_ymnav"]
-[ext_resource type="Texture2D" uid="uid://c3ciqui60acws" path="res://assets/structures/hover/disk_bigger.png" id="6_b8alq"]
+[ext_resource type="Texture2D" uid="uid://dudpb7ah1iana" path="res://assets/images/gear_coin.png" id="3_vfisr"]
+[ext_resource type="Texture2D" uid="uid://843fqkh3wfvb" path="res://assets/images/mountains_testing_front.png" id="4_d1gks"]
+[ext_resource type="Texture2D" uid="uid://cqbjkac5sfbki" path="res://assets/images/clouds_2.png" id="4_xjvxm"]
+[ext_resource type="Texture2D" uid="uid://dr2g6jho5slhg" path="res://assets/images/clouds_3.png" id="5_kv0hw"]
+[ext_resource type="Texture2D" uid="uid://cj63ekvcqcgn8" path="res://assets/images/clouds_4.png" id="6_aj4dd"]
+[ext_resource type="Texture2D" uid="uid://dqpskp83hv2pk" path="res://assets/images/Giant Wall.png" id="7_ielk0"]
+[ext_resource type="SpriteFrames" uid="uid://djw5x6aebbp1f" path="res://resources/white_belt.tres" id="8_8t7ce"]
+[ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="8_aofh8"]
+[ext_resource type="LabelSettings" uid="uid://ca2wabawemdxc" path="res://resources/charge_label_settings.tres" id="10_5384l"]
+[ext_resource type="Script" path="res://scripts/breaking_wall.gd" id="11_q4tyc"]
+[ext_resource type="Texture2D" uid="uid://buy76hpr2jxed" path="res://assets/images/gear_coin1.png" id="12_p6s2u"]
+[ext_resource type="PackedScene" uid="uid://bu4fraknk5a5n" path="res://scenes/screens/settings.tscn" id="12_ygs3y"]
+[ext_resource type="Script" path="res://InsideSafe.gd" id="15_uvagp"]
+[ext_resource type="Texture2D" uid="uid://b0vt2ngbnb76f" path="res://assets/images/safe.png" id="21_y8dtv"]
+[ext_resource type="AudioStream" uid="uid://cs5v7kd4y7mie" path="res://assets/audio/2024-05-29 20-14-49.mp3" id="22_nngo4"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("gear_label", "shop_label_1", "shop_label_2", "shop", "shop_button", "straight_label", "kick_label", "uppercut_label", "hold_label", "click_button", "disk_button", "pillar_button", "pillar_label", "boulder_button", "boulder_label", "wall_button", "wall_label", "particle_timer", "particle_sprite")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xytg0"]
+size = Vector2(203, 132)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1paub"]
+size = Vector2(384, 261)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfnlq"]
+size = Vector2(62.5, 425)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tq13i"]
+font = ExtResource("2_bwg6y")
+font_size = 160
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2fv8h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkvsg"]
+size = Vector2(1122, 254)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dx7l"]
+bg_color = Color(0.575317, 0.54622, 0.536891, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1dof"]
+bg_color = Color(0.787727, 0.641632, 0.543549, 1)
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("disk_label", "disk_name_label", "disk_container", "disk_bar", "pillar_timer", "pillar_label", "pillar_name_label", "pillar_container", "pillar_bar", "ball_timer", "ball_label", "ball_gear", "ball_name_label", "ball_container", "ball_bar", "ball_button", "cube_timer", "cube_label", "cube_gear", "cube_name_label", "cube_container", "cube_bar", "cube_button", "wall_timer", "wall_label", "wall_gear", "wall_name_label", "wall_container", "wall_bar", "wall_button", "kick_button", "kick_label", "kick_gear", "stomp_button", "stomp_label", "stomp_gear", "uppercut_button", "uppercut_label", "uppercut_gear", "parry_button", "parry_label", "parry_gear", "explode_button", "explode_label", "straight_m_button", "straight_m_label", "straight_m_gear", "white_belt_label", "white_belt_button", "white_belt_gear", "yellow_belt_label", "yellow_belt_button", "yellow_belt_container", "yellow_belt_gear", "green_belt_label", "green_belt_button", "green_belt_container", "green_belt_gear", "blue_belt_label", "blue_belt_button", "blue_belt_container", "blue_belt_gear", "red_belt_label", "red_belt_button", "red_belt_container", "red_belt_gear", "black_belt_label", "black_belt_button", "black_belt_container", "black_belt_gear", "gear_label", "shop_label", "shop", "shop_button", "player_sprite", "saving_label", "save_timer", "pause_menu", "settings", "popup_container")]
 script = ExtResource("1_rdaht")
-gear_label = NodePath("Label")
-shop_label_1 = NodePath("Shop/TabContainer/Modifiers/Label")
-shop_label_2 = NodePath("Shop/TabContainer/Structures/Label2")
+disk_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label2")
+disk_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label")
+disk_container = NodePath("StructureBarContainer/DiskContainer")
+disk_bar = NodePath("StructureBarContainer/DiskContainer/ProgressBar")
+pillar_timer = NodePath("Timers/PillarTimer")
+pillar_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/Label2")
+pillar_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/Label")
+pillar_container = NodePath("StructureBarContainer/PillarContainer")
+pillar_bar = NodePath("StructureBarContainer/PillarContainer/ProgressBar")
+ball_timer = NodePath("Timers/BallTimer")
+ball_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/Label2")
+ball_gear = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/GearCoin")
+ball_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/Label")
+ball_container = NodePath("StructureBarContainer/BallContainer")
+ball_bar = NodePath("StructureBarContainer/BallContainer/ProgressBar")
+ball_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/BallButton")
+cube_timer = NodePath("Timers/CubeTimer")
+cube_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/Label2")
+cube_gear = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/GearCoin")
+cube_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/Label")
+cube_container = NodePath("StructureBarContainer/CubeContainer")
+cube_bar = NodePath("StructureBarContainer/CubeContainer/ProgressBar")
+cube_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/CubeButton")
+wall_timer = NodePath("Timers/WallTimer")
+wall_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/Label2")
+wall_gear = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/GearCoin")
+wall_name_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/Label")
+wall_container = NodePath("StructureBarContainer/WallContainer")
+wall_bar = NodePath("StructureBarContainer/WallContainer/ProgressBar")
+wall_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/WallButton")
+kick_button = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2/KickButton")
+kick_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2/Label2")
+kick_gear = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2/GearCoin")
+stomp_button = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer6/StompButton")
+stomp_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer6/Label2")
+stomp_gear = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer6/GearCoin")
+uppercut_button = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/UppercutButton")
+uppercut_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/Label2")
+uppercut_gear = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/GearCoin")
+parry_button = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer7/ParryButton")
+parry_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer7/Label2")
+parry_gear = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer7/GearCoin")
+explode_button = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer5/ExplodeButton")
+explode_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/Label2")
+straight_m_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/StraightMastery/StraightMButton")
+straight_m_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/StraightMastery/Label2")
+straight_m_gear = NodePath("Shop/TabContainer/Masteries/VBoxContainer/StraightMastery/GearCoin")
+white_belt_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt/Label2")
+white_belt_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt/WhiteBeltButton")
+white_belt_gear = NodePath("Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt/GearCoin")
+yellow_belt_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/YellowBelt/Label2")
+yellow_belt_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/YellowBelt/YellowBeltButton")
+yellow_belt_container = NodePath("Shop/TabContainer/Masteries/VBoxContainer/YellowBelt")
+yellow_belt_gear = NodePath("Shop/TabContainer/Masteries/VBoxContainer/YellowBelt/GearCoin")
+green_belt_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/GreenBelt/Label2")
+green_belt_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/GreenBelt/GreenBeltButton")
+green_belt_container = NodePath("Shop/TabContainer/Masteries/VBoxContainer/GreenBelt")
+green_belt_gear = NodePath("Shop/TabContainer/Masteries/VBoxContainer/GreenBelt/GearCoin")
+blue_belt_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlueBelt/Label2")
+blue_belt_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlueBelt/BlueBeltButton")
+blue_belt_container = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlueBelt")
+blue_belt_gear = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlueBelt/GearCoin")
+red_belt_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/RedBelt/Label2")
+red_belt_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/RedBelt/RedBeltButton")
+red_belt_container = NodePath("Shop/TabContainer/Masteries/VBoxContainer/RedBelt")
+red_belt_gear = NodePath("Shop/TabContainer/Masteries/VBoxContainer/RedBelt/GearCoin")
+black_belt_label = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlackBelt/Label2")
+black_belt_button = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlackBelt/BlackBeltButton")
+black_belt_container = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlackBelt")
+black_belt_gear = NodePath("Shop/TabContainer/Masteries/VBoxContainer/BlackBelt/GearCoin")
+gear_label = NodePath("HBoxContainer/GearCoinLabel")
+shop_label = NodePath("Shop/HBoxContainer/GearCoinLabel")
 shop = NodePath("Shop")
 shop_button = NodePath("ShopButton")
-straight_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer/Label2")
-kick_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2/Label2")
-uppercut_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/Label2")
-hold_label = NodePath("Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4/Label2")
-click_button = NodePath("TextureButton")
-disk_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/diskartonlineButton")
-pillar_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/PillartButton")
-pillar_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/Label2")
-boulder_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/BoulderButton")
-boulder_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/Label2")
-wall_button = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/WallButton")
-wall_label = NodePath("Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/Label2")
-particle_timer = NodePath("ParticleTimer")
-particle_sprite = NodePath("Sprite2D")
+player_sprite = NodePath("Structures/CharacterBody2D/Player")
+saving_label = NodePath("SavingLabel")
+save_timer = NodePath("SaveTimer")
+pause_menu = NodePath("PauseMenu")
+settings = NodePath("Settings")
+popup_container = NodePath("VBoxContainer")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ParallaxBackground" parent="."]
+layer = -10
+script = ExtResource("2_q1wf8")
+
+[node name="Background" type="ColorRect" parent="Background"]
+show_behind_parent = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -3.0
-offset_top = -1.0
-offset_right = 1094.0
-offset_bottom = 587.0
+offset_right = -26.0
+offset_bottom = -150.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.02328, 1.07143)
-color = Color(0.763402, 0.662191, 0.524054, 1)
+color = Color(0.322442, 0.678822, 0.762932, 1)
+metadata/_edit_lock_ = true
+
+[node name="MountainsBack" type="Sprite2D" parent="Background"]
+position = Vector2(541, 218)
+texture = ExtResource("2_oulwa")
+metadata/_edit_lock_ = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+scale = Vector2(1.024, 0.857143)
+motion_scale = Vector2(0.65, 0.65)
+motion_offset = Vector2(100, 0)
+motion_mirroring = Vector2(1120, 0)
+
+[node name="Clouds" type="Sprite2D" parent="Background/ParallaxLayer"]
+position = Vector2(561.523, 332.5)
+scale = Vector2(1.094, 0.75)
+texture = ExtResource("3_2prhk")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Background"]
+scale = Vector2(1.024, 0.857143)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1250, 0)
+
+[node name="Clouds2" type="Sprite2D" parent="Background/ParallaxLayer2"]
+position = Vector2(496.094, 207.667)
+scale = Vector2(1.094, 0.86)
+texture = ExtResource("4_xjvxm")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.75, 0.75)
+motion_mirroring = Vector2(1120, 0)
+
+[node name="Clouds3" type="Sprite2D" parent="Background/ParallaxLayer3"]
+position = Vector2(532, 222)
+scale = Vector2(1, 0.8)
+texture = ExtResource("5_kv0hw")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(1120, 0)
+
+[node name="Clouds4" type="Sprite2D" parent="Background/ParallaxLayer4"]
+position = Vector2(492, 195)
+scale = Vector2(1.094, 0.7)
+texture = ExtResource("6_aj4dd")
+
+[node name="MountainsFront" type="Sprite2D" parent="Background"]
+position = Vector2(538, 216)
+texture = ExtResource("4_d1gks")
+metadata/_edit_lock_ = true
+
+[node name="Safe" type="TextureButton" parent="."]
+offset_left = 922.0
+offset_top = 194.0
+offset_right = 1050.0
+offset_bottom = 322.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("21_y8dtv")
+
+[node name="Structures" type="Node2D" parent="." node_paths=PackedStringArray("hitbox", "player", "player_sprite", "disk_timer", "pillar_timer", "ball_timer", "wall_timer", "cube_timer", "animation_timer", "disk_bar", "pillar_container", "pillar_bar", "ball_container", "ball_bar", "cube_container", "cube_bar", "wall_container", "wall_bar")]
+script = ExtResource("2_iebus")
+hitbox = NodePath("CharacterBody2D/CollisionShape2D")
+player = NodePath("CharacterBody2D")
+player_sprite = NodePath("CharacterBody2D/Player")
+disk_timer = NodePath("../Timers/DiskTimer")
+pillar_timer = NodePath("../Timers/PillarTimer")
+ball_timer = NodePath("../Timers/BallTimer")
+wall_timer = NodePath("../Timers/WallTimer")
+cube_timer = NodePath("../Timers/CubeTimer")
+animation_timer = NodePath("../Timers/AnimationTimer")
+disk_bar = NodePath("../StructureBarContainer/DiskContainer/ProgressBar")
+pillar_container = NodePath("../StructureBarContainer/PillarContainer")
+pillar_bar = NodePath("../StructureBarContainer/PillarContainer/ProgressBar")
+ball_container = NodePath("../StructureBarContainer/BallContainer")
+ball_bar = NodePath("../StructureBarContainer/BallContainer/ProgressBar")
+cube_container = NodePath("../StructureBarContainer/CubeContainer")
+cube_bar = NodePath("../StructureBarContainer/CubeContainer/ProgressBar")
+wall_container = NodePath("../StructureBarContainer/WallContainer")
+wall_bar = NodePath("../StructureBarContainer/WallContainer/ProgressBar")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Structures"]
+position = Vector2(-200, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structures/CharacterBody2D"]
+position = Vector2(478.5, 304)
+shape = SubResource("RectangleShape2D_xytg0")
+disabled = true
+
+[node name="Player" type="AnimatedSprite2D" parent="Structures/CharacterBody2D"]
+position = Vector2(330, 321)
+sprite_frames = ExtResource("8_8t7ce")
+animation = &"parry"
+
+[node name="StructureDetector" type="Area2D" parent="Structures/CharacterBody2D"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structures/CharacterBody2D/StructureDetector"]
+position = Vector2(388, 246.5)
+shape = SubResource("RectangleShape2D_1paub")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 63.0
+offset_top = 48.0
+offset_right = 225.0
+offset_bottom = 436.0
+scale = Vector2(0.25, 0.25)
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="DiskTimer" type="Timer" parent="Timers"]
+one_shot = true
+autostart = true
+
+[node name="PillarTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
+[node name="BallTimer" type="Timer" parent="Timers"]
+wait_time = 10.0
+one_shot = true
+
+[node name="WallTimer" type="Timer" parent="Timers"]
+wait_time = 20.0
+one_shot = true
+
+[node name="CubeTimer" type="Timer" parent="Timers"]
+wait_time = 15.0
+one_shot = true
+
+[node name="AnimationTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Breakable Wall" type="Node2D" parent="."]
+script = ExtResource("11_q4tyc")
+
+[node name="GiantWall" type="Sprite2D" parent="Breakable Wall"]
+position = Vector2(1147.5, 195.5)
+scale = Vector2(4.075, 3.91)
+texture = ExtResource("7_ielk0")
+
+[node name="Breaking_Wall" type="Area2D" parent="Breakable Wall"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Breakable Wall/Breaking_Wall"]
+position = Vector2(1097.25, 180)
+shape = SubResource("RectangleShape2D_gfnlq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_direction = 2
+offset_left = 55.0
+offset_top = 3.0
+offset_right = 128.0
+offset_bottom = 195.0
+scale = Vector2(0.25, 0.25)
+
+[node name="GearCoin" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(-100, 96)
+texture = ExtResource("3_vfisr")
+
+[node name="GearCoinLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_tq13i")
+
+[node name="ShopButton" type="Button" parent="."]
+offset_left = 974.0
+offset_top = 2.0
+offset_right = 1322.0
+offset_bottom = 233.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 185
+text = "Shop"
+flat = true
+
+[node name="SaveTimer" type="Timer" parent="."]
+wait_time = 60.0
 
 [node name="Shop" type="CanvasLayer" parent="."]
 visible = false
@@ -53,6 +340,23 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.71303, 0.611522, 0.545067, 1)
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Shop"]
+layout_direction = 2
+offset_left = 486.0
+offset_top = 1.0
+offset_right = 747.0
+offset_bottom = 193.0
+scale = Vector2(0.25, 0.25)
+
+[node name="GearCoin" type="TextureRect" parent="Shop/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_vfisr")
+
+[node name="GearCoinLabel" type="Label" parent="Shop/HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_tq13i")
+
 [node name="TabContainer" type="TabContainer" parent="Shop"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,18 +368,339 @@ size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 35
 
-[node name="Modifiers" type="TabBar" parent="Shop/TabContainer"]
+[node name="Structures" type="TabBar" parent="Shop/TabContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bwg6y")
 
-[node name="Label" type="Label" parent="Shop/TabContainer/Modifiers"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/TabContainer/Structures"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Shop/TabContainer/Structures/VBoxContainer"]
 layout_mode = 2
-offset_left = 870.0
-offset_top = -50.0
-offset_right = 1069.0
-offset_bottom = -2.0
-text = "Gear Coins: 0"
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = " Disk "
 label_settings = ExtResource("3_6lbk3")
+
+[node name="Upgrade1" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade2" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade3" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade4" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade5" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 2
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="DiskButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "50"
+label_settings = ExtResource("3_6lbk3")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Shop/TabContainer/Structures/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = " Pillar "
+label_settings = ExtResource("3_6lbk3")
+
+[node name="Upgrade1" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade2" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade3" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade4" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade5" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 2
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="PillarButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "150"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Shop/TabContainer/Structures/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " Ball "
+label_settings = ExtResource("3_6lbk3")
+
+[node name="Upgrade1" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade2" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade3" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade4" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade5" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 2
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="BallButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "1000"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Shop/TabContainer/Structures/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = " Wall "
+label_settings = ExtResource("3_6lbk3")
+
+[node name="Upgrade1" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade2" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade3" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade4" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade5" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 2
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="WallButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "20000"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Shop/TabContainer/Structures/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " Cube"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="Upgrade1" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade2" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade3" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade4" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="Upgrade5" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 2
+texture = SubResource("CompressedTexture2D_2fv8h")
+expand_mode = 2
+
+[node name="CubeButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "150000"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="ExitShopButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
+[node name="Modifiers" type="TabBar" parent="Shop/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bwg6y")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Shop/TabContainer/Modifiers"]
 layout_mode = 1
@@ -92,6 +717,7 @@ size_flags_vertical = 0
 [node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 text = " Straight"
 label_settings = ExtResource("3_6lbk3")
 
@@ -100,15 +726,34 @@ layout_mode = 2
 size_flags_horizontal = 8
 theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 35
-text = "Buy"
+text = "Owned"
 
-[node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer6" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
-text = "5 Coins"
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+mouse_filter = 1
+text = " Stomp"
 label_settings = ExtResource("3_6lbk3")
-horizontal_alignment = 2
-vertical_alignment = 1
+
+[node name="StompButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "1000"
+label_settings = ExtResource("3_6lbk3")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
 layout_mode = 2
@@ -116,7 +761,7 @@ size_flags_vertical = 0
 
 [node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 3
+mouse_filter = 1
 text = " Kick"
 label_settings = ExtResource("3_6lbk3")
 
@@ -128,9 +773,13 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "100 Coins"
+text = "5,000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
@@ -140,6 +789,7 @@ size_flags_vertical = 0
 [node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 8
+mouse_filter = 1
 text = " Uppercut"
 label_settings = ExtResource("3_6lbk3")
 
@@ -151,21 +801,58 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-text = "1000 Coins"
+text = "20,000"
 label_settings = ExtResource("3_6lbk3")
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
+[node name="HBoxContainer7" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4"]
+[node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer7"]
 layout_mode = 2
-text = " Hold"
+size_flags_horizontal = 8
+mouse_filter = 1
+text = " Parry"
 label_settings = ExtResource("3_6lbk3")
 
-[node name="HoldButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4"]
+[node name="ParryButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+disabled = true
+text = "Locked"
+alignment = 2
+
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer7"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer7"]
+visible = false
+layout_mode = 2
+text = "20,000,000"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " Cube"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="ExplodeButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_fonts/font = ExtResource("2_bwg6y")
@@ -173,9 +860,36 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
+[node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "50000 Coins"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = " Wall"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="WallButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
 [node name="Label2" type="Label" parent="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
-text = "25000 Coins"
+text = "150000 Coins"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="ExitShopButton" type="Button" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
@@ -185,21 +899,12 @@ theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 50
 text = "Exit"
 
-[node name="Structures" type="TabBar" parent="Shop/TabContainer"]
+[node name="Masteries" type="TabBar" parent="Shop/TabContainer"]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bwg6y")
 
-[node name="Label2" type="Label" parent="Shop/TabContainer/Structures"]
-layout_mode = 2
-offset_left = 870.0
-offset_top = -51.0
-offset_right = 1069.0
-offset_bottom = -3.0
-text = "Gear Coins: 0"
-label_settings = ExtResource("3_6lbk3")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Shop/TabContainer/Structures"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/TabContainer/Masteries"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -207,69 +912,74 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="Shop/TabContainer/Structures/VBoxContainer"]
+[node name="StraightMastery" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/StraightMastery"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.180005, 0.180005, 0.180005, 1)
-text = " Disk"
+text = " Straight Mastery"
 label_settings = ExtResource("3_6lbk3")
 
-[node name="diskartonlineButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+[node name="StraightMButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/StraightMastery"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 35
-text = "Use"
+text = "Buy"
 
-[node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4"]
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/StraightMastery"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/StraightMastery"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "500"
+label_settings = ExtResource("3_6lbk3")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="WhiteBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " White Belt Mastery"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="WhiteBeltButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt"]
+layout_mode = 2
+text = "1,000"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="KickMastery" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
 visible = false
 layout_mode = 2
-size_flags_horizontal = 8
-text = "150 Coins"
-label_settings = ExtResource("3_6lbk3")
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Shop/TabContainer/Structures/VBoxContainer"]
-layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = " Pillar"
-label_settings = ExtResource("3_6lbk3")
-
-[node name="PillartButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/KickMastery"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_fonts/font = ExtResource("2_bwg6y")
-theme_override_font_sizes/font_size = 35
-text = "Buy"
-
-[node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "150 Coins"
-label_settings = ExtResource("3_6lbk3")
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Shop/TabContainer/Structures/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="Label" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = " Boulder"
+text = " Kick Mastery"
 label_settings = ExtResource("3_6lbk3")
 
-[node name="BoulderButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+[node name="KickMButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/KickMastery"]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_fonts/font = ExtResource("2_bwg6y")
@@ -277,22 +987,26 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
-[node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2"]
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/KickMastery"]
 layout_mode = 2
-text = "2000 Coins"
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/KickMastery"]
+layout_mode = 2
+text = "5,000"
 label_settings = ExtResource("3_6lbk3")
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Shop/TabContainer/Structures/VBoxContainer"]
+[node name="YellowBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/YellowBelt"]
 layout_mode = 2
-size_flags_horizontal = 8
-text = " Wall"
+text = " Yellow Belt Mastery"
 label_settings = ExtResource("3_6lbk3")
 
-[node name="WallButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+[node name="YellowBeltButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/YellowBelt"]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_fonts/font = ExtResource("2_bwg6y")
@@ -300,85 +1014,1573 @@ theme_override_font_sizes/font_size = 35
 text = "Buy"
 alignment = 2
 
-[node name="Label2" type="Label" parent="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3"]
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/YellowBelt"]
 layout_mode = 2
-text = "30000 Coins"
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/YellowBelt"]
+layout_mode = 2
+text = "15,000"
 label_settings = ExtResource("3_6lbk3")
 
-[node name="ExitShopButton" type="Button" parent="Shop/TabContainer/Structures/VBoxContainer"]
+[node name="UppercutMastery" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/UppercutMastery"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " Uppercut Mastery"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="UppercutMButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/UppercutMastery"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/UppercutMastery"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/UppercutMastery"]
+layout_mode = 2
+text = "75,000"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="GreenBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/GreenBelt"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " Green Belt Mastery"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="GreenBeltButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/GreenBelt"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/GreenBelt"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/GreenBelt"]
+layout_mode = 2
+text = "100,000"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="BlueBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/BlueBelt"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " Blue Belt Mastery"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="BlueBeltButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/BlueBelt"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/BlueBelt"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/BlueBelt"]
+layout_mode = 2
+text = "1,000,000"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="RedBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/RedBelt"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " Red Belt Mastery"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="RedBeltButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/RedBelt"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/RedBelt"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/RedBelt"]
+layout_mode = 2
+text = "15,000,000"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="BlackBelt" type="HBoxContainer" parent="Shop/TabContainer/Masteries/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/BlackBelt"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " Black Belt Mastery"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="BlackBeltButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer/BlackBelt"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 35
+text = "Buy"
+alignment = 2
+
+[node name="GearCoin" type="TextureRect" parent="Shop/TabContainer/Masteries/VBoxContainer/BlackBelt"]
+layout_mode = 2
+texture = ExtResource("12_p6s2u")
+
+[node name="Label2" type="Label" parent="Shop/TabContainer/Masteries/VBoxContainer/BlackBelt"]
+layout_mode = 2
+text = "550,000,000"
+label_settings = ExtResource("3_6lbk3")
+
+[node name="ExitShopButton" type="Button" parent="Shop/TabContainer/Masteries/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 50
 text = "Exit"
 
-[node name="Label" type="Label" parent="."]
-offset_left = 7.0
-offset_top = 8.0
-offset_right = 206.0
-offset_bottom = 56.0
-text = "Gear Coins: 0"
+[node name="SavingLabel" type="Label" parent="."]
+visible = false
+offset_left = 3.0
+offset_top = 581.0
+offset_right = 127.0
+offset_bottom = 629.0
+text = "Saving..."
 label_settings = ExtResource("3_6lbk3")
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="PauseMenu" type="CanvasLayer" parent="." node_paths=PackedStringArray("settings")]
+process_mode = 3
+visible = false
+script = ExtResource("8_aofh8")
+settings = NodePath("../Settings")
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.776471, 0.588235, 0.411765, 0.894118)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PauseMenu/ColorRect"]
+visible = false
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 396.0
-offset_top = 145.0
-offset_right = 524.0
-offset_bottom = 273.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2.5, 2.5)
-texture_normal = ExtResource("4_vdik3")
-texture_pressed = ExtResource("5_ymnav")
-texture_hover = ExtResource("6_b8alq")
-stretch_mode = 3
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(560, 315)
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/ColorRect/VBoxContainer2"]
+layout_mode = 2
 
-[node name="ShopButton" type="Button" parent="."]
-offset_left = 968.0
-offset_top = 2.0
-offset_right = 1120.0
-offset_bottom = 71.0
+[node name="YesButton" type="Button" parent="PauseMenu/ColorRect/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bwg6y")
 theme_override_font_sizes/font_size = 50
-text = "Shop"
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="PauseMenu/ColorRect/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 50
+text = "No"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.5
+offset_top = -42.0
+offset_right = 82.5
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 50
+text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="PauseMenu/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 50
+text = "Settings
+"
+
+[node name="RestartButton" type="Button" parent="PauseMenu/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 50
+text = "Restart"
+
+[node name="QuittoMenuButton" type="Button" parent="PauseMenu/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 50
+text = "Quit to Main Menu"
+
+[node name="QuitButton" type="Button" parent="PauseMenu/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 50
+text = "Quit to Desktop"
+
+[node name="Floor" type="StaticBody2D" parent="."]
+top_level = true
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(558, 503)
+shape = SubResource("RectangleShape2D_rkvsg")
+
+[node name="Ground" type="ColorRect" parent="Floor"]
+offset_left = -2.0
+offset_top = 376.0
+offset_right = 1121.0
+offset_bottom = 630.0
+color = Color(0.862368, 0.74564, 0.543697, 1)
+
+[node name="StructureBarContainer" type="VBoxContainer" parent="."]
+top_level = true
+offset_left = 13.0
+offset_top = 395.0
+offset_right = 263.0
+offset_bottom = 601.0
+
+[node name="DiskContainer" type="HBoxContainer" parent="StructureBarContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="StructureBarContainer/DiskContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Disk:"
+label_settings = ExtResource("10_5384l")
+
+[node name="ProgressBar" type="ProgressBar" parent="StructureBarContainer/DiskContainer"]
+custom_minimum_size = Vector2(165, 30)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_6dx7l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c1dof")
+max_value = 1.0
+show_percentage = false
+
+[node name="PillarContainer" type="HBoxContainer" parent="StructureBarContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StructureBarContainer/PillarContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Pillar:"
+label_settings = ExtResource("10_5384l")
+
+[node name="ProgressBar" type="ProgressBar" parent="StructureBarContainer/PillarContainer"]
+custom_minimum_size = Vector2(165, 30)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_6dx7l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c1dof")
+max_value = 1.0
+show_percentage = false
+
+[node name="BallContainer" type="HBoxContainer" parent="StructureBarContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="StructureBarContainer/BallContainer"]
+layout_mode = 2
+text = "Ball: "
+label_settings = ExtResource("10_5384l")
+
+[node name="ProgressBar" type="ProgressBar" parent="StructureBarContainer/BallContainer"]
+custom_minimum_size = Vector2(165, 30)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_6dx7l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c1dof")
+max_value = 1.0
+show_percentage = false
+
+[node name="CubeContainer" type="HBoxContainer" parent="StructureBarContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StructureBarContainer/CubeContainer"]
+layout_mode = 2
+text = "Cube: "
+label_settings = ExtResource("10_5384l")
+
+[node name="ProgressBar" type="ProgressBar" parent="StructureBarContainer/CubeContainer"]
+custom_minimum_size = Vector2(165, 30)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_6dx7l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c1dof")
+max_value = 1.0
+show_percentage = false
+
+[node name="WallContainer" type="HBoxContainer" parent="StructureBarContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StructureBarContainer/WallContainer"]
+layout_mode = 2
+text = "Wall: "
+label_settings = ExtResource("10_5384l")
+
+[node name="ProgressBar" type="ProgressBar" parent="StructureBarContainer/WallContainer"]
+custom_minimum_size = Vector2(165, 30)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_6dx7l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c1dof")
+max_value = 1.0
+show_percentage = false
+
+[node name="Settings" parent="." instance=ExtResource("12_ygs3y")]
+process_mode = 3
+visible = false
+
+[node name="InsideSafe" type="CanvasLayer" parent="." node_paths=PackedStringArray("safe", "pass_key", "coins", "back_btn", "tiny_safe")]
+process_mode = 3
+layer = 2
+visible = false
+script = ExtResource("15_uvagp")
+safe = NodePath("Safe")
+pass_key = NodePath("LineEdit")
+coins = NodePath("Coins")
+back_btn = NodePath("BackButton")
+tiny_safe = NodePath("../Safe")
+
+[node name="Background" type="ColorRect" parent="InsideSafe"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.388235, 0.380392, 0.403922, 1)
+
+[node name="Safe" type="TextureRect" parent="InsideSafe"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -301.0
+offset_top = -316.0
+offset_right = -143.0
+offset_bottom = -158.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture = ExtResource("21_y8dtv")
+
+[node name="BackButton" type="Button" parent="InsideSafe"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -114.0
+offset_top = -80.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.568627, 0.552941, 0.552941, 1)
+theme_override_fonts/font = ExtResource("2_bwg6y")
+theme_override_font_sizes/font_size = 60
+text = "Back"
 flat = true
 
-[node name="StructureTimer" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
+[node name="LineEdit" type="LineEdit" parent="InsideSafe"]
+offset_left = 512.0
+offset_top = 286.0
+offset_right = 638.0
+offset_bottom = 344.0
+placeholder_text = "0000"
+alignment = 1
+max_length = 4
+virtual_keyboard_type = 2
 
-[node name="ParticleTimer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
+[node name="Coins" type="Node2D" parent="InsideSafe"]
+visible = false
 
-[node name="SaveTimer" type="Timer" parent="."]
-wait_time = 60.0
-autostart = true
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(435, 589)
+texture = ExtResource("12_p6s2u")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(404, 590)
+texture = ExtResource("12_p6s2u")
 
-[connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer/StraightButton" to="." method="_on_straight_button_pressed"]
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(411, 568)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin1"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin1"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin1"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin4" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(495, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin5" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(464, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin6" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(471, 568)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin6"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin6"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin6"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin7" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(559, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin8" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(528, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin9" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(535, 569)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin9"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin9"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin9"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin10" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(619, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin11" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(588, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin12" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(595, 569)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin12"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin12"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin12"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin13" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(409, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin14" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(378, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin15" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(385, 568)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin15"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin15"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin15"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin16" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(469, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin17" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(438, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin18" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(445, 568)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin18"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin18"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin18"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin19" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(533, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin20" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(502, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin21" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(509, 569)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin21"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin21"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin21"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin22" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(593, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin23" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(562, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin24" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(569, 569)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin24"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin24"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin24"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin25" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(627, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin26" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(596, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin27" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(603, 570)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin27"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin27"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin27"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin28" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(687, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin29" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(656, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin30" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(663, 570)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin30"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin30"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin30"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin31" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(751, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin32" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(720, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin33" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(727, 571)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin33"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin33"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin33"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin34" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(811, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin35" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(780, 593)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin36" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(787, 571)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin36"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin36"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin36"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin37" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(601, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin38" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(570, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin39" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(577, 570)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin39"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin39"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin39"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin40" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(661, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin41" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(630, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin42" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(637, 570)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin42"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin42"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin42"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin43" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(725, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin115" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(836, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin116" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(848, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin117" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(367, 507)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin118" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(362, 506)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin119" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(392, 487)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin120" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(454, 492)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin121" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(516, 498)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin122" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(604, 503)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin123" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(679, 503)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin124" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(731, 496)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin125" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(794, 491)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin126" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(848, 503)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin127" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(481, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin128" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(490, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin129" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(520, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin130" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(429, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin131" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(415, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin132" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(394, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin133" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(369, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin134" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(360, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin135" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(360, 583)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin136" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(360, 577)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin137" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(360, 570)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin138" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(450, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin139" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(456, 587)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin140" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(469, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin141" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(552, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin142" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(675, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin143" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(708, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin144" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(644, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin145" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(658, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin146" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(798, 588)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin147" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(806, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin148" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(847, 586)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin149" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(847, 578)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin150" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(847, 572)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin151" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(847, 572)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin152" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(845, 555)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin153" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(825, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin154" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(803, 496)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin155" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(827, 479)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin44" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(694, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin45" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(701, 571)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin45"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin45"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin45"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin46" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(785, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin47" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(754, 593)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin48" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(761, 571)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin48"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin48"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin48"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin49" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(416, 555)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin50" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(385, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin51" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(392, 534)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin51"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin51"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin51"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin52" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(476, 555)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin53" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(445, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin54" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(452, 534)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin54"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin54"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin54"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin55" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(540, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin56" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(509, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin57" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(516, 535)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin57"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin57"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin57"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin58" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(600, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin59" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(569, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin60" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(576, 535)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin60"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin60"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin60"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin61" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(390, 555)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin62" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(359, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin63" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(366, 534)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin63"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin63"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin63"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin64" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(450, 555)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin65" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(419, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin66" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(426, 534)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin66"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin66"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin66"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin67" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(514, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin68" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(483, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin69" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(490, 535)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin69"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin69"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin69"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin70" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(574, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin71" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(543, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin72" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(550, 535)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin72"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin72"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin72"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin73" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(627, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin74" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(596, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin75" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(603, 535)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin75"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin75"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin75"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin76" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(687, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin77" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(656, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin78" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(663, 535)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin78"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin78"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin78"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin79" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(751, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin80" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(720, 558)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin81" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(727, 536)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin81"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin81"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin81"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin82" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(811, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin83" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(780, 558)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin84" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(787, 536)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin84"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin84"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin84"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin85" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(601, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin86" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(570, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin87" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(577, 535)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin87"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin87"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin87"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin88" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(661, 556)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin89" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(630, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin90" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(637, 535)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin90"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin90"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin90"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin91" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(725, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin92" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(694, 558)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin93" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(701, 536)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin93"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin93"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin93"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin94" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(785, 557)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin95" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(754, 558)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin96" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(761, 536)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin96"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin96"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin96"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin97" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(812, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin98" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(781, 593)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin99" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(788, 571)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin99"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin99"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin99"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin100" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(716, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin101" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(683, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin102" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(693, 571)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin102"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin102"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin102"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin103" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(627, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin104" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(594, 592)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin105" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(603, 572)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin105"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin105"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin105"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin106" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(541, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin107" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(510, 591)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin108" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(517, 569)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin108"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin108"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin108"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin109" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(466, 581)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin110" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(435, 582)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin111" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(442, 560)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin111"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin111"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin111"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin112" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(392, 589)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin113" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(363, 590)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin114" type="Sprite2D" parent="InsideSafe/Coins"]
+position = Vector2(367, 572)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin2" type="Sprite2D" parent="InsideSafe/Coins/GearCoin114"]
+position = Vector2(61, -9)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin3" type="Sprite2D" parent="InsideSafe/Coins/GearCoin114"]
+position = Vector2(30, -8)
+texture = ExtResource("12_p6s2u")
+
+[node name="GearCoin1" type="Sprite2D" parent="InsideSafe/Coins/GearCoin114"]
+position = Vector2(37, -30)
+texture = ExtResource("12_p6s2u")
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_nngo4")
+volume_db = 10.0
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="Safe" to="InsideSafe" method="_on_safe_pressed"]
+[connection signal="area_entered" from="Structures/CharacterBody2D/StructureDetector" to="Structures" method="_on_structure_detector_area_entered"]
+[connection signal="area_exited" from="Structures/CharacterBody2D/StructureDetector" to="Structures" method="_on_structure_detector_area_exited"]
+[connection signal="body_entered" from="Structures/CharacterBody2D/StructureDetector" to="Structures" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Structures/CharacterBody2D/StructureDetector" to="Structures" method="_on_structure_detector_body_exited"]
+[connection signal="timeout" from="Timers/DiskTimer" to="Structures" method="_on_disk_timer_timeout"]
+[connection signal="timeout" from="Timers/PillarTimer" to="Structures" method="_on_pillar_timer_timeout"]
+[connection signal="timeout" from="Timers/BallTimer" to="Structures" method="_on_ball_timer_timeout"]
+[connection signal="timeout" from="Timers/WallTimer" to="Structures" method="_on_wall_timer_timeout"]
+[connection signal="timeout" from="Timers/CubeTimer" to="Structures" method="_on_cube_timer_timeout"]
+[connection signal="timeout" from="Timers/AnimationTimer" to="Structures" method="_on_animation_timer_timeout"]
+[connection signal="focus_entered" from="ShopButton" to="." method="_on_shop_button_focus_entered"]
+[connection signal="focus_exited" from="ShopButton" to="." method="_on_shop_button_focus_exited"]
+[connection signal="pressed" from="ShopButton" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="SaveTimer" to="." method="_on_save_timer_timeout"]
+[connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/DiskButton" to="." method="_on_disk_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/PillarButton" to="." method="_on_pillar_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/BallButton" to="." method="_on_ball_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/WallButton" to="." method="_on_wall_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer5/CubeButton" to="." method="_on_cube_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/ExitShopButton" to="." method="_on_exit_shop_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer6/StompButton" to="." method="_on_stomp_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer2/KickButton" to="." method="_on_kick_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer3/UppercutButton" to="." method="_on_uppercut_button_pressed"]
-[connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer4/HoldButton" to="." method="_on_hold_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer7/ParryButton" to="." method="_on_parry_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/HBoxContainer5/ExplodeButton" to="." method="_on_explode_button_pressed"]
 [connection signal="pressed" from="Shop/TabContainer/Modifiers/VBoxContainer/ExitShopButton" to="." method="_on_exit_shop_button_pressed"]
-[connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer4/diskartonlineButton" to="." method="_on_diskartonline_button_pressed"]
-[connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer/PillartButton" to="." method="_on_pillart_button_pressed"]
-[connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer2/BoulderButton" to="." method="_on_boulder_button_pressed"]
-[connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/HBoxContainer3/WallButton" to="." method="_on_wall_button_pressed"]
-[connection signal="pressed" from="Shop/TabContainer/Structures/VBoxContainer/ExitShopButton" to="." method="_on_exit_shop_button_pressed"]
-[connection signal="focus_entered" from="TextureButton" to="." method="_on_texture_button_focus_entered"]
-[connection signal="focus_exited" from="TextureButton" to="." method="_on_texture_button_focus_exited"]
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
-[connection signal="pressed" from="ShopButton" to="." method="_on_button_pressed"]
-[connection signal="timeout" from="StructureTimer" to="." method="_on_structure_timer_timeout"]
-[connection signal="timeout" from="ParticleTimer" to="." method="_on_particle_timer_timeout"]
-[connection signal="timeout" from="SaveTimer" to="." method="_on_save_timer_timeout"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/StraightMastery/StraightMButton" to="." method="_on_straight_m_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/WhiteBelt/WhiteBeltButton" to="." method="_on_white_belt_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/KickMastery/KickMButton" to="." method="_on_kick_m_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/YellowBelt/YellowBeltButton" to="." method="_on_yellow_belt_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/UppercutMastery/UppercutMButton" to="." method="_on_uppercut_m_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/GreenBelt/GreenBeltButton" to="." method="_on_green_belt_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/BlueBelt/BlueBeltButton" to="." method="_on_blue_belt_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/RedBelt/RedBeltButton" to="." method="_on_red_belt_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/BlackBelt/BlackBeltButton" to="." method="_on_black_belt_button_pressed"]
+[connection signal="pressed" from="Shop/TabContainer/Masteries/VBoxContainer/ExitShopButton" to="." method="_on_exit_shop_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer2/HBoxContainer/YesButton" to="PauseMenu" method="_on_yes_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer2/HBoxContainer/NoButton" to="PauseMenu" method="_on_no_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/SettingsButton" to="PauseMenu" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/RestartButton" to="PauseMenu" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/QuittoMenuButton" to="PauseMenu" method="_on_quitto_menu_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
+[connection signal="visibility_changed" from="InsideSafe" to="InsideSafe" method="_on_visibility_changed"]
+[connection signal="pressed" from="InsideSafe/BackButton" to="InsideSafe" method="_on_back_button_pressed"]
+[connection signal="text_submitted" from="InsideSafe/LineEdit" to="InsideSafe" method="_on_line_edit_text_submitted"]

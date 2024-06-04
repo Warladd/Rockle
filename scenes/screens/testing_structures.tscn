@@ -1,0 +1,90 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgjsi1thub6yp"]
+
+[ext_resource type="Script" path="res://scripts/testing_structures.gd" id="1_3clck"]
+[ext_resource type="SpriteFrames" uid="uid://djw5x6aebbp1f" path="res://resources/white_belt.tres" id="2_k4vt2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnk68"]
+size = Vector2(182.5, 132)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtbvj"]
+size = Vector2(1134, 321)
+
+[node name="Testing" type="Node2D" node_paths=PackedStringArray("hitbox", "player")]
+script = ExtResource("1_3clck")
+hitbox = NodePath("CharacterBody2D/CollisionShape2D")
+player = NodePath("CharacterBody2D")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(-592, -378)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(465.75, 305)
+shape = SubResource("RectangleShape2D_mnk68")
+disabled = true
+
+[node name="Player" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(330, 321)
+sprite_frames = ExtResource("2_k4vt2")
+animation = &"uppercut"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="DiskTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="PillarTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="BallTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="WallTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="CubeTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+top_level = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-4, 157.5)
+shape = SubResource("RectangleShape2D_gtbvj")
+
+[node name="Ground" type="ColorRect" parent="StaticBody2D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -570.0
+offset_top = -3.0
+offset_right = 564.0
+offset_bottom = 318.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.862368, 0.74564, 0.543697, 1)
+
+[node name="StructureCooldown" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="ModifierCooldown" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="DiskTimer" to="." method="_on_disk_timer_timeout"]
+[connection signal="timeout" from="PillarTimer" to="." method="_on_pillar_timer_timeout"]
+[connection signal="timeout" from="BallTimer" to="." method="_on_ball_timer_timeout"]
+[connection signal="timeout" from="WallTimer" to="." method="_on_wall_timer_timeout"]
+[connection signal="timeout" from="CubeTimer" to="." method="_on_cube_timer_timeout"]
+[connection signal="timeout" from="StructureCooldown" to="." method="_on_structure_cooldown_timeout"]
+[connection signal="timeout" from="ModifierCooldown" to="." method="_on_modifier_cooldown_timeout"]

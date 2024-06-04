@@ -1,0 +1,308 @@
+[gd_scene load_steps=6 format=3 uid="uid://bu4fraknk5a5n"]
+
+[ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/images/fonts/chinese rocks rg.otf" id="2_n5sae"]
+[ext_resource type="Script" path="res://scripts/settings.gd" id="2_o4kiu"]
+[ext_resource type="LabelSettings" uid="uid://do0om8riihnu6" path="res://resources/control_label_settings.tres" id="3_w374r"]
+[ext_resource type="Theme" uid="uid://q7oavojuo262" path="res://resources/RemapButton.tres" id="4_octia"]
+[ext_resource type="Script" path="res://scripts/hotkey_rebind.gd" id="5_s5qva"]
+
+[node name="Settings" type="CanvasLayer" node_paths=PackedStringArray("display_options", "main_menu_options", "master_vol", "music_vol", "sfx_vol", "control_settings", "back_button")]
+script = ExtResource("2_o4kiu")
+display_options = NodePath("SettingTabs/Video/MarginContainer/VideoSettings/DisplayModeBtn")
+main_menu_options = NodePath("SettingTabs/Video/MarginContainer/VideoSettings/MainMenuBtn")
+master_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/MasterVolSlider")
+music_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/MusicVolSlider")
+sfx_vol = NodePath("SettingTabs/Audio/MarginContainer/AudioSettings/SFXVolSlider")
+control_settings = NodePath("SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings")
+back_button = NodePath("VBoxContainer/BackButton")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.755599, 0.666679, 0.574268, 1)
+
+[node name="SettingTabs" type="TabContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 35
+
+[node name="Video" type="TabBar" parent="SettingTabs"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n5sae")
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingTabs/Video"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VideoSettings" type="GridContainer" parent="SettingTabs/Video/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="DisplayModeLabel" type="Label" parent="SettingTabs/Video/MarginContainer/VideoSettings"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 50
+text = "Display Mode"
+
+[node name="DisplayModeBtn" type="OptionButton" parent="SettingTabs/Video/MarginContainer/VideoSettings"]
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 50
+flat = true
+item_count = 2
+selected = 0
+popup/item_0/text = "  Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+
+[node name="MainMenuLabel" type="Label" parent="SettingTabs/Video/MarginContainer/VideoSettings"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 50
+text = "Main Menu Layout"
+
+[node name="MainMenuBtn" type="OptionButton" parent="SettingTabs/Video/MarginContainer/VideoSettings"]
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 50
+flat = true
+item_count = 3
+selected = 0
+popup/item_0/text = "Title on the Left"
+popup/item_0/id = 0
+popup/item_1/text = "Title in the Middle"
+popup/item_1/id = 1
+popup/item_2/text = "Title on the Right"
+popup/item_2/id = 2
+
+[node name="Audio" type="TabBar" parent="SettingTabs"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingTabs/Audio"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="AudioSettings" type="GridContainer" parent="SettingTabs/Audio/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="MasterVolLabel" type="Label" parent="SettingTabs/Audio/MarginContainer/AudioSettings"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 50
+text = "Master Volume"
+
+[node name="MasterVolSlider" type="HSlider" parent="SettingTabs/Audio/MarginContainer/AudioSettings"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+min_value = -50.0
+max_value = 0.0
+value = -15.0
+
+[node name="MusicVolLabel" type="Label" parent="SettingTabs/Audio/MarginContainer/AudioSettings"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 50
+text = "Music
+"
+
+[node name="MusicVolSlider" type="HSlider" parent="SettingTabs/Audio/MarginContainer/AudioSettings"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+min_value = -50.0
+max_value = 0.0
+value = -15.0
+
+[node name="SFXVolLabel" type="Label" parent="SettingTabs/Audio/MarginContainer/AudioSettings"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 50
+text = "SFX"
+
+[node name="SFXVolSlider" type="HSlider" parent="SettingTabs/Audio/MarginContainer/AudioSettings"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+min_value = -50.0
+max_value = 0.0
+value = -15.0
+
+[node name="Controls" type="TabBar" parent="SettingTabs"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingTabs/Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingTabs/Controls/MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SettingTabs/Controls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ControlSettings" type="GridContainer" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="Label" type="Label" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
+layout_mode = 2
+text = "Straight"
+label_settings = ExtResource("3_w374r")
+
+[node name="Button" type="Button" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("4_octia")
+text = "PlaceHolder"
+script = ExtResource("5_s5qva")
+action = "straight"
+
+[node name="Label3" type="Label" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
+layout_mode = 2
+text = "Stomp"
+label_settings = ExtResource("3_w374r")
+
+[node name="Button3" type="Button" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("4_octia")
+text = "Placingholder"
+script = ExtResource("5_s5qva")
+action = "stomp"
+
+[node name="Label2" type="Label" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
+layout_mode = 2
+text = "Kick"
+label_settings = ExtResource("3_w374r")
+
+[node name="Button2" type="Button" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("4_octia")
+text = "Placeable Holder"
+script = ExtResource("5_s5qva")
+
+[node name="Label4" type="Label" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
+layout_mode = 2
+text = "Uppercut"
+label_settings = ExtResource("3_w374r")
+
+[node name="Button4" type="Button" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("4_octia")
+text = "Placeholder?"
+script = ExtResource("5_s5qva")
+action = "uppercut"
+
+[node name="Label7" type="Label" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
+layout_mode = 2
+text = "Parry"
+label_settings = ExtResource("3_w374r")
+
+[node name="Button5" type="Button" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("4_octia")
+text = "PlaceyHolder"
+script = ExtResource("5_s5qva")
+action = "parry"
+
+[node name="Label5" type="Label" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
+layout_mode = 2
+text = "Pause"
+label_settings = ExtResource("3_w374r")
+
+[node name="Label6" type="Label" parent="SettingTabs/Controls/MarginContainer/VBoxContainer/ScrollContainer/ControlSettings"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Esc"
+label_settings = ExtResource("3_w374r")
+
+[node name="ResetButton" type="Button" parent="SettingTabs/Controls/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme = ExtResource("4_octia")
+text = "Reset Controls"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -40.0
+offset_right = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n5sae")
+theme_override_font_sizes/font_size = 60
+text = "Back"
+flat = true
+
+[connection signal="item_selected" from="SettingTabs/Video/MarginContainer/VideoSettings/DisplayModeBtn" to="." method="_on_display_mode_btn_item_selected"]
+[connection signal="item_selected" from="SettingTabs/Video/MarginContainer/VideoSettings/MainMenuBtn" to="." method="_on_main_menu_btn_item_selected"]
+[connection signal="value_changed" from="SettingTabs/Audio/MarginContainer/AudioSettings/MasterVolSlider" to="." method="_on_master_vol_slider_value_changed"]
+[connection signal="value_changed" from="SettingTabs/Audio/MarginContainer/AudioSettings/MusicVolSlider" to="." method="_on_music_vol_slider_value_changed"]
+[connection signal="value_changed" from="SettingTabs/Audio/MarginContainer/AudioSettings/SFXVolSlider" to="." method="_on_sfx_vol_slider_value_changed"]
+[connection signal="pressed" from="SettingTabs/Controls/MarginContainer/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

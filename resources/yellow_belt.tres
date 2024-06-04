@@ -1,0 +1,77 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://bs8p36i8de1dj"]
+
+[ext_resource type="Texture2D" uid="uid://cfn7jqht72uxr" path="res://assets/images/character/Rumbler2.png" id="1_rvn1l"]
+[ext_resource type="Texture2D" uid="uid://dot43kgd3e17e" path="res://assets/images/character/Rumbler_explode2.png" id="2_lweih"]
+[ext_resource type="Texture2D" uid="uid://fujo7weko1k1" path="res://assets/images/character/Rumbler_hold2.png" id="3_po4f3"]
+[ext_resource type="Texture2D" uid="uid://c0fqi6t7wximp" path="res://assets/images/character/Rumbler_kick2.png" id="4_3prc5"]
+[ext_resource type="Texture2D" uid="uid://rqlvi7rshfmg" path="res://assets/images/character/Rumbler_parry2.png" id="5_0a7il"]
+[ext_resource type="Texture2D" uid="uid://bf8tch22qx3qn" path="res://assets/images/character/Rumbler_straight2.png" id="5_o5m1i"]
+[ext_resource type="Texture2D" uid="uid://bwuvkv77hfyg5" path="res://assets/images/character/Rumbler_stomp2.png" id="5_ukkxu"]
+[ext_resource type="Texture2D" uid="uid://31rc3ff4xcua" path="res://assets/images/character/Rumbler_uppercut2.png" id="6_trkbx"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rvn1l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lweih")
+}],
+"loop": true,
+"name": &"explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_po4f3")
+}],
+"loop": true,
+"name": &"hold",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3prc5")
+}],
+"loop": true,
+"name": &"kick",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_0a7il")
+}],
+"loop": true,
+"name": &"parry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ukkxu")
+}],
+"loop": true,
+"name": &"stomp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_o5m1i")
+}],
+"loop": true,
+"name": &"straight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_trkbx")
+}],
+"loop": true,
+"name": &"uppercut",
+"speed": 5.0
+}]
