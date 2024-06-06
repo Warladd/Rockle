@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://bgttq52mtkhdc"]
+[gd_scene load_steps=89 format=3 uid="uid://bgttq52mtkhdc"]
 
 [ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_64bv7"]
 [ext_resource type="PackedScene" uid="uid://gr3eo2a1whh" path="res://scenes/dialogue_box.tscn" id="1_p1pcp"]
@@ -519,7 +519,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["If you combine them together with a wall you get the highest possible strength for a spawnable structure. The inverse is a non moving, ungrounded disk with a whopping tier value of 0."]
+"values": ["If a wall is moving and grounded you get the highest possible strength for a spawnable structure. The inverse is a non moving, ungrounded disk with a whopping tier value of 0."]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -559,7 +559,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["The most unique thing about this game is combos. Combining modifiers will grant you different results allowing you to destroy structures that you may not be able to otherwise. Doing multiple modifiers on a structure will grant you a lot of gear coins. The more of them, the better. 
+"values": ["The most unique thing about this game is combos. Combining modifiers will grant you different results allowing you to destroy structures that you may not be able to otherwise. Doing multiple modifiers on a structure will grant you a lot of gear coins. The more modifiers, the better. 
 "]
 }
 tracks/1/type = "value"
@@ -802,9 +802,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["This is one of the two ways that influence a structure's tier points. It's movement! Whenever 
-a structure is moving it will have a +1 to it's base value! This is how a disk can deal any 
-damage."]
+"values": ["This is one of the two ways that influence a structure's tier points. It's movement! Whenever a structure is moving it will add a +1 to it's strength! This is how a disk usually can deal any damage. The following slide is about the other way a disk can have more than 0 tier points."]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1025,6 +1023,9 @@ tracks/6/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_l5pp2"]
+resource_name = "gear_coins"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1svmk"]
 _data = {
 "RESET": SubResource("Animation_kdjqd"),
@@ -1032,6 +1033,7 @@ _data = {
 "big vs small": SubResource("Animation_2y8fn"),
 "combos": SubResource("Animation_jrnxi"),
 "ending": SubResource("Animation_q3bhe"),
+"gear_coins": SubResource("Animation_l5pp2"),
 "grounded vs ungrounded": SubResource("Animation_v4gb4"),
 "moving vs not moving": SubResource("Animation_x6wvw"),
 "multipliers": SubResource("Animation_3wrcb"),
@@ -1100,8 +1102,7 @@ offset_right = 1119.0
 offset_bottom = 645.0
 
 [node name="Label" parent="Dialogue Box/ColorRect" index="0"]
-text = "Welcome to the Tutorial! This is the wonderful world of Rockle and it seems you need some 
-guidance. I'm here to help! I'll explain the various mechanics that make up this game."
+text = "Gear coins are the currency in rockle (Gc for short). They are how you can buy more structures, modifiers, and the chance at getting a belt!"
 autowrap_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
