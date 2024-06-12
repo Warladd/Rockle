@@ -10,6 +10,7 @@ var structure = "disk"
 @export var kick_timer : Timer
 @export var uppercut_timer : Timer
 @export var parry_timer : Timer
+@export var parry_start_timer : Timer
 var grounded : bool = false
 var damage_value : int = 0
 var stored_velocity_x : float = 0
@@ -19,6 +20,7 @@ var uppercutted : bool = false
 var gear_amount : int = 0
 var dead : bool = false
 var touching_floor : bool = false
+var area_left : bool = true
 
 func _ready():
 	detector.monitoring = false
@@ -26,11 +28,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	if linear_velocity.x != 0 or grounded:
+	if linear_velocity.x != 0 or grounded or linear_velocity.y < 0:
 		parry_timer.stop()
-	if !parry_timer.is_stopped():
+		gravity_scale = 0.5
+	elif !parry_timer.is_stopped():
 		linear_velocity.y = 0
-		gravity_scale = 0
 	if dead:
 		await sfx_player.finished
 		queue_free()
@@ -49,9 +51,12 @@ func _physics_process(delta):
 			linear_velocity.y = 0
 	elif !grounded:
 		sprite.texture = load("res://assets/images/structures/disk_ungrounded.png")
+		if !parry_timer.is_stopped():
+			sprite.texture = load("res://assets/images/structures/disk_parry.png")
 
 func _on_area_2d_body_entered(body):
 	structures = body.get_parent()
+	area_left = false
 	if structures.straight and straight_timer.is_stopped():
 		sfx_player.stream = load("res://assets/audio/sfx/straight.mp3")
 		sfx_player.play()
@@ -60,7 +65,6 @@ func _on_area_2d_body_entered(body):
 		modifiers.append("straight")
 	elif structures.kick and kick_timer.is_stopped():
 		kick_timer.start()
-		parry_timer.stop()
 		if grounded:
 			sfx_player.stream = load("res://assets/audio/sfx/grounded_kick.mp3")
 			sfx_player.play()
@@ -74,7 +78,6 @@ func _on_area_2d_body_entered(body):
 	elif structures.stomp and !grounded:
 		sfx_player.stream = load("res://assets/audio/sfx/stomp.mp3")
 		sfx_player.play()
-		parry_timer.stop()
 		grounded = true
 		linear_velocity.y += 1000
 		linear_velocity.x = 0
@@ -82,7 +85,6 @@ func _on_area_2d_body_entered(body):
 		sfx_player.stream = load("res://assets/audio/sfx/ungrounded_upper.mp3")
 		sfx_player.play()
 		uppercut_timer.start()
-		parry_timer.stop()
 		lock_rotation = false
 		grounded = false
 		linear_velocity.y = 0
@@ -91,10 +93,8 @@ func _on_area_2d_body_entered(body):
 	elif structures.parry and parry_timer.is_stopped():
 		sfx_player.stream = load("res://assets/audio/sfx/parry.mp3")
 		sfx_player.play()
-		grounded = false
-		parry_timer.start()
 		linear_velocity.y = 0
-		linear_velocity.x = 0
+		parry_start_timer.start()
 		
 func _on_timer_timeout():
 	sfx_player.stream = load("res://assets/audio/sfx/disk_and_ball_spawn.mp3")
@@ -132,6 +132,10 @@ func _on_area_2d_2_area_entered(area):
 	linear_velocity.x = stored_velocity_x
 	stored_velocity_x = 0
 
+
+func _on_area_2d_body_exited(body):
+	area_left = true
+
 func _on_area_2d_3_body_entered(body):
 	if grounded or !body.name == "Floor" or touching_floor or !detector.monitoring:
 		return
@@ -146,3 +150,12 @@ func _on_area_2d_3_body_exited(body):
 
 func _on_parry_timer_timeout():
 	gravity_scale = 0.5
+	sprite.texture = load("res://assets/images/structures/disk_ungrounded.png")
+
+func _on_parry_start_timer_timeout():
+	if !area_left:
+		return
+	grounded = false
+	parry_timer.start()
+	linear_velocity.x = 0
+	gravity_scale = 0

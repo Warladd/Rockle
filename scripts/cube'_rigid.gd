@@ -19,6 +19,8 @@ var rotation_velocity: float = 0
 @export var parry_timer : Timer
 var gear_amount : int = 0
 var touching_floor : bool = false
+var area_left : bool = true
+@export var parry_start_timer : Timer
 
 func _ready():
 	detector.monitoring = false
@@ -28,11 +30,11 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
-	if linear_velocity.x != 0 or grounded:
+	if linear_velocity.x != 0 or grounded or linear_velocity.y < 0:
 		parry_timer.stop()
-	if !parry_timer.is_stopped():
+		gravity_scale = 1
+	elif !parry_timer.is_stopped():
 		linear_velocity.y = 0
-		gravity_scale = 0
 	if linear_velocity.x > 0:
 		damage_value = 3
 	elif linear_velocity.x <= 0:
@@ -49,9 +51,13 @@ func _physics_process(delta) -> void:
 			position.y = 335
 			linear_velocity.y = 0
 	elif !grounded:
-		sprite.texture = load("res://assets/images/structures/cube_ungrounded.png")
+		if parry_timer.is_stopped():
+			sprite.texture = load("res://assets/images/structures/cube_ungrounded.png")
+		else:
+			sprite.texture = load("res://assets/images/structures/cube_parry.png")
 		
 func _on_area_2d_body_entered(body):
+	area_left = false
 	structures = body.get_parent()
 	if body.get_parent().straight and straight_timer.is_stopped():
 		sfx_player.stream = load("res://assets/audio/sfx/straight.mp3")
@@ -89,13 +95,11 @@ func _on_area_2d_body_entered(body):
 		linear_velocity.y = 0
 		apply_impulse(Vector2(100,-300), Vector2(-50, 0))
 		modifiers.append("uppercut")
-	elif structures.parry and parry_timer.is_stopped():
+	elif structures.parry and parry_timer.is_stopped() and parry_start_timer.is_stopped():
 		sfx_player.stream = load("res://assets/audio/sfx/parry.mp3")
 		sfx_player.play()
-		grounded = false
-		parry_timer.start()
 		linear_velocity.y = 0
-		linear_velocity.x = 0
+		parry_start_timer.start()
 		
 func _on_timer_timeout():
 	detector.monitoring = true
@@ -139,14 +143,14 @@ func _on_area_2d_3_body_entered(body):
 	touching_floor = true
 	sfx_player.stream = load("res://assets/audio/sfx/cubey.mp3")
 	sfx_player.play()
-	print("cubey")
+	#print("cubey")
 
 func _on_area_2d_3_body_exited(body):
 	if !body.name == "Floor":
 		print("Body Name:", body.name)
 		return
 	touching_floor = false
-	print("no cubey")
+	#print("no cubey")
 
 func _on_area_2d_3_area_entered(area):
 	if grounded or !area.name == "Floor" or touching_floor or !detector.monitoring:
@@ -155,14 +159,26 @@ func _on_area_2d_3_area_entered(area):
 	touching_floor = true
 	sfx_player.stream = load("res://assets/audio/sfx/cubey.mp3")
 	sfx_player.play()
-	print("cubey")
+	#print("cubey")
 
 func _on_area_2d_3_area_exited(area):
 	if !area.name == "Floor":
 		print("Area Name:", area.name)
 		return
 	touching_floor = false
-	print("no cubey")
+	#print("no cubey")
 
 func _on_parry_timer_timeout():
 	gravity_scale = 1
+	sprite.texture = load("res://assets/images/structures/cube_ungrounded.png")
+
+func _on_parry_start_timer_timeout():
+	if !area_left:
+		return
+	grounded = false
+	parry_timer.start()
+	linear_velocity.x = 0
+	gravity_scale = 0
+
+func _on_area_2d_body_exited(body):
+	area_left = true
