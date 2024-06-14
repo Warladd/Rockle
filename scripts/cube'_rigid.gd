@@ -169,12 +169,14 @@ func _on_area_2d_3_area_exited(area):
 	#print("no cubey")
 
 func _on_parry_timer_timeout():
+	print("cube parry done")
 	gravity_scale = 1
 	sprite.texture = load("res://assets/images/structures/cube_ungrounded.png")
 
 func _on_parry_start_timer_timeout():
 	if !area_left:
 		return
+	print("cube parry started")
 	grounded = false
 	parry_timer.start()
 	linear_velocity.x = 0

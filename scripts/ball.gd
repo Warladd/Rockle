@@ -29,7 +29,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if !parry_timer.is_stopped():
+		print("timer running")
 	if velocity.x != 0 or grounded or velocity.y < 0:
+		#if velocity.y < 0:
+			#print("movin")
+		#if velocity.x != 0:
+			#print("forward")
+		#if grounded:
+			#print("grounded")
 		parry_timer.stop()
 	if velocity.x > 0:
 		damage_value = 2
@@ -100,10 +108,11 @@ func _on_area_2d_body_entered(body):
 		velocity.x += 300
 		modifiers.append("uppercut")
 	elif structures.parry and parry_timer.is_stopped() and parry_start_timer.is_stopped():
+		parry_start_timer.start()
+		print("parry recognized")
 		sfx_player.stream = load("res://assets/audio/sfx/parry.mp3")
 		sfx_player.play()
 		velocity.y = 0
-		parry_start_timer.start()
 		
 func _on_timer_timeout():
 	detector.monitoring = true
@@ -141,8 +150,9 @@ func _on_area_2d_2_area_entered(area):
 
 func _on_parry_start_timer_timeout():
 	if area_left:
-		return
 		print("Not in area")
+		return
+	print("ball parry started")
 	parry_timer.start()
 	sprite.texture = load("res://assets/images/structures/ball_parry.png")
 	grounded = false
@@ -150,3 +160,6 @@ func _on_parry_start_timer_timeout():
 
 func _on_area_2d_body_exited(body):
 	area_left = true
+
+func _on_parry_timer_timeout():
+	print("ball parry done")
