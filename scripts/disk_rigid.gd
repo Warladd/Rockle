@@ -20,7 +20,6 @@ var uppercutted : bool = false
 var gear_amount : int = 0
 var dead : bool = false
 var touching_floor : bool = false
-var area_left : bool = true
 
 func _ready():
 	detector.monitoring = false
@@ -56,7 +55,6 @@ func _physics_process(delta):
 
 func _on_area_2d_body_entered(body):
 	structures = body.get_parent()
-	area_left = false
 	if structures.straight and straight_timer.is_stopped():
 		sfx_player.stream = load("res://assets/audio/sfx/straight.mp3")
 		sfx_player.play()
@@ -132,10 +130,6 @@ func _on_area_2d_2_area_entered(area):
 	linear_velocity.x = stored_velocity_x
 	stored_velocity_x = 0
 
-
-func _on_area_2d_body_exited(body):
-	area_left = true
-
 func _on_area_2d_3_body_entered(body):
 	if grounded or !body.name == "Floor" or touching_floor or !detector.monitoring:
 		return
@@ -153,8 +147,6 @@ func _on_parry_timer_timeout():
 	sprite.texture = load("res://assets/images/structures/disk_ungrounded.png")
 
 func _on_parry_start_timer_timeout():
-	if !area_left:
-		return
 	grounded = false
 	parry_timer.start()
 	linear_velocity.x = 0

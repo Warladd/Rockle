@@ -19,7 +19,6 @@ var gear_amount : int = 0
 @export var parry_timer : Timer
 @export var parry_start_timer : Timer
 var was_on_floor : bool = false
-var area_left : bool = true
 
 func _ready():
 	detector.monitoring = false
@@ -71,7 +70,6 @@ func _process(delta):
 			sfx_player.play()
 
 func _on_area_2d_body_entered(body):
-	area_left = false
 	structures = body.get_parent()
 	if body.get_parent().straight and straight_timer.is_stopped():
 		sfx_player.stream = load("res://assets/audio/sfx/straight.mp3")
@@ -149,17 +147,11 @@ func _on_area_2d_2_area_entered(area):
 	stored_velocity_x = 0
 
 func _on_parry_start_timer_timeout():
-	if area_left:
-		print("Not in area")
-		return
 	print("ball parry started")
 	parry_timer.start()
 	sprite.texture = load("res://assets/images/structures/ball_parry.png")
 	grounded = false
 	velocity.x = 0
-
-func _on_area_2d_body_exited(body):
-	area_left = true
 
 func _on_parry_timer_timeout():
 	print("ball parry done")

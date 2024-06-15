@@ -18,6 +18,7 @@ var gear_amount : int = 0
 @export var kick_timer : Timer
 @export var uppercut_timer : Timer
 @export var parry_timer : Timer
+@export var parry_start_timer : Timer
 
 func _ready():
 	detector.monitoring = false
@@ -43,7 +44,10 @@ func _process(delta):
 			position.y = 310
 			velocity.y = 0
 	elif !grounded:
-		sprite.texture = load("res://assets/images/structures/pillar_grounded.png")
+		if parry_timer.is_stopped():
+			sprite.texture = load("res://assets/images/structures/pillar_grounded.png")
+		else:
+			sprite.texture = load("res://assets/images/structures/pillar_parry.png")
 	if !is_on_floor() and parry_timer.is_stopped():
 		velocity.y -= gravity * delta
 	if velocity.x > 0:
@@ -99,10 +103,8 @@ func _on_area_2d_body_entered(body):
 	elif structures.parry and parry_timer.is_stopped():
 		sfx_player.stream = load("res://assets/audio/sfx/parry.mp3")
 		sfx_player.play()
-		grounded = false
-		parry_timer.start()
 		velocity.y = 0
-		velocity.x = 0
+		parry_start_timer.start()
 
 func _on_timer_timeout():
 	detector.monitoring = true
@@ -138,3 +140,9 @@ func _on_area_2d_2_area_entered(area):
 		queue_free()
 	velocity.x = stored_velocity_x
 	stored_velocity_x = 0
+
+func _on_parry_start_timer_timeout():
+	grounded = false
+	sprite.texture = load("res://assets/images/structures/pillar_parry.png")
+	parry_timer.start()
+	velocity.x = 0

@@ -17,10 +17,9 @@ var rotation_velocity: float = 0
 @export var kick_timer : Timer
 @export var uppercut_timer : Timer
 @export var parry_timer : Timer
+@export var parry_start_timer : Timer
 var gear_amount : int = 0
 var touching_floor : bool = false
-var area_left : bool = true
-@export var parry_start_timer : Timer
 
 func _ready():
 	detector.monitoring = false
@@ -57,7 +56,6 @@ func _physics_process(delta) -> void:
 			sprite.texture = load("res://assets/images/structures/cube_parry.png")
 		
 func _on_area_2d_body_entered(body):
-	area_left = false
 	structures = body.get_parent()
 	if body.get_parent().straight and straight_timer.is_stopped():
 		sfx_player.stream = load("res://assets/audio/sfx/straight.mp3")
@@ -174,13 +172,8 @@ func _on_parry_timer_timeout():
 	sprite.texture = load("res://assets/images/structures/cube_ungrounded.png")
 
 func _on_parry_start_timer_timeout():
-	if !area_left:
-		return
 	print("cube parry started")
 	grounded = false
 	parry_timer.start()
 	linear_velocity.x = 0
 	gravity_scale = 0
-
-func _on_area_2d_body_exited(body):
-	area_left = true

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://scnpch4re8gw"
-path="res://.godot/imported/boulder_parry.png-b68b94700218970a731b2c1fa40e6178.ctex"
+path="res://.godot/imported/ball_parry.png-ce7b2c365e566e57fb49f0f94c74fc0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/structures/boulder_parry.png"
-dest_files=["res://.godot/imported/boulder_parry.png-b68b94700218970a731b2c1fa40e6178.ctex"]
+source_file="res://assets/images/structures/ball_parry.png"
+dest_files=["res://.godot/imported/ball_parry.png-ce7b2c365e566e57fb49f0f94c74fc0c.ctex"]
 
 [params]
 
