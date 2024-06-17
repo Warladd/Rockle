@@ -28,8 +28,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if !parry_timer.is_stopped():
-		print("timer running")
 	if velocity.x != 0 or grounded or velocity.y < 0:
 		#if velocity.y < 0:
 			#print("movin")
@@ -152,6 +150,7 @@ func _on_parry_start_timer_timeout():
 	sprite.texture = load("res://assets/images/structures/ball_parry.png")
 	grounded = false
 	velocity.x = 0
+	velocity.y = 0
 
 func _on_parry_timer_timeout():
 	print("ball parry done")

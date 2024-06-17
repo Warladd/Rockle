@@ -28,12 +28,20 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if velocity.x != 0 or grounded or velocity.y < 0:
+		#if velocity.y < 0:
+			#print("movin")
+		#if velocity.x != 0:
+			#print("forward")
+		#if grounded:
+			#print("grounded")
+		parry_timer.stop()
 	if velocity.x > 0:
 		damage_value = 2
 	elif velocity.x <= 0:
 		damage_value = 1
 	if grounded:
-		sprite.texture = load("res://assets/images/structures/pillar_ungrounded.png")
+		sprite.texture = load("res://assets/images/structures/pillar_grounded.png")
 		if velocity.x <= 0:
 			damage_value = 2
 		elif velocity.x > 0:
@@ -45,7 +53,7 @@ func _process(delta):
 			velocity.y = 0
 	elif !grounded:
 		if parry_timer.is_stopped():
-			sprite.texture = load("res://assets/images/structures/pillar_grounded.png")
+			sprite.texture = load("res://assets/images/structures/pillar_ungrounded.png")
 		else:
 			sprite.texture = load("res://assets/images/structures/pillar_parry.png")
 	if !is_on_floor() and parry_timer.is_stopped():
@@ -67,7 +75,6 @@ func _on_area_2d_body_entered(body):
 		sfx_player.stream = load("res://assets/audio/sfx/straight.mp3")
 		sfx_player.play()
 		straight_timer.start()
-		parry_timer.stop()
 		velocity.x += 800
 		modifiers.append("straight")
 	elif body.get_parent().kick and kick_timer.is_stopped():
@@ -80,14 +87,12 @@ func _on_area_2d_body_entered(body):
 			sfx_player.stream = load("res://assets/audio/sfx/ungrounded_kick.mp3")
 			sfx_player.play()
 		velocity.y = 0
-		parry_timer.stop()
 		velocity.y -= 300
 		modifiers.append("kick")
 	elif structures.stomp and !grounded:
 		sfx_player.stream = load("res://assets/audio/sfx/stomp.mp3")
 		sfx_player.play()
 		grounded = true
-		parry_timer.stop()
 		velocity.y += 300
 		velocity.x = 0
 	elif body.get_parent().uppercut and uppercut_timer.is_stopped():
@@ -95,12 +100,11 @@ func _on_area_2d_body_entered(body):
 		sfx_player.play()
 		uppercut_timer.start()
 		grounded = false
-		parry_timer.stop()
 		velocity.y = 0
 		velocity.y -= 200
 		velocity.x += 300
 		modifiers.append("uppercut")
-	elif structures.parry and parry_timer.is_stopped():
+	elif structures.parry and parry_timer.is_stopped() and parry_start_timer.is_stopped():
 		sfx_player.stream = load("res://assets/audio/sfx/parry.mp3")
 		sfx_player.play()
 		velocity.y = 0
@@ -146,3 +150,8 @@ func _on_parry_start_timer_timeout():
 	sprite.texture = load("res://assets/images/structures/pillar_parry.png")
 	parry_timer.start()
 	velocity.x = 0
+	velocity.y = 0
+	print("parry timer started")
+
+func _on_parry_timer_timeout():
+	print("parry timer done")
