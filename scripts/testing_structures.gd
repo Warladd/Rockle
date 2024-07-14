@@ -49,6 +49,8 @@ var kick : bool = false
 var uppercut : bool = false
 var stomp : bool = false
 var parry : bool = false
+var hold : bool = false 
+var explode : bool = false
 
 func _ready():
 	SaveSystem.load_game()
@@ -222,6 +224,18 @@ func _input(event) -> void:
 		hitbox.disabled = false
 		parry = true
 		modifier_cooldown()
+	elif event.is_action_pressed("hold") and SaveSystem.save_game.hold:
+		print("holding")
+		player_sprite.play("hold")
+		hitbox.disabled = false
+		hold = true
+		modifier_cooldown()
+	elif event.is_action_pressed("explode") and SaveSystem.save_game.explode:
+		print("exploding")
+		player_sprite.play("explode")
+		hitbox.disabled = false
+		explode = true
+		modifier_cooldown()
 
 func _on_disk_timer_timeout() -> void:
 	print("disk timer finished")
@@ -239,6 +253,8 @@ func modifier_cooldown():
 	stomp = false
 	kick = false
 	parry = false
+	hold = false
+	explode = false
 	animation_timer.start()
 
 func _on_ball_timer_timeout():

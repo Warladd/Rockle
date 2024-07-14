@@ -84,6 +84,9 @@ var wall_tween : Tween
 @export var parry_button : Button
 @export var parry_label : Label
 @export var parry_gear : TextureRect
+@export var hold_button : Button
+@export var hold_label : Label
+@export var hold_gear : TextureRect
 @export var explode_button : Button
 @export var explode_label : Label
 @export var explode_gear : TextureRect
@@ -137,6 +140,8 @@ var kick_cost : int = 5000
 var uppercut_cost : int = 20000
 var stomp_cost : int = 1000
 var parry_cost : int = 2000000
+var hold_cost : int = 5000000
+var explode_cost : int = 40000000
 var straight_m_cost : int = 500
 
 var white_belt_cost : int = 1000
@@ -248,6 +253,13 @@ func _ready() -> void:
 		red_belt_button.text = "Owned"
 		red_belt_button.disabled = true
 		player_sprite.sprite_frames = load("res://resources/black_belt.tres")
+		if !SaveSystem.save_game.explode:
+			explode_button.disabled = false
+			explode_button.text = "Buy"
+			explode_label.show()
+			explode_gear.show()
+		if SaveSystem.save_game.explode:
+			explode_button.text = "Owned"
 		red_belt_label.hide()
 		red_belt_gear.hide()
 		black_belt_container.show()
@@ -261,6 +273,13 @@ func _ready() -> void:
 			parry_gear.show()
 		if SaveSystem.save_game.parry:
 			parry_button.text = "Owned"
+		if !SaveSystem.save_game.hold:
+			hold_button.disabled = false
+			hold_button.text = "Buy"
+			hold_label.show()
+			hold_gear.show()
+		if SaveSystem.save_game.hold:
+			hold_button.text = "Owned"
 		if SaveSystem.save_game.belt == 4:
 			player_sprite.sprite_frames = load("res://resources/red_belt.tres")
 		blue_belt_label.hide()
@@ -558,13 +577,15 @@ func _on_uppercut_button_pressed():
 		print("saving")
 
 func _on_explode_button_pressed():
-	if SaveSystem.save_game.stomp:
+	if SaveSystem.save_game.explode:
 		return
-	if SaveSystem.save_game.gear_coins >= stomp_cost:
-		SaveSystem.save_game.gear_coins -= stomp_cost
-		SaveSystem.save_game.stomp = true
-		explode_button.tet = "Owned"
+	if SaveSystem.save_game.gear_coins >= explode_cost:
+		SaveSystem.save_game.gear_coins -= explode_cost
+		SaveSystem.save_game.explode = true
+		explode_button.text = "Owned"
+		explode_button.disabled = true
 		explode_label.hide()
+		explode_gear.hide()
 		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
 		for i in range(int((len(gear_coin_string) - 1) /3)):
 			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
@@ -744,6 +765,23 @@ func _on_parry_button_pressed():
 		parry_button.text = "Owned"
 		parry_label.hide()
 		parry_gear.hide()
+		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
+		for i in range(int((len(gear_coin_string) - 1) /3)):
+			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
+		gear_label.text = gear_coin_string
+		shop_label.text = gear_coin_string
+		SaveSystem.saving()
+		print("saving")
+
+func _on_hold_button_pressed():
+	if SaveSystem.save_game.hold:
+		return
+	if SaveSystem.save_game.gear_coins >= hold_cost:
+		SaveSystem.save_game.gear_coins -= hold_cost
+		SaveSystem.save_game.hold = true
+		hold_button.text = "Owned"
+		hold_label.hide()
+		hold_gear.hide()
 		var gear_coin_string = str(SaveSystem.save_game.gear_coins)
 		for i in range(int((len(gear_coin_string) - 1) /3)):
 			gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")

@@ -4,6 +4,7 @@ var gravity = -400
 var structure = "ball"
 @export var death : Area2D
 @export var detector : Area2D
+@export var exploding : Area2D
 @export var sprite : Sprite2D
 @export var collision : CollisionShape2D
 @export var sfx_player : AudioStreamPlayer2D
@@ -18,7 +19,10 @@ var gear_amount : int = 0
 @export var uppercut_timer : Timer
 @export var parry_timer : Timer
 @export var parry_start_timer : Timer
+@export var hold_timer : Timer
 var was_on_floor : bool = false
+var held : bool = false
+var explood : bool = false
 
 func _ready():
 	detector.monitoring = false
@@ -54,7 +58,7 @@ func _process(delta):
 			sprite.texture = load("res://assets/images/structures/ball_parry.png")
 		else:
 			sprite.texture = load("res://assets/images/structures/ball_ungrounded.png")
-	if !is_on_floor() and parry_timer.is_stopped():
+	if !is_on_floor() and parry_timer.is_stopped() and !held:
 		velocity.y -= gravity * delta
 	if velocity.x > 0:
 		velocity.x -= 650 * delta
@@ -109,6 +113,17 @@ func _on_area_2d_body_entered(body):
 		sfx_player.stream = load("res://assets/audio/sfx/parry.mp3")
 		sfx_player.play()
 		velocity.y = 0
+	elif structures.hold and hold_timer.is_stopped():
+		hold_timer.start()
+		held = true
+		if !grounded:
+			pass
+		elif grounded:
+			pass
+	elif structures.explode and !explood:
+		explood = true
+		print("explode recognized")
+		modulate = Color("#FFF")
 		
 func _on_timer_timeout():
 	detector.monitoring = true
@@ -124,6 +139,8 @@ func _on_area_2d_2_area_entered(area):
 	print("other object damage value", area.get_parent().damage_value)
 	if damage_value <= area.get_parent().damage_value:
 		Global.ball_break.emit()
+		if explood:
+			exploding.monitoring = true
 		if modifiers.has("straight"):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.ball * SaveSystem.save_game.ball_increase * SaveSystem.save_game.general_increase
 			gear_amount += SaveSystem.save_game.ball * SaveSystem.save_game.ball_increase * SaveSystem.save_game.general_increase
@@ -140,6 +157,7 @@ func _on_area_2d_2_area_entered(area):
 		Global.popup.emit()
 		SaveSystem.saving()
 		print("saving")
+		await get_tree().create_timer(0.05).timeout
 		queue_free()
 	velocity.x = stored_velocity_x
 	stored_velocity_x = 0

@@ -5,6 +5,8 @@ class_name Keybinds
 @export var kick_input : String = "z"
 @export var uppercut_input : String = "mouse_2"
 @export var parry_input : String = "x"
+@export var hold_input : String = "c"
+@export var explode_input : String = "v"
 
 func save_keybinding(action : StringName, event: InputEvent):
 	if action == "straight":
@@ -32,6 +34,16 @@ func save_keybinding(action : StringName, event: InputEvent):
 			parry_input = OS.get_keycode_string(event.physical_keycode)
 		elif event is InputEventMouseButton:
 			parry_input = "mouse_" + str(event.button_index)
+	elif action == "hold":
+		if event is InputEventKey:
+			hold_input = OS.get_keycode_string(event.physical_keycode)
+		elif event is InputEventMouseButton:
+			hold_input = "mouse_" + str(event.button_index)
+	elif action == "explode":
+		if event is InputEventKey:
+			explode_input = OS.get_keycode_string(event.physical_keycode)
+		elif event is InputEventMouseButton:
+			explode_input = "mouse_" + str(event.button_index)
 	SaveSystem.save_keybinds()
 
 func load_keybindings():
@@ -76,5 +88,21 @@ func load_keybindings():
 		input_event = InputEventKey.new()
 		input_event.keycode = OS.find_keycode_from_string(parry_input)
 	keybindings[4] = input_event
+	input_event = null
+	if hold_input.contains("mouse_"):
+		input_event = InputEventMouseButton.new()
+		input_event.button_index = int(hold_input.split("_")[1])
+	else:
+		input_event = InputEventKey.new()
+		input_event.keycode = OS.find_keycode_from_string(hold_input)
+	keybindings[5] = input_event
+	input_event = null
+	if explode_input.contains("mouse_"):
+		input_event = InputEventMouseButton.new()
+		input_event.button_index = int(explode_input.split("_")[1])
+	else:
+		input_event = InputEventKey.new()
+		input_event.keycode = OS.find_keycode_from_string(explode_input)
+	keybindings[6] = input_event
 	input_event = null
 	return keybindings
