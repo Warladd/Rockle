@@ -32,12 +32,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_n5sae")
 theme_override_font_sizes/font_size = 35
-current_tab = 2
+current_tab = 0
 
 [node name="Video" type="TabBar" parent="SettingTabs"]
-visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_n5sae")
+metadata/_tab_index = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="SettingTabs/Video"]
 layout_mode = 1
@@ -69,10 +69,9 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_n5sae")
 theme_override_font_sizes/font_size = 50
 flat = true
-item_count = 2
 selected = 0
+item_count = 2
 popup/item_0/text = "  Windowed"
-popup/item_0/id = 0
 popup/item_1/text = "Fullscreen"
 popup/item_1/id = 1
 
@@ -90,10 +89,9 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_n5sae")
 theme_override_font_sizes/font_size = 50
 flat = true
-item_count = 3
 selected = 0
+item_count = 3
 popup/item_0/text = "Title on the Left"
-popup/item_0/id = 0
 popup/item_1/text = "Title in the Middle"
 popup/item_1/id = 1
 popup/item_2/text = "Title on the Right"
@@ -102,6 +100,7 @@ popup/item_2/id = 2
 [node name="Audio" type="TabBar" parent="SettingTabs"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="SettingTabs/Audio"]
 layout_mode = 1
@@ -166,7 +165,9 @@ max_value = 0.0
 value = -15.0
 
 [node name="Controls" type="TabBar" parent="SettingTabs"]
+visible = false
 layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="SettingTabs/Controls"]
 layout_mode = 1
