@@ -29,12 +29,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if velocity.x != 0 or grounded or velocity.y < 0:
-		#if velocity.y < 0:
-			#print("movin")
-		#if velocity.x != 0:
-			#print("forward")
-		#if grounded:
-			#print("grounded")
 		parry_timer.stop()
 	if velocity.x > 0:
 		damage_value = 2

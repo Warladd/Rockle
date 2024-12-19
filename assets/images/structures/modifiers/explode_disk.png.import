@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1tk114decl6x"
-path="res://.godot/imported/disk_grounded_old.png-006fb0c6c5f71f783e71f9a25ea013d5.ctex"
+uid="uid://cofg87ul0d7a6"
+path="res://.godot/imported/explode_disk.png-c2d0aedfcce4335689c33e48a0859f63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/structures/disk_grounded_old.png"
-dest_files=["res://.godot/imported/disk_grounded_old.png-006fb0c6c5f71f783e71f9a25ea013d5.ctex"]
+source_file="res://assets/images/structures/modifiers/explode_disk.png"
+dest_files=["res://.godot/imported/explode_disk.png-c2d0aedfcce4335689c33e48a0859f63.ctex"]
 
 [params]
 

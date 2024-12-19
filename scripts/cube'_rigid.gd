@@ -3,7 +3,9 @@ extends RigidBody2D
 var gravity = -690
 @export var death : Area2D
 @export var detector : Area2D
+@export var explode_detection : Area2D
 @export var sprite : Sprite2D
+@export var explode_sprite : Sprite2D
 @export var collision : CollisionShape2D
 @export var sfx_player : AudioStreamPlayer2D
 var damage_value : int = 2
@@ -98,6 +100,9 @@ func _on_area_2d_body_entered(body):
 		sfx_player.play()
 		linear_velocity.y = 0
 		parry_start_timer.start()
+	elif structures.explode:
+		explode_sprite.show()
+		modifiers.append("explode")
 		
 func _on_timer_timeout():
 	detector.monitoring = true
@@ -114,6 +119,10 @@ func _on_area_2d_2_area_entered(area):
 	print("other object damage value", area.get_parent().damage_value)
 	if damage_value <= area.get_parent().damage_value:
 		Global.cube_break.emit()
+		linear_velocity.x = 0
+		linear_velocity.y = 0
+		gravity_scale = 0
+		sprite.hide()
 		if modifiers.has("straight"):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.cube * SaveSystem.save_game.cube_increase * SaveSystem.save_game.general_increase
 			gear_amount += SaveSystem.save_game.cube * SaveSystem.save_game.cube_increase * SaveSystem.save_game.general_increase
@@ -130,6 +139,8 @@ func _on_area_2d_2_area_entered(area):
 		Global.popup.emit()
 		SaveSystem.saving()
 		print("saving")
+		explode_detection.monitoring = true
+		await get_tree().create_timer(0.1).timeout
 		queue_free()
 	linear_velocity.x = stored_velocity_x
 	stored_velocity_x = 0
@@ -177,3 +188,8 @@ func _on_parry_start_timer_timeout():
 	parry_timer.start()
 	linear_velocity.x = 0
 	gravity_scale = 0
+
+func _on_area_2d_4_area_entered(area: Area2D) -> void:
+	if area.get_parent() == self or area.get_parent().damage_value > 10:
+		return
+	area.get_parent().grounded = false

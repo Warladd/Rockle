@@ -113,13 +113,13 @@ func _on_area_2d_body_entered(body):
 		sfx_player.stream = load("res://assets/audio/sfx/parry.mp3")
 		sfx_player.play()
 		velocity.y = 0
-	elif structures.hold and hold_timer.is_stopped():
-		hold_timer.start()
-		held = true
-		if !grounded:
-			pass
-		elif grounded:
-			pass
+	#elif structures.hold and hold_timer.is_stopped():
+		#hold_timer.start()
+		#held = true
+		#if !grounded:
+			#pass
+		#elif grounded:
+			#pass
 	elif structures.explode and !explood:
 		explood = true
 		print("explode recognized")

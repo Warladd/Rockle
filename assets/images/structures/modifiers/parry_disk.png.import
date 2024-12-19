@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bcq4e35o1udxl"
-path="res://.godot/imported/disk_parry.png-5c95134ba8d63cdf91744441be58db87.ctex"
+path="res://.godot/imported/parry_disk.png-ad419cc79b27fa37c0dc013f53a77bd2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/structures/disk_parry.png"
-dest_files=["res://.godot/imported/disk_parry.png-5c95134ba8d63cdf91744441be58db87.ctex"]
+source_file="res://assets/images/structures/modifiers/parry_disk.png"
+dest_files=["res://.godot/imported/parry_disk.png-ad419cc79b27fa37c0dc013f53a77bd2.ctex"]
 
 [params]
 
