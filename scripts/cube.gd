@@ -113,7 +113,7 @@ func _on_area_2d_body_entered(body):
 		sfx_player.play()
 		velocity.y = 0
 		parry_start_timer.start()
-	elif structures.explode:
+	elif structures.explode and !modifiers.has("explode"):
 		explode_sprite.show()
 		modifiers.append("explode")
 		
@@ -147,6 +147,10 @@ func _on_area_2d_2_area_entered(area):
 		if grounded:
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.cube * SaveSystem.save_game.cube_increase * SaveSystem.save_game.general_increase
 			gear_amount += SaveSystem.save_game.cube * SaveSystem.save_game.cube_increase * SaveSystem.save_game.general_increase	
+		if modifiers.has("explode"):
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
+			gear_amount += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
+			explode_detection.monitoring = true
 		Global.popup_number = gear_amount
 		Global.popup.emit()
 		SaveSystem.saving()
@@ -203,3 +207,5 @@ func _on_area_2d_4_area_entered(area: Area2D) -> void:
 	if area.get_parent() == self or area.get_parent().structure == "big_wall":
 		return
 	area.get_parent().grounded = false
+	area.get_parent().velocity.y -= damage_value * 100
+	area.get_parent().velocity.x += damage_value * 120

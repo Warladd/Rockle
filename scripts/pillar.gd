@@ -19,6 +19,7 @@ var gear_amount : int = 0
 @export var uppercut_timer : Timer
 @export var parry_timer : Timer
 @export var parry_start_timer : Timer
+@export var explode_detector : Area2D
 
 func _ready():
 	detector.monitoring = false
@@ -103,6 +104,8 @@ func _on_area_2d_body_entered(body):
 		sfx_player.play()
 		velocity.y = 0
 		parry_start_timer.start()
+	elif structures.explode and !modifiers.has("explode"):
+		modifiers.append("explode")
 
 func _on_timer_timeout():
 	detector.monitoring = true
@@ -131,6 +134,10 @@ func _on_area_2d_2_area_entered(area):
 		if grounded:
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.pillar * SaveSystem.save_game.pillar_increase * SaveSystem.save_game.general_increase
 			gear_amount += SaveSystem.save_game.pillar * SaveSystem.save_game.pillar_increase * SaveSystem.save_game.general_increase
+		if modifiers.has("explode"):
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.pillar * SaveSystem.save_game.pillar_increase * SaveSystem.save_game.general_increase
+			gear_amount += SaveSystem.save_game.pillar * SaveSystem.save_game.pillar_increase * SaveSystem.save_game.general_increase
+			explode_detector.monitoring = true
 		Global.popup_number = gear_amount
 		Global.popup.emit()
 		SaveSystem.saving()
@@ -149,3 +156,10 @@ func _on_parry_start_timer_timeout():
 
 func _on_parry_timer_timeout():
 	print("parry timer done")
+
+func _on_explode_detector_area_entered(area: Area2D) -> void:
+	if area.get_parent() == self or area.get_parent().structure == "big_wall":
+		return
+	area.get_parent().grounded = false
+	area.get_parent().velocity.y -= damage_value * 100
+	area.get_parent().velocity.x += damage_value * 120

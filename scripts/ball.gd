@@ -4,7 +4,7 @@ var gravity = -400
 var structure = "ball"
 @export var death : Area2D
 @export var detector : Area2D
-@export var exploding : Area2D
+@export var explode_detection : Area2D
 @export var sprite : Sprite2D
 @export var collision : CollisionShape2D
 @export var sfx_player : AudioStreamPlayer2D
@@ -20,9 +20,10 @@ var gear_amount : int = 0
 @export var parry_timer : Timer
 @export var parry_start_timer : Timer
 @export var hold_timer : Timer
+@export var left_ray : RayCast2D
+@export var right_ray : RayCast2D
 var was_on_floor : bool = false
 var held : bool = false
-var explood : bool = false
 
 func _ready():
 	detector.monitoring = false
@@ -120,10 +121,8 @@ func _on_area_2d_body_entered(body):
 			#pass
 		#elif grounded:
 			#pass
-	elif structures.explode and !explood:
-		explood = true
-		print("explode recognized")
-		modulate = Color("#FFF")
+	elif structures.explode and !modifiers.has("explode"):
+		modifiers.append("explode")
 		
 func _on_timer_timeout():
 	detector.monitoring = true
@@ -139,8 +138,6 @@ func _on_area_2d_2_area_entered(area):
 	print("other object damage value", area.get_parent().damage_value)
 	if damage_value <= area.get_parent().damage_value:
 		Global.ball_break.emit()
-		if explood:
-			exploding.monitoring = true
 		if modifiers.has("straight"):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.ball * SaveSystem.save_game.ball_increase * SaveSystem.save_game.general_increase
 			gear_amount += SaveSystem.save_game.ball * SaveSystem.save_game.ball_increase * SaveSystem.save_game.general_increase
@@ -153,6 +150,10 @@ func _on_area_2d_2_area_entered(area):
 		if grounded:
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.ball * SaveSystem.save_game.ball_increase * SaveSystem.save_game.general_increase
 			gear_amount += SaveSystem.save_game.ball * SaveSystem.save_game.ball_increase * SaveSystem.save_game.general_increase
+		if modifiers.has("explode"):
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
+			gear_amount += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
+			explode_detection.monitoring = true
 		Global.popup_number = gear_amount
 		Global.popup.emit()
 		SaveSystem.saving()
@@ -177,4 +178,11 @@ func _on_explody_area_entered(area: Area2D) -> void:
 	if area.get_parent() == self or area.get_parent().structure == "big_wall":
 		return
 	area.get_parent().grounded = false
-	area.get_parent().velocity.y -= 1000
+	if left_ray.collide_with_areas:
+		area.get_parent().velocity.y -= damage_value * 100
+		area.get_parent().velocity.x -= damage_value * 150
+	elif right_ray.collide_with_areas:
+		area.get_parent().velocity.y -= damage_value * 100
+		area.get_parent().velocity.x += damage_value * 150
+	else:
+		return

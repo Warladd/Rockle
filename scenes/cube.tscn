@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ch5qunvvgij18"]
 
-[ext_resource type="Script" uid="uid://cu7kwsprl74ek" path="res://scripts/cube'_rigid.gd" id="1_8viuf"]
+[ext_resource type="Script" uid="uid://cu7kwsprl74ek" path="res://scripts/cube.gd" id="1_8viuf"]
 [ext_resource type="Texture2D" uid="uid://dgqsa65iidm7r" path="res://assets/images/structures/cube_grounded.png" id="2_i7q2r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtvwe"]
@@ -65,7 +65,7 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_u1van")
 
 [node name="ExplosionDetection" type="Area2D" parent="."]
-collision_layer = 4
+collision_layer = 16
 collision_mask = 4
 monitoring = false
 

@@ -61,7 +61,7 @@ func _process(delta):
 	if !is_on_floor() and parry_timer.is_stopped():
 		velocity.y -= gravity * delta
 	if velocity.x > 0:
-		velocity.x -= 500 * delta
+		velocity.x -= 550 * delta
 	elif velocity.x < 0:
 		velocity.x = 0
 	was_on_floor = is_on_floor()
@@ -103,15 +103,15 @@ func _on_area_2d_body_entered(body):
 		uppercut_timer.start()
 		grounded = false
 		velocity.y = 0
-		velocity.y -= 350
-		velocity.x += 200
+		velocity.y -= 200
+		velocity.x += 220
 		modifiers.append("uppercut")
 	elif structures.parry and parry_timer.is_stopped():
 		sfx_player.stream = load("res://assets/audio/sfx/parry.mp3")
 		sfx_player.play()
 		velocity.y = 0
 		parry_start_timer.start()
-	elif structures.explode:
+	elif structures.explode and !modifiers.has("explode"):
 		explode_sprite.show()
 		modifiers.append("explode")
 		
