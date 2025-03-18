@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://w61j5pg3dnfv"]
 
-[ext_resource type="Script" path="res://scripts/pillar.gd" id="1_lolv6"]
+[ext_resource type="Script" uid="uid://bcexjshv6i8n7" path="res://scripts/pillar.gd" id="1_lolv6"]
 [ext_resource type="Texture2D" uid="uid://dsne4pbbibpxo" path="res://assets/images/structures/pillar_ungrounded.png" id="2_c65mt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7o5b3"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=90 format=3 uid="uid://bgttq52mtkhdc"]
 
-[ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_64bv7"]
+[ext_resource type="Script" uid="uid://cgxf247g5y1l6" path="res://scripts/tutorial.gd" id="1_64bv7"]
 [ext_resource type="PackedScene" uid="uid://gr3eo2a1whh" path="res://scenes/dialogue_box.tscn" id="1_p1pcp"]
 [ext_resource type="Texture2D" uid="uid://cwp8ebeixbs45" path="res://assets/images/tutorial/biggest vs smallest1.png" id="2_yppgi"]
 [ext_resource type="Texture2D" uid="uid://im1k6uytchho" path="res://assets/images/tutorial/biggest vs smallest2.png" id="3_38hvu"]
@@ -1098,17 +1098,17 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1svmk"]
 _data = {
-"RESET": SubResource("Animation_kdjqd"),
-"beginning": SubResource("Animation_ds3nd"),
-"big vs small": SubResource("Animation_2y8fn"),
-"combos": SubResource("Animation_jrnxi"),
-"ending": SubResource("Animation_q3bhe"),
-"gear_coins": SubResource("Animation_l5pp2"),
-"grounded vs ungrounded": SubResource("Animation_v4gb4"),
-"moving vs not moving": SubResource("Animation_x6wvw"),
-"multipliers": SubResource("Animation_3wrcb"),
-"static": SubResource("Animation_rwdfi"),
-"structures": SubResource("Animation_ehqyw")
+&"RESET": SubResource("Animation_kdjqd"),
+&"beginning": SubResource("Animation_ds3nd"),
+&"big vs small": SubResource("Animation_2y8fn"),
+&"combos": SubResource("Animation_jrnxi"),
+&"ending": SubResource("Animation_q3bhe"),
+&"gear_coins": SubResource("Animation_l5pp2"),
+&"grounded vs ungrounded": SubResource("Animation_v4gb4"),
+&"moving vs not moving": SubResource("Animation_x6wvw"),
+&"multipliers": SubResource("Animation_3wrcb"),
+&"static": SubResource("Animation_rwdfi"),
+&"structures": SubResource("Animation_ehqyw")
 }
 
 [node name="Tutorial" type="Node2D" node_paths=PackedStringArray("anim_player", "enter_label", "crtv")]

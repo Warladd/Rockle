@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ch5qunvvgij18"]
 
-[ext_resource type="Script" path="res://scripts/cube'_rigid.gd" id="1_3orqk"]
+[ext_resource type="Script" uid="uid://cu7kwsprl74ek" path="res://scripts/cube'_rigid.gd" id="1_3orqk"]
 [ext_resource type="Texture2D" uid="uid://dgqsa65iidm7r" path="res://assets/images/structures/cube_grounded.png" id="2_gg4fy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtvwe"]

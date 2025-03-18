@@ -23,4 +23,6 @@ func update_vol(bus_idx, vol) -> void:
 		music_vol_value = vol
 	elif bus_idx == 2:
 		sfx_vol_value = vol
+	if vol <= -40:
+		AudioServer.set_bus_mute(bus_idx, true)
 	AudioServer.set_bus_volume_db(bus_idx, vol)

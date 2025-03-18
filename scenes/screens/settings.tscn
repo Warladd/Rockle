@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bu4fraknk5a5n"]
 
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/images/fonts/chinese rocks rg.otf" id="2_n5sae"]
-[ext_resource type="Script" path="res://scripts/settings.gd" id="2_o4kiu"]
+[ext_resource type="Script" uid="uid://dx7pg433iccl5" path="res://scripts/settings.gd" id="2_o4kiu"]
 [ext_resource type="LabelSettings" uid="uid://do0om8riihnu6" path="res://resources/control_label_settings.tres" id="3_w374r"]
 [ext_resource type="Theme" uid="uid://q7oavojuo262" path="res://resources/RemapButton.tres" id="4_octia"]
-[ext_resource type="Script" path="res://scripts/hotkey_rebind.gd" id="5_s5qva"]
+[ext_resource type="Script" uid="uid://bmuddqbsq2cmf" path="res://scripts/hotkey_rebind.gd" id="5_s5qva"]
 
 [node name="Settings" type="CanvasLayer" node_paths=PackedStringArray("display_options", "main_menu_options", "master_vol", "music_vol", "sfx_vol", "control_settings", "back_button")]
 script = ExtResource("2_o4kiu")
@@ -145,8 +145,8 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
-min_value = -50.0
-max_value = 0.0
+min_value = -40.0
+max_value = 25.0
 value = -15.0
 
 [node name="SFXVolLabel" type="Label" parent="SettingTabs/Audio/MarginContainer/AudioSettings"]

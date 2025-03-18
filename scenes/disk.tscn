@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://biwjwx7qkeovq"]
 
-[ext_resource type="Script" path="res://scripts/disk_rigid.gd" id="1_3x7jr"]
-[ext_resource type="SpriteFrames" uid="uid://clpkw6iv6lov0" path="res://resources/Structures/SpriteFrames/disk.tres" id="2_et1da"]
-[ext_resource type="Texture2D" uid="uid://cofg87ul0d7a6" path="res://assets/images/structures/modifiers/explode_disk.png" id="3_652y5"]
+[ext_resource type="Script" uid="uid://dsffb0rr6umix" path="res://scripts/disk.gd" id="1_onp2t"]
+[ext_resource type="SpriteFrames" uid="uid://clpkw6iv6lov0" path="res://resources/Structures/SpriteFrames/disk.tres" id="2_t6i26"]
+[ext_resource type="Texture2D" uid="uid://cofg87ul0d7a6" path="res://assets/images/structures/modifiers/explode_disk.png" id="3_732s0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2mjn"]
 size = Vector2(80, 30)
@@ -16,15 +16,11 @@ size = Vector2(82, 28)
 [sub_resource type="CircleShape2D" id="CircleShape2D_btahw"]
 radius = 94.0
 
-[node name="Disk" type="RigidBody2D" node_paths=PackedStringArray("death", "detector", "explode_detection", "sprite", "explode_sprite", "collision", "sfx_player", "straight_timer", "kick_timer", "uppercut_timer", "parry_timer", "parry_start_timer")]
+[node name="Disk" type="CharacterBody2D" node_paths=PackedStringArray("structure_detector", "world_detector", "explode_detection", "sprite", "explode_sprite", "collision", "sfx_player", "straight_timer", "kick_timer", "uppercut_timer", "parry_timer", "parry_start_timer")]
 collision_layer = 0
-mass = 0.1
-gravity_scale = 0.5
-inertia = 0.5
-lock_rotation = true
-script = ExtResource("1_3x7jr")
-death = NodePath("StructureDetector")
-detector = NodePath("ModifierDetector")
+script = ExtResource("1_onp2t")
+structure_detector = NodePath("StructureDetector")
+world_detector = NodePath("WorldDetector")
 explode_detection = NodePath("ExplodeDetector")
 sprite = NodePath("Sprite")
 explode_sprite = NodePath("Explode Sprite")
@@ -41,12 +37,12 @@ shape = SubResource("RectangleShape2D_c2mjn")
 disabled = true
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("2_et1da")
-animation = &"explode"
+sprite_frames = ExtResource("2_t6i26")
+animation = &"ungrounded"
 
 [node name="Explode Sprite" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("3_652y5")
+texture = ExtResource("3_732s0")
 
 [node name="ModifierDetector" type="Area2D" parent="."]
 collision_layer = 0
@@ -57,6 +53,7 @@ shape = SubResource("RectangleShape2D_7o5b3")
 
 [node name="WorldDetector" type="Area2D" parent="."]
 collision_layer = 0
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldDetector"]
 shape = SubResource("RectangleShape2D_7o5b3")
@@ -109,7 +106,6 @@ bus = &"SFX"
 [connection signal="body_exited" from="WorldDetector" to="." method="_on_area_2d_3_body_exited"]
 [connection signal="area_entered" from="StructureDetector" to="." method="_on_area_2d_2_area_entered"]
 [connection signal="area_entered" from="ExplodeDetector" to="." method="_on_explode_area_entered"]
-[connection signal="body_entered" from="ExplodeDetector" to="." method="_on_explode_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ParryTimer" to="." method="_on_parry_timer_timeout"]
 [connection signal="timeout" from="ParryStartTimer" to="." method="_on_parry_start_timer_timeout"]

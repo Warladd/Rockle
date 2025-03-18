@@ -190,6 +190,6 @@ func _on_parry_start_timer_timeout():
 	gravity_scale = 0
 
 func _on_area_2d_4_area_entered(area: Area2D) -> void:
-	if area.get_parent() == self or area.get_parent().damage_value > 10:
+	if area.get_parent() == self or area.get_parent().structure == "big_wall":
 		return
 	area.get_parent().grounded = false

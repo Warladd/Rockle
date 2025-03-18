@@ -32,7 +32,7 @@ var cube_tween : Tween
 var wall_tween : Tween
 @export var wall_bar : ProgressBar
 
-var disk_scene = preload("res://scenes/disk_rigid.tscn")
+var disk_scene = preload("res://scenes/disk.tscn")
 var pillar_scene = preload("res://scenes/pillar.tscn")
 var ball_scene = preload("res://scenes/ball.tscn")
 var wall_scene = preload("res://scenes/wall.tscn")
