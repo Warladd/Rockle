@@ -23,6 +23,7 @@ var uppercutted : bool = false
 var gear_amount : int = 0
 var dead : bool = false
 var touching_floor : bool = false
+var was_on_floor : bool = false
 
 func _ready():
 	sprite.animation = "ungrounded"
@@ -32,7 +33,7 @@ func _ready():
 	velocity.y -= 800
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _process(delta):
 	if velocity.x != 0 or grounded or velocity.y < 0:
 		parry_timer.stop()
 	elif !parry_timer.is_stopped():
@@ -63,6 +64,12 @@ func _physics_process(delta):
 		velocity.x -= 500 * delta
 	elif velocity.x < 0:
 		velocity.x = 0
+	was_on_floor = is_on_floor()
+	move_and_slide()
+	if was_on_floor != is_on_floor():
+		if is_on_floor():
+			sfx_player.stream = load("res://assets/audio/sfx/bally.mp3")
+			sfx_player.play()
 
 func _on_area_2d_body_entered(body):
 	structures = body.get_parent()

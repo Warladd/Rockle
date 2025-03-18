@@ -1177,7 +1177,7 @@ autowrap_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_1svmk")
+&"": SubResource("AnimationLibrary_1svmk")
 }
 
 [editable path="Dialogue Box"]
