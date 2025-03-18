@@ -68,7 +68,7 @@ func _process(delta):
 	move_and_slide()
 	if was_on_floor != is_on_floor():
 		if is_on_floor():
-			sfx_player.stream = load("res://assets/audio/sfx/bally.mp3")
+			sfx_player.stream = load("res://assets/audio/sfx/disky.mp3")
 			sfx_player.play()
 
 func _on_area_2d_body_entered(body):
@@ -103,8 +103,8 @@ func _on_area_2d_body_entered(body):
 		uppercut_timer.start()
 		grounded = false
 		velocity.y = 0
-		velocity.y += 150
-		velocity.x += 100
+		velocity.y -= 350
+		velocity.x += 200
 		modifiers.append("uppercut")
 	elif structures.parry and parry_timer.is_stopped():
 		sfx_player.stream = load("res://assets/audio/sfx/parry.mp3")
@@ -147,11 +147,14 @@ func _on_area_2d_2_area_entered(area):
 		if grounded:
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
 			gear_amount += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
+		if modifiers.has("explode"):
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
+			gear_amount += SaveSystem.save_game.disk * SaveSystem.save_game.disk_increase * SaveSystem.save_game.general_increase
+			explode_detection.monitoring = true
 		Global.popup_number = gear_amount
 		Global.popup.emit()
 		SaveSystem.saving()
 		print("saving")
-		explode_detection.monitoring = true
 		await get_tree().create_timer(0.1).timeout
 		queue_free()
 	velocity.x = stored_velocity_x

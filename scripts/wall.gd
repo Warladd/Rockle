@@ -154,3 +154,6 @@ func _on_parry_start_timer_timeout():
 	velocity.x = 0
 	velocity.y = 0
 	parry_timer.start()
+
+func _on_explode_detector_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.

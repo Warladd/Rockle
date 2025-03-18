@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6nwr7xurki37"]
+[gd_scene load_steps=6 format=3 uid="uid://b6nwr7xurki37"]
 
 [ext_resource type="Script" uid="uid://363y0ohc7rvn" path="res://scripts/wall.gd" id="1_mukex"]
 [ext_resource type="Texture2D" uid="uid://cpv2llrlowknn" path="res://assets/images/structures/wall_grounded.png" id="2_4sdxi"]
@@ -8,6 +8,9 @@ size = Vector2(86, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfdch"]
 size = Vector2(88, 137)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ktk7"]
+radius = 111.005
 
 [node name="Wall" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector", "sprite", "collision", "sfx_player", "straight_timer", "kick_timer", "uppercut_timer", "parry_timer", "parry_start_timer")]
 collision_layer = 0
@@ -49,6 +52,14 @@ collision_mask = 4
 position = Vector2(-2, 0.5)
 shape = SubResource("RectangleShape2D_bfdch")
 
+[node name="ExplodeDetector" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplodeDetector"]
+shape = SubResource("CircleShape2D_2ktk7")
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.65
 one_shot = true
@@ -79,5 +90,6 @@ bus = &"SFX"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]
+[connection signal="area_entered" from="ExplodeDetector" to="." method="_on_explode_detector_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ParryStartTimer" to="." method="_on_parry_start_timer_timeout"]

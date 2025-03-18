@@ -1,6 +1,7 @@
-extends RigidBody2D
+extends CharacterBody2D
 
 var gravity = -690
+var structure = "cube"
 @export var death : Area2D
 @export var detector : Area2D
 @export var explode_detection : Area2D
@@ -22,40 +23,52 @@ var rotation_velocity: float = 0
 @export var parry_start_timer : Timer
 var gear_amount : int = 0
 var touching_floor : bool = false
+var was_on_floor : bool = false
 
 func _ready():
 	detector.monitoring = false
-	linear_velocity.y -= 200
+	velocity.y -= 200
 	sfx_player.stream = load("res://assets/audio/sfx/pillar_and_cube_spawn.mp3")
 	sfx_player.play()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
-	if linear_velocity.x != 0 or grounded or linear_velocity.y < 0:
+	if velocity.x != 0 or grounded or velocity.y < 0:
 		parry_timer.stop()
-		gravity_scale = 1
 	elif !parry_timer.is_stopped():
-		linear_velocity.y = 0
-	if linear_velocity.x > 0:
+		velocity.y = 0
+	if velocity.x > 0:
 		damage_value = 3
-	elif linear_velocity.x <= 0:
+	elif velocity.x <= 0:
 		damage_value = 2
 	if grounded:
 		sprite.texture = load("res://assets/images/structures/cube_grounded.png")
-		if linear_velocity.x <= 0:
+		if velocity.x <= 0:
 			damage_value = 3
-		elif linear_velocity.x > 0:
+		elif velocity.x > 0:
 			damage_value = 4
 		if increase and position.y > 335:
-			linear_velocity.y = -360
+			velocity.y = -360
 		if position.y <= -335:
 			position.y = 335
-			linear_velocity.y = 0
+			velocity.y = 0
 	elif !grounded:
 		if parry_timer.is_stopped():
 			sprite.texture = load("res://assets/images/structures/cube_ungrounded.png")
 		else:
 			sprite.texture = load("res://assets/images/structures/cube_parry.png")
+	if !is_on_floor() and parry_timer.is_stopped():
+		velocity.y -= gravity * delta
+	if velocity.x > 0:
+		velocity.x -= 500 * delta
+	elif velocity.x < 0:
+		velocity.x = 0
+	was_on_floor = is_on_floor()
+	move_and_slide()
+	if was_on_floor != is_on_floor():
+		if is_on_floor():
+			sfx_player.stream = load("res://assets/audio/sfx/bally.mp3")
+			sfx_player.play()
 		
 func _on_area_2d_body_entered(body):
 	structures = body.get_parent()
@@ -64,7 +77,7 @@ func _on_area_2d_body_entered(body):
 		sfx_player.play()
 		parry_timer.stop()
 		straight_timer.start()
-		linear_velocity.x += 750
+		velocity.x += 750
 		modifiers.append("straight")
 	elif body.get_parent().kick and kick_timer.is_stopped():
 		if grounded:
@@ -76,29 +89,29 @@ func _on_area_2d_body_entered(body):
 			sfx_player.play()
 		kick_timer.start()
 		parry_timer.stop()
-		linear_velocity.y -= 400
+		velocity.y -= 400
 		modifiers.append("kick")
 	elif structures.stomp and !grounded:
 		sfx_player.stream = load("res://assets/audio/sfx/stomp.mp3")
 		sfx_player.play()
 		parry_timer.stop()
 		grounded = true
-		linear_velocity.y += 1000
-		linear_velocity.x = 0
+		velocity.y += 1000
+		velocity.x = 0
 	elif structures.uppercut and uppercut_timer.is_stopped():
 		sfx_player.stream = load("res://assets/audio/sfx/ungrounded_upper.mp3")
 		sfx_player.play()
 		parry_timer.stop()
 		uppercut_timer.start()
-		lock_rotation = false
 		grounded = false
-		linear_velocity.y = 0
-		apply_impulse(Vector2(100,-300), Vector2(-50, 0))
+		velocity.y = 0
+		velocity.y += 300
+		velocity.x += 250
 		modifiers.append("uppercut")
 	elif structures.parry and parry_timer.is_stopped() and parry_start_timer.is_stopped():
 		sfx_player.stream = load("res://assets/audio/sfx/parry.mp3")
 		sfx_player.play()
-		linear_velocity.y = 0
+		velocity.y = 0
 		parry_start_timer.start()
 	elif structures.explode:
 		explode_sprite.show()
@@ -106,22 +119,21 @@ func _on_area_2d_body_entered(body):
 		
 func _on_timer_timeout():
 	detector.monitoring = true
-	linear_velocity.y = 0
+	velocity.y = 0
 	collision.disabled = false
 	increase = false
 
 func _on_area_2d_2_area_entered(area):
-	if linear_velocity.x > 0:
-		stored_velocity_x = linear_velocity.x
+	if velocity.x > 0:
+		stored_velocity_x = velocity.x
 	if area.get_parent() == self:
 		return
 	print("cube damage value", damage_value)
 	print("other object damage value", area.get_parent().damage_value)
 	if damage_value <= area.get_parent().damage_value:
 		Global.cube_break.emit()
-		linear_velocity.x = 0
-		linear_velocity.y = 0
-		gravity_scale = 0
+		velocity.x = 0
+		velocity.y = 0
 		sprite.hide()
 		if modifiers.has("straight"):
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.cube * SaveSystem.save_game.cube_increase * SaveSystem.save_game.general_increase
@@ -142,7 +154,7 @@ func _on_area_2d_2_area_entered(area):
 		explode_detection.monitoring = true
 		await get_tree().create_timer(0.1).timeout
 		queue_free()
-	linear_velocity.x = stored_velocity_x
+	velocity.x = stored_velocity_x
 	stored_velocity_x = 0
 
 func _on_area_2d_3_body_entered(body):
@@ -179,15 +191,13 @@ func _on_area_2d_3_area_exited(area):
 
 func _on_parry_timer_timeout():
 	print("cube parry done")
-	gravity_scale = 1
 	sprite.texture = load("res://assets/images/structures/cube_ungrounded.png")
 
 func _on_parry_start_timer_timeout():
 	print("cube parry started")
 	grounded = false
 	parry_timer.start()
-	linear_velocity.x = 0
-	gravity_scale = 0
+	velocity.x = 0
 
 func _on_area_2d_4_area_entered(area: Area2D) -> void:
 	if area.get_parent() == self or area.get_parent().structure == "big_wall":
