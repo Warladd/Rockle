@@ -1,6 +1,6 @@
-[gd_scene load_steps=88 format=3 uid="uid://bgttq52mtkhdc"]
+[gd_scene load_steps=90 format=3 uid="uid://bgttq52mtkhdc"]
 
-[ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_64bv7"]
+[ext_resource type="Script" uid="uid://cgxf247g5y1l6" path="res://scripts/tutorial.gd" id="1_64bv7"]
 [ext_resource type="PackedScene" uid="uid://gr3eo2a1whh" path="res://scenes/dialogue_box.tscn" id="1_p1pcp"]
 [ext_resource type="Texture2D" uid="uid://cwp8ebeixbs45" path="res://assets/images/tutorial/biggest vs smallest1.png" id="2_yppgi"]
 [ext_resource type="Texture2D" uid="uid://im1k6uytchho" path="res://assets/images/tutorial/biggest vs smallest2.png" id="3_38hvu"]
@@ -74,6 +74,7 @@
 [ext_resource type="Texture2D" uid="uid://6w0fyh35ojxh" path="res://assets/images/tutorial/combos/combos44.png" id="54_rd68w"]
 [ext_resource type="Texture2D" uid="uid://w8s1towk2g12" path="res://assets/images/tutorial/combos/combos45.png" id="55_d6cwx"]
 [ext_resource type="Texture2D" uid="uid://jaosxspm8fi3" path="res://assets/images/tutorial/combos/combos46.png" id="56_0hkda"]
+[ext_resource type="Texture2D" uid="uid://buy76hpr2jxed" path="res://assets/images/gear_coin1.png" id="56_2c86h"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ofkmb"]
 animations = [{
@@ -247,6 +248,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"combos",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("56_2c86h")
+}],
+"loop": true,
+"name": &"gear_coins",
 "speed": 5.0
 }, {
 "frames": [{
@@ -428,6 +437,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Dialogue Box/ColorRect/Label:text")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["The currency in this game is called Gear coins (GC for short). It is used to purchase anything available in the shop. You can use it to buy structures and scrolls for new ones. There is a safe in the mountains that is passed down from generation to generation, it has 5000 gear coins it's for those who wish for a head start. The passkey is secret but I beelieve you can figure it out."]
+}
 
 [sub_resource type="Animation" id="Animation_ds3nd"]
 resource_name = "beginning"
@@ -443,7 +464,8 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Welcome to the Tutorial! This is the wonderful world of Rockle and it seems you need some 
-guidance. I'm here to help! I'll explain the various mechanics that make up this game."]
+guidance. I'm here to help! I'll explain the various mechanics that make up this game.
+Press enter to go to the next slide."]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -519,7 +541,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["If you combine them together with a wall you get the highest possible strength for a spawnable structure. The inverse is a non moving, ungrounded disk with a whopping tier value of 0."]
+"values": ["If a wall is moving and grounded you get the highest possible strength for a spawnable structure. The inverse is a non moving, ungrounded disk with a whopping tier value of 0."]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -559,7 +581,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["The most unique thing about this game is combos. Combining modifiers will grant you different results allowing you to destroy structures that you may not be able to otherwise. Doing multiple modifiers on a structure will grant you a lot of gear coins. The more of them, the better. 
+"values": ["The most unique thing about this game is combos. Combining modifiers will grant you different results allowing you to destroy structures that you may not be able to otherwise. Doing multiple modifiers on a structure will grant you a lot of gear coins. The more modifiers, the better. 
 "]
 }
 tracks/1/type = "value"
@@ -661,6 +683,57 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["This is the end of the tutorial, I believe that you can now venture out into the world of rockle. If you still don't understand anything feel free to find me in the lobby near the flowstone. There will be a sign labeled 'Tutorial'. I may update my teaching in the future so make sure to come back sometimes. See you later!"]
+}
+
+[sub_resource type="Animation" id="Animation_l5pp2"]
+resource_name = "gear_coins"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dialogue Box/ColorRect/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["The currency in this game is called Gear coins (GC for short). It is used to purchase anything available in the shop. You can use it to buy structures and scrolls for new ones. There is a safe in the mountains that is passed down from generation to generation, it has 5000 gear coins it's for those who wish for a head start. The passkey is secret but I beelieve you can figure it out."]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"gear_coins"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CRTV:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_v4gb4"]
@@ -802,9 +875,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["This is one of the two ways that influence a structure's tier points. It's movement! Whenever 
-a structure is moving it will have a +1 to it's base value! This is how a disk can deal any 
-damage."]
+"values": ["This is one of the two ways that influence a structure's tier points. It's movement! Whenever a structure is moving it will add a +1 to it's strength! This is how a disk usually can deal any damage. The following slide is about the other way a disk can have more than 0 tier points."]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1027,16 +1098,17 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1svmk"]
 _data = {
-"RESET": SubResource("Animation_kdjqd"),
-"beginning": SubResource("Animation_ds3nd"),
-"big vs small": SubResource("Animation_2y8fn"),
-"combos": SubResource("Animation_jrnxi"),
-"ending": SubResource("Animation_q3bhe"),
-"grounded vs ungrounded": SubResource("Animation_v4gb4"),
-"moving vs not moving": SubResource("Animation_x6wvw"),
-"multipliers": SubResource("Animation_3wrcb"),
-"static": SubResource("Animation_rwdfi"),
-"structures": SubResource("Animation_ehqyw")
+&"RESET": SubResource("Animation_kdjqd"),
+&"beginning": SubResource("Animation_ds3nd"),
+&"big vs small": SubResource("Animation_2y8fn"),
+&"combos": SubResource("Animation_jrnxi"),
+&"ending": SubResource("Animation_q3bhe"),
+&"gear_coins": SubResource("Animation_l5pp2"),
+&"grounded vs ungrounded": SubResource("Animation_v4gb4"),
+&"moving vs not moving": SubResource("Animation_x6wvw"),
+&"multipliers": SubResource("Animation_3wrcb"),
+&"static": SubResource("Animation_rwdfi"),
+&"structures": SubResource("Animation_ehqyw")
 }
 
 [node name="Tutorial" type="Node2D" node_paths=PackedStringArray("anim_player", "enter_label", "crtv")]
@@ -1100,13 +1172,12 @@ offset_right = 1119.0
 offset_bottom = 645.0
 
 [node name="Label" parent="Dialogue Box/ColorRect" index="0"]
-text = "Welcome to the Tutorial! This is the wonderful world of Rockle and it seems you need some 
-guidance. I'm here to help! I'll explain the various mechanics that make up this game."
+text = "The currency in this game is called Gear coins (GC for short). It is used to purchase anything available in the shop. You can use it to buy structures and scrolls for new ones. There is a safe in the mountains that is passed down from generation to generation, it has 5000 gear coins it's for those who wish for a head start. The passkey is secret but I beelieve you can figure it out."
 autowrap_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_1svmk")
+&"": SubResource("AnimationLibrary_1svmk")
 }
 
 [editable path="Dialogue Box"]

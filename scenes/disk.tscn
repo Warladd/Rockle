@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://81gnpf5in3r5"]
+[gd_scene load_steps=8 format=3 uid="uid://biwjwx7qkeovq"]
 
-[ext_resource type="Script" path="res://scripts/disk.gd" id="1_1chq5"]
-[ext_resource type="Texture2D" uid="uid://mujrrxupnbt1" path="res://assets/images/structures/disk_ungrounded.png" id="2_8ifpy"]
+[ext_resource type="Script" uid="uid://dsffb0rr6umix" path="res://scripts/disk.gd" id="1_onp2t"]
+[ext_resource type="SpriteFrames" uid="uid://clpkw6iv6lov0" path="res://resources/Structures/SpriteFrames/disk.tres" id="2_t6i26"]
+[ext_resource type="Texture2D" uid="uid://cofg87ul0d7a6" path="res://assets/images/structures/modifiers/explode_disk.png" id="3_732s0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2mjn"]
 size = Vector2(80, 30)
@@ -12,40 +13,99 @@ size = Vector2(80, 30)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj0nm"]
 size = Vector2(82, 28)
 
-[node name="Disk" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector", "sprite", "collision")]
-collision_layer = 0
-script = ExtResource("1_1chq5")
-death = NodePath("Area2D2")
-detector = NodePath("Area2D")
-sprite = NodePath("Sprite2D")
-collision = NodePath("CollisionShape2D")
+[sub_resource type="CircleShape2D" id="CircleShape2D_btahw"]
+radius = 94.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Disk" type="CharacterBody2D" node_paths=PackedStringArray("structure_detector", "world_detector", "explode_detection", "sprite", "explode_sprite", "collision", "sfx_player", "straight_timer", "kick_timer", "uppercut_timer", "parry_timer", "parry_start_timer")]
+collision_layer = 0
+script = ExtResource("1_onp2t")
+structure_detector = NodePath("StructureDetector")
+world_detector = NodePath("WorldDetector")
+explode_detection = NodePath("ExplodeDetector")
+sprite = NodePath("Sprite")
+explode_sprite = NodePath("Explode Sprite")
+collision = NodePath("Collision")
+sfx_player = NodePath("SFXPlayer")
+straight_timer = NodePath("StraightTimer")
+kick_timer = NodePath("KickTimer")
+uppercut_timer = NodePath("UppercutTimer")
+parry_timer = NodePath("ParryTimer")
+parry_start_timer = NodePath("ParryStartTimer")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_c2mjn")
 disabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_8ifpy")
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_t6i26")
+animation = &"ungrounded"
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Explode Sprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_732s0")
+
+[node name="ModifierDetector" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModifierDetector"]
 shape = SubResource("RectangleShape2D_7o5b3")
 
-[node name="Area2D2" type="Area2D" parent="."]
+[node name="WorldDetector" type="Area2D" parent="."]
+collision_layer = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldDetector"]
+shape = SubResource("RectangleShape2D_7o5b3")
+
+[node name="StructureDetector" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StructureDetector"]
 shape = SubResource("RectangleShape2D_fj0nm")
+
+[node name="ExplodeDetector" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplodeDetector"]
+shape = SubResource("CircleShape2D_btahw")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 autostart = true
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]
+[node name="StraightTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="KickTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="UppercutTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="ParryTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="ParryStartTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[connection signal="body_entered" from="ModifierDetector" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="WorldDetector" to="." method="_on_area_2d_3_body_entered"]
+[connection signal="body_exited" from="WorldDetector" to="." method="_on_area_2d_3_body_exited"]
+[connection signal="area_entered" from="StructureDetector" to="." method="_on_area_2d_2_area_entered"]
+[connection signal="area_entered" from="ExplodeDetector" to="." method="_on_explode_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ParryTimer" to="." method="_on_parry_timer_timeout"]
+[connection signal="timeout" from="ParryStartTimer" to="." method="_on_parry_start_timer_timeout"]

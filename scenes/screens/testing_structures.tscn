@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgjsi1thub6yp"]
 
-[ext_resource type="Script" path="res://scripts/testing_structures.gd" id="1_3clck"]
+[ext_resource type="Script" uid="uid://bajuidile5oqc" path="res://scripts/testing_structures.gd" id="1_3clck"]
 [ext_resource type="SpriteFrames" uid="uid://djw5x6aebbp1f" path="res://resources/white_belt.tres" id="2_k4vt2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnk68"]

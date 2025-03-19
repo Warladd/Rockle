@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dbn2ss70r0475"]
 
 [ext_resource type="LabelSettings" uid="uid://f00h4bpg1owo" path="res://resources/popup_label_settings.tres" id="1_vynfp"]
-[ext_resource type="Script" path="res://scripts/PopupLabel.gd" id="2_tm0y1"]
+[ext_resource type="Script" uid="uid://cv4sw3fjpbol5" path="res://scripts/PopupLabel.gd" id="2_tm0y1"]
 
 [node name="PopupLabel" type="Label"]
 offset_right = 40.0

@@ -7,6 +7,7 @@ var structure = "wall"
 @export var sprite : Sprite2D
 @export var collision : CollisionShape2D
 @export var sfx_player : AudioStreamPlayer2D
+@export var explode_sprite : Sprite2D
 var damage_value : int = 3
 var grounded : bool = true
 var stored_velocity_x : float = 3
@@ -18,6 +19,8 @@ var gear_amount : int = 0
 @export var kick_timer : Timer
 @export var uppercut_timer : Timer
 @export var parry_timer : Timer
+@export var parry_start_timer : Timer
+@export var explode_detector : Area2D
 
 func _ready():
 	detector.monitoring = false
@@ -27,6 +30,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if velocity.x != 0 or grounded or velocity.y < 0:
+		#if velocity.y < 0:
+			#print("movin")
+		#if velocity.x != 0:
+			#print("forward")
+		#if grounded:
+			#print("grounded")
+		parry_timer.stop()
 	if velocity.x > 0:
 		damage_value = 4
 	elif velocity.x <= 0:
@@ -43,12 +54,17 @@ func _process(delta):
 			position.y = 306
 			velocity.y = 0
 	elif !grounded:
-		sprite.texture = load("res://assets/images/structures/wall_ungrounded.png")
+		if parry_timer.is_stopped():
+			sprite.texture = load("res://assets/images/structures/wall_ungrounded.png")
+		else:
+			sprite.texture = load("res://assets/images/structures/wall_parry.png")
 	if !is_on_floor() and parry_timer.is_stopped():
 		velocity.y -= gravity * delta
 	if velocity.x > 0:
 		velocity.x -= 850 * delta
 	elif velocity.x < 0:
+		velocity.x += 850 * delta
+	if velocity.x < 5 and velocity.x > -5:
 		velocity.x = 0
 	var was_on_floor = is_on_floor()
 	move_and_slide()
@@ -96,13 +112,14 @@ func _on_area_2d_body_entered(body):
 		velocity.y -= 200
 		velocity.x += 300
 		modifiers.append("uppercut")
-	elif structures.parry and parry_timer.is_stopped():
+	elif structures.parry and parry_timer.is_stopped() and parry_start_timer.is_stopped():
 		sfx_player.stream = load("res://assets/audio/sfx/parry.mp3")
 		sfx_player.play()
-		grounded = false
-		parry_timer.start()
+		parry_start_timer.start()
 		velocity.y = 0
-		velocity.x = 0
+	elif structures.explode and !modifiers.has("explode"):
+		modifiers.append("explode")
+		explode_sprite.show()
 
 func _on_timer_timeout():
 	detector.monitoring = true
@@ -130,10 +147,35 @@ func _on_area_2d_2_area_entered(area):
 		if grounded:
 			SaveSystem.save_game.gear_coins += SaveSystem.save_game.wall * SaveSystem.save_game.wall_increase * SaveSystem.save_game.general_increase
 			gear_amount += SaveSystem.save_game.wall * SaveSystem.save_game.wall_increase * SaveSystem.save_game.general_increase
+		if modifiers.has("explode"):
+			SaveSystem.save_game.gear_coins += SaveSystem.save_game.pillar * SaveSystem.save_game.pillar_increase * SaveSystem.save_game.general_increase
+			gear_amount += SaveSystem.save_game.pillar * SaveSystem.save_game.pillar_increase * SaveSystem.save_game.general_increase
+			explode_detector.monitoring = true
 		Global.popup_number = gear_amount
 		Global.popup.emit()
 		SaveSystem.saving()
 		print("saving")
+		await get_tree().create_timer(0.05).timeout
 		queue_free()
 	velocity.x = stored_velocity_x
 	stored_velocity_x = 0
+
+func _on_parry_start_timer_timeout():
+	grounded = false
+	sprite.texture = load("res://assets/images/structures/wall_parry.png")
+	velocity.x = 0
+	velocity.y = 0
+	parry_timer.start()
+
+func _on_explode_detector_area_entered(area: Area2D) -> void:
+	if area.get_parent() == self or area.get_parent().structure == "big_wall":
+		return
+	area.get_parent().grounded = false
+	if area.get_parent().global_position.x <= global_position.x:
+		area.get_parent().velocity.x -= (damage_value * 150) + 200
+	elif area.get_parent().global_position.x > global_position.x:
+		area.get_parent().velocity.x += damage_value * 150
+	if area.get_parent().global_position.y <= global_position.y:
+		area.get_parent().velocity.y -= damage_value * 150
+	elif area.get_parent().global_position.y > global_position.y:
+		area.get_parent().velocity.y += damage_value * 150

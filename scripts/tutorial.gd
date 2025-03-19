@@ -46,6 +46,14 @@ func _process(delta):
 				enter_label.show()
 				anim_player.play("big vs small")
 				sprite.play("biggest_v_smallest")
+				progress = "Gear Coins"
+			"Gear Coins":
+				enter_label.hide()
+				anim_player.play("static")
+				crtv.play("static")
+				await anim_player.animation_finished
+				enter_label.show()
+				anim_player.play("gear_coins")
 				progress = "Big"
 			"Big":
 				enter_label.hide()

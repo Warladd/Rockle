@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://dqsk8veka5xcl"]
 
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_v1en6"]
+[ext_resource type="Script" uid="uid://b6cnyrl3st11j" path="res://scripts/main_menu.gd" id="1_v1en6"]
 [ext_resource type="PackedScene" uid="uid://ccgls6dolnjm" path="res://scenes/sfx_player.tscn" id="2_fibno"]
 [ext_resource type="FontFile" uid="uid://duatcmyng8p2d" path="res://assets/images/fonts/chinese rocks rg.otf" id="3_q0lwh"]
 [ext_resource type="Texture2D" uid="uid://c1u0q3nu25nq" path="res://assets/images/play_button1.png" id="4_6st1b"]

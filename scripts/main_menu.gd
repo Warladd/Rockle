@@ -8,14 +8,12 @@ extends Control
 @export var gear_coin : TextureRect
 @export var gc_amount : Label
 @export var sfx_player : AudioStreamPlayer2D
+@export var test_button : Button
 
 func _ready():
 	SaveSystem.load_game()
 	change_menu()
 	settings.hide()
-	if SaveSystem.save_game.belt == 6:
-		tower.texture = load("res://assets/images/tower%d.png" % SaveSystem.save_game.belt)
-		gear_coin.texture = load("res://assets/images/gear_coin%d.png" % SaveSystem.save_game.belt)
 	tower.texture = load("res://assets/images/tower%d.png" % (SaveSystem.save_game.belt + 1))
 	gear_coin.texture = load("res://assets/images/gear_coin%d.png" % (SaveSystem.save_game.belt + 1))
 	var gear_coin_string = str(SaveSystem.save_game.gear_coins)
@@ -23,6 +21,8 @@ func _ready():
 		gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")
 	gc_amount.text = gear_coin_string
 	Global.change_menu.connect(change_menu)
+	if SaveSystem.save_game.tutorial:
+		test_button.hide()
 
 func _on_button_pressed():
 	if !SaveSystem.save_game.tutorial:
@@ -86,3 +86,6 @@ func change_menu():
 		Global.get_tree().change_scene_to_file("res://scenes/screens/main_menu_alt.tscn")
 	elif SaveSystem.settings.main_menu_value == 0 and scene_file_path != "res://scenes/screens/main_menu.tscn":
 		Global.get_tree().change_scene_to_file("res://scenes/screens/main_menu.tscn")
+
+func _on_test_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/screens/test_game.tscn")

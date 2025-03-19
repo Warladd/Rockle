@@ -25,6 +25,10 @@ func _load_keybindings_from_settings():
 		i = 3
 	elif action == "parry":
 		i = 4
+	elif action == "hold":
+		i = 5
+	elif action == "explode":
+		i = 6
 	InputMap.action_add_event(action, keybindings[i])
 	text = "%s" % InputMap.action_get_events(action)[0].as_text()
 

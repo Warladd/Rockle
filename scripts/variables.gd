@@ -32,8 +32,9 @@ class_name SaveFile
 @export var kick : bool = false
 @export var uppercut : bool = false
 @export var stomp : bool = false
-@export var hold : bool = false
 @export var parry : bool = false
+@export var hold : bool = false
+@export var explode : bool = false
 
 # Masteries
 @export var straight_mastery : bool = false

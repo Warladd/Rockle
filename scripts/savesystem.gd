@@ -61,4 +61,3 @@ func load_game() -> void:
 func restart() -> void:
 	save_game = SaveFile.new()
 	saving()
-

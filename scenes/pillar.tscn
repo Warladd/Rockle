@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://w61j5pg3dnfv"]
+[gd_scene load_steps=8 format=3 uid="uid://w61j5pg3dnfv"]
 
-[ext_resource type="Script" path="res://scripts/pillar.gd" id="1_lolv6"]
+[ext_resource type="Script" uid="uid://bcexjshv6i8n7" path="res://scripts/pillar.gd" id="1_lolv6"]
 [ext_resource type="Texture2D" uid="uid://dsne4pbbibpxo" path="res://assets/images/structures/pillar_ungrounded.png" id="2_c65mt"]
+[ext_resource type="Texture2D" uid="uid://oyuierxw1760" path="res://assets/images/structures/modifiers/explode_pillar.png" id="3_q1crh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7o5b3"]
 size = Vector2(64, 138)
@@ -12,44 +13,64 @@ size = Vector2(66, 136)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bnbdw"]
 size = Vector2(64, 138)
 
-[node name="Pillar" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector", "collision", "sprite", "sfx_player", "straight_timer", "kick_timer", "uppercut_timer", "parry_timer")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_01pxi"]
+radius = 94.0
+
+[node name="Pillar" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector", "collision", "sprite", "sfx_player", "explode_sprite", "straight_timer", "kick_timer", "uppercut_timer", "parry_timer", "parry_start_timer", "explode_detector")]
 collision_layer = 0
 script = ExtResource("1_lolv6")
-death = NodePath("Area2D2")
-detector = NodePath("Area2D")
+death = NodePath("StructureDetector")
+detector = NodePath("ModifierDetector")
 collision = NodePath("CollisionShape2D")
-sprite = NodePath("Sprite2D")
+sprite = NodePath("Sprite")
 sfx_player = NodePath("SFXPlayer")
+explode_sprite = NodePath("Explode Sprite")
 straight_timer = NodePath("StraightTimer")
 kick_timer = NodePath("KickTimer")
 uppercut_timer = NodePath("UppercutTimer")
 parry_timer = NodePath("ParryTimer")
+parry_start_timer = NodePath("ParryStartTimer")
+explode_detector = NodePath("ExplodeDetector")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(-2, 0)
 scale = Vector2(1.15, 1.2)
 texture = ExtResource("2_c65mt")
+
+[node name="Explode Sprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2, 0)
+scale = Vector2(1.15, 1.15)
+texture = ExtResource("3_q1crh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, -3)
 shape = SubResource("RectangleShape2D_7o5b3")
 disabled = true
 
-[node name="Area2D2" type="Area2D" parent="."]
+[node name="StructureDetector" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StructureDetector"]
 position = Vector2(-5, -3)
 shape = SubResource("RectangleShape2D_tlarb")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="ModifierDetector" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModifierDetector"]
 position = Vector2(-5, -3)
 shape = SubResource("RectangleShape2D_bnbdw")
+
+[node name="ExplodeDetector" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplodeDetector"]
+shape = SubResource("CircleShape2D_01pxi")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.45
@@ -72,10 +93,17 @@ one_shot = true
 wait_time = 1.5
 one_shot = true
 
+[node name="ParryStartTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
 bus = &"SFX"
 
-[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]
-[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="StructureDetector" to="." method="_on_area_2d_2_area_entered"]
+[connection signal="body_entered" from="StructureDetector" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="body_entered" from="ModifierDetector" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="ExplodeDetector" to="." method="_on_explode_detector_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ParryTimer" to="." method="_on_parry_timer_timeout"]
+[connection signal="timeout" from="ParryStartTimer" to="." method="_on_parry_start_timer_timeout"]
