@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch5qunvvgij18"]
+[gd_scene load_steps=8 format=3 uid="uid://ch5qunvvgij18"]
 
 [ext_resource type="Script" uid="uid://cu7kwsprl74ek" path="res://scripts/cube.gd" id="1_8viuf"]
 [ext_resource type="Texture2D" uid="uid://dgqsa65iidm7r" path="res://assets/images/structures/cube_grounded.png" id="2_i7q2r"]
+[ext_resource type="Texture2D" uid="uid://bbmqrrs7guv5t" path="res://assets/images/structures/modifiers/explode_cube.png" id="3_i7q2r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtvwe"]
 size = Vector2(86, 81)
@@ -36,6 +37,9 @@ scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_i7q2r")
 
 [node name="Explode Sprite" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("3_i7q2r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)

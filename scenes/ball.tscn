@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxmpm8i3rnsd1"]
+[gd_scene load_steps=8 format=3 uid="uid://cxmpm8i3rnsd1"]
 
 [ext_resource type="Script" uid="uid://cyeobmjfnpumk" path="res://scripts/ball.gd" id="1_lqumv"]
 [ext_resource type="Texture2D" uid="uid://dpkrj31ut0ote" path="res://assets/images/structures/ball_ungrounded.png" id="2_4gfil"]
+[ext_resource type="Texture2D" uid="uid://dkau04oo02kiw" path="res://assets/images/structures/modifiers/explode_ball.png" id="3_f7cbr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvkvu"]
 size = Vector2(78, 66)
@@ -15,12 +16,13 @@ size = Vector2(80, 64)
 [sub_resource type="CircleShape2D" id="CircleShape2D_knkkn"]
 radius = 96.0833
 
-[node name="Ball" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector", "explode_detection", "sprite", "collision", "sfx_player", "straight_timer", "kick_timer", "uppercut_timer", "parry_timer", "parry_start_timer", "left_ray", "right_ray")]
+[node name="Ball" type="CharacterBody2D" node_paths=PackedStringArray("death", "detector", "explode_detection", "explode_sprite", "sprite", "collision", "sfx_player", "straight_timer", "kick_timer", "uppercut_timer", "parry_timer", "parry_start_timer", "left_ray", "right_ray")]
 collision_layer = 0
 script = ExtResource("1_lqumv")
 death = NodePath("StructureDetector")
 detector = NodePath("ModifierDetector")
 explode_detection = NodePath("ExplodeDetector")
+explode_sprite = NodePath("Explode Sprite")
 sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
 sfx_player = NodePath("SFXPlayer")
@@ -29,8 +31,8 @@ kick_timer = NodePath("KickTimer")
 uppercut_timer = NodePath("UppercutTimer")
 parry_timer = NodePath("ParryTimer")
 parry_start_timer = NodePath("ParryStartTimer")
-left_ray = NodePath("ExplodeDetectionRays/LeftRays/LeftRay")
-right_ray = NodePath("ExplodeDetectionRays/RightRays/RightRay")
+left_ray = NodePath("")
+right_ray = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, 0)
@@ -40,6 +42,11 @@ disabled = true
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_4gfil")
+
+[node name="Explode Sprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-1, 1)
+texture = ExtResource("3_f7cbr")
 
 [node name="ModifierDetector" type="Area2D" parent="."]
 collision_layer = 0
@@ -93,63 +100,6 @@ one_shot = true
 
 [node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
 bus = &"SFX"
-
-[node name="ExplodeDetectionRays" type="Node2D" parent="."]
-
-[node name="LeftRays" type="Node2D" parent="ExplodeDetectionRays"]
-
-[node name="LeftRay" type="RayCast2D" parent="ExplodeDetectionRays/LeftRays"]
-target_position = Vector2(-97, 0)
-collision_mask = 4
-collide_with_areas = true
-collide_with_bodies = false
-
-[node name="LowerLeftRay" type="RayCast2D" parent="ExplodeDetectionRays/LeftRays"]
-target_position = Vector2(-88, 39)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="LowLeftRay" type="RayCast2D" parent="ExplodeDetectionRays/LeftRays"]
-target_position = Vector2(-27, 92)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="UpperLeftRay" type="RayCast2D" parent="ExplodeDetectionRays/LeftRays"]
-target_position = Vector2(-77, -57)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="UpLeftRay" type="RayCast2D" parent="ExplodeDetectionRays/LeftRays"]
-target_position = Vector2(-21, -93)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="RightRays" type="Node2D" parent="ExplodeDetectionRays"]
-
-[node name="RightRay" type="RayCast2D" parent="ExplodeDetectionRays/RightRays"]
-target_position = Vector2(95, -1)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="LowerRightRay" type="RayCast2D" parent="ExplodeDetectionRays/RightRays"]
-target_position = Vector2(84, 42)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="LowRightRay" type="RayCast2D" parent="ExplodeDetectionRays/RightRays"]
-target_position = Vector2(21, 93)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="UpperRightRay" type="RayCast2D" parent="ExplodeDetectionRays/RightRays"]
-target_position = Vector2(77, -53)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="UpRightRay" type="RayCast2D" parent="ExplodeDetectionRays/RightRays"]
-target_position = Vector2(19, -93)
-collision_mask = 4
-collide_with_areas = true
 
 [connection signal="body_entered" from="ModifierDetector" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="ModifierDetector" to="." method="_on_area_2d_body_exited"]

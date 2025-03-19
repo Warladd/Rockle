@@ -163,7 +163,6 @@ func _ready() -> void:
 	shop.hide()
 	pause_menu.hide()
 	Global.popup.connect(popup)
-	SaveSystem.save_game.gear_coins += 1000000000000
 	var gear_coin_string = str(SaveSystem.save_game.gear_coins)
 	for i in range(int((len(gear_coin_string) - 1) /3)):
 		gear_coin_string = gear_coin_string.insert(len(gear_coin_string) - 4 * (i) - 3, ",")

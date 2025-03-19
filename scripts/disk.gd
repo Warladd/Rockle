@@ -24,6 +24,7 @@ var gear_amount : int = 0
 var dead : bool = false
 var touching_floor : bool = false
 var was_on_floor : bool = false
+var held : bool = false
 
 func _ready():
 	sprite.animation = "ungrounded"
@@ -34,6 +35,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if held:
+		if position.y <= 305 and !grounded:
+			velocity.y = 0
+			position.y = 305
+		if position.x >= 362:
+			position.x = 362
+			velocity.x = 0
+		move_and_slide()
+		return
 	if velocity.x != 0 or grounded or velocity.y < 0:
 		parry_timer.stop()
 	elif !parry_timer.is_stopped():
@@ -63,6 +73,8 @@ func _process(delta):
 	if velocity.x > 0:
 		velocity.x -= 550 * delta
 	elif velocity.x < 0:
+		velocity.x += 550 * delta
+	if velocity.x < 5 and velocity.x > -5:
 		velocity.x = 0
 	was_on_floor = is_on_floor()
 	move_and_slide()
@@ -74,12 +86,14 @@ func _process(delta):
 func _on_area_2d_body_entered(body):
 	structures = body.get_parent()
 	if structures.straight and straight_timer.is_stopped():
+		held = false
 		sfx_player.stream = load("res://assets/audio/sfx/straight.mp3")
 		sfx_player.play()
 		straight_timer.start()
 		velocity.x += 1500
 		modifiers.append("straight")
 	elif structures.kick and kick_timer.is_stopped():
+		held = false
 		kick_timer.start()
 		if grounded:
 			sfx_player.stream = load("res://assets/audio/sfx/grounded_kick.mp3")
@@ -92,12 +106,14 @@ func _on_area_2d_body_entered(body):
 		velocity.y -= 300
 		modifiers.append("kick")
 	elif structures.stomp and !grounded:
+		held = false
 		sfx_player.stream = load("res://assets/audio/sfx/stomp.mp3")
 		sfx_player.play()
 		grounded = true
 		velocity.y += 1000
 		velocity.x = 0
 	elif structures.uppercut and uppercut_timer.is_stopped():
+		held = false
 		sfx_player.stream = load("res://assets/audio/sfx/ungrounded_upper.mp3")
 		sfx_player.play()
 		uppercut_timer.start()
@@ -107,14 +123,22 @@ func _on_area_2d_body_entered(body):
 		velocity.x += 220
 		modifiers.append("uppercut")
 	elif structures.parry and parry_timer.is_stopped():
+		held = false
 		sfx_player.stream = load("res://assets/audio/sfx/parry.mp3")
 		sfx_player.play()
 		velocity.y = 0
 		parry_start_timer.start()
 	elif structures.explode and !modifiers.has("explode"):
+		held = false
 		explode_sprite.show()
 		modifiers.append("explode")
-		
+	elif structures.hold:
+		# x = 275 
+		# y = 309
+		velocity.x += 300
+		if !grounded:
+			velocity.y -= 300
+	
 func _on_timer_timeout():
 	sfx_player.stream = load("res://assets/audio/sfx/disk_and_ball_spawn.mp3")
 	sfx_player.play()
@@ -155,7 +179,7 @@ func _on_area_2d_2_area_entered(area):
 		Global.popup.emit()
 		SaveSystem.saving()
 		print("saving")
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.05).timeout
 		queue_free()
 	velocity.x = stored_velocity_x
 	stored_velocity_x = 0

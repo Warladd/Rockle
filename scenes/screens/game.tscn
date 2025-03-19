@@ -853,6 +853,7 @@ text = "20,000,000"
 label_settings = ExtResource("3_6lbk3")
 
 [node name="HBoxContainer8" type="HBoxContainer" parent="Shop/TabContainer/Modifiers/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
 

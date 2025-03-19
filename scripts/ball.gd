@@ -5,6 +5,7 @@ var structure = "ball"
 @export var death : Area2D
 @export var detector : Area2D
 @export var explode_detection : Area2D
+@export var explode_sprite : Sprite2D
 @export var sprite : Sprite2D
 @export var collision : CollisionShape2D
 @export var sfx_player : AudioStreamPlayer2D
@@ -64,6 +65,8 @@ func _process(delta):
 	if velocity.x > 0:
 		velocity.x -= 650 * delta
 	elif velocity.x < 0:
+		velocity.x += 650 * delta
+	if velocity.x < 5 and velocity.x > -5:
 		velocity.x = 0
 	was_on_floor = is_on_floor()
 	move_and_slide()
@@ -123,6 +126,7 @@ func _on_area_2d_body_entered(body):
 			#pass
 	elif structures.explode and !modifiers.has("explode"):
 		modifiers.append("explode")
+		explode_sprite.show()
 		
 func _on_timer_timeout():
 	detector.monitoring = true
@@ -178,11 +182,11 @@ func _on_explody_area_entered(area: Area2D) -> void:
 	if area.get_parent() == self or area.get_parent().structure == "big_wall":
 		return
 	area.get_parent().grounded = false
-	if left_ray.collide_with_areas:
-		area.get_parent().velocity.y -= damage_value * 100
-		area.get_parent().velocity.x -= damage_value * 150
-	elif right_ray.collide_with_areas:
-		area.get_parent().velocity.y -= damage_value * 100
+	if area.get_parent().global_position.x <= global_position.x:
+		area.get_parent().velocity.x -= (damage_value * 150) + 200
+	elif area.get_parent().global_position.x > global_position.x:
 		area.get_parent().velocity.x += damage_value * 150
-	else:
-		return
+	if area.get_parent().global_position.y <= global_position.y:
+		area.get_parent().velocity.y -= damage_value * 150
+	elif area.get_parent().global_position.y > global_position.y:
+		area.get_parent().velocity.y += damage_value * 150

@@ -7,6 +7,7 @@ var structure = "pillar"
 @export var collision : CollisionShape2D
 @export var sprite : Sprite2D
 @export var sfx_player : AudioStreamPlayer2D
+@export var explode_sprite : Sprite2D
 var damage_value : int = 1
 var grounded : bool = true
 var stored_velocity_x : float = 0
@@ -56,6 +57,8 @@ func _process(delta):
 	if velocity.x > 0:
 		velocity.x -= 700 * delta
 	elif velocity.x < 0:
+		velocity.x += 700 * delta
+	if velocity.x < 5 and velocity.x > -5:
 		velocity.x = 0
 	var was_on_floor = is_on_floor()
 	move_and_slide()
@@ -106,6 +109,7 @@ func _on_area_2d_body_entered(body):
 		parry_start_timer.start()
 	elif structures.explode and !modifiers.has("explode"):
 		modifiers.append("explode")
+		explode_sprite.show()
 
 func _on_timer_timeout():
 	detector.monitoring = true
@@ -142,6 +146,7 @@ func _on_area_2d_2_area_entered(area):
 		Global.popup.emit()
 		SaveSystem.saving()
 		print("saving")
+		await get_tree().create_timer(0.05).timeout
 		queue_free()
 	velocity.x = stored_velocity_x
 	stored_velocity_x = 0
@@ -161,5 +166,11 @@ func _on_explode_detector_area_entered(area: Area2D) -> void:
 	if area.get_parent() == self or area.get_parent().structure == "big_wall":
 		return
 	area.get_parent().grounded = false
-	area.get_parent().velocity.y -= damage_value * 100
-	area.get_parent().velocity.x += damage_value * 120
+	if area.get_parent().global_position.x <= global_position.x:
+		area.get_parent().velocity.x -= (damage_value * 150) + 200
+	elif area.get_parent().global_position.x > global_position.x:
+		area.get_parent().velocity.x += damage_value * 150
+	if area.get_parent().global_position.y <= global_position.y:
+		area.get_parent().velocity.y -= damage_value * 150
+	elif area.get_parent().global_position.y > global_position.y:
+		area.get_parent().velocity.y += damage_value * 150
